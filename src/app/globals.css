@@ -117,7 +117,14 @@ body {
   color: var(--ink);
 }
 .band-soft {
-  background: var(--blue-soft);
+  /* Nick: ombre soft blue sky — not flat */
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #BBD6F1 28%,
+    #8fbef0 62%,
+    color-mix(in srgb, #3295fb 55%, #BBD6F1) 100%
+  );
   color: var(--ink);
 }
 
@@ -126,6 +133,15 @@ body {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  /* Soft blue ombre under drifting clouds */
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #BBD6F1 22%,
+    #9cc7ef 55%,
+    color-mix(in srgb, #3295fb 48%, #BBD6F1) 88%,
+    color-mix(in srgb, #3295fb 35%, #BBD6F1) 100%
+  );
 }
 .how-clouds-content {
   position: relative;
@@ -808,24 +824,27 @@ button:focus-visible {
 
 /* Client Reviews carousel — Nick: #BBD6F1 card, dark readable text */
 .reviews-carousel {
-  background: #BBD6F1;
-  border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
+  background: #BBD6F1; /* Nick: soft blue card — not white */
+  border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   padding: 1.5rem 1.35rem;
-  color: var(--ink);
+  color: #0f1a2e; /* dark navy readable on soft blue */
 }
 .reviews-carousel blockquote,
 .reviews-carousel .text-ink,
 .reviews-carousel .text-lg {
-  color: var(--ink);
+  color: #0f1a2e;
 }
 .reviews-carousel footer,
 .reviews-carousel .text-ink-soft {
-  color: var(--ink-soft);
+  color: #1a2a44;
 }
 .reviews-carousel .text-blue-dark,
 .reviews-carousel .reviews-tp-link {
+  color: #0f1a2e;
+}
+.reviews-carousel .reviews-tp-link:hover {
   color: var(--blue-dark);
 }
 @media (min-width: 640px) {
@@ -909,6 +928,28 @@ button:focus-visible {
   opacity: 1;
   visibility: visible;
 }
+
+/* ONE glove + ONE ball on EACH side (left pair + right pair) */
+.scroll-throw-pair {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+.scroll-throw-pair-cw {
+  left: 0.35rem;
+}
+.scroll-throw-pair-ccw {
+  right: 0.35rem;
+  flex-direction: row-reverse;
+}
+.scroll-throw-pair .scroll-throw-ball-img {
+  translate: var(--ball-nudge, 0px) -0.15rem;
+}
+
 .scroll-throw[data-past-hero="true"][data-entered="true"] .scroll-throw-glove,
 .scroll-throw[data-past-hero="true"][data-entered="true"] .scroll-throw-ball {
   opacity: 1;
@@ -1017,8 +1058,13 @@ button:focus-visible {
   isolation: isolate;
   min-height: 22rem;
   overflow: hidden;
-  /* Match soft-blue band so hard seam reads as continuous sky */
-  background: var(--blue-soft);
+  /* Ombre soft-blue into stadium sky seam */
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #3295fb 35%, #BBD6F1) 0%,
+    #BBD6F1 40%,
+    #d7e8f8 100%
+  );
 }
 .home-stadium-media {
   position: absolute;

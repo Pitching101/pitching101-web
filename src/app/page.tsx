@@ -117,7 +117,7 @@ export default function HomePage() {
           {Array.from({ length: 7 }, (_, index) => (
             <Image
               key={index}
-              src="/assets/pixel-cloud.png"
+              src="/assets/pixel-cloud-transparent.png"
               alt=""
               width={160}
               height={90}
