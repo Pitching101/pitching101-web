@@ -1041,6 +1041,15 @@ button:focus-visible {
   z-index: 0;
   pointer-events: none;
 }
+.stadium-cloud-decor {
+  z-index: 1;
+  height: clamp(9rem, 25vw, 16rem);
+  inset: 0 0 auto;
+}
+.stadium-cloud-decor .float-cloud-1 { left: 4%; top: 5%; }
+.stadium-cloud-decor .float-cloud-2 { left: 28%; top: 22%; }
+.stadium-cloud-decor .float-cloud-3 { left: 54%; top: 4%; }
+.stadium-cloud-decor .float-cloud-4 { right: 5%; top: 14%; }
 .home-stadium-bg {
   object-fit: cover;
   object-position: center top;

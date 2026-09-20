@@ -153,13 +153,31 @@ export default function HomePage() {
       >
         <div className="home-stadium-media" aria-hidden="true">
           <Image
-            src="/assets/pixel-stadium-seamless.png"
+            src="/assets/pixel-stadium-bg-v2.png"
             alt=""
             fill
             className="home-stadium-bg"
             sizes="100vw"
             priority={false}
           />
+        </div>
+        <div className="cloud-decor stadium-cloud-decor" aria-hidden="true">
+          {[
+            { src: "/assets/pixel-cloud-1-transparent.png", w: 279, h: 145 },
+            { src: "/assets/pixel-cloud-2-transparent.png", w: 210, h: 99 },
+            { src: "/assets/pixel-cloud-3-transparent.png", w: 200, h: 96 },
+            { src: "/assets/pixel-cloud-4-transparent.png", w: 223, h: 99 },
+          ].map((cloud, index) => (
+            <Image
+              key={`stadium-${cloud.src}-${index}`}
+              src={cloud.src}
+              alt=""
+              width={cloud.w}
+              height={cloud.h}
+              className={`float-cloud float-cloud-${index + 1}`}
+              style={{ background: "transparent" }}
+            />
+          ))}
         </div>
         <div className="home-stadium-inner">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 px-5 py-16 text-center sm:px-8 sm:py-20">
