@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Pixelify_Sans, VT323 } from "next/font/google";
+import { Geist, Geist_Mono, Pixelify_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollBall from "@/components/ScrollBall";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,19 +21,13 @@ const pixelify = Pixelify_Sans({
   subsets: ["latin"],
 });
 
-const vt323 = VT323({
-  weight: "400",
-  variable: "--font-pixel-ui",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: {
     default: "Pitching101 | Naples FL Youth & Elite Pitching Lessons",
     template: "%s | Pitching101 Naples FL",
   },
   description:
-    "Parent-friendly pitching lessons in Naples, Florida. Youth and elite coaching, camps, clinics, Stan video feedback, PDF charts, and virtual options. Call 845-768-2211.",
+    "Parent-friendly pitching lessons in Naples, Florida. Youth and elite coaching, camps, clinics, Stan video feedback, PDF charts, and virtual options. Text or call 845-768-2211.",
   keywords: [
     "Naples FL pitching lessons",
     "youth pitching coach Naples",
@@ -57,9 +52,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${pixelify.variable} ${vt323.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${pixelify.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <ScrollBall />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

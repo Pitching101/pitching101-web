@@ -16,7 +16,10 @@ export default function Header() {
             Naples FL
           </a>
           <a href="tel:8457682211" className="pixel-btn !px-3 !py-1.5 !text-xs">
-            Call coach
+            Call
+          </a>
+          <a href="sms:8457682211" className="pixel-btn-ghost !px-3 !py-1.5 !text-xs">
+            Text
           </a>
         </nav>
       </div>

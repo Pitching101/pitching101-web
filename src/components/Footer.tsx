@@ -14,9 +14,17 @@ export default function Footer() {
         </div>
         <div className="space-y-2 text-sm">
           <p className="font-pixel text-sm font-semibold text-yellow">Contact</p>
+          <p className="font-pixel text-xs uppercase tracking-wide text-ink-soft">
+            Text or Call 845-768-2211
+          </p>
           <p>
             <a className="text-blue-light hover:text-yellow hover:underline" href="tel:8457682211">
-              845-768-2211
+              Call 845-768-2211
+            </a>
+          </p>
+          <p>
+            <a className="text-blue-light hover:text-yellow hover:underline" href="sms:8457682211">
+              Text 845-768-2211
             </a>
           </p>
           <p>
@@ -46,7 +54,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="border-t-4 border-teal py-4 text-center font-pixel-ui text-sm text-ink-soft">
+      <div className="border-t-4 border-blue py-4 text-center font-pixel-ui text-sm text-ink-soft">
         © {new Date().getFullYear()} Pitching101 · Naples, FL
       </div>
     </footer>

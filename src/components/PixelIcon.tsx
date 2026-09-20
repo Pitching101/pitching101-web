@@ -1,4 +1,4 @@
-/** Chunky pixel glyphs — yellow fill on dark, HUD-arcade palette. */
+/** Chunky pixel glyphs — lime accents on dark navy. */
 type IconName = "video" | "plan" | "virtual";
 
 const pixels: Record<IconName, Array<[number, number]>> = {
@@ -48,9 +48,9 @@ export default function PixelIcon({
         style={{ imageRendering: "pixelated" }}
         shapeRendering="crispEdges"
       >
-        <rect width="16" height="16" fill="#0C1422" />
+        <rect width="16" height="16" fill="#070B14" />
         {pixels[name].map(([x, y]) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#FFE566" />
+          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#C8F542" />
         ))}
       </svg>
     </span>
