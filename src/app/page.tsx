@@ -106,13 +106,6 @@ export default function HomePage() {
           </div>
           <div className="content-row ages-band-content">
             <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
-              <Image
-                src="/assets/nick-coach-circle.png"
-                alt="Coach Nick — youth pitching coach in Naples, FL"
-                width={160}
-                height={160}
-                className="nick-coach-avatar nick-coach-home"
-              />
               <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
               <p className="text-lg leading-relaxed text-ink">
                 I Help Young Pitchers (And Their Parents) Throw More Strikes Without
