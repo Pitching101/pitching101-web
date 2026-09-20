@@ -704,6 +704,20 @@ button:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+/* Wordmark is already the mark — no pill/box around it, even on focus */
+.site-logo,
+.site-logo:focus,
+.site-logo:focus-visible,
+.site-logo img {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+.site-logo:focus-visible {
+  opacity: 0.72;
+}
+
 .trust-strip {
   background: var(--surface-raised);
   border: 1px solid color-mix(in srgb, var(--blue) 20%, transparent);
