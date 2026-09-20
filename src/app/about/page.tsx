@@ -24,7 +24,7 @@ export default function AboutPage() {
 
         <div className="grid items-start gap-8 sm:grid-cols-[minmax(0,14rem)_1fr]">
           <Image
-            src="/assets/nick-coach.png"
+            src="/assets/photos/nick-coach.png"
             alt="Coach Nick — youth pitching coach in Naples, FL"
             width={448}
             height={298}

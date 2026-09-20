@@ -19,22 +19,22 @@ const journeyAreas = [
   {
     title: "Affordable Training",
     note: "Real help without the crazy price tag.",
-    icon: "/assets/icon-plan-checklist.png",
+    icon: "/assets/icons/icon-plan-checklist.png",
   },
   {
     title: "Lifelong Routines",
     note: "Simple habits kids can keep.",
-    icon: "/assets/icon-arm-care-v2.png",
+    icon: "/assets/icons/icon-arm-care-v2.png",
   },
   {
     title: "Safe Techniques",
     note: "Arm care first. Stay on the mound.",
-    icon: "/assets/icon-strikes.png",
+    icon: "/assets/icons/icon-strikes.png",
   },
   {
     title: "Flexible Options",
     note: "Local, DIY, or hybrid — your call.",
-    icon: "/assets/icon-free-guide-v2.png",
+    icon: "/assets/icons/icon-free-guide-v2.png",
   },
 ];
 
@@ -50,21 +50,21 @@ const freeGuides = [
     note: "Simple warm-up and cool-down steps so young arms stay healthy.",
     href: "mailto:nickdeisng@gmail.com?subject=Arm-Care%20Checklist",
     cta: "Get The Checklist",
-    icon: "/assets/icon-arm-care-v2.png",
+    icon: "/assets/icons/icon-arm-care-v2.png",
   },
   {
     title: "Strike % Tips",
     note: "Parent-friendly cues that help kids throw more strikes.",
     href: "mailto:nickdeisng@gmail.com?subject=Strike%20Percent%20Tips",
     cta: "Get The Tips",
-    icon: "/assets/icon-strikes.png",
+    icon: "/assets/icons/icon-strikes.png",
   },
   {
     title: "Pre-Catch Warmup",
     note: "A short routine before catch so practice starts right.",
     href: "mailto:nickdeisng@gmail.com?subject=Pre-Catch%20Warmup",
     cta: "Get The Warmup",
-    icon: "/assets/icon-plan-checklist.png",
+    icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
 
@@ -225,6 +225,7 @@ export default function HomePage() {
           <div className="grid gap-5">
             <Reveal delayMs={40}>
               <article className="card space-y-4 p-6">
+                <Image src="/assets/icons/icon-plan-checklist.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 1</span>
                   <h3 className="font-semibold text-blue-dark">
@@ -248,6 +249,7 @@ export default function HomePage() {
 
             <Reveal delayMs={80}>
               <article className="card space-y-3 p-6">
+                <Image src="/assets/icons/icon-strikes.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 2</span>
                   <h3 className="font-semibold text-blue-dark">Start Training</h3>
@@ -268,6 +270,7 @@ export default function HomePage() {
 
             <Reveal delayMs={120}>
               <article className="card space-y-3 p-6">
+                <Image src="/assets/icons/icon-arm-care-v2.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 3</span>
                   <h3 className="font-semibold text-blue-dark">Watch Them Thrive</h3>
@@ -338,7 +341,7 @@ export default function HomePage() {
         <div className="home-stadium-inner">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-5 py-16 text-center sm:flex-row sm:items-center sm:px-8 sm:py-20 sm:text-left">
             <Image
-              src="/assets/nick-coach-circle.png"
+              src="/assets/photos/nick-coach.png"
               alt="Coach Nick — Pitching101 Naples FL"
               width={120}
               height={120}

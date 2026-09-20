@@ -897,18 +897,76 @@ button:focus-visible {
 
 
 
-/* Homepage bottom CTA: blend the white content into the pixel stadium. */
-.home-contact-band {
+
+/* Bottom homepage CTA: a soft white-to-stadium transition. */
+.home-stadium-band {
   position: relative;
   isolation: isolate;
+  min-height: 22rem;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.96) 16%, rgba(255, 255, 255, 0.42) 48%, rgba(255, 255, 255, 0.08) 76%, rgba(255, 255, 255, 0) 100%),
-    url("/assets/pixel-stadium-bg-v2.png") center bottom / cover no-repeat;
+  background: #ffffff;
 }
-.home-contact-copy {
+.home-stadium-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.home-stadium-bg {
+  object-fit: cover;
+  object-position: center bottom;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  opacity: 0.78;
+}
+.home-stadium-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.96) 18%, rgba(255,255,255,0.56) 44%, rgba(255,255,255,0.12) 74%, rgba(255,255,255,0) 100%);
+}
+.home-stadium-inner {
+  position: relative;
+  z-index: 2;
+}
+.home-stadium-inner .reveal {
   padding: 1rem 1.15rem;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(2px);
+}
+
+/* About profile stadium treatment. */
+.about-stadium {
+  position: relative;
+  isolation: isolate;
+  min-height: 70vh;
+  overflow: hidden;
+  background: #ffffff;
+}
+.about-stadium-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-stadium-bg {
+  object-fit: cover;
+  object-position: center bottom;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  opacity: 0.55;
+}
+.about-stadium-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.55) 45%, rgba(255,255,255,0.7));
+}
+.about-stadium-copy {
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.78);
   backdrop-filter: blur(2px);
 }
