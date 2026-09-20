@@ -27,13 +27,13 @@ export default function NaplesPitchingLessonsPage() {
   return (
     <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <p className="font-pixel-ui text-base font-semibold text-blue-dark">
+        <p className="text-base font-semibold text-blue-dark">
           <Link href="/" className="hover:text-blue hover:underline">
             ← Back to Pitching101 home
           </Link>
         </p>
 
-        <div className="mt-6 inline-flex gift-frame overflow-hidden bg-white">
+        <div className="media-frame media-frame-white mt-6 inline-flex overflow-hidden">
           <Image
             src="/assets/pixel-batter.jpg"
             alt="Pixel art baseball batter"
@@ -44,10 +44,10 @@ export default function NaplesPitchingLessonsPage() {
           />
         </div>
 
-        <p className="pixel-chip mt-5 px-3 py-1.5">Naples · Collier County</p>
+        <p className="ui-chip mt-5 px-3.5 py-1.5">Naples · Collier County</p>
 
-        <h1 className="pixel-title pixel-title-lg mt-5">
-          Youth pitching lessons Naples FL — game on
+        <h1 className="ui-title ui-title-lg mt-5">
+          Youth pitching lessons Naples FL
         </h1>
 
         <p className="mt-6 text-lg leading-relaxed text-ink-soft">
@@ -67,8 +67,8 @@ export default function NaplesPitchingLessonsPage() {
       </Reveal>
 
       <Reveal className="mt-12 space-y-4">
-        <h2 className="pixel-title pixel-title-sm text-blue-dark">
-          Who’s on the roster
+        <h2 className="ui-title ui-title-sm text-blue-dark">
+          Who we work with
         </h2>
         <p className="leading-relaxed text-ink-soft">
           Built for{" "}
@@ -82,7 +82,7 @@ export default function NaplesPitchingLessonsPage() {
         <ul className="space-y-3 text-ink-soft">
           <li className="flex gap-3">
             <span className="mt-1 text-accent" aria-hidden="true">
-              ■
+              ●
             </span>
             <span>
               <strong className="text-ink">Ages 8–14</strong> — age-right
@@ -91,7 +91,7 @@ export default function NaplesPitchingLessonsPage() {
           </li>
           <li className="flex gap-3">
             <span className="mt-1 text-accent" aria-hidden="true">
-              ■
+              ●
             </span>
             <span>
               <strong className="text-ink">Parents welcome</strong> — leave
@@ -100,7 +100,7 @@ export default function NaplesPitchingLessonsPage() {
           </li>
           <li className="flex gap-3">
             <span className="mt-1 text-accent" aria-hidden="true">
-              ■
+              ●
             </span>
             <span>
               <strong className="text-ink">Collier County &amp; Naples</strong> —
@@ -111,19 +111,19 @@ export default function NaplesPitchingLessonsPage() {
       </Reveal>
 
       <Reveal className="mt-12 space-y-4">
-        <h2 className="pixel-title pixel-title-sm text-blue-dark">
-          What you unlock
+        <h2 className="ui-title ui-title-sm text-blue-dark">
+          What you can start with
         </h2>
         <p className="leading-relaxed text-ink-soft">
           Stan video feedback for busy weeks, a PDF pitching chart you can
           follow at home, virtual lessons when travel hits, and in-area Naples
           sessions when you’re ready. Camps and clinics energy — serious, still
-          fun.
+          approachable.
         </p>
       </Reveal>
 
       <Reveal className="mt-12 space-y-4">
-        <h2 className="pixel-title pixel-title-sm text-blue-dark">
+        <h2 className="ui-title ui-title-sm text-blue-dark">
           Naples FL pitching lessons — local SEO, local families
         </h2>
         <p className="leading-relaxed text-ink-soft">
@@ -136,34 +136,34 @@ export default function NaplesPitchingLessonsPage() {
       </Reveal>
 
       <Reveal>
-        <section className="pixel-card mt-12 p-7 sm:p-9">
-          <h2 className="pixel-title pixel-title-sm text-blue-dark">
-            Ready to load in? Book a Naples chat
+        <section className="ui-card mt-12 p-7 sm:p-9">
+          <h2 className="ui-title ui-title-sm text-blue-dark">
+            Book a Naples chat
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
             No public street address — text, call, or email first and we’ll help
             you choose Stan video feedback, a PDF chart, a virtual lesson, or an
             in-area session.
           </p>
-          <p className="mt-4 font-pixel text-sm text-blue-dark">
+          <p className="mt-4 text-sm font-semibold text-blue-dark">
             Text or Call 845-768-2211
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="tel:8457682211" className="pixel-btn">
+            <a href="tel:8457682211" className="btn">
               Call 845-768-2211
             </a>
-            <a href="sms:8457682211" className="pixel-btn-ghost">
+            <a href="sms:8457682211" className="btn-ghost">
               Text 845-768-2211
             </a>
             <a
               href="mailto:nickdeisng@gmail.com?subject=Youth%20pitching%20lessons%20Naples%20FL"
-              className="pixel-btn-ghost"
+              className="btn-ghost"
             >
               Email nickdeisng@gmail.com
             </a>
             <Link
               href="/#programs"
-              className="font-pixel-ui px-2 py-2.5 text-base font-semibold text-blue-dark underline-offset-4 hover:underline"
+              className="px-2 py-2.5 text-base font-semibold text-blue-dark underline-offset-4 hover:underline"
             >
               See program paths →
             </Link>
@@ -171,7 +171,7 @@ export default function NaplesPitchingLessonsPage() {
         </section>
       </Reveal>
 
-      <p className="mt-12 font-pixel-ui text-base text-ink-soft">
+      <p className="mt-12 text-base text-ink-soft">
         Serving Naples &amp; Collier County, FL · Pitching101
       </p>
     </article>

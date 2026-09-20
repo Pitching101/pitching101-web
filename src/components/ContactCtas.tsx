@@ -14,13 +14,13 @@ export default function ContactCtas({
 
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`.trim()}>
-      <a href="tel:8457682211" className="pixel-btn">
+      <a href="tel:8457682211" className="btn">
         {compact ? "Call 845-768-2211" : "Call 845-768-2211"}
       </a>
-      <a href="sms:8457682211" className="pixel-btn-ghost">
+      <a href="sms:8457682211" className="btn-ghost">
         {compact ? "Text 845-768-2211" : "Text 845-768-2211"}
       </a>
-      <a href={mailHref} className="pixel-btn-ghost">
+      <a href={mailHref} className="btn-ghost">
         {compact ? "Email Nick" : "Email nickdeisng@gmail.com"}
       </a>
     </div>

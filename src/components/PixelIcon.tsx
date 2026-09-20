@@ -1,4 +1,4 @@
-/** Chunky pixel glyphs — lime accents on dark navy. */
+/** Compact brand glyphs for program cards — visual accent only, not UI chrome. */
 type IconName = "video" | "plan" | "virtual";
 
 const pixels: Record<IconName, Array<[number, number]>> = {
@@ -40,7 +40,7 @@ export default function PixelIcon({
   size?: number;
 }) {
   return (
-    <span className="pixel-icon-frame inline-flex p-1" aria-hidden="true">
+    <span className="icon-frame inline-flex p-1" aria-hidden="true">
       <svg
         width={size}
         height={size}
@@ -48,9 +48,9 @@ export default function PixelIcon({
         style={{ imageRendering: "pixelated" }}
         shapeRendering="crispEdges"
       >
-        <rect width="16" height="16" fill="#070B14" />
+        <rect width="16" height="16" fill="#0F1A2E" />
         {pixels[name].map(([x, y]) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#C8F542" />
+          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#8BC41A" />
         ))}
       </svg>
     </span>

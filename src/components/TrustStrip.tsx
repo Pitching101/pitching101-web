@@ -24,9 +24,9 @@ export default function TrustStrip({ className = "" }: { className?: string }) {
         {items.map((item) => (
           <li
             key={item.label}
-            className="trust-strip-item border-b-4 border-blue px-5 py-5 last:border-b-0 sm:border-b-0 sm:px-6 sm:py-6"
+            className="trust-strip-item border-b border-blue/15 px-5 py-5 last:border-b-0 sm:border-b-0 sm:px-6 sm:py-6"
           >
-            <p className="font-pixel text-sm font-semibold leading-snug text-blue-dark">
+            <p className="text-sm font-semibold leading-snug text-blue-dark">
               {item.label}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">
