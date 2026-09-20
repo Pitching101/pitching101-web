@@ -32,8 +32,8 @@ export default function ScrollThrowDecor() {
       if (!hero) return 0;
       const startY = window.scrollY + hero.getBoundingClientRect().top;
       const endY = end
-        ? window.scrollY + end.getBoundingClientRect().top - window.innerHeight * 0.18
-        : startY + window.innerHeight * 1.35;
+        ? window.scrollY + end.getBoundingClientRect().top - window.innerHeight * 0.48
+        : startY + window.innerHeight * 1.1;
       const span = Math.max(1, endY - startY);
       return Math.min(1, Math.max(0, (window.scrollY - startY) / span));
     };
@@ -41,7 +41,7 @@ export default function ScrollThrowDecor() {
     const zoneVisible = () => {
       if (!heroEl()) return false;
       const end = endEl();
-      if (end && end.getBoundingClientRect().top <= window.innerHeight * 0.4) {
+      if (end && end.getBoundingClientRect().top <= window.innerHeight * 0.78) {
         return false;
       }
       return true;
@@ -52,8 +52,8 @@ export default function ScrollThrowDecor() {
     let raf = 0;
 
     const apply = (p: number, opacity: number) => {
-      const cwY = 8 + p * 64;
-      const ccwY = 18 + p * 58;
+      const cwY = 8 + p * 36;
+      const ccwY = 16 + p * 32;
       cw.style.transform = `translate3d(${(-3 + p * 9).toFixed(2)}vw, ${cwY.toFixed(2)}vh, 0)`;
       ccw.style.transform = `translate3d(${(3 - p * 9).toFixed(2)}vw, ${ccwY.toFixed(2)}vh, 0)`;
       const rot = p * 260;
