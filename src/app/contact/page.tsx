@@ -4,9 +4,10 @@ import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Book youth pitching lessons in Naples, FL",
   description:
-    "Contact Pitching101 for youth pitching lessons in Naples, FL. Call or text 845-768-2211 or email nickdeisng@gmail.com.",
+    "Text or call 845-768-2211 to start Pitching101 youth pitching lessons in Naples, FL. Coach Nick. Ages 8-14. Email nickdeisng@gmail.com.",
+  alternates: { canonical: "/contact/" },
 };
 
 export default function ContactPage() {
@@ -19,11 +20,12 @@ export default function ContactPage() {
               ← Home
             </Link>
           </p>
-          <h1 className="ui-title ui-title-lg">Come find me</h1>
+          <h1 className="ui-title ui-title-lg">Let&apos;s get your kid on the mound</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Want pitching help for your kid? Text or call. I&apos;ll keep it simple.
+            Want youth pitching lessons in Naples, FL? Text or call. I&apos;ll tell
+            you if we&apos;re a fit before you drive.
           </p>
-          <p className="text-base text-ink-soft">Naples, FL</p>
+          <p className="text-base text-ink-soft">Coach Nick · ages 8–14 · Naples, FL</p>
 
           <div className="home-cta-row pt-2">
             <a href="sms:8457682211" className="btn">
@@ -49,7 +51,8 @@ export default function ContactPage() {
           </ul>
 
           <p className="pt-2 text-sm text-ink-soft">
-            No street address listed — text, call, or email first.
+            No street address listed — text, call, or email first and I&apos;ll
+            point you to the field.
           </p>
         </Reveal>
       </article>

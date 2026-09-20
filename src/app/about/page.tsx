@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import AboutHomeRedirect from "@/components/AboutHomeRedirect";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Meet Coach Nick",
   description:
-    "Meet Coach Nick at Pitching101 — youth pitching lessons in Naples, FL. Clear coaching, arm care first.",
+    "Coach Nick runs Pitching101 — youth pitching lessons in Naples, FL for kids ages 8-14. Clear cues, arm care first.",
 };
 
 export default function AboutPage() {

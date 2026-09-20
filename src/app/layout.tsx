@@ -20,23 +20,23 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pitching101.com"),
   title: {
-    default: "Pitching101 | Youth pitching lessons in Naples, FL",
+    default: "Youth pitching lessons in Naples, FL | Pitching101",
     template: "%s | Pitching101",
   },
   description:
-    "Youth pitching lessons in Naples, FL. I help kids throw more strikes — in person, PDF, or virtual. Text or call 845-768-2211.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
   keywords: [
-    "Naples FL pitching lessons",
-    "youth pitching coach Naples",
-    "baseball pitching Naples Florida",
-    "elite pitching instruction Naples",
+    "youth pitching lessons Naples FL",
+    "pitching coach Naples Florida",
+    "youth baseball pitching Collier County",
     "Pitching101",
   ],
   openGraph: {
-    title: "Pitching101 | Youth pitching lessons in Naples, FL",
+    title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Youth pitching lessons in Naples, FL — I help kids throw more strikes.",
+      "Coach Nick helps kids ages 8-14 throw more strikes in Naples, FL. Clear cues. Arm care first.",
     locale: "en_US",
     type: "website",
   },
