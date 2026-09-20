@@ -1197,6 +1197,19 @@ html.glove-cursor * {
   z-index: 2;
   transform: rotate(11deg) translate(-1.05rem, 1.5rem);
 }
+.bb-card-art {
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: 7px 9px 0 rgba(15, 26, 46, 0.14);
+}
+.bb-card-art-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
 .bb-card-photo {
   position: relative;
   aspect-ratio: 3 / 4;
@@ -1279,6 +1292,16 @@ html.glove-cursor * {
   color: var(--ink);
   background: color-mix(in srgb, #ffffff 72%, #BBD6F1);
   border: 2px solid color-mix(in srgb, #0f1a2e 16%, #3295fb);
+}
+.pixel-board {
+  width: min(36rem, 100%);
+  margin: 0.85rem 0 0.15rem;
+}
+.pixel-board-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
 }
 /* Landscape nick-coach.png has face on the right — bias crop for circle use */
 .nick-coach-avatar-wide {
