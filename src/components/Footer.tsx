@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="site-footer mt-auto">
       <div className="mx-auto flex max-w-5xl flex-col gap-8 px-5 py-12 sm:flex-row sm:items-start sm:justify-between sm:px-8">
         <div className="space-y-4">
-          <Logo />
+          <Logo variant="on-white" />
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth &amp; elite pitching instruction for families in the Naples,
             Florida area — clear coaching and confident arms.

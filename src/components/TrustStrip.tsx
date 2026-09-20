@@ -1,18 +1,9 @@
-/** Parent trust strip — arm care / plain feedback / text or call first */
+/** Parent trust strip — short ELI5 points */
 export default function TrustStrip({ className = "" }: { className?: string }) {
   const items = [
-    {
-      label: "Arm care first",
-      body: "Healthy mechanics before velocity talk.",
-    },
-    {
-      label: "Clear next reps",
-      body: "You always know what to practice next.",
-    },
-    {
-      label: "Text or call before you drive",
-      body: "No street address listed — text, call, or email first.",
-    },
+    { label: "Arm care first", body: "Healthy mechanics before velocity." },
+    { label: "Clear next reps", body: "Always know what to practice." },
+    { label: "Text before you drive", body: "No street address — reach out first." },
   ];
 
   return (

@@ -7,7 +7,7 @@ import TrustStrip from "@/components/TrustStrip";
 export const metadata: Metadata = {
   title: "Youth Pitching Lessons Naples FL",
   description:
-    "Youth pitching lessons in Naples, Florida for ages 8–14 and parents across Collier County. Parent-friendly coaching from Pitching101 — text or call 845-768-2211 or email nickdeisng@gmail.com.",
+    "Youth pitching lessons in Naples, Florida for ages 8–14 and Collier County parents. Text or call 845-768-2211 or email nickdeisng@gmail.com.",
   keywords: [
     "youth pitching lessons Naples FL",
     "Naples FL pitching lessons",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Youth Pitching Lessons Naples FL | Pitching101",
     description:
-      "Youth pitching lessons for Naples, FL ages 8–14 and Collier County parents — clear feedback, local focus.",
+      "Youth pitching lessons for Naples, FL ages 8–14 — clear feedback, local focus.",
     type: "website",
   },
 };
@@ -26,14 +26,13 @@ export const metadata: Metadata = {
 export default function NaplesPitchingLessonsPage() {
   return (
     <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
-      <Reveal>
+      <Reveal className="space-y-5">
         <p className="text-base font-semibold text-blue-dark">
-          <Link href="/" className="hover:text-blue hover:underline">
-            ← Back to Pitching101 home
+          <Link href="/" className="hover:underline">
+            ← Home
           </Link>
         </p>
-
-        <div className="media-frame media-frame-white mt-6 inline-flex overflow-hidden">
+        <div className="media-frame media-frame-white inline-flex overflow-hidden">
           <Image
             src="/assets/pixel-batter.jpg"
             alt="Pixel art baseball batter"
@@ -43,112 +42,53 @@ export default function NaplesPitchingLessonsPage() {
             style={{ imageRendering: "pixelated" }}
           />
         </div>
-
-        <p className="ui-chip mt-5 px-3.5 py-1.5">Naples · Collier County</p>
-
-        <h1 className="ui-title ui-title-lg mt-5">
+        <p className="ui-chip px-3.5 py-1.5">Naples · Collier County</p>
+        <h1 className="ui-title ui-title-lg">
           Youth pitching lessons Naples FL
         </h1>
-
-        <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-          Looking for{" "}
-          <strong className="text-ink">
-            youth pitching lessons in Naples, Florida
-          </strong>
-          ? Pitching101 works with local families who want straightforward
-          coaching — the kind you can explain at the dinner table. We help young
-          pitchers build healthy habits, cleaner mechanics, and real confidence
-          on the mound. Fun for the kid. Clear for the parent.
+        <p className="text-lg leading-relaxed text-ink-soft">
+          Clear coaching for ages 8–14. Parents leave knowing what to practice.
+          No jargon.
         </p>
       </Reveal>
 
-      <Reveal className="mt-10" delayMs={80}>
+      <Reveal className="mt-8" delayMs={60}>
         <TrustStrip />
       </Reveal>
 
-      <Reveal className="mt-12 space-y-4">
-        <h2 className="ui-title ui-title-sm text-blue-dark">
-          Who we work with
-        </h2>
-        <p className="leading-relaxed text-ink-soft">
-          Built for{" "}
-          <strong className="text-ink">youth pitchers ages 8–14</strong>, their
-          parents, and families across{" "}
-          <strong className="text-ink">Collier County</strong> and the wider
-          Naples, FL area. Whether your kid is brand-new on the mound or already
-          throwing travel ball, we keep the feedback plain and the arm-care
-          habits front and center.
-        </p>
-        <ul className="space-y-3 text-ink-soft">
-          <li className="flex gap-3">
-            <span className="mt-1 text-accent" aria-hidden="true">
-              ●
-            </span>
-            <span>
-              <strong className="text-ink">Ages 8–14</strong> — age-right
-              progress, not one-size-fits-all drills.
-            </span>
+      <Reveal className="mt-10 space-y-3">
+        <h2 className="ui-title ui-title-sm text-blue-dark">Who it’s for</h2>
+        <ul className="space-y-2 text-ink-soft">
+          <li>
+            <strong className="text-ink">Ages 8–14</strong> — age-right progress.
           </li>
-          <li className="flex gap-3">
-            <span className="mt-1 text-accent" aria-hidden="true">
-              ●
-            </span>
-            <span>
-              <strong className="text-ink">Parents welcome</strong> — leave
-              knowing what to watch for and what to practice.
-            </span>
+          <li>
+            <strong className="text-ink">Parents</strong> — plain-English feedback.
           </li>
-          <li className="flex gap-3">
-            <span className="mt-1 text-accent" aria-hidden="true">
-              ●
-            </span>
-            <span>
-              <strong className="text-ink">Collier County &amp; Naples</strong> —
-              local focus with virtual options when you need them.
-            </span>
+          <li>
+            <strong className="text-ink">Collier County &amp; Naples</strong> — local
+            plus virtual when needed.
           </li>
         </ul>
       </Reveal>
 
-      <Reveal className="mt-12 space-y-4">
-        <h2 className="ui-title ui-title-sm text-blue-dark">
-          What you can start with
-        </h2>
-        <p className="leading-relaxed text-ink-soft">
-          Stan video feedback for busy weeks, a PDF pitching chart you can
-          follow at home, virtual lessons when travel hits, and in-area Naples
-          sessions when you’re ready. Camps and clinics energy — serious, still
-          approachable.
-        </p>
-      </Reveal>
-
-      <Reveal className="mt-12 space-y-4">
-        <h2 className="ui-title ui-title-sm text-blue-dark">
-          Naples FL pitching lessons — local SEO, local families
-        </h2>
-        <p className="leading-relaxed text-ink-soft">
-          Searching for <em>youth pitching lessons Naples FL</em>,{" "}
-          <em>Naples FL pitching coach</em>, or{" "}
-          <em>Collier County baseball pitching</em>? You’re in the right place.
-          Pitching101 is building its Naples home base for families across
-          Collier County and nearby communities.
+      <Reveal className="mt-10 space-y-3">
+        <h2 className="ui-title ui-title-sm text-blue-dark">Options</h2>
+        <p className="text-ink-soft">
+          Stan video notes, PDF chart, virtual lessons, or in-area Naples sessions.
         </p>
       </Reveal>
 
       <Reveal>
-        <section className="ui-card mt-12 p-7 sm:p-9">
-          <h2 className="ui-title ui-title-sm text-blue-dark">
-            Book a Naples chat
-          </h2>
-          <p className="mt-3 leading-relaxed text-ink-soft">
-            No public street address — text, call, or email first and we’ll help
-            you choose Stan video feedback, a PDF chart, a virtual lesson, or an
-            in-area session.
+        <section className="ui-card mt-10 p-6 sm:p-8">
+          <h2 className="ui-title ui-title-sm text-blue-dark">Book a chat</h2>
+          <p className="mt-2 text-ink-soft">
+            No street address listed. Text, call, or email first.
           </p>
-          <p className="mt-4 text-sm font-semibold text-blue-dark">
+          <p className="mt-3 text-sm font-semibold text-blue-dark">
             Text or Call 845-768-2211
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <a href="tel:8457682211" className="btn">
               Call 845-768-2211
             </a>
@@ -161,17 +101,11 @@ export default function NaplesPitchingLessonsPage() {
             >
               Email nickdeisng@gmail.com
             </a>
-            <Link
-              href="/#programs"
-              className="px-2 py-2.5 text-base font-semibold text-blue-dark underline-offset-4 hover:underline"
-            >
-              See program paths →
-            </Link>
           </div>
         </section>
       </Reveal>
 
-      <p className="mt-12 text-base text-ink-soft">
+      <p className="mt-10 text-sm text-ink-soft">
         Serving Naples &amp; Collier County, FL · Pitching101
       </p>
     </article>

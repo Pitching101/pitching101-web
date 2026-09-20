@@ -1,4 +1,4 @@
-/** Compact brand glyphs for program cards — visual accent only, not UI chrome. */
+/** Compact program icons — lime accents. */
 type IconName = "video" | "plan" | "virtual";
 
 const pixels: Record<IconName, Array<[number, number]>> = {
@@ -50,7 +50,7 @@ export default function PixelIcon({
       >
         <rect width="16" height="16" fill="#0F1A2E" />
         {pixels[name].map(([x, y]) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#8BC41A" />
+          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#2A7DE1" />
         ))}
       </svg>
     </span>

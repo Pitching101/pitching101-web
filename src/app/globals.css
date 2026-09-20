@@ -196,6 +196,16 @@ body {
   .content-row-media { justify-content: flex-end; }
 }
 
+/* Alternate media side: flip puts GIF LEFT / text RIGHT on desktop */
+@media (min-width: 1024px) {
+  .content-row-flip .content-row-copy { order: 2; }
+  .content-row-flip .content-row-media {
+    order: 1;
+    justify-content: flex-start;
+  }
+}
+
+
 .row-gif {
   display: block;
   width: 100%;
