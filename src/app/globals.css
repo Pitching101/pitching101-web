@@ -674,6 +674,12 @@ button:focus-visible {
   padding: 0.4rem 0.85rem;
   font-size: 0.875rem;
 }
+@media (max-width: 639px) {
+  .site-header .site-logo img {
+    width: 120px !important;
+    max-height: 26px !important;
+  }
+}
 
 .trust-strip {
   background: var(--surface-raised);
