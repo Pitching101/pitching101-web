@@ -1096,6 +1096,7 @@ button:focus-visible {
 }
 .scroll-throw-ball-img {
   width: clamp(32px, 4.2vw, 48px);
+  opacity: 1;
 }
 .scroll-throw-solo {
   position: absolute;

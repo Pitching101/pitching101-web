@@ -247,7 +247,7 @@ export default function ScrollThrowDecor() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={cwBallRef}
-          src="/assets/pixel-baseball-transparent.png"
+          src="/assets/pixel-baseball-solid.png"
           alt=""
           width={48}
           height={48}
@@ -270,7 +270,7 @@ export default function ScrollThrowDecor() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={ccwBallRef}
-          src="/assets/pixel-baseball-transparent.png"
+          src="/assets/pixel-baseball-solid.png"
           alt=""
           width={48}
           height={48}
@@ -284,7 +284,7 @@ export default function ScrollThrowDecor() {
         <img
           key={index}
           ref={ref}
-          src="/assets/pixel-baseball-transparent.png"
+          src="/assets/pixel-baseball-solid.png"
           alt=""
           width={40}
           height={40}
