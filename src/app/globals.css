@@ -128,20 +128,58 @@ body {
   color: var(--ink);
 }
 
-/* How It Works: soft-blue sky band with drifting pixel clouds */
-.how-clouds-band {
+/*
+  Homepage sky stack: CSS wash + transparent clouds + stadium art.
+  Sections stay transparent so the blue fade and clouds continue
+  from reviews through How It Works into the stadium.
+  Stadium sky match: #55BCFF
+*/
+.home-sky-scene {
   position: relative;
   isolation: isolate;
+}
+.home-sky-layers {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
-  /* Soft blue ombre under drifting clouds */
+  pointer-events: none;
+}
+.home-sky-wash {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #BBD6F1 22%,
-    #9cc7ef 55%,
-    color-mix(in srgb, #3295fb 48%, #BBD6F1) 88%,
-    color-mix(in srgb, #3295fb 35%, #BBD6F1) 100%
+    #f3f8fd 10%,
+    #d7e8f8 22%,
+    #BBD6F1 38%,
+    #8ec4f5 54%,
+    #55bcff 70%,
+    #55bcff 100%
   );
+}
+.home-sky-clouds {
+  z-index: 1;
+}
+.home-sky-scene > section {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+.home-sky-scene .text-band,
+.home-sky-scene .band-soft,
+.home-sky-scene .how-clouds-band,
+.home-sky-scene .ages-band,
+.home-sky-scene .home-stadium-band {
+  background: transparent;
+}
+
+/* How It Works: content only — sky/clouds come from .home-sky-scene */
+.how-clouds-band {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
 }
 .how-clouds-content {
   position: relative;
@@ -159,7 +197,7 @@ body {
   display: block;
   width: var(--cloud-size, clamp(4.5rem, 12vw, 9rem));
   height: auto;
-  opacity: 0.92;
+  opacity: 0.94;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   user-select: none;
@@ -168,13 +206,19 @@ body {
   animation: cloud-drift var(--cloud-duration, 14s) ease-in-out infinite alternate;
   animation-delay: var(--cloud-delay, 0s);
 }
-.float-cloud-1 { left: 2%; top: 8%; --cloud-size: 7.5rem; --cloud-duration: 16s; --cloud-delay: 0s; }
-.float-cloud-2 { left: 18%; top: 42%; --cloud-size: 5.2rem; --cloud-duration: 13s; --cloud-delay: -3s; opacity: 0.75; }
-.float-cloud-3 { left: 38%; top: 6%; --cloud-size: 6.4rem; --cloud-duration: 18s; --cloud-delay: -6s; }
-.float-cloud-4 { right: 8%; top: 14%; --cloud-size: 8rem; --cloud-duration: 15s; --cloud-delay: -2s; }
-.float-cloud-5 { right: 22%; bottom: 12%; --cloud-size: 5.8rem; --cloud-duration: 12s; --cloud-delay: -5s; opacity: 0.8; }
-.float-cloud-6 { left: 55%; bottom: 8%; --cloud-size: 4.8rem; --cloud-duration: 17s; --cloud-delay: -8s; opacity: 0.7; }
-.float-cloud-7 { left: 72%; top: 36%; --cloud-size: 6.2rem; --cloud-duration: 14s; --cloud-delay: -4s; }
+/* Mid-page cluster (reviews / peanuts / How It Works) */
+.float-cloud-1 { left: 3%; top: 18%; --cloud-size: 7.8rem; --cloud-duration: 16s; --cloud-delay: 0s; }
+.float-cloud-2 { left: 22%; top: 34%; --cloud-size: 5.4rem; --cloud-duration: 13s; --cloud-delay: -3s; opacity: 0.78; }
+.float-cloud-3 { left: 42%; top: 16%; --cloud-size: 6.6rem; --cloud-duration: 18s; --cloud-delay: -6s; }
+.float-cloud-4 { right: 6%; top: 22%; --cloud-size: 8.2rem; --cloud-duration: 15s; --cloud-delay: -2s; }
+.float-cloud-5 { left: 8%; top: 48%; --cloud-size: 6rem; --cloud-duration: 14s; --cloud-delay: -4s; }
+.float-cloud-6 { right: 18%; top: 44%; --cloud-size: 5.6rem; --cloud-duration: 17s; --cloud-delay: -8s; opacity: 0.8; }
+/* Bridge into the stadium section */
+.float-cloud-7 { left: 28%; top: 62%; --cloud-size: 7.2rem; --cloud-duration: 15s; --cloud-delay: -5s; }
+.float-cloud-8 { right: 8%; top: 58%; --cloud-size: 8.4rem; --cloud-duration: 19s; --cloud-delay: -1s; }
+.float-cloud-9 { left: 4%; top: 72%; --cloud-size: 5.8rem; --cloud-duration: 12s; --cloud-delay: -7s; opacity: 0.82; }
+.float-cloud-10 { left: 52%; top: 68%; --cloud-size: 6.8rem; --cloud-duration: 16s; --cloud-delay: -9s; }
+.float-cloud-11 { right: 24%; top: 76%; --cloud-size: 5.2rem; --cloud-duration: 14s; --cloud-delay: -3.5s; opacity: 0.75; }
 @keyframes cloud-drift {
   0% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0.9rem, -0.45rem, 0); }
@@ -1052,19 +1096,13 @@ button:focus-visible {
 
 
 
-/* Bottom homepage CTA: seamless stadium sky (no white fade mask). */
+/* Bottom homepage CTA: stadium art fades onto the shared #55BCFF sky. */
 .home-stadium-band {
   position: relative;
   isolation: isolate;
   min-height: 22rem;
   overflow: hidden;
-  /* Ombre soft-blue into stadium sky seam */
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, #3295fb 35%, #BBD6F1) 0%,
-    #BBD6F1 40%,
-    #d7e8f8 100%
-  );
+  background: transparent;
 }
 .home-stadium-media {
   position: absolute;
@@ -1074,10 +1112,27 @@ button:focus-visible {
 }
 .home-stadium-bg {
   object-fit: cover;
-  object-position: center top;
+  /* Skip the flattened checkerboard strip at the top of the asset */
+  object-position: center 28%;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   opacity: 1;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 10%,
+    rgba(0, 0, 0, 0.55) 22%,
+    #000 38%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 10%,
+    rgba(0, 0, 0, 0.55) 22%,
+    #000 38%,
+    #000 100%
+  );
 }
 .home-stadium-inner {
   position: relative;
