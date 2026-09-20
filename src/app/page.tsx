@@ -3,6 +3,7 @@ import Image from "next/image";
 import PixelIcon from "@/components/PixelIcon";
 import Reveal from "@/components/Reveal";
 import TrustStrip from "@/components/TrustStrip";
+import ContactCtas from "@/components/ContactCtas";
 
 const programs = [
   {
@@ -34,10 +35,10 @@ const programs = [
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — headline + Text/Call first (GIFs never outrank this) */}
+      {/* 1–2. H1 / offer + Text/Call CTAs — dark readable band */}
       <section className="text-band">
-        <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal className="mx-auto max-w-3xl space-y-7 text-center sm:text-left">
+        <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
+          <Reveal className="mx-auto max-w-3xl space-y-6 text-center sm:text-left">
             <p className="pixel-chip px-3 py-1.5">Naples, Florida area</p>
             <h1 className="pixel-title pixel-title-lg">
               Pitching lessons parents actually get
@@ -48,23 +49,13 @@ export default function HomePage() {
               confusing coach-speak. Camps and clinics when you want them;
               clear paths when you need them.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:justify-start">
-              <a href="tel:8457682211" className="pixel-btn">
-                Call 845-768-2211
-              </a>
-              <a href="sms:8457682211" className="pixel-btn-ghost">
-                Text 845-768-2211
-              </a>
-              <a href="mailto:nickdeisng@gmail.com" className="pixel-btn-ghost">
-                Email Nick
-              </a>
-            </div>
+            <ContactCtas className="justify-center pt-1 sm:justify-start" />
             <p className="font-pixel text-sm text-yellow">
               Text or Call 845-768-2211
             </p>
             <Link
               href="/naples-fl-pitching-lessons/"
-              className="font-pixel-ui inline-block px-1 text-base font-semibold text-blue-light underline-offset-4 hover:text-yellow hover:underline"
+              className="font-pixel-ui inline-block min-h-11 px-1 py-2 text-base font-semibold text-blue-light underline-offset-4 hover:text-yellow hover:underline"
             >
               Youth pitching lessons Naples FL →
             </Link>
@@ -72,7 +63,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Trust next */}
+      {/* 3. Trust strip */}
       <section className="text-band border-t-4 border-blue">
         <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-12">
           <Reveal>
@@ -81,30 +72,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Branded break: yellow + runner */}
-      <section
-        className="asset-band-yellow asset-band-full"
-        aria-label="Pixel runner branded break"
-      >
-        <div className="band-inner">
-          <Image
-            src="/assets/pixel-runner.gif"
-            alt="Pixel art baseball runner sprinting"
-            width={960}
-            height={720}
-            className="band-gif"
-            unoptimized
-            priority
-          />
-        </div>
-      </section>
-
-      {/* 3. Offers / programs next */}
+      {/* 4. Stan / PDF / virtual programs */}
       <section
         id="programs"
         className="text-band scroll-mt-24 border-t-4 border-blue"
       >
-        <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-18">
           <Reveal className="mx-auto max-w-2xl space-y-4 text-center sm:mx-0 sm:text-left">
             <p className="pixel-chip px-3 py-1.5">Programs</p>
             <h2 className="pixel-title pixel-title-md">Pick your path</h2>
@@ -114,10 +87,10 @@ export default function HomePage() {
               these are the easy on-ramps.
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-7 sm:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-3 sm:gap-7">
             {programs.map((item, i) => (
               <Reveal key={item.heading} delayMs={i * 80}>
-                <article className="pixel-card flex h-full flex-col p-7">
+                <article className="pixel-card flex h-full flex-col p-6 sm:p-7">
                   <PixelIcon name={item.icon} />
                   <h3 className="mt-4 font-pixel text-base font-semibold leading-snug text-blue-light">
                     {item.heading}
@@ -127,7 +100,7 @@ export default function HomePage() {
                   </p>
                   <a
                     href={item.href}
-                    className="pixel-btn-ghost mt-6 !px-3.5 !py-2"
+                    className="pixel-btn-ghost mt-6 min-h-11 !px-3.5 !py-2.5"
                   >
                     {item.cta}
                   </a>
@@ -135,44 +108,19 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-            <a href="sms:8457682211" className="pixel-btn">
-              Text 845-768-2211
-            </a>
-            <a href="tel:8457682211" className="pixel-btn-ghost">
-              Call 845-768-2211
-            </a>
-          </Reveal>
         </div>
       </section>
 
-      {/* Branded break: white + batter */}
-      <section
-        className="asset-band-white asset-band-full"
-        aria-label="Pixel batter branded break"
-      >
-        <div className="band-inner">
-          <Image
-            src="/assets/pixel-batter.jpg"
-            alt="Pixel art baseball batter on white"
-            width={640}
-            height={640}
-            className="band-still"
-            style={{ imageRendering: "pixelated" }}
-          />
-        </div>
-      </section>
-
-      {/* Supporting copy — how it works */}
+      {/* How it works — still content, before decorative slabs */}
       <section
         id="how-it-works"
         className="text-band scroll-mt-24 border-t-4 border-blue bg-surface"
       >
-        <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-18">
           <Reveal>
             <h2 className="pixel-title pixel-title-md">How it works</h2>
           </Reveal>
-          <ol className="mt-10 grid gap-7 sm:grid-cols-3">
+          <ol className="mt-10 grid gap-6 sm:grid-cols-3 sm:gap-7">
             {[
               {
                 step: "1",
@@ -191,7 +139,7 @@ export default function HomePage() {
               },
             ].map((s, i) => (
               <Reveal key={s.step} delayMs={i * 90}>
-                <li className="pixel-card-alt list-none p-7">
+                <li className="pixel-card-alt list-none p-6 sm:p-7">
                   <span className="pixel-step">{s.step}</span>
                   <h3 className="mt-4 font-pixel text-base font-semibold text-yellow">
                     {s.title}
@@ -206,10 +154,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Branded break: teal + swing */}
+      {/* 5. GIF color slabs as SUPPORT — art-forward, no competing copy */}
+      <section
+        className="asset-band-yellow asset-band-full"
+        aria-label="Pixel runner"
+      >
+        <div className="band-inner">
+          <Image
+            src="/assets/pixel-runner.gif"
+            alt="Pixel art baseball runner sprinting"
+            width={960}
+            height={720}
+            className="band-gif"
+            unoptimized
+          />
+        </div>
+      </section>
+
+      <section
+        className="asset-band-white asset-band-full"
+        aria-label="Pixel batter"
+      >
+        <div className="band-inner">
+          <Image
+            src="/assets/pixel-batter.jpg"
+            alt="Pixel art baseball batter on white"
+            width={640}
+            height={640}
+            className="band-still"
+            style={{ imageRendering: "pixelated" }}
+          />
+        </div>
+      </section>
+
       <section
         className="asset-band-teal asset-band-full"
-        aria-label="Pixel swing branded break"
+        aria-label="Pixel swing"
       >
         <div className="band-inner">
           <Image
@@ -223,10 +203,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Scenic full-bleed: pitcher GIF only — no text overlay */}
+      {/* Full-width scenic pitcher — pure visual slab, no text */}
       <section
         className="asset-band-stadium asset-band-bleed"
-        aria-label="Pixel pitcher scenic break"
+        aria-label="Pixel pitcher scenic"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -239,9 +219,9 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Closing CTA — readable dark-navy */}
+      {/* Closing CTA — dark readable band */}
       <section className="text-band border-t-4 border-blue">
-        <div className="mx-auto max-w-5xl px-5 py-16 text-center sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-5xl px-5 py-14 text-center sm:px-8 sm:py-20">
           <Reveal>
             <h2 className="pixel-title pixel-title-md">Ready when you are</h2>
             <p className="mx-auto mt-4 max-w-xl leading-relaxed text-ink-soft">
@@ -252,21 +232,11 @@ export default function HomePage() {
             <p className="mt-4 font-pixel text-base text-yellow">
               Text or Call 845-768-2211
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="tel:8457682211" className="pixel-btn">
-                Call 845-768-2211
-              </a>
-              <a href="sms:8457682211" className="pixel-btn-ghost">
-                Text 845-768-2211
-              </a>
-              <a href="mailto:nickdeisng@gmail.com" className="pixel-btn-ghost">
-                nickdeisng@gmail.com
-              </a>
-            </div>
+            <ContactCtas className="mt-8 justify-center" />
             <p className="mt-8">
               <Link
                 href="/naples-fl-pitching-lessons/"
-                className="font-pixel-ui text-base font-semibold text-blue-light underline-offset-4 hover:text-yellow hover:underline"
+                className="font-pixel-ui inline-block min-h-11 py-2 text-base font-semibold text-blue-light underline-offset-4 hover:text-yellow hover:underline"
               >
                 Youth pitching lessons Naples FL →
               </Link>

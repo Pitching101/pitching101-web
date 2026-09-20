@@ -121,11 +121,12 @@ body {
 }
 
 .text-band {
-  background: transparent;
+  background: var(--background);
+  color: var(--ink);
 }
 
 .asset-band-yellow {
-  background: linear-gradient(180deg, #ffc501 0%, #ffc600 100%);
+  background: #ffc600;
   color: #1a1400;
   border-top: 4px solid var(--blue-dark);
   border-bottom: 4px solid var(--blue-dark);
@@ -330,6 +331,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 2.75rem;
   border-radius: 0;
   border: 3px solid var(--ink);
   background: var(--accent);
@@ -353,6 +355,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 2.75rem;
   border-radius: 0;
   border: 3px solid var(--blue-light);
   background: var(--surface);
@@ -439,36 +442,6 @@ button:focus-visible {
   text-decoration: none;
 }
 .nav-pixel:hover { color: var(--accent); }
-
-.hud-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1.25rem;
-  font-family: var(--font-pixel), ui-monospace, monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--blue-light);
-}
-.hud-heart { display: inline-block; color: var(--red); text-shadow: 1px 1px 0 #000; }
-.hud-score {
-  color: var(--yellow);
-  font-size: 1.35rem;
-  line-height: 1;
-  text-shadow: 2px 2px 0 var(--blue-dark);
-}
-.hud-diamond {
-  width: 1.1rem;
-  height: 1.1rem;
-  background: var(--yellow);
-  transform: rotate(45deg);
-  border: 2px solid var(--white);
-  box-shadow: 2px 2px 0 0 var(--blue-dark);
-  display: inline-block;
-}
-.hud-diamond.empty { background: transparent; }
 
 .reveal {
   opacity: 0;

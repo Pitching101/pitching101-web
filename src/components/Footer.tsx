@@ -8,7 +8,7 @@ export default function Footer() {
           <Logo />
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth &amp; elite pitching instruction for families in the Naples,
-            Florida area — clear coaching, confident arms, a little arcade fun
+            Florida area — clear coaching, confident arms, and a playful pixel vibe
             on the side.
           </p>
         </div>
