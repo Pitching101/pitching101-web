@@ -6,16 +6,31 @@ import TrustStrip from "@/components/TrustStrip";
 import ContactCtas from "@/components/ContactCtas";
 import Logo from "@/components/Logo";
 
-const programs = [
+const whoFor = [
   {
-    heading: "Stan video feedback",
-    blurb: "Send a clip. Get clear notes back.",
-    cta: "Get Stan notes",
-    href: "mailto:nickdeisng@gmail.com?subject=Stan%20video%20feedback",
-    icon: "video" as const,
+    label: "Parents",
+    blurb: "Plain English. You know what to watch for.",
   },
   {
-    heading: "PDF pitching chart",
+    label: "Youth pitchers",
+    blurb: "Ages 8–14. Simple next reps, not jargon.",
+  },
+  {
+    label: "Naples / SWFL",
+    blurb: "Local lessons plus virtual when you need it.",
+  },
+];
+
+const programs = [
+  {
+    heading: "Naples lessons",
+    blurb: "In-area youth pitching. Text first.",
+    cta: "Ask about Naples",
+    href: "mailto:nickdeisng@gmail.com?subject=Naples%20pitching%20lessons",
+    icon: "naples" as const,
+  },
+  {
+    heading: "Pitching PDF",
     blurb: "Simple plan to follow at home.",
     cta: "Get the PDF",
     href: "mailto:nickdeisng@gmail.com?subject=PDF%20pitching%20chart",
@@ -39,7 +54,7 @@ export default function HomePage() {
           <Reveal from="left" className="content-row-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL</p>
             <h1 className="ui-title ui-title-lg">
-              Youth pitching lessons Naples FL
+              Youth pitching lessons in Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft">
               Clear coaching for kids and parents. No jargon.
@@ -65,19 +80,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. COLORED — trust + white-on-blue mark */}
-      <section className="band-soft">
-        <div className="mx-auto max-w-5xl space-y-6 px-5 py-8 sm:px-8 sm:py-10">
+      {/* 2. COLORED — who this is for (structure nod to local competitor) */}
+      <section id="who" className="band-soft scroll-mt-24" aria-label="Who this is for">
+        <div className="mx-auto max-w-5xl space-y-6 px-5 py-10 sm:px-8 sm:py-12">
           <Reveal className="flex justify-center sm:justify-start">
             <Logo variant="on-blue" height={48} />
           </Reveal>
-          <Reveal delayMs={60}>
+          <Reveal delayMs={40} className="space-y-2 text-center sm:text-left">
+            <h2 className="ui-title ui-title-md">Who this is for</h2>
+            <p className="text-ink-soft">Three quick fits.</p>
+          </Reveal>
+          <ul className="grid gap-4 sm:grid-cols-3">
+            {whoFor.map((item, i) => (
+              <Reveal key={item.label} delayMs={60 + i * 50}>
+                <li className="ui-card h-full p-5 sm:p-6">
+                  <p className="text-base font-semibold text-blue-dark">
+                    {item.label}
+                  </p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
+                    {item.blurb}
+                  </p>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+          <Reveal delayMs={120}>
             <TrustStrip />
+          </Reveal>
+          <Reveal delayMs={140}>
+            <ContactCtas className="justify-center sm:justify-start" />
           </Reveal>
         </div>
       </section>
 
-      {/* 3. WHITE — offers */}
+      {/* 3. WHITE — offers row */}
       <section id="programs" className="text-band scroll-mt-24">
         <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-14">
           <Reveal className="space-y-2 text-center sm:text-left">
@@ -102,6 +138,9 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+          <Reveal delayMs={160} className="mt-8">
+            <ContactCtas className="justify-center sm:justify-start" />
+          </Reveal>
         </div>
       </section>
 
@@ -118,7 +157,7 @@ export default function HomePage() {
                 Text 845-768-2211
               </a>
               <a href="tel:8457682211" className="btn-ghost-on-color">
-                Call
+                Call 845-768-2211
               </a>
             </div>
           </Reveal>
@@ -148,6 +187,9 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-3 pt-1">
               <a href="sms:8457682211" className="btn">
                 Text 845-768-2211
+              </a>
+              <a href="tel:8457682211" className="btn-ghost">
+                Call 845-768-2211
               </a>
               <Link href="/naples-fl-pitching-lessons/" className="btn-ghost">
                 Naples FL page →
@@ -181,8 +223,8 @@ export default function HomePage() {
               <a href="tel:8457682211" className="btn-on-color">
                 Call 845-768-2211
               </a>
-              <a href="mailto:nickdeisng@gmail.com" className="btn-ghost-on-color">
-                Email
+              <a href="sms:8457682211" className="btn-ghost-on-color">
+                Text 845-768-2211
               </a>
             </div>
           </Reveal>
@@ -208,7 +250,7 @@ export default function HomePage() {
             <h2 className="ui-title ui-title-md">How it works</h2>
             <ol className="space-y-2 text-base leading-relaxed">
               <li><strong className="text-blue-dark">1.</strong> Text or call.</li>
-              <li><strong className="text-blue-dark">2.</strong> Pick Stan, PDF, virtual, or Naples.</li>
+              <li><strong className="text-blue-dark">2.</strong> Pick Naples, PDF, or virtual.</li>
               <li><strong className="text-blue-dark">3.</strong> Know your next reps.</li>
             </ol>
             <div className="flex flex-wrap gap-3 pt-1">
@@ -216,7 +258,7 @@ export default function HomePage() {
                 Text 845-768-2211
               </a>
               <a href="tel:8457682211" className="btn-ghost">
-                Call
+                Call 845-768-2211
               </a>
             </div>
           </Reveal>
@@ -248,7 +290,7 @@ export default function HomePage() {
               href="/naples-fl-pitching-lessons/"
               className="inline-block text-base font-semibold text-blue-dark underline-offset-4 hover:underline"
             >
-              Youth pitching lessons Naples FL →
+              Youth pitching lessons in Naples, FL →
             </Link>
           </Reveal>
         </div>

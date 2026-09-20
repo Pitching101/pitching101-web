@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Pitching101 | Naples FL Youth & Elite Pitching Lessons",
-    template: "%s | Pitching101 Naples FL",
+    default: "Pitching101 | Youth Pitching Lessons in Naples, FL",
+    template: "%s | Pitching101",
   },
   description:
-    "Parent-friendly pitching lessons in Naples, Florida. Youth and elite coaching, camps, clinics, Stan video feedback, PDF charts, and virtual options. Text or call 845-768-2211.",
+    "Youth pitching lessons in Naples, FL. Clear coaching for kids and parents. In-person, PDF, and virtual options. Text or call 845-768-2211.",
   keywords: [
     "Naples FL pitching lessons",
     "youth pitching coach Naples",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     "Pitching101",
   ],
   openGraph: {
-    title: "Pitching101 | Naples FL Pitching Lessons",
+    title: "Pitching101 | Youth Pitching Lessons in Naples, FL",
     description:
-      "Clear, parent-friendly pitching instruction for Naples, FL youth and elite players.",
+      "Youth pitching lessons in Naples, FL — clear coaching, no jargon.",
     locale: "en_US",
     type: "website",
   },

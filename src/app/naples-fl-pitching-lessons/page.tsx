@@ -3,25 +3,38 @@ import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import TrustStrip from "@/components/TrustStrip";
+import ContactCtas from "@/components/ContactCtas";
 
 export const metadata: Metadata = {
-  title: "Youth Pitching Lessons Naples FL",
+  title: "Youth Pitching Lessons in Naples, FL",
   description:
-    "Youth pitching lessons in Naples, Florida for ages 8–14 and Collier County parents. Text or call 845-768-2211 or email nickdeisng@gmail.com.",
+    "Youth pitching lessons in Naples, FL for ages 8–14 and SWFL parents. Text or call 845-768-2211 or email nickdeisng@gmail.com.",
   keywords: [
-    "youth pitching lessons Naples FL",
+    "youth pitching lessons in Naples FL",
     "Naples FL pitching lessons",
     "pitching coach Naples Florida",
     "youth baseball pitching Collier County",
     "Pitching101 Naples",
   ],
   openGraph: {
-    title: "Youth Pitching Lessons Naples FL | Pitching101",
+    title: "Youth Pitching Lessons in Naples, FL | Pitching101",
     description:
-      "Youth pitching lessons for Naples, FL ages 8–14 — clear feedback, local focus.",
+      "Youth pitching lessons in Naples, FL — clear feedback, local focus.",
     type: "website",
   },
 };
+
+const whoFor = [
+  "Parents who want plain-English coaching",
+  "Youth pitchers (ages 8–14)",
+  "Naples & SWFL families",
+];
+
+const offers = [
+  { label: "In-person Naples lessons", note: "Local sessions. Text first." },
+  { label: "PDF product", note: "Simple plan at home. Coming soon." },
+  { label: "Virtual lessons", note: "Live coaching online. Coming soon." },
+];
 
 export default function NaplesPitchingLessonsPage() {
   return (
@@ -43,14 +56,14 @@ export default function NaplesPitchingLessonsPage() {
             unoptimized
           />
         </div>
-        <p className="ui-chip px-3.5 py-1.5">Naples · Collier County</p>
+        <p className="ui-chip px-3.5 py-1.5">Naples · SWFL</p>
         <h1 className="ui-title ui-title-lg">
-          Youth pitching lessons Naples FL
+          Youth pitching lessons in Naples, FL
         </h1>
         <p className="text-lg leading-relaxed text-ink-soft">
-          Clear coaching for ages 8–14. Parents leave knowing what to practice.
-          No jargon.
+          Clear coaching for ages 8–14. No jargon.
         </p>
+        <ContactCtas mailtoSubject="Youth pitching lessons in Naples, FL" />
       </Reveal>
 
       <Reveal className="mt-8" delayMs={60}>
@@ -58,26 +71,27 @@ export default function NaplesPitchingLessonsPage() {
       </Reveal>
 
       <Reveal className="mt-10 space-y-3">
-        <h2 className="ui-title ui-title-sm text-blue-dark">Who it’s for</h2>
+        <h2 className="ui-title ui-title-sm text-blue-dark">Who this is for</h2>
         <ul className="space-y-2 text-ink-soft">
-          <li>
-            <strong className="text-ink">Ages 8–14</strong> — age-right progress.
-          </li>
-          <li>
-            <strong className="text-ink">Parents</strong> — plain-English feedback.
-          </li>
-          <li>
-            <strong className="text-ink">Collier County &amp; Naples</strong> — local
-            plus virtual when needed.
-          </li>
+          {whoFor.map((item) => (
+            <li key={item} className="flex gap-2">
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue" aria-hidden />
+              <span>{item}</span>
+            </li>
+          ))}
         </ul>
       </Reveal>
 
       <Reveal className="mt-10 space-y-3">
-        <h2 className="ui-title ui-title-sm text-blue-dark">Options</h2>
-        <p className="text-ink-soft">
-          Stan video notes, PDF chart, virtual lessons, or in-area Naples sessions.
-        </p>
+        <h2 className="ui-title ui-title-sm text-blue-dark">Offers</h2>
+        <ul className="grid gap-3 sm:grid-cols-3">
+          {offers.map((item) => (
+            <li key={item.label} className="ui-card p-4">
+              <p className="text-sm font-semibold text-blue-dark">{item.label}</p>
+              <p className="mt-1 text-sm text-ink-soft">{item.note}</p>
+            </li>
+          ))}
+        </ul>
       </Reveal>
 
       <Reveal>
@@ -89,25 +103,14 @@ export default function NaplesPitchingLessonsPage() {
           <p className="mt-3 text-sm font-semibold text-blue-dark">
             Text or Call 845-768-2211
           </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <a href="tel:8457682211" className="btn">
-              Call 845-768-2211
-            </a>
-            <a href="sms:8457682211" className="btn-ghost">
-              Text 845-768-2211
-            </a>
-            <a
-              href="mailto:nickdeisng@gmail.com?subject=Youth%20pitching%20lessons%20Naples%20FL"
-              className="btn-ghost"
-            >
-              Email nickdeisng@gmail.com
-            </a>
+          <div className="mt-5">
+            <ContactCtas mailtoSubject="Youth pitching lessons in Naples, FL" />
           </div>
         </section>
       </Reveal>
 
       <p className="mt-10 text-sm text-ink-soft">
-        Serving Naples &amp; Collier County, FL · Pitching101
+        Serving Naples &amp; SWFL · Pitching101
       </p>
     </article>
   );
