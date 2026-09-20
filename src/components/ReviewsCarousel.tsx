@@ -159,7 +159,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
   if (reduceMotion) {
     return (
       <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="Client reviews from Trustpilot">
-        <p className="reviews-verified">Verified On Trustpilot</p>
+        <p className="reviews-verified">Verified on Trustpilot</p>
         <ul className="space-y-4">
           {reviews.map((r) => (
             <li key={`${r.name}-${r.title}`} className="reviews-carousel">
@@ -197,7 +197,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         }
       }}
     >
-      <p className="reviews-verified">Verified On Trustpilot</p>
+      <p className="reviews-verified">Verified on Trustpilot</p>
 
       <div className="reviews-stage">
         <article className="reviews-carousel reviews-card reviews-card-sizer" aria-hidden="true">

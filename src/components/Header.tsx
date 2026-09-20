@@ -9,7 +9,7 @@ export default function Header() {
         <Logo variant="primary" width={160} />
         <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-medium text-ink-soft sm:gap-x-5">
           <Link href="/guides/" className="nav-link">
-            Free Guides
+            Free guides
           </Link>
         </nav>
       </div>

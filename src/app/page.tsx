@@ -3,7 +3,7 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
-import SkyFadeAnchor from "@/components/SkyFadeAnchor";
+import ParkSky from "@/components/ParkSky";
 
 const guyBullets = [
   "Ages 8–14 — young pitchers learning the game.",
@@ -30,163 +30,130 @@ const trainingOptions = [
   },
 ];
 
-const skyClouds = [
-  { src: "/assets/pixel-cloud-1-transparent.png", w: 279, h: 145 },
-  { src: "/assets/pixel-cloud-2-transparent.png", w: 210, h: 99 },
-  { src: "/assets/pixel-cloud-3-transparent.png", w: 200, h: 96 },
-  { src: "/assets/pixel-cloud-4-transparent.png", w: 223, h: 99 },
-];
-
 export default function HomePage() {
   return (
-    <>
-      {/* 1. Hero — solid white, dark navy copy, centered */}
-      <section className="hero-overlay" aria-label="Youth Pitching Lessons In Naples, FL">
+    <ParkSky>
+      <section className="hero-overlay" aria-label="Youth pitching lessons in Naples, FL">
         <div className="hero-overlay-inner">
           <Reveal from="left" className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL</p>
             <h1 className="ui-title ui-title-hero hero-overlay-title">
-              Youth Pitching Lessons In Naples, FL
+              Youth pitching lessons in Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
-              Clear Coaching For Kids And Parents. No Jargon.
+              I help kids throw more strikes. Parents get a plan they can actually use.
             </p>
             <div className="home-cta-row pt-1">
               <Link href="#contact" className="btn">
-                Get Your Child Started
+                Get your child started
               </Link>
             </div>
             <p className="text-sm text-ink-soft">
-              Arm Care First · Reach Out Before You Drive
+              Arm care first. Reach out before you drive.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Shared sky: white on top, then a soft brand-blue fade with clouds */}
-      <div className="home-sky-scene">
-        <div className="home-sky-layers" aria-hidden="true">
-          <div className="home-sky-wash" />
-          <div className="cloud-decor home-sky-clouds">
-            {Array.from({ length: 11 }, (_, index) => {
-              const cloud = skyClouds[index % skyClouds.length];
-              return (
-                <Image
-                  key={`${cloud.src}-${index}`}
-                  src={cloud.src}
-                  alt=""
-                  width={cloud.w}
-                  height={cloud.h}
-                  className={`float-cloud float-cloud-${index + 1}`}
-                />
-              );
-            })}
+      <section className="text-band" id="reviews" aria-label="From Trustpilot">
+        <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal className="space-y-6">
+            <h2 className="ui-title ui-title-md">From Trustpilot</h2>
+            <p className="text-base leading-relaxed text-ink-soft">
+              Here&apos;s what parents say after we work together.
+            </p>
+            <ReviewsCarousel />
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        id="about"
+        className="text-band ages-band scroll-mt-24"
+        aria-label="About Coach Nick — ages 8 to 14"
+      >
+        <div className="content-row ages-band-content">
+          <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
+            <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
+            <p className="text-lg leading-relaxed text-ink">
+              I help young pitchers — and their parents — throw more strikes without
+              the jargon or the crazy price tag.
+            </p>
+            <p className="text-base leading-relaxed text-ink-soft">
+              Kids ages 8–14 need clear cues, healthy arm habits, and a plan they
+              can actually use between practices. I work with Naples, FL families —
+              in person when it fits, plus PDF and virtual options when life is busy.
+            </p>
+            <h3 id="your-guy" className="ui-title ui-title-sm">
+              I&apos;m your guy if you want more strikes, a strong foundation,
+              healthy patterns, and lessons that don&apos;t cost a fortune.
+            </h3>
+            <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
+              {guyBullets.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        id="how-it-works"
+        className="band-soft how-clouds-band scroll-mt-24"
+        aria-label="How it works"
+      >
+        <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal className="space-y-3">
+            <h2 className="ui-title ui-title-md">How it works</h2>
+            <p className="text-base text-ink-soft">
+              Private, at home, or a mix. Pick what fits your kid.
+            </p>
+          </Reveal>
+
+          <Reveal delayMs={40}>
+            <ul className="dugout-row">
+              {trainingOptions.map((opt) => (
+                <li key={opt.label} className="dugout-sign">
+                  <Image
+                    src={opt.icon}
+                    alt=""
+                    width={64}
+                    height={64}
+                    className="card-icon"
+                  />
+                  <h3 className="dugout-sign-title">{opt.label}</h3>
+                  <p className="dugout-sign-note">{opt.note}</p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        className="home-stadium-band scroll-mt-24"
+        aria-label="Real training clips and contact"
+      >
+        <div className="home-stadium-media" aria-hidden="true">
+          <Image
+            src="/assets/pixel-stadium-bg-v2.png"
+            alt=""
+            fill
+            className="home-stadium-bg"
+            sizes="100vw"
+            priority={false}
+          />
+        </div>
+        <div className="home-stadium-inner">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 py-20 text-center sm:px-8 sm:py-28">
+            <TrainingClipsStrip />
+            <Link href="/contact/" className="btn">
+              Get your child started
+            </Link>
           </div>
         </div>
-        <SkyFadeAnchor />
-
-        {/* 2. From Trustpilot */}
-        <section className="text-band" id="reviews" aria-label="From Trustpilot">
-          <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
-            <Reveal className="space-y-6">
-              <h2 className="ui-title ui-title-md">From Trustpilot</h2>
-              <p className="text-base leading-relaxed text-ink-soft">
-                Here&apos;s what parents say after working together.
-              </p>
-              <ReviewsCarousel />
-            </Reveal>
-          </div>
-        </section>
-
-        {/* 3. About + I'm Your Guy (collapsed from /about) */}
-        <section
-          id="about"
-          className="text-band ages-band scroll-mt-24"
-          aria-label="About Coach Nick — Ages 8 To 14"
-        >
-          <div className="content-row ages-band-content">
-            <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
-              <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
-              <p className="text-lg leading-relaxed text-ink">
-                I Help Young Pitchers (And Their Parents) Throw More Strikes Without
-                The Jargon Or The Crazy Price Tag.
-              </p>
-              <p className="text-base leading-relaxed text-ink-soft">
-                Kids Ages 8–14 Need Clear Cues, Healthy Arm Habits, And A Plan They
-                Can Actually Use Between Practices. I Work With Naples, FL Families —
-                In Person When It Fits, Plus PDF And Virtual Options When Life Is Busy.
-              </p>
-              <h3 id="your-guy" className="ui-title ui-title-sm">
-                I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
-                Foundation, Train Healthy Patterns, And Get Affordable Lessons.
-              </h3>
-              <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
-                {guyBullets.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* 4. How It Works — sits on the shared sky so clouds keep drifting through */}
-        <section
-          id="how-it-works"
-          className="band-soft how-clouds-band scroll-mt-24"
-          aria-label="How It Works"
-        >
-          <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
-            <Reveal className="space-y-3">
-              <h2 className="ui-title ui-title-md">How It Works</h2>
-              <p className="text-base text-ink-soft">Pick What Fits. Easy To Start Today.</p>
-            </Reveal>
-
-            <Reveal delayMs={40}>
-              <ul className="grid gap-5 text-left sm:grid-cols-3">
-                {trainingOptions.map((opt) => (
-                  <li key={opt.label} className="card flex flex-col items-center gap-3 p-6 text-center">
-                    <Image
-                      src={opt.icon}
-                      alt=""
-                      width={64}
-                      height={64}
-                      className="card-icon"
-                    />
-                    <h3 className="font-semibold text-blue-dark">{opt.label}</h3>
-                    <p className="text-sm leading-relaxed text-ink-soft">{opt.note}</p>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* 5. Bottom — one small clip rectangle + the enroll CTA */}
-        <section
-          id="contact"
-          className="home-stadium-band scroll-mt-24"
-          aria-label="Real Training Clips And Contact"
-        >
-          <div className="home-stadium-media" aria-hidden="true">
-            <Image
-              src="/assets/pixel-stadium-bg-v2.png"
-              alt=""
-              fill
-              className="home-stadium-bg"
-              sizes="100vw"
-              priority={false}
-            />
-          </div>
-          <div className="home-stadium-inner">
-            <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 py-16 text-center sm:px-8 sm:py-20">
-              <TrainingClipsStrip />
-              <Link href="/contact/" className="btn">
-                Get Your Child Started
-              </Link>
-            </div>
-          </div>
-        </section>
-      </div>
-    </>
+      </section>
+    </ParkSky>
   );
 }

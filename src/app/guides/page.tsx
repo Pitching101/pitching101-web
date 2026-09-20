@@ -2,79 +2,76 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
-import Logo from "@/components/Logo";
+import ParkSky from "@/components/ParkSky";
 
 export const metadata: Metadata = {
-  title: "Free Guides",
+  title: "Free guides",
   description:
     "Free youth pitching guides from Pitching101 — arm-care checklist, strike tips, and pre-catch warmup for Naples FL parents.",
 };
 
 const guides = [
   {
-    title: "Arm-Care Checklist",
+    title: "Arm-care checklist",
     note: "Warm-up and cool-down steps so young arms stay healthy through the season.",
     href: "mailto:nickdeisng@gmail.com?subject=Arm-Care%20Checklist%20Guide",
-    cta: "Email Me The Checklist",
+    cta: "Email me the checklist",
     icon: "/assets/icon-arm-care-v2.png",
   },
   {
-    title: "Strike % Tips",
+    title: "Strike % tips",
     note: "Simple cues parents can repeat so kids throw more strikes without overthinking.",
     href: "mailto:nickdeisng@gmail.com?subject=Strike%20Percent%20Tips%20Guide",
-    cta: "Email Me The Tips",
+    cta: "Email me the tips",
     icon: "/assets/icon-strikes.png",
   },
   {
-    title: "Pre-Catch Warmup",
+    title: "Pre-catch warmup",
     note: "A short routine before catch so practice starts sharp and safe.",
     href: "mailto:nickdeisng@gmail.com?subject=Pre-Catch%20Warmup%20Guide",
-    cta: "Email Me The Warmup",
+    cta: "Email me the warmup",
     icon: "/assets/icon-plan-checklist.png",
   },
 ];
 
 export default function GuidesPage() {
   return (
-    <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
-      <Reveal className="space-y-6">
-        <p className="text-base font-semibold text-blue-dark">
-          <Link href="/" className="hover:underline">
-            ← Home
+    <ParkSky tone="park">
+      <article className="park-page">
+        <Reveal className="space-y-5">
+          <p className="text-base font-semibold text-blue-dark">
+            <Link href="/" className="hover:underline">
+              ← Home
+            </Link>
+          </p>
+          <h1 className="ui-title ui-title-lg">Free guides</h1>
+          <p className="text-lg leading-relaxed text-ink-soft">
+            Grab a guide, try the ideas, then reach out if you want coaching.
+          </p>
+        </Reveal>
+
+        <Reveal delayMs={40} className="mt-10">
+          <ul className="dugout-row">
+            {guides.map((g) => (
+              <li key={g.title} className="dugout-sign">
+                <Image src={g.icon} alt="" width={64} height={64} className="card-icon" />
+                <h2 className="dugout-sign-title">{g.title}</h2>
+                <p className="dugout-sign-note">{g.note}</p>
+                <a href={g.href} className="footer-link">
+                  {g.cta}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal delayMs={60} className="mt-12 space-y-4">
+          <p className="text-base text-ink-soft">Want lessons in Naples, FL? Let&apos;s talk.</p>
+          <Link href="/contact/" className="btn">
+            Get your child started
           </Link>
-        </p>
-        <Logo height={56} />
-        <h1 className="ui-title ui-title-lg">Free Guides</h1>
-        <p className="text-lg leading-relaxed text-ink-soft">
-          Lead Magnets For Parents — Grab A Guide, Try The Ideas, Then Reach Out
-          If You Want Coaching. Stan Store Capture Links Will Replace Email When
-          Ready.
-        </p>
-      </Reveal>
-
-      <Reveal delayMs={40} className="mt-10">
-        <ul className="grid gap-5 sm:grid-cols-3">
-          {guides.map((g) => (
-            <li key={g.title} className="card flex flex-col gap-3 p-5">
-              <Image src={g.icon} alt="" width={64} height={64} className="card-icon" />
-              <h2 className="ui-title text-lg text-blue-dark">{g.title}</h2>
-              <p className="flex-1 text-sm leading-relaxed text-ink-soft">{g.note}</p>
-              <a href={g.href} className="btn !min-h-9 !px-3 !py-1.5 !text-sm">
-                {g.cta}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-
-      <Reveal delayMs={60} className="mt-12 space-y-4">
-        <p className="text-base text-ink-soft">
-          Want Lessons In Naples, FL? Let’s Talk.
-        </p>
-        <Link href="/contact/" className="btn">
-          Contact
-        </Link>
-      </Reveal>
-    </article>
+        </Reveal>
+      </article>
+    </ParkSky>
   );
 }

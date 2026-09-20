@@ -91,7 +91,7 @@ export default function TrainingClipsStrip() {
       className="training-clips"
       role="region"
       aria-roledescription="carousel"
-      aria-label="Real Training Clips"
+      aria-label="A look at training"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -101,7 +101,7 @@ export default function TrainingClipsStrip() {
         }
       }}
     >
-      <p className="training-clips-label">Real Training Clips</p>
+      <p className="training-clips-label">A look at training</p>
       <button
         type="button"
         className="training-clip-card"

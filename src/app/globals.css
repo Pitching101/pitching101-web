@@ -82,7 +82,7 @@
 }
 
 body {
-  background-color: var(--background);
+  background-color: color-mix(in srgb, #3295fb 48%, #BBD6F1);
   color: var(--ink);
   font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.65;
@@ -102,14 +102,14 @@ body {
 .heading-sm { font-size: clamp(1.1rem, 2vw, 1.35rem); }
 
 .site-header {
-  border-bottom: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
-  background: color-mix(in srgb, var(--background) 88%, transparent);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--blue) 14%, transparent);
+  background: color-mix(in srgb, #dceefc 70%, transparent);
+  box-shadow: none;
+  backdrop-filter: blur(10px);
 }
 .site-footer {
-  border-top: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
-  background: var(--surface);
+  border-top: none;
+  background: transparent;
 }
 
 .text-band {
@@ -136,7 +136,7 @@ body {
 */
 .home-sky-scene {
   position: relative;
-  /* Fallback until SkyFadeAnchor measures #your-guy */
+  /* Deepen point — SkyFadeAnchor pins this to #your-guy on home */
   --sky-stop: 42%;
 }
 .home-sky-layers {
@@ -149,42 +149,62 @@ body {
 .home-sky-wash {
   position: absolute;
   inset: 0;
-  /* Solid white above --sky-stop (I'm Your Guy), then brand-blue + clouds */
+  /* Hint of sky on load, readable through reviews, deepens at --sky-stop */
   background: linear-gradient(
     180deg,
-    #ffffff 0%,
-    #ffffff var(--sky-stop),
-    #f7faff calc(var(--sky-stop) + 4%),
-    #e8f1fa calc(var(--sky-stop) + 9%),
-    #BBD6F1 calc(var(--sky-stop) + 16%),
-    color-mix(in srgb, #3295fb 22%, #BBD6F1) calc(var(--sky-stop) + 28%),
-    color-mix(in srgb, #3295fb 36%, #BBD6F1) calc(var(--sky-stop) + 42%),
-    color-mix(in srgb, #3295fb 45%, #BBD6F1) 100%
+    #cfe6fb 0%,
+    #dceefc 8%,
+    #eef6fc 16%,
+    #f6fafd var(--sky-stop),
+    #e4f0fa calc(var(--sky-stop) + 6%),
+    #BBD6F1 calc(var(--sky-stop) + 14%),
+    color-mix(in srgb, #3295fb 24%, #BBD6F1) calc(var(--sky-stop) + 26%),
+    color-mix(in srgb, #3295fb 40%, #BBD6F1) calc(var(--sky-stop) + 44%),
+    color-mix(in srgb, #3295fb 50%, #BBD6F1) 100%
   );
 }
 .home-sky-clouds {
   z-index: 1;
+  /* Far clouds stay visible on the hero — no hard white-to-sky cut */
   -webkit-mask-image: linear-gradient(
     180deg,
-    transparent 0%,
-    transparent var(--sky-stop),
-    rgba(0, 0, 0, 0.35) calc(var(--sky-stop) + 6%),
-    #000 calc(var(--sky-stop) + 14%),
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.7) 12%,
+    #000 22%,
     #000 100%
   );
   mask-image: linear-gradient(
     180deg,
-    transparent 0%,
-    transparent var(--sky-stop),
-    rgba(0, 0, 0, 0.35) calc(var(--sky-stop) + 6%),
-    #000 calc(var(--sky-stop) + 14%),
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.7) 12%,
+    #000 22%,
     #000 100%
   );
 }
-.home-sky-scene > section {
+.home-sky-scene > section,
+.park-page {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   background: transparent;
+}
+.park-sky-park {
+  --sky-stop: 8%;
+  min-height: 100%;
+}
+.park-sky-park .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    #cfe6fb 0%,
+    #dceefc 12%,
+    #e8f3fc 28%,
+    #BBD6F1 52%,
+    color-mix(in srgb, #3295fb 28%, #BBD6F1) 78%,
+    color-mix(in srgb, #3295fb 48%, #BBD6F1) 100%
+  );
+}
+.park-sky-park .home-sky-clouds {
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 .home-sky-scene .text-band,
 .home-sky-scene .band-soft,
@@ -229,18 +249,21 @@ body {
   animation: cloud-drift var(--cloud-duration, 14s) ease-in-out infinite alternate;
   animation-delay: var(--cloud-delay, 0s);
 }
-/* Clouds sit on the lower blue wash only — top of the page stays white */
-.float-cloud-1 { left: 3%; top: 48%; --cloud-size: 7.8rem; --cloud-duration: 16s; --cloud-delay: 0s; }
-.float-cloud-2 { left: 22%; top: 54%; --cloud-size: 5.4rem; --cloud-duration: 13s; --cloud-delay: -3s; opacity: 0.78; }
-.float-cloud-3 { left: 42%; top: 50%; --cloud-size: 6.6rem; --cloud-duration: 18s; --cloud-delay: -6s; }
-.float-cloud-4 { right: 6%; top: 52%; --cloud-size: 8.2rem; --cloud-duration: 15s; --cloud-delay: -2s; }
-.float-cloud-5 { left: 8%; top: 62%; --cloud-size: 6rem; --cloud-duration: 14s; --cloud-delay: -4s; }
-.float-cloud-6 { right: 18%; top: 60%; --cloud-size: 5.6rem; --cloud-duration: 17s; --cloud-delay: -8s; opacity: 0.8; }
-.float-cloud-7 { left: 28%; top: 70%; --cloud-size: 7.2rem; --cloud-duration: 15s; --cloud-delay: -5s; }
-.float-cloud-8 { right: 8%; top: 68%; --cloud-size: 8.4rem; --cloud-duration: 19s; --cloud-delay: -1s; }
-.float-cloud-9 { left: 4%; top: 80%; --cloud-size: 5.8rem; --cloud-duration: 12s; --cloud-delay: -7s; opacity: 0.82; }
-.float-cloud-10 { left: 52%; top: 76%; --cloud-size: 6.8rem; --cloud-duration: 16s; --cloud-delay: -9s; }
-.float-cloud-11 { right: 24%; top: 84%; --cloud-size: 5.2rem; --cloud-duration: 14s; --cloud-delay: -3.5s; opacity: 0.75; }
+/* Walk to the mound: far / small / high → bigger / lower as you scroll */
+.float-cloud-1 { left: 7%; top: 5%; --cloud-size: 3.1rem; --cloud-duration: 18s; --cloud-delay: 0s; opacity: 0.55; }
+.float-cloud-2 { right: 11%; top: 8%; --cloud-size: 2.5rem; --cloud-duration: 15s; --cloud-delay: -4s; opacity: 0.42; }
+.float-cloud-3 { left: 42%; top: 3.5%; --cloud-size: 3.6rem; --cloud-duration: 20s; --cloud-delay: -7s; opacity: 0.5; }
+.float-cloud-4 { right: 28%; top: 12%; --cloud-size: 2.8rem; --cloud-duration: 16s; --cloud-delay: -2s; opacity: 0.4; }
+.float-cloud-5 { left: 4%; top: 24%; --cloud-size: 5.2rem; --cloud-duration: 17s; --cloud-delay: -5s; opacity: 0.72; }
+.float-cloud-6 { right: 6%; top: 30%; --cloud-size: 4.6rem; --cloud-duration: 14s; --cloud-delay: -8s; opacity: 0.68; }
+.float-cloud-7 { left: 48%; top: 34%; --cloud-size: 5.8rem; --cloud-duration: 19s; --cloud-delay: -3s; opacity: 0.7; }
+.float-cloud-8 { left: 10%; top: 48%; --cloud-size: 7.4rem; --cloud-duration: 16s; --cloud-delay: -6s; }
+.float-cloud-9 { right: 8%; top: 54%; --cloud-size: 8.2rem; --cloud-duration: 18s; --cloud-delay: -1s; }
+.float-cloud-10 { left: 34%; top: 60%; --cloud-size: 7rem; --cloud-duration: 15s; --cloud-delay: -9s; opacity: 0.86; }
+.float-cloud-11 { left: 2%; top: 70%; --cloud-size: 9.6rem; --cloud-duration: 17s; --cloud-delay: -4s; }
+.float-cloud-12 { right: 3%; top: 74%; --cloud-size: 10.4rem; --cloud-duration: 20s; --cloud-delay: -7s; }
+.float-cloud-13 { left: 26%; top: 81%; --cloud-size: 8.8rem; --cloud-duration: 14s; --cloud-delay: -2.5s; opacity: 0.88; }
+.float-cloud-14 { right: 20%; top: 87%; --cloud-size: 11.2rem; --cloud-duration: 19s; --cloud-delay: -5.5s; }
 @keyframes cloud-drift {
   0% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0.9rem, -0.45rem, 0); }
@@ -766,12 +789,12 @@ button:focus-visible {
   max-width: 40rem;
 }
 
-/* —— Hero: solid white; dark navy copy —— */
+/* —— Hero: already on the field; type sits over pale sky —— */
 .hero-overlay {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   color: var(--ink);
-  background: #ffffff;
+  background: transparent;
   min-height: clamp(22rem, 58vh, 32rem);
   display: flex;
   align-items: center;
@@ -839,10 +862,10 @@ button:focus-visible {
 }
 .reviews-verified {
   margin: 0;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--blue-dark);
 }
 .reviews-stage {
@@ -850,13 +873,24 @@ button:focus-visible {
   width: 100%;
 }
 .reviews-carousel {
+  position: relative;
   background: #BBD6F1;
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: none;
-  padding: 1.5rem 1.35rem;
+  border: 3px solid color-mix(in srgb, #1a78e8 32%, #BBD6F1);
+  border-radius: 3px;
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, #ffffff 45%, transparent),
+    3px 3px 0 color-mix(in srgb, #0f1a2e 12%, transparent);
+  padding: 1.65rem 1.45rem;
   color: #0f1a2e;
   text-align: center;
+}
+.reviews-carousel::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 2px dashed color-mix(in srgb, #1a78e8 38%, #ffffff);
+  border-radius: 1px;
+  pointer-events: none;
 }
 .reviews-card-sizer {
   visibility: hidden;
@@ -1098,11 +1132,11 @@ button:focus-visible {
 
 
 
-/* Bottom homepage CTA: stadium art fades onto the shared #55BCFF sky. */
+/* Arrive at the stadium — art fills the last frame instead of popping as a footer. */
 .home-stadium-band {
   position: relative;
   isolation: isolate;
-  min-height: 22rem;
+  min-height: clamp(32rem, 84vh, 48rem);
   overflow: hidden;
   background: transparent;
 }
@@ -1114,30 +1148,30 @@ button:focus-visible {
 }
 .home-stadium-bg {
   object-fit: cover;
-  object-position: center top;
+  object-position: center 22%;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   opacity: 1;
-  /* Keep the cyan stadium sky hidden so the brand wash shows through */
+  /* Long arrival: field grows into the frame as you reach the clips */
   -webkit-mask-image: linear-gradient(
     180deg,
     transparent 0%,
-    transparent 20%,
-    rgba(0, 0, 0, 0.08) 32%,
-    rgba(0, 0, 0, 0.22) 42%,
-    rgba(0, 0, 0, 0.48) 54%,
-    rgba(0, 0, 0, 0.78) 68%,
+    rgba(0, 0, 0, 0.06) 10%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.45) 36%,
+    rgba(0, 0, 0, 0.72) 52%,
+    rgba(0, 0, 0, 0.9) 68%,
     #000 82%,
     #000 100%
   );
   mask-image: linear-gradient(
     180deg,
     transparent 0%,
-    transparent 20%,
-    rgba(0, 0, 0, 0.08) 32%,
-    rgba(0, 0, 0, 0.22) 42%,
-    rgba(0, 0, 0, 0.48) 54%,
-    rgba(0, 0, 0, 0.78) 68%,
+    rgba(0, 0, 0, 0.06) 10%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.45) 36%,
+    rgba(0, 0, 0, 0.72) 52%,
+    rgba(0, 0, 0, 0.9) 68%,
     #000 82%,
     #000 100%
   );
@@ -1240,10 +1274,12 @@ button:focus-visible {
   max-width: 13.5rem;
   margin: 0 auto;
   padding: 0.7rem 0.75rem 0.8rem;
-  border: none;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: none;
+  border: 3px solid color-mix(in srgb, #1a2438 45%, #3295fb);
+  border-radius: 2px;
+  background: color-mix(in srgb, #BBD6F1 28%, rgba(255, 255, 255, 0.88));
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, #ffffff 45%, transparent),
+    3px 3px 0 color-mix(in srgb, #0f1a2e 14%, transparent);
   text-align: center;
 }
 .training-clips-label {
@@ -1316,5 +1352,138 @@ button:focus-visible {
 .home-stadium-inner > .mx-auto {
   width: 100%;
   max-width: 48rem;
+}
+
+/* Dugout signs — pixel lockers instead of SaaS pricing cards */
+.dugout-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+  width: 100%;
+  padding: 0.7rem 0 0;
+  margin: 0;
+  list-style: none;
+}
+@media (min-width: 640px) {
+  .dugout-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+.dugout-sign {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.2rem 0.95rem 1.15rem;
+  text-align: center;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #BBD6F1 38%, #ffffff) 0%,
+      color-mix(in srgb, #BBD6F1 62%, #ffffff) 100%
+    );
+  border: 3px solid color-mix(in srgb, #1a2438 55%, #3295fb);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, #ffffff 52%, transparent),
+    4px 4px 0 color-mix(in srgb, #0f1a2e 16%, transparent);
+  image-rendering: pixelated;
+}
+.dugout-sign::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 2.1rem;
+  height: 0.7rem;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, #1a2438 70%, #3295fb);
+  border: 2px solid color-mix(in srgb, #0f1a2e 50%, #1a78e8);
+  border-radius: 1px 1px 0 0;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 28%, transparent);
+}
+.dugout-sign-title {
+  margin: 0;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.dugout-sign-note {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Guides / Contact sit in the same park as home */
+.park-page {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 4.5rem) 1.25rem 4rem;
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .park-page { padding-left: 2rem; padding-right: 2rem; }
+}
+.park-page-fence {
+  max-width: 36rem;
+  min-height: min(70vh, 36rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fence-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.15rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.fence-links .footer-link {
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+/* Thin dugout rail — last frame stays in the park */
+.dugout-rail-wrap {
+  background: color-mix(in srgb, #3295fb 48%, #BBD6F1);
+}
+.dugout-rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem 1.25rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0.55rem 1.25rem 0.7rem;
+  border-top: 4px solid color-mix(in srgb, #0f1a2e 28%, #1a78e8);
+  box-shadow: inset 0 2px 0 color-mix(in srgb, #ffffff 35%, transparent);
+  background: color-mix(in srgb, #BBD6F1 46%, color-mix(in srgb, #3295fb 18%, #ffffff));
+}
+.dugout-rail-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1rem;
+}
+.dugout-rail-copy {
+  margin: 0;
+  width: 100%;
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 72%, #1a78e8);
+}
+@media (min-width: 720px) {
+  .dugout-rail-copy {
+    width: auto;
+    margin-left: auto;
+  }
 }
 

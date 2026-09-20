@@ -21,11 +21,11 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Pitching101 | Youth Pitching Lessons in Naples, FL",
+    default: "Pitching101 | Youth pitching lessons in Naples, FL",
     template: "%s | Pitching101",
   },
   description:
-    "Youth pitching lessons in Naples, FL. Clear coaching for kids and parents. In-person, PDF, and virtual options. Text or call 845-768-2211.",
+    "Youth pitching lessons in Naples, FL. I help kids throw more strikes — in person, PDF, or virtual. Text or call 845-768-2211.",
   keywords: [
     "Naples FL pitching lessons",
     "youth pitching coach Naples",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     "Pitching101",
   ],
   openGraph: {
-    title: "Pitching101 | Youth Pitching Lessons in Naples, FL",
+    title: "Pitching101 | Youth pitching lessons in Naples, FL",
     description:
-      "Youth pitching lessons in Naples, FL — clear coaching, no jargon.",
+      "Youth pitching lessons in Naples, FL — I help kids throw more strikes.",
     locale: "en_US",
     type: "website",
   },
@@ -52,7 +52,7 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${dmSans.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+      <body className="flex min-h-full flex-col font-sans text-foreground">
         <Header />
         <ScrollThrowDecor />
         <main className="flex-1">{children}</main>

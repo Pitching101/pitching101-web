@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 
 /**
- * Pins the homepage blue+cloud wash so it only starts at #your-guy.
- * Everything above that mark stays white.
+ * Pins where the homepage sky deepens — at #your-guy (midfield).
+ * A pale sky hint already lives above that mark so the hero is in the park.
  */
 export default function SkyFadeAnchor() {
   useEffect(() => {

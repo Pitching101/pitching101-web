@@ -53,6 +53,7 @@ export default function ScrollThrowDecor() {
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const heroEl = () => document.querySelector<HTMLElement>(".hero-overlay");
+    const parkEl = () => document.querySelector<HTMLElement>(".park-sky");
     const endEl = () =>
       document.querySelector<HTMLElement>("#about") ??
       document.querySelector<HTMLElement>("#who") ??
@@ -168,7 +169,7 @@ export default function ScrollThrowDecor() {
     solos.forEach(parkSolo);
 
     const spawnSolo = (now: number) => {
-      if (!heroEl() || mq.matches) return;
+      if (!parkEl() || mq.matches) return;
       const slot = flights[0] ? 1 : 0;
       if (flights[slot]) return;
       const vh = window.innerHeight;
@@ -205,7 +206,7 @@ export default function ScrollThrowDecor() {
     };
 
     const soloLoop = (now: number) => {
-      if (heroEl() && !mq.matches && now >= nextSoloAt) {
+      if (parkEl() && !mq.matches && now >= nextSoloAt) {
         spawnSolo(now);
         nextSoloAt = now + 3800 + Math.random() * 4200;
       }
