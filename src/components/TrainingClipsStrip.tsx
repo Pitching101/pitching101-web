@@ -10,14 +10,17 @@ const CLIPS = [
 ] as const;
 
 /**
- * Stadium-band showcase of real training clips.
+ * Stadium-band showcase: ONE training clip at a time (auto carousel).
  * Muted autoplay when in view; tap/click to play or pause. Respects reduced-motion.
  */
 export default function TrainingClipsStrip() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [playing, setPlaying] = useState<Record<number, boolean>>({});
+  const [playing, setPlaying] = useState(false);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -29,77 +32,134 @@ export default function TrainingClipsStrip() {
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root || reduceMotion) return;
+    if (!root) return;
 
     const io = new IntersectionObserver(
       (entries) => {
-        const visible = entries.some((e) => e.isIntersecting);
-        videoRefs.current.forEach((v, i) => {
-          if (!v) return;
-          if (visible) {
-            v.play().catch(() => {});
-            setPlaying((p) => ({ ...p, [i]: true }));
-          } else {
-            v.pause();
-            setPlaying((p) => ({ ...p, [i]: false }));
-          }
-        });
+        setInView(entries.some((e) => e.isIntersecting));
       },
       { threshold: 0.25 },
     );
     io.observe(root);
     return () => io.disconnect();
-  }, [reduceMotion]);
+  }, []);
 
-  const toggle = useCallback((i: number) => {
-    const v = videoRefs.current[i];
+  // Auto-advance carousel when in view (unless reduced motion or user paused)
+  useEffect(() => {
+    if (reduceMotion || paused || !inView || CLIPS.length < 2) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % CLIPS.length);
+    }, 6000);
+    return () => window.clearInterval(id);
+  }, [reduceMotion, paused, inView]);
+
+  // Play / pause current clip based on visibility + reduced motion
+  useEffect(() => {
+    const v = videoRef.current;
     if (!v) return;
-    if (v.paused) {
-      v.play().catch(() => {});
-      setPlaying((p) => ({ ...p, [i]: true }));
+    if (inView && !reduceMotion) {
+      v.play()
+        .then(() => setPlaying(true))
+        .catch(() => setPlaying(false));
     } else {
       v.pause();
-      setPlaying((p) => ({ ...p, [i]: false }));
+      setPlaying(false);
+    }
+  }, [index, inView, reduceMotion]);
+
+  const toggle = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play()
+        .then(() => setPlaying(true))
+        .catch(() => {});
+    } else {
+      v.pause();
+      setPlaying(false);
     }
   }, []);
+
+  const goTo = useCallback((i: number) => {
+    setIndex(((i % CLIPS.length) + CLIPS.length) % CLIPS.length);
+  }, []);
+
+  const clip = CLIPS[index];
 
   return (
     <div
       ref={rootRef}
       className="training-clips"
       aria-label="Real Training Clips"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          setPaused(false);
+        }
+      }}
     >
       <p className="training-clips-label">Real Training Clips</p>
-      <ul className="training-clips-grid">
-        {CLIPS.map((clip, i) => (
-          <li key={clip.src} className="training-clip-item">
+      <div className="training-clips-stage" aria-live="polite" aria-atomic="true">
+        <button
+          type="button"
+          className="training-clip-card training-clip-card-solo"
+          aria-label={`${clip.label} — ${playing ? "pause" : "play"}`}
+          onClick={toggle}
+        >
+          <video
+            key={clip.src}
+            ref={videoRef}
+            className="training-clip-video"
+            src={clip.src}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
+          {!playing ? (
+            <span className="training-clip-play" aria-hidden="true">
+              ▶
+            </span>
+          ) : null}
+        </button>
+      </div>
+
+      <div className="training-clips-controls">
+        <div className="flex gap-2" role="tablist" aria-label="Choose training clip">
+          {CLIPS.map((_, i) => (
             <button
+              key={CLIPS[i].src}
               type="button"
-              className="training-clip-card"
-              aria-label={`${clip.label} — ${playing[i] ? "pause" : "play"}`}
-              onClick={() => toggle(i)}
-            >
-              <video
-                ref={(el) => {
-                  videoRefs.current[i] = el;
-                }}
-                className="training-clip-video"
-                src={clip.src}
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-hidden="true"
-              />
-              {!playing[i] ? (
-                <span className="training-clip-play" aria-hidden="true">
-                  ▶
-                </span>
-              ) : null}
-            </button>
-          </li>
-        ))}
-      </ul>
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Clip ${i + 1} of ${CLIPS.length}`}
+              className={`reviews-dot ${i === index ? "is-active" : ""}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
+        <div className="ml-auto flex gap-2">
+          <button
+            type="button"
+            className="reviews-nav"
+            aria-label="Previous clip"
+            onClick={() => goTo(index - 1)}
+          >
+            Prev
+          </button>
+          <button
+            type="button"
+            className="reviews-nav"
+            aria-label="Next clip"
+            onClick={() => goTo(index + 1)}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

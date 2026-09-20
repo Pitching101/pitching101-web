@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Glove + ball float from the home/hero section through to Ages/peanuts (#who).
- * The first entrance starts empty, then gently brings the throw in from both sides.
+ * Glove + ball pair on EACH side — float from hero through Trustpilot until #who.
+ * Uses transparent PNGs (no white boxes).
  */
 export default function ScrollThrowDecor() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -25,7 +25,7 @@ export default function ScrollThrowDecor() {
       document.querySelector<HTMLElement>("#who") ??
       document.querySelector<HTMLElement>(".ages-band");
 
-    /** Home only: visible from hero load until peanuts/#who enters mid-viewport. */
+    /** Home only: visible from hero load until #who enters mid-viewport. */
     const inThrowZone = () => {
       const hero = heroEl();
       const ages = agesEl();
@@ -132,7 +132,7 @@ export default function ScrollThrowDecor() {
       <div ref={cwRef} className="scroll-throw-pair scroll-throw-pair-cw">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/pixel-glove.png"
+          src="/assets/pixel-glove-transparent.png"
           alt=""
           width={72}
           height={84}
@@ -141,7 +141,7 @@ export default function ScrollThrowDecor() {
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/pixel-baseball.png"
+          src="/assets/pixel-baseball-transparent.png"
           alt=""
           width={48}
           height={48}
@@ -153,7 +153,7 @@ export default function ScrollThrowDecor() {
       <div ref={ccwRef} className="scroll-throw-pair scroll-throw-pair-ccw">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/pixel-glove.png"
+          src="/assets/pixel-glove-transparent.png"
           alt=""
           width={72}
           height={84}
@@ -162,7 +162,7 @@ export default function ScrollThrowDecor() {
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/pixel-baseball.png"
+          src="/assets/pixel-baseball-transparent.png"
           alt=""
           width={48}
           height={48}

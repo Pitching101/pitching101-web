@@ -34,7 +34,7 @@ function ReviewCard({ r }: { r: TrustpilotReview }) {
   );
 }
 
-/** Auto-rotating Trustpilot reviews. Static stack when prefers-reduced-motion. */
+/** Auto-rotating Trustpilot reviews with fade. Cards sit above ball/glove decor. */
 export default function ReviewsCarousel({ className = "" }: { className?: string }) {
   const reviews = trustpilotReviews;
   const [index, setIndex] = useState(0);
@@ -108,8 +108,6 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     );
   }
 
-  const current = reviews[index];
-
   return (
     <div
       className={`reviews-carousel space-y-4 ${className}`.trim()}
@@ -129,8 +127,16 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         Verified On Trustpilot
       </p>
 
-      <div className="reviews-slide space-y-3" aria-live="polite" aria-atomic="true">
-        <ReviewCard r={current} />
+      <div className="reviews-fade-stage" aria-live="polite" aria-atomic="true">
+        {reviews.map((r, i) => (
+          <div
+            key={`${r.name}-${r.title}`}
+            className={`reviews-fade-slide space-y-3 ${i === index ? "is-active" : ""}`}
+            aria-hidden={i !== index}
+          >
+            <ReviewCard r={r} />
+          </div>
+        ))}
       </div>
 
       <div className="mt-2 flex flex-wrap items-center gap-3">
