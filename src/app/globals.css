@@ -1,33 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f2744;
-  --blue: #1a6fd4;
-  --blue-dark: #0f4f9e;
+  /* Sports blues + soft paper */
+  --background: #f7f4ef;
+  --paper: #faf8f4;
+  --foreground: #1a3352;
+  --blue: #2a6db5;
+  --blue-dark: #1a4f8a;
   --blue-light: #bbd6f1;
-  --blue-soft: #e8f2fb;
+  --blue-soft: #e4eef8;
+  --blue-muted: #6b8fb8;
+  --ink-soft: rgba(26, 51, 82, 0.72);
+  --shadow-soft: 0 2px 0 rgba(26, 79, 138, 0.06), 0 8px 24px rgba(26, 79, 138, 0.08);
+  --radius-wabi: 1.15rem 1.35rem 1.05rem 1.4rem;
+  --radius-wabi-sm: 0.85rem 1rem 0.75rem 1.1rem;
+  --radius-wabi-pill: 1.6rem 1.9rem 1.5rem 2rem;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-paper: var(--paper);
   --color-foreground: var(--foreground);
   --color-blue: var(--blue);
   --color-blue-dark: var(--blue-dark);
   --color-blue-light: var(--blue-light);
   --color-blue-soft: var(--blue-soft);
+  --color-blue-muted: var(--blue-muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-pixel: var(--font-pixel);
 }
 
+/* Soft paper noise via SVG data-uri — calm, not busy */
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    linear-gradient(165deg, #faf8f4 0%, #f3f0ea 45%, #eef4fa 100%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+/* Pixel font — logo & tiny labels only */
+.font-pixel {
+  font-family: var(--font-pixel), ui-monospace, monospace;
+  letter-spacing: 0.04em;
+  image-rendering: pixelated;
+}
+
+/* Soft imperfect card / panel */
+.wabi-card {
+  background: var(--paper);
+  border: 1px solid color-mix(in srgb, var(--blue-light) 70%, transparent);
+  border-radius: var(--radius-wabi);
+  box-shadow: var(--shadow-soft);
+}
+
+.wabi-card-sm {
+  border-radius: var(--radius-wabi-sm);
+  box-shadow: var(--shadow-soft);
+}
+
+.wabi-pill {
+  border-radius: var(--radius-wabi-pill);
+}
+
+/* Subtle 8-bit decorative border (1px pixel steps via box-shadow) */
+.pixel-edge {
+  box-shadow:
+    2px 0 0 0 color-mix(in srgb, var(--blue-light) 80%, transparent),
+    -2px 0 0 0 color-mix(in srgb, var(--blue-light) 80%, transparent),
+    0 2px 0 0 color-mix(in srgb, var(--blue-light) 80%, transparent),
+    0 -2px 0 0 color-mix(in srgb, var(--blue-light) 80%, transparent),
+    4px 2px 0 0 transparent,
+    var(--shadow-soft);
+}
+
+/* Tiny pixel diamond / spark accents */
+.pixel-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--blue);
+  image-rendering: pixelated;
+  box-shadow:
+    6px 0 0 var(--blue-light),
+    0 6px 0 var(--blue-light);
+}
+
+.pixel-badge {
+  font-family: var(--font-pixel), ui-monospace, monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  image-rendering: pixelated;
+}
+
+/* Soft buttons — restrained, trustworthy */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-wabi-pill);
+  background: var(--blue);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.7rem 1.35rem;
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--blue-dark) 35%, transparent);
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.btn-primary:hover {
+  background: var(--blue-dark);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-wabi-pill);
+  border: 1.5px solid var(--blue);
+  background: color-mix(in srgb, var(--paper) 90%, white);
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.65rem 1.3rem;
+  transition: background 0.15s ease;
+}
+.btn-secondary:hover {
+  background: var(--blue-soft);
 }
 
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--blue);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Quiet section rhythm */
+.section-pad {
+  padding-block: 3.5rem;
+}
+@media (min-width: 640px) {
+  .section-pad {
+    padding-block: 4.25rem;
+  }
 }
