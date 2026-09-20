@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
-import Logo from "@/components/Logo";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const familiar = [
@@ -27,27 +26,6 @@ const trainingOptions = [
   { label: "Private", note: "In-person, Naples-area focus." },
   { label: "DIY", note: "Guide + video — train at home with a clear plan." },
   { label: "Hybrid", note: "Mix DIY with live check-ins." },
-];
-
-const stanOffers = [
-  {
-    title: "Pitching PDF",
-    note: "A simple plan and chart you can use at home.",
-    href: "mailto:nickdeisng@gmail.com?subject=Pitching%20PDF",
-    cta: "Email For PDF",
-  },
-  {
-    title: "Virtual Lessons",
-    note: "Live online coaching when you can’t make it in person.",
-    href: "mailto:nickdeisng@gmail.com?subject=Virtual%20Lessons",
-    cta: "Email To Book",
-  },
-  {
-    title: "Free Lead Magnet",
-    note: "Starter checklist and email tips (Stan store link soon).",
-    href: "/guides/",
-    cta: "See Free Guides",
-  },
 ];
 
 const freeGuides = [
@@ -112,12 +90,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. #BBD6F1 — bold-blue card logo + I’m Your Guy */}
-      <section className="band-soft" aria-label="I'm Your Guy">
+      {/* 2. WHITE — I’m Your Guy */}
+      <section className="text-band" aria-label="I'm Your Guy">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal>
-            <Logo height={88} className="logo-overlay-mark" />
-          </Reveal>
           <Reveal delayMs={40} className="space-y-5">
             <h2 className="ui-title ui-title-md">
               I’m Your Guy If You’re Looking To Throw Strikes, Build A Strong
@@ -224,86 +199,79 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. WHITE — Stan Store Offers */}
-      <section id="offers" className="text-band scroll-mt-24" aria-label="Stan Store Offers">
-        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">Stan Store Offers</h2>
-            <p className="text-base text-ink-soft">
-              PDF, Virtual, And Lead-Magnet Options — Stan Store Links Update When
-              Ready. Email Works Now.
-            </p>
-          </Reveal>
-          <Reveal delayMs={40}>
-            <ul className="grid gap-4 sm:grid-cols-3">
-              {stanOffers.map((offer) => (
-                <li key={offer.title} className="card flex flex-col gap-3 p-5">
-                  <p className="font-semibold text-blue-dark">{offer.title}</p>
-                  <p className="flex-1 text-sm leading-relaxed text-ink-soft">
-                    {offer.note}
-                  </p>
-                  {offer.href.startsWith("/") ? (
-                    <Link href={offer.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
-                      {offer.cta}
-                    </Link>
-                  ) : (
-                    <a href={offer.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
-                      {offer.cta}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 8. #BBD6F1 — how it works */}
+      {/* 7. #BBD6F1 — how it works (card layout) */}
       <section
         id="how-it-works"
         className="band-soft scroll-mt-24"
         aria-label="How It Works"
       >
-        <div className="mx-auto max-w-3xl space-y-10 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal className="space-y-4">
+        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">How It Works</h2>
             <p className="text-base text-ink-soft">Easy To Start Today.</p>
           </Reveal>
 
-          <Reveal delayMs={40} className="space-y-6">
-            <div className="space-y-3">
-              <p className="font-semibold text-blue-dark">
-                Step 1: Choose Your Training Option
-              </p>
-              <ul className="grid gap-4 sm:grid-cols-3">
-                {trainingOptions.map((opt) => (
-                  <li key={opt.label} className="space-y-1">
-                    <p className="font-semibold text-ink">{opt.label}</p>
-                    <p className="text-sm text-ink-soft">{opt.note}</p>
+          <div className="grid gap-5">
+            <Reveal delayMs={40}>
+              <article className="card space-y-4 p-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="ui-chip px-3 py-1">Step 1</span>
+                  <h3 className="font-semibold text-blue-dark">
+                    Choose Your Training Option
+                  </h3>
+                </div>
+                <ul className="grid gap-3 sm:grid-cols-3">
+                  {trainingOptions.map((opt) => (
+                    <li key={opt.label} className="option-chip">
+                      <p className="text-sm font-semibold text-blue-dark">
+                        {opt.label}
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-ink-soft">
+                        {opt.note}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+
+            <Reveal delayMs={80}>
+              <article className="card space-y-3 p-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="ui-chip px-3 py-1">Step 2</span>
+                  <h3 className="font-semibold text-blue-dark">Start Training</h3>
+                </div>
+                <ul className="grid gap-2 text-sm leading-relaxed text-ink-soft sm:grid-cols-3">
+                  <li className="option-chip !py-2.5">
+                    A pitching plan that fits your child
                   </li>
-                ))}
-              </ul>
-            </div>
-            <div className="space-y-2">
-              <p className="font-semibold text-blue-dark">Step 2: Start Training</p>
-              <ul className="space-y-1.5 text-base text-ink-soft">
-                <li>A pitching plan that fits your child</li>
-                <li>Video demos for drills and routines</li>
-                <li>Ongoing tips so they keep improving</li>
-              </ul>
-            </div>
-            <div className="space-y-2">
-              <p className="font-semibold text-blue-dark">Step 3: Watch Them Thrive</p>
-              <p className="text-base text-ink-soft">
-                Strength, confidence, and mound skills — and you’ll know you
-                helped them get there.
-              </p>
-            </div>
-          </Reveal>
+                  <li className="option-chip !py-2.5">
+                    Video demos for drills and routines
+                  </li>
+                  <li className="option-chip !py-2.5">
+                    Ongoing tips so they keep improving
+                  </li>
+                </ul>
+              </article>
+            </Reveal>
+
+            <Reveal delayMs={120}>
+              <article className="card space-y-3 p-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="ui-chip px-3 py-1">Step 3</span>
+                  <h3 className="font-semibold text-blue-dark">Watch Them Thrive</h3>
+                </div>
+                <p className="text-sm leading-relaxed text-ink-soft sm:text-base">
+                  Strength, confidence, and mound skills — and you’ll know you
+                  helped them get there.
+                </p>
+              </article>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* 9. WHITE — single Contact CTA → /contact/ */}
+      {/* 8. WHITE — single Contact CTA → /contact/ */}
       <section id="contact" className="text-band scroll-mt-24" aria-label="Contact">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 text-center sm:px-8 sm:py-16 sm:text-left">
           <Reveal className="space-y-5">
