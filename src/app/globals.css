@@ -1206,8 +1206,7 @@ html.glove-cursor * {
 }
 .bb-card-img {
   object-fit: cover;
-  /* Zoomed out: hat, face, jersey, a bit of the glove — not just the face */
-  object-position: 48% 8%;
+  object-position: center center;
 }
 .bb-card-name {
   margin: 0.45rem 0 0;

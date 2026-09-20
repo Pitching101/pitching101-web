@@ -13,7 +13,7 @@ export default function BaseballCardFan() {
       <li className="bb-card bb-card-main">
         <div className="bb-card-photo">
           <Image
-            src="/assets/nick-coach.png"
+            src="/assets/nick-coach-card.png"
             alt="Coach Nick in his jersey and hat, pointing at a glove"
             fill
             sizes="(max-width: 560px) 42vw, 240px"
