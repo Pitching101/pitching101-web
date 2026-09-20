@@ -89,7 +89,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="content-row ages-band-content">
-          <Reveal from="left" className="content-row-copy content-row-copy-wide space-y-5">
+          <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
             <h2 className="ui-title ui-title-md">
               I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
               Foundation, Train Healthy Patterns, And Get Affordable Lessons.
@@ -102,16 +102,6 @@ export default function HomePage() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-          </Reveal>
-          <Reveal from="right" delayMs={80} className="content-row-media">
-            <Image
-              src="/assets/pixel-runner.gif"
-              alt="Pixel art baseball runner"
-              width={800}
-              height={600}
-              className="row-gif"
-              unoptimized
-            />
           </Reveal>
         </div>
       </section>

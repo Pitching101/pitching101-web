@@ -128,9 +128,10 @@ body {
   isolation: isolate;
   overflow: hidden;
 }
-.ages-band .content-row {
+.ages-band .content-row,
+.ages-band-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 .peanut-decor {
   position: absolute;
@@ -138,6 +139,9 @@ body {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+}
+.peanut-decor .peanut {
+  z-index: 0;
 }
 .peanut {
   position: absolute;
@@ -196,7 +200,16 @@ body {
 }
 .ages-band-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+/* Keep copy readable over full-opacity peanut scatter */
+.who-copy {
+  position: relative;
+  z-index: 2;
+  padding: 1.15rem 1.25rem;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-sm);
 }
 @media (prefers-reduced-motion: reduce) {
   .peanut { animation: none; }
