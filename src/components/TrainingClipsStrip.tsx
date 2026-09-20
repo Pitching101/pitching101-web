@@ -10,14 +10,16 @@ const CLIPS = [
 ] as const;
 
 /**
- * Stadium-band showcase of real training clips.
+ * Compact stadium-band clip: one small rectangle at a time, prev/next.
  * Muted autoplay when in view; tap/click to play or pause. Respects reduced-motion.
  */
 export default function TrainingClipsStrip() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [index, setIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [playing, setPlaying] = useState<Record<number, boolean>>({});
+  const [inView, setInView] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -29,77 +31,116 @@ export default function TrainingClipsStrip() {
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root || reduceMotion) return;
+    if (!root) return;
 
     const io = new IntersectionObserver(
       (entries) => {
-        const visible = entries.some((e) => e.isIntersecting);
-        videoRefs.current.forEach((v, i) => {
-          if (!v) return;
-          if (visible) {
-            v.play().catch(() => {});
-            setPlaying((p) => ({ ...p, [i]: true }));
-          } else {
-            v.pause();
-            setPlaying((p) => ({ ...p, [i]: false }));
-          }
-        });
+        setInView(entries.some((e) => e.isIntersecting));
       },
       { threshold: 0.25 },
     );
     io.observe(root);
     return () => io.disconnect();
-  }, [reduceMotion]);
+  }, []);
 
-  const toggle = useCallback((i: number) => {
-    const v = videoRefs.current[i];
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+    setPlaying(false);
+
+    if (!reduceMotion && inView) {
+      v.play()
+        .then(() => setPlaying(true))
+        .catch(() => setPlaying(false));
+    }
+  }, [index, inView, reduceMotion]);
+
+  const goTo = useCallback((next: number) => {
+    setIndex(((next % CLIPS.length) + CLIPS.length) % CLIPS.length);
+  }, []);
+
+  const toggle = useCallback(() => {
+    const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      v.play().catch(() => {});
-      setPlaying((p) => ({ ...p, [i]: true }));
+      v.play()
+        .then(() => setPlaying(true))
+        .catch(() => setPlaying(false));
     } else {
       v.pause();
-      setPlaying((p) => ({ ...p, [i]: false }));
+      setPlaying(false);
     }
   }, []);
+
+  const clip = CLIPS[index];
 
   return (
     <div
       ref={rootRef}
       className="training-clips"
+      role="region"
+      aria-roledescription="carousel"
       aria-label="Real Training Clips"
     >
       <p className="training-clips-label">Real Training Clips</p>
-      <ul className="training-clips-grid">
-        {CLIPS.map((clip, i) => (
-          <li key={clip.src} className="training-clip-item">
+      <button
+        type="button"
+        className="training-clip-card"
+        aria-label={`${clip.label} — ${playing ? "pause" : "play"}`}
+        onClick={toggle}
+      >
+        <video
+          key={clip.src}
+          ref={videoRef}
+          className="training-clip-video"
+          src={clip.src}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+        {!playing ? (
+          <span className="training-clip-play" aria-hidden="true">
+            ▶
+          </span>
+        ) : null}
+      </button>
+      <div className="training-clips-nav">
+        <div className="training-clips-dots" role="tablist" aria-label="Choose clip">
+          {CLIPS.map((item, i) => (
             <button
+              key={item.src}
               type="button"
-              className="training-clip-card"
-              aria-label={`${clip.label} — ${playing[i] ? "pause" : "play"}`}
-              onClick={() => toggle(i)}
-            >
-              <video
-                ref={(el) => {
-                  videoRefs.current[i] = el;
-                }}
-                className="training-clip-video"
-                src={clip.src}
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-hidden="true"
-              />
-              {!playing[i] ? (
-                <span className="training-clip-play" aria-hidden="true">
-                  ▶
-                </span>
-              ) : null}
-            </button>
-          </li>
-        ))}
-      </ul>
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`${item.label}, ${i + 1} of ${CLIPS.length}`}
+              className={`reviews-dot ${i === index ? "is-active" : ""}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
+        <div className="training-clips-arrows">
+          <button
+            type="button"
+            className="reviews-nav"
+            aria-label="Previous clip"
+            onClick={() => goTo(index - 1)}
+          >
+            Prev
+          </button>
+          <button
+            type="button"
+            className="reviews-nav"
+            aria-label="Next clip"
+            onClick={() => goTo(index + 1)}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
