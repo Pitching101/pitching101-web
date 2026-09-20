@@ -173,12 +173,14 @@ export default function ScrollThrowDecor() {
       if (!parkEl() || mq.matches) return;
       const slot = flights[0] ? 1 : 0;
       if (flights[slot]) return;
+      const vw = window.innerWidth;
       const vh = window.innerHeight;
       soloLane += 1;
+      const minY = vw < 720 ? Math.max(300, vh * 0.48) : Math.max(110, vh * 0.2);
       flights[slot] = {
         start: now,
         duration: 1600 + Math.random() * 700,
-        y: Math.max(96, vh * 0.18) + ((soloLane * 97) % Math.max(80, vh * 0.52)),
+        y: minY + ((soloLane * 97) % Math.max(80, vh * 0.4)),
         fromLeft: soloLane % 2 === 0,
         rise: 18 + Math.random() * 26,
         spin: 280 + Math.random() * 220,
