@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import { INSTAGRAM_URL } from "@/data/siteCopy";
 
 /** Park footer — roomy dugout rail, not a cramped strip. */
 export default function Footer() {
@@ -19,6 +20,14 @@ export default function Footer() {
           <Link className="footer-link" href="/#about">
             About
           </Link>
+          <a
+            className="footer-link"
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </a>
         </nav>
         <p className="dugout-rail-copy">
           © {new Date().getFullYear()} Pitching101 · Naples, FL

@@ -1,3 +1,5 @@
+import { INSTAGRAM_URL, TRUSTPILOT_URL } from "@/data/siteCopy";
+
 /** JSON-LD for search + answer engines. Values are static site copy. */
 export default function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
@@ -45,7 +47,7 @@ export function businessJsonLd() {
       name: "Nick",
       alternateName: "Coach Nick",
     },
-    sameAs: ["https://www.trustpilot.com/review/pitching101.com"],
+    sameAs: [TRUSTPILOT_URL, INSTAGRAM_URL],
     knowsAbout: [
       "youth pitching lessons",
       "youth baseball pitching",

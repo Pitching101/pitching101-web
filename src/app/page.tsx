@@ -9,7 +9,7 @@ import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import PixelScoreboard from "@/components/PixelScoreboard";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyChips, trainingOptions } from "@/data/siteCopy";
+import { faqs, guyChips, INSTAGRAM_URL, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -81,6 +81,14 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+            <a
+              className="footer-link"
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              See the work on Instagram
+            </a>
             <PixelScoreboard />
           </Reveal>
         </div>

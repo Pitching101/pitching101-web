@@ -5,6 +5,8 @@ export const PHONE_DISPLAY = "845-768-2211";
 export const PHONE_TEL = "8457682211";
 export const EMAIL = "nickdeisng@gmail.com";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/pitching101.com";
+export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
+export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 
 export const business = {
   name: "Pitching101",

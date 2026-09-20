@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Book youth pitching lessons in Naples, FL",
@@ -49,6 +50,16 @@ export default function ContactPage() {
             <li>
               <a className="footer-link" href="mailto:nickdeisng@gmail.com">
                 Email nickdeisng@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-link"
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram @{INSTAGRAM_HANDLE}
               </a>
             </li>
           </ul>
