@@ -82,10 +82,12 @@ export default function ScrollThrowDecor() {
       const pairW = cw.offsetWidth || 120;
       const edge = Math.max(8, Math.min(22, vw * 0.012));
 
+      // Stay off the first paint — gloves walk in after the first scroll.
+      const intro = home ? smoothstep(24, 140, window.scrollY) : 0;
       const fade = home ? 1 - smoothstep(0.88, 1, p) : 0;
-      root.style.opacity = home ? "1" : "0";
-      cw.style.opacity = fade.toFixed(3);
-      ccw.style.opacity = fade.toFixed(3);
+      root.style.opacity = (intro * fade).toFixed(3);
+      cw.style.opacity = "1";
+      ccw.style.opacity = "1";
 
       // Stay under type: on a phone the title fills the width, so start lower.
       const startTop = vw < 720 ? Math.max(260, vh * 0.44) : Math.max(96, vh * 0.22);
@@ -170,7 +172,7 @@ export default function ScrollThrowDecor() {
     solos.forEach(parkSolo);
 
     const spawnSolo = (now: number) => {
-      if (!parkEl() || mq.matches) return;
+      if (!parkEl() || mq.matches || window.scrollY < 80) return;
       const slot = flights[0] ? 1 : 0;
       if (flights[slot]) return;
       const vw = window.innerWidth;

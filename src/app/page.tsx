@@ -6,8 +6,9 @@ import ReviewsCarousel from "@/components/ReviewsCarousel";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
+import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyBullets, trainingOptions } from "@/data/siteCopy";
+import { faqs, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -37,8 +38,8 @@ export default function HomePage() {
               Youth pitching lessons in Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
-              I&apos;m Nick. Kids throw more strikes. Parents leave with a plan they
-              can actually say out loud.
+              Kids throw more strikes. Parents leave with a plan they can say
+              out loud.
             </p>
             <div className="home-cta-row pt-1">
               <Link href="#contact" className="btn">
@@ -56,10 +57,6 @@ export default function HomePage() {
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">What parents say</h2>
-            <p className="text-base leading-relaxed text-ink-soft">
-              Real notes from families after we worked together. I didn&apos;t write
-              these.
-            </p>
             <div id="sky-start">
               <ReviewsCarousel />
             </div>
@@ -73,34 +70,17 @@ export default function HomePage() {
         aria-label="About Coach Nick — ages 8 to 14"
       >
         <div className="content-row ages-band-content">
-          <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
-            <Image
-              src="/assets/nick-coach-circle.png"
-              alt="Coach Nick, youth pitching coach in Naples, FL"
-              width={136}
-              height={136}
-              className="nick-coach-avatar nick-coach-home"
-            />
+          <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              Pitching101 is me — a pitching coach for kids ages 8–14 in Naples, FL.
-              I help young pitchers throw more strikes without the jargon or the
-              crazy price tag.
+              Pitching coach for kids 8–14 in Naples. More strikes. Healthy arms.
+              A plan you can say out loud.
             </p>
-            <p className="text-base leading-relaxed text-ink-soft">
-              Kids this age need clear cues, healthy arm habits, and something they
-              can try again on Tuesday. I work with Naples families in person when
-              it fits, plus at-home and virtual options when the week gets loud.
+            <BaseballCardFan />
+            <p id="your-guy" className="text-base leading-relaxed text-ink-soft">
+              In person around Naples, at home, or a mix. Text me and I&apos;ll
+              tell you what fits.
             </p>
-            <h3 id="your-guy" className="ui-title ui-title-sm">
-              I&apos;m your guy if you want more strikes, a strong foundation,
-              and lessons that don&apos;t cost a fortune.
-            </h3>
-            <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
-              {guyBullets.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
           </Reveal>
         </div>
       </section>
@@ -174,7 +154,7 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 py-20 text-center sm:px-8 sm:py-28">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 pt-20 pb-36 text-center sm:px-8 sm:pt-28 sm:pb-44">
             <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get your kid on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">

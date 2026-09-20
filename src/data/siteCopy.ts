@@ -50,17 +50,17 @@ export const faqs: FaqItem[] = [
 export const trainingOptions = [
   {
     label: "In person",
-    note: "Throw with me around Naples, FL. I’ll tell you where once we talk.",
+    note: "Throw with me around Naples. I’ll tell you where once we talk.",
     icon: "/assets/icons/icon-strikes.png",
   },
   {
     label: "At home",
-    note: "A simple plan and video so you can work between practices.",
+    note: "A short plan and video for between practices.",
     icon: "/assets/icons/icon-free-guide-v2.png",
   },
   {
     label: "A mix",
-    note: "DIY most days, plus live check-ins when you want a second set of eyes.",
+    note: "Most days at home. Live check-ins when you want eyes on it.",
     icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];

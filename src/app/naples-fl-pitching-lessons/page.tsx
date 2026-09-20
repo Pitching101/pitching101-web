@@ -58,9 +58,11 @@ export default function NaplesPitchingLessonsPage() {
 
         <Reveal className="mt-12 space-y-5">
           <h2 className="ui-title ui-title-sm">Who youth pitching lessons are for</h2>
-          <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
+          <ul className="bb-chip-row">
             {whoFor.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item} className="bb-chip">
+                {item}
+              </li>
             ))}
           </ul>
         </Reveal>
