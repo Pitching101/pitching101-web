@@ -56,11 +56,6 @@ export default function Footer() {
             </Link>
           </p>
           <p>
-            <a className="text-ink-soft hover:text-blue-dark" href="/#how-it-works">
-              How It Works
-            </a>
-          </p>
-          <p>
             <a
               className="text-ink-soft hover:text-blue-dark"
               href="/naples-fl-pitching-lessons/"
