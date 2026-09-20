@@ -3,15 +3,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const CLIPS = [
-  { src: "/videos/IMG_1238.mp4", label: "Training clip 1" },
-  { src: "/videos/IMG_2676.mp4", label: "Training clip 2" },
-  { src: "/videos/IMG_1247.mp4", label: "Training clip 3" },
-  { src: "/videos/IMG_2698.mp4", label: "Training clip 4" },
+  { src: "/videos/IMG_1238.mp4", name: "Rep 1" },
+  { src: "/videos/IMG_2676.mp4", name: "Rep 2" },
+  { src: "/videos/IMG_1247.mp4", name: "Rep 3" },
+  { src: "/videos/IMG_2698.mp4", name: "Rep 4" },
 ] as const;
 
 /**
- * Compact stadium-band clip: one small rectangle at a time, prev/next.
- * Muted autoplay when in view; tap/click to play or pause. Respects reduced-motion.
+ * A few baseball cards on the field — not one straight rectangle.
+ * Center card plays. Side cards tilt and swap in on tap.
  */
 export default function TrainingClipsStrip() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -83,6 +83,8 @@ export default function TrainingClipsStrip() {
     }
   }, []);
 
+  const prev = (index - 1 + CLIPS.length) % CLIPS.length;
+  const next = (index + 1) % CLIPS.length;
   const clip = CLIPS[index];
 
   return (
@@ -102,29 +104,75 @@ export default function TrainingClipsStrip() {
       }}
     >
       <p className="training-clips-label">A look at training</p>
-      <button
-        type="button"
-        className="training-clip-card"
-        aria-label={`${clip.label} — ${playing ? "pause" : "play"}`}
-        onClick={toggle}
-      >
-        <video
-          key={clip.src}
-          ref={videoRef}
-          className="training-clip-video"
-          src={clip.src}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        />
-        {!playing ? (
-          <span className="training-clip-play" aria-hidden="true">
-            ▶
-          </span>
-        ) : null}
-      </button>
+      <div className="clip-fan">
+        <button
+          type="button"
+          className="bb-card clip-card clip-card-left"
+          aria-label={`Show ${CLIPS[prev].name}`}
+          onClick={() => goTo(prev)}
+        >
+          <div className="bb-card-photo">
+            <video
+              className="training-clip-video"
+              src={CLIPS[prev].src}
+              muted
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            />
+          </div>
+          <p className="bb-card-name">{CLIPS[prev].name}</p>
+        </button>
+
+        <div className="bb-card clip-card clip-card-main">
+          <button
+            type="button"
+            className="clip-card-hit"
+            aria-label={`${clip.name} — ${playing ? "pause" : "play"}`}
+            onClick={toggle}
+          >
+            <div className="bb-card-photo">
+              <video
+                key={clip.src}
+                ref={videoRef}
+                className="training-clip-video"
+                src={clip.src}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+              />
+              {!playing ? (
+                <span className="training-clip-play" aria-hidden="true">
+                  ▶
+                </span>
+              ) : null}
+            </div>
+          </button>
+          <p className="bb-card-name">{clip.name}</p>
+          <p className="bb-card-role">Pitching101</p>
+        </div>
+
+        <button
+          type="button"
+          className="bb-card clip-card clip-card-right"
+          aria-label={`Show ${CLIPS[next].name}`}
+          onClick={() => goTo(next)}
+        >
+          <div className="bb-card-photo">
+            <video
+              className="training-clip-video"
+              src={CLIPS[next].src}
+              muted
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            />
+          </div>
+          <p className="bb-card-name">{CLIPS[next].name}</p>
+        </button>
+      </div>
       <div className="training-clips-nav">
         <div className="training-clips-dots" role="tablist" aria-label="Choose clip">
           {CLIPS.map((item, i) => (
@@ -133,29 +181,11 @@ export default function TrainingClipsStrip() {
               type="button"
               role="tab"
               aria-selected={i === index}
-              aria-label={`${item.label}, ${i + 1} of ${CLIPS.length}`}
+              aria-label={`${item.name}, ${i + 1} of ${CLIPS.length}`}
               className={`reviews-dot ${i === index ? "is-active" : ""}`}
               onClick={() => goTo(i)}
             />
           ))}
-        </div>
-        <div className="training-clips-arrows">
-          <button
-            type="button"
-            className="reviews-nav"
-            aria-label="Previous clip"
-            onClick={() => goTo(index - 1)}
-          >
-            Prev
-          </button>
-          <button
-            type="button"
-            className="reviews-nav"
-            aria-label="Next clip"
-            onClick={() => goTo(index + 1)}
-          >
-            Next
-          </button>
         </div>
       </div>
     </div>
