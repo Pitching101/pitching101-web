@@ -3,19 +3,20 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Decorative baseball + glove that drift over page sections on scroll.
- * pointer-events: none so CTAs/text stay clickable. Hidden under reduced motion.
+ * Two floating throw pairs (glove + ball) over page sections.
+ * Scroll-linked soft drift + CW/CCW spin. pointer-events: none.
+ * Hidden when prefers-reduced-motion: reduce.
  */
 export default function ScrollThrowDecor() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const ballRef = useRef<HTMLDivElement>(null);
-  const gloveRef = useRef<HTMLDivElement>(null);
+  const cwRef = useRef<HTMLDivElement>(null);
+  const ccwRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const root = rootRef.current;
-    const ball = ballRef.current;
-    const glove = gloveRef.current;
-    if (!root || !ball || !glove) return;
+    const cw = cwRef.current;
+    const ccw = ccwRef.current;
+    if (!root || !cw || !ccw) return;
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const applyMotionPreference = () => {
@@ -35,13 +36,23 @@ export default function ScrollThrowDecor() {
     let ticking = false;
     const update = () => {
       ticking = false;
-      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const max = Math.max(
+        1,
+        document.documentElement.scrollHeight - window.innerHeight,
+      );
       const p = Math.min(1, Math.max(0, window.scrollY / max));
-      // Diagonal “throw” paths along the gutters — stay off main text columns
-      const ballY = p * 72; // vh-ish via % of path
-      const gloveY = p * 68;
-      ball.style.transform = `translate3d(${(-8 + p * 18).toFixed(2)}vw, ${(8 + ballY).toFixed(2)}vh, 0)`;
-      glove.style.transform = `translate3d(${(6 - p * 14).toFixed(2)}vw, ${(18 + gloveY).toFixed(2)}vh, 0)`;
+      // Soft throw arc along gutters — keep clear of center CTAs/copy
+      const rot = p * 320; // degrees over full page scroll
+      const cwY = 10 + p * 58;
+      const ccwY = 22 + p * 52;
+      cw.style.transform = `translate3d(${(-4 + p * 10).toFixed(2)}vw, ${cwY.toFixed(2)}vh, 0)`;
+      ccw.style.transform = `translate3d(${(4 - p * 10).toFixed(2)}vw, ${ccwY.toFixed(2)}vh, 0)`;
+      cw.style.setProperty("--throw-rot", `${rot.toFixed(2)}deg`);
+      ccw.style.setProperty("--throw-rot", `${(-rot).toFixed(2)}deg`);
+      // Ball travels a bit farther than the glove (throw feel)
+      const ballLead = p * 18;
+      cw.style.setProperty("--ball-nudge", `${ballLead.toFixed(2)}px`);
+      ccw.style.setProperty("--ball-nudge", `${(-ballLead).toFixed(2)}px`);
     };
 
     const onScroll = () => {
@@ -67,31 +78,47 @@ export default function ScrollThrowDecor() {
   }, []);
 
   return (
-    <div
-      ref={rootRef}
-      className="scroll-throw"
-      aria-hidden="true"
-      hidden
-    >
-      <div ref={ballRef} className="scroll-throw-item scroll-throw-ball">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/pixel-baseball.png"
-          alt=""
-          width={72}
-          height={72}
-          className="scroll-throw-img scroll-throw-spin-cw"
-          draggable={false}
-        />
-      </div>
-      <div ref={gloveRef} className="scroll-throw-item scroll-throw-glove">
+    <div ref={rootRef} className="scroll-throw" aria-hidden="true" hidden>
+      {/* Instance 1 — left gutter, clockwise */}
+      <div ref={cwRef} className="scroll-throw-pair scroll-throw-pair-cw">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/pixel-glove.png"
           alt=""
-          width={78}
-          height={92}
-          className="scroll-throw-img scroll-throw-spin-ccw"
+          width={72}
+          height={84}
+          className="scroll-throw-img scroll-throw-glove-img"
+          draggable={false}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/pixel-baseball.png"
+          alt=""
+          width={48}
+          height={48}
+          className="scroll-throw-img scroll-throw-ball-img"
+          draggable={false}
+        />
+      </div>
+
+      {/* Instance 2 — right gutter, counter-clockwise */}
+      <div ref={ccwRef} className="scroll-throw-pair scroll-throw-pair-ccw">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/pixel-glove.png"
+          alt=""
+          width={72}
+          height={84}
+          className="scroll-throw-img scroll-throw-glove-img"
+          draggable={false}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/pixel-baseball.png"
+          alt=""
+          width={48}
+          height={48}
+          className="scroll-throw-img scroll-throw-ball-img"
           draggable={false}
         />
       </div>
