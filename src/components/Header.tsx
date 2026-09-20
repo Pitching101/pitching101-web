@@ -7,9 +7,12 @@ export default function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
         {/* Transparent dark navy (~#181850) header mark; accents stay #3295fb */}
         <Logo variant="primary" width={160} />
-        <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-medium text-ink-soft sm:gap-x-5">
+        <nav className="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 text-sm font-medium text-ink-soft sm:gap-x-5">
           <Link href="/guides/" className="nav-link">
             Free guides
+          </Link>
+          <Link href="/contact/" className="btn btn-nav">
+            Get started
           </Link>
         </nav>
       </div>

@@ -669,6 +669,12 @@ button:focus-visible {
   opacity: 0.72;
 }
 
+.btn-nav {
+  min-height: 2.25rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.875rem;
+}
+
 .trust-strip {
   background: var(--surface-raised);
   border: 1px solid color-mix(in srgb, var(--blue) 20%, transparent);
