@@ -90,7 +90,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
             .map((item) => (item.state === "pre" ? { ...item, state: "in" as const } : item)),
         );
         setBusy(false);
-      }, FADE_MS * 2 + 120);
+      }, FADE_MS * 2 + 400);
       setIndex(next);
       setLayers((current) => {
         const outgoing = current
@@ -118,7 +118,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
               item.state === "pre" ? { ...item, state: "in" } : item,
             ),
           );
-        }, 40);
+        }, 280);
         return;
       }
 

@@ -52,7 +52,7 @@ export default function ScrollThrowDecor() {
       if (!hero) return 0;
       const end = endEl();
       const startY = yOf(hero);
-      const endY = end ? yOf(end) + end.offsetHeight * 0.22 : startY + window.innerHeight * 1.6;
+      const endY = end ? yOf(end) : startY + window.innerHeight * 1.35;
       const span = Math.max(1, endY - startY);
       return clamp((window.scrollY - startY) / span, 0, 1);
     };
@@ -70,14 +70,15 @@ export default function ScrollThrowDecor() {
       const pairW = cw.offsetWidth || 120;
       const edge = Math.max(8, Math.min(22, vw * 0.012));
 
-      const fade = home ? 1 - smoothstep(0.9, 1, p) : 0;
+      const fade = home ? 1 - smoothstep(0.88, 1, p) : 0;
       root.style.opacity = fade.toFixed(3);
+
+      const startTop = Math.max(80, vh * 0.2);
 
       if (reduced) {
         const restX = edge;
-        const restY = vh * 0.14;
-        cw.style.transform = `translate3d(${restX}px, ${restY}px, 0)`;
-        ccw.style.transform = `translate3d(${vw - pairW - restX}px, ${vh * 0.22}px, 0)`;
+        cw.style.transform = `translate3d(${restX}px, ${startTop}px, 0)`;
+        ccw.style.transform = `translate3d(${vw - pairW - restX}px, ${startTop + 48}px, 0)`;
         cwGlove.style.transform = "rotate(0deg)";
         ccwGlove.style.transform = "rotate(0deg)";
         cwBall.style.transform = "translate3d(0, 0, 0) rotate(0deg)";
@@ -85,22 +86,20 @@ export default function ScrollThrowDecor() {
         return;
       }
 
-      const travel = smoothstep(0, 1, p);
-      const arc = Math.sin(p * Math.PI);
-      const leftX = edge + travel * 14;
-      const rightX = vw - pairW - edge - travel * 14;
-      const leftY = vh * (0.11 + travel * 0.5);
-      const rightY = vh * (0.2 + travel * 0.46);
-      const gloveSpin = p * 210;
-      const ballOut = arc * Math.min(36, vw * 0.035);
-      const ballLift = arc * -14;
+      const leftX = edge;
+      const rightX = vw - pairW - edge;
+      const leftY = startTop + p * vh * 0.5;
+      const rightY = startTop + 36 + p * vh * 0.46;
+      const gloveSpin = p * 200;
+      const throwX = p * Math.max(180, vw - pairW - 56);
+      const throwY = Math.sin(p * Math.PI) * -Math.min(28, vh * 0.04);
 
       cw.style.transform = `translate3d(${leftX.toFixed(2)}px, ${leftY.toFixed(2)}px, 0)`;
       ccw.style.transform = `translate3d(${rightX.toFixed(2)}px, ${rightY.toFixed(2)}px, 0)`;
       cwGlove.style.transform = `rotate(${gloveSpin.toFixed(2)}deg)`;
       ccwGlove.style.transform = `rotate(${(-gloveSpin).toFixed(2)}deg)`;
-      cwBall.style.transform = `translate3d(${ballOut.toFixed(2)}px, ${ballLift.toFixed(2)}px, 0) rotate(${(gloveSpin * 0.7).toFixed(2)}deg)`;
-      ccwBall.style.transform = `translate3d(${(-ballOut).toFixed(2)}px, ${ballLift.toFixed(2)}px, 0) rotate(${(-gloveSpin * 0.7).toFixed(2)}deg)`;
+      cwBall.style.transform = `translate3d(${throwX.toFixed(2)}px, ${throwY.toFixed(2)}px, 0) rotate(${(gloveSpin * 0.8).toFixed(2)}deg)`;
+      ccwBall.style.transform = `translate3d(${(-throwX).toFixed(2)}px, ${throwY.toFixed(2)}px, 0) rotate(${(-gloveSpin * 0.8).toFixed(2)}deg)`;
     };
 
     const loop = (ts: number) => {

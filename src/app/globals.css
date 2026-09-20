@@ -1041,7 +1041,7 @@ button:focus-visible {
   inset: 0;
   z-index: 25; /* under sticky header (z-40); over section chrome */
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
   opacity: 0;
 }
 .scroll-throw-pair {
