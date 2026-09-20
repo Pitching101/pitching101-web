@@ -10,7 +10,9 @@ import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
 import { faqs, guyBullets, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Youth pitching lessons in Naples, FL",
+  title: {
+    absolute: "Youth pitching lessons in Naples, FL | Pitching101",
+  },
   description:
     "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
   alternates: { canonical: "/" },
