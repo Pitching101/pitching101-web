@@ -60,16 +60,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. WHITE — one clean offers + CTA band (no card grid) */}
+      {/* 3. WHITE — quiet offers row (no card chrome) + CTAs */}
       <section id="programs" className="text-band scroll-mt-24">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-16 text-center sm:px-8 sm:py-20 sm:text-left">
-          <Reveal className="space-y-4">
+          <Reveal className="space-y-5">
             <h2 className="ui-title ui-title-md">Ways to start</h2>
-            <p className="text-lg leading-relaxed text-ink-soft">
-              Naples lessons · pitching PDF · virtual lessons
-            </p>
             <p className="text-base text-ink-soft">
               Pick what fits. We’ll point you to the right next step.
+            </p>
+            <p className="flex flex-col gap-3 text-lg sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2">
+              <a
+                href="mailto:nickdeisng@gmail.com?subject=Naples%20pitching%20lessons"
+                className="font-semibold text-blue-dark underline-offset-4 hover:underline"
+              >
+                In-person Naples
+              </a>
+              <span className="hidden text-ink-soft/50 sm:inline" aria-hidden>
+                ·
+              </span>
+              <a
+                href="mailto:nickdeisng@gmail.com?subject=PDF%20pitching%20chart"
+                className="font-semibold text-blue-dark underline-offset-4 hover:underline"
+              >
+                Pitching PDF
+              </a>
+              <span className="hidden text-ink-soft/50 sm:inline" aria-hidden>
+                ·
+              </span>
+              <a
+                href="mailto:nickdeisng@gmail.com?subject=Virtual%20pitching%20lesson"
+                className="font-semibold text-blue-dark underline-offset-4 hover:underline"
+              >
+                Virtual lessons
+              </a>
             </p>
           </Reveal>
           <Reveal delayMs={60}>

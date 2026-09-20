@@ -31,9 +31,21 @@ const whoFor = [
 ];
 
 const offers = [
-  { label: "In-person Naples lessons", note: "Local sessions. Text first." },
-  { label: "PDF product", note: "Simple plan at home. Coming soon." },
-  { label: "Virtual lessons", note: "Live coaching online. Coming soon." },
+  {
+    label: "In-person Naples lessons",
+    note: "Local sessions. Text first.",
+    href: "mailto:nickdeisng@gmail.com?subject=Naples%20pitching%20lessons",
+  },
+  {
+    label: "Pitching PDF",
+    note: "Simple plan at home.",
+    href: "mailto:nickdeisng@gmail.com?subject=PDF%20pitching%20chart",
+  },
+  {
+    label: "Virtual lessons",
+    note: "Live coaching online.",
+    href: "mailto:nickdeisng@gmail.com?subject=Virtual%20pitching%20lesson",
+  },
 ];
 
 export default function NaplesPitchingLessonsPage() {
@@ -70,43 +82,41 @@ export default function NaplesPitchingLessonsPage() {
         <TrustStrip />
       </Reveal>
 
-      <Reveal className="mt-10 space-y-3">
+      <Reveal className="mt-12 space-y-5">
         <h2 className="ui-title ui-title-sm text-blue-dark">Who this is for</h2>
-        <ul className="space-y-2 text-ink-soft">
+        <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
           {whoFor.map((item) => (
-            <li key={item} className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue" aria-hidden />
-              <span>{item}</span>
-            </li>
+            <li key={item}>{item}</li>
           ))}
         </ul>
       </Reveal>
 
-      <Reveal className="mt-10 space-y-3">
-        <h2 className="ui-title ui-title-sm text-blue-dark">Offers</h2>
-        <ul className="grid gap-3 sm:grid-cols-3">
+      <Reveal className="mt-12 space-y-5">
+        <h2 className="ui-title ui-title-sm text-blue-dark">Ways to start</h2>
+        <ul className="space-y-4 text-ink-soft">
           {offers.map((item) => (
-            <li key={item.label} className="ui-card p-4">
-              <p className="text-sm font-semibold text-blue-dark">{item.label}</p>
-              <p className="mt-1 text-sm text-ink-soft">{item.note}</p>
+            <li key={item.label} className="space-y-0.5">
+              <a
+                href={item.href}
+                className="font-semibold text-blue-dark underline-offset-4 hover:underline"
+              >
+                {item.label}
+              </a>
+              <p className="text-sm">{item.note}</p>
             </li>
           ))}
         </ul>
       </Reveal>
 
-      <Reveal>
-        <section className="ui-card mt-10 p-6 sm:p-8">
-          <h2 className="ui-title ui-title-sm text-blue-dark">Book a chat</h2>
-          <p className="mt-2 text-ink-soft">
-            No street address listed. Text, call, or email first.
-          </p>
-          <p className="mt-3 text-sm font-semibold text-blue-dark">
-            Text or Call 845-768-2211
-          </p>
-          <div className="mt-5">
-            <ContactCtas mailtoSubject="Youth pitching lessons in Naples, FL" />
-          </div>
-        </section>
+      <Reveal className="mt-12 space-y-4 border-t border-blue/15 pt-10">
+        <h2 className="ui-title ui-title-sm text-blue-dark">Book a chat</h2>
+        <p className="text-ink-soft">
+          No street address listed. Text, call, or email first.
+        </p>
+        <p className="text-sm font-semibold text-blue-dark">
+          Text or Call 845-768-2211
+        </p>
+        <ContactCtas mailtoSubject="Youth pitching lessons in Naples, FL" />
       </Reveal>
 
       <p className="mt-10 text-sm text-ink-soft">
