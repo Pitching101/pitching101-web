@@ -1,45 +1,56 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type TransitionEvent } from "react";
 import {
   TRUSTPILOT_URL,
   trustpilotReviews,
   type TrustpilotReview,
 } from "@/data/trustpilotReviews";
 
+const FADE_MS = 560;
+
 function Stars({ n }: { n: number }) {
   const filled = Math.max(0, Math.min(5, Math.round(n)));
   return (
-    <span className="reviews-stars" aria-label={`${filled} out of 5 stars`}>
+    <p className="reviews-stars" aria-label={`${filled} out of 5 stars`}>
       {"★".repeat(filled)}
       <span className="text-ink-soft/30">{"★".repeat(5 - filled)}</span>
-    </span>
+    </p>
   );
 }
 
 function ReviewCard({ r }: { r: TrustpilotReview }) {
   return (
-    <>
-      <div className="flex flex-wrap items-center gap-2">
-        <Stars n={r.stars} />
-        {r.title ? (
-          <p className="text-sm font-semibold text-blue-dark">{r.title}</p>
-        ) : null}
-      </div>
+    <div className="reviews-card-inner">
+      <Stars n={r.stars} />
+      {r.title ? <p className="reviews-card-title">{r.title}</p> : null}
       <blockquote className="text-lg leading-relaxed text-ink sm:text-xl">
         “{r.quote}”
       </blockquote>
       <footer className="text-sm font-semibold text-ink-soft">— {r.name}</footer>
-    </>
+    </div>
   );
 }
 
-/** Auto-rotating Trustpilot reviews with fade. Cards sit above ball/glove decor. */
+type Layer = {
+  key: number;
+  reviewIndex: number;
+  state: "in" | "out" | "pre";
+};
+
+/** Next fades the whole blue card out, then the next card fades in. */
 export default function ReviewsCarousel({ className = "" }: { className?: string }) {
   const reviews = trustpilotReviews;
-  const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [layers, setLayers] = useState<Layer[]>(
+    reviews.length ? [{ key: 0, reviewIndex: 0, state: "in" }] : [],
+  );
+  const nextKey = useRef(1);
+  const enterTimer = useRef(0);
+  const safetyTimer = useRef(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -49,25 +60,87 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  useEffect(() => {
-    if (reduceMotion || paused || reviews.length === 0) return;
-    const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % reviews.length);
-    }, 5000);
-    return () => window.clearInterval(id);
-  }, [reduceMotion, paused, reviews.length]);
+  useEffect(
+    () => () => {
+      window.clearTimeout(enterTimer.current);
+      window.clearTimeout(safetyTimer.current);
+    },
+    [],
+  );
 
   const goTo = useCallback(
     (i: number) => {
       if (reviews.length === 0) return;
-      setIndex(((i % reviews.length) + reviews.length) % reviews.length);
+      const next = ((i % reviews.length) + reviews.length) % reviews.length;
+      if (next === index || busy) return;
+
+      if (reduceMotion) {
+        setIndex(next);
+        setLayers([{ key: nextKey.current++, reviewIndex: next, state: "in" }]);
+        return;
+      }
+
+      setBusy(true);
+      window.clearTimeout(enterTimer.current);
+      window.clearTimeout(safetyTimer.current);
+      safetyTimer.current = window.setTimeout(() => {
+        setLayers((current) =>
+          current
+            .filter((item) => item.state !== "out")
+            .map((item) => (item.state === "pre" ? { ...item, state: "in" as const } : item)),
+        );
+        setBusy(false);
+      }, FADE_MS * 2 + 400);
+      setIndex(next);
+      setLayers((current) => {
+        const outgoing = current
+          .filter((layer) => layer.state !== "out")
+          .map((layer) => ({ ...layer, state: "out" as const }));
+        return [
+          ...outgoing,
+          { key: nextKey.current++, reviewIndex: next, state: "pre" },
+        ];
+      });
     },
-    [reviews.length],
+    [busy, index, reduceMotion, reviews.length],
   );
+
+  const onLayerTransitionEnd = useCallback(
+    (layer: Layer, event: TransitionEvent<HTMLElement>) => {
+      if (event.propertyName !== "opacity") return;
+
+      if (layer.state === "out") {
+        setLayers((current) => current.filter((item) => item.key !== layer.key));
+        window.clearTimeout(enterTimer.current);
+        enterTimer.current = window.setTimeout(() => {
+          setLayers((current) =>
+            current.map((item) =>
+              item.state === "pre" ? { ...item, state: "in" } : item,
+            ),
+          );
+        }, 280);
+        return;
+      }
+
+      if (layer.state === "in") {
+        window.clearTimeout(safetyTimer.current);
+        setBusy(false);
+      }
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (reduceMotion || paused || reviews.length === 0 || busy) return;
+    const id = window.setInterval(() => {
+      goTo(index + 1);
+    }, 6200);
+    return () => window.clearInterval(id);
+  }, [reduceMotion, paused, reviews.length, busy, goTo, index]);
 
   if (reviews.length === 0) {
     return (
-      <div className={`reviews-carousel ${className}`.trim()}>
+      <div className={`reviews-wrap ${className}`.trim()}>
         <p className="text-base text-ink-soft">
           Loading From Trustpilot… Reviews Will Appear Here When Available.
         </p>
@@ -86,12 +159,10 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
   if (reduceMotion) {
     return (
       <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="Client reviews from Trustpilot">
-        <p className="text-xs font-semibold uppercase tracking-wide text-blue-dark">
-          Verified On Trustpilot
-        </p>
+        <p className="reviews-verified">Verified on Trustpilot</p>
         <ul className="space-y-4">
           {reviews.map((r) => (
-            <li key={`${r.name}-${r.title}`} className="reviews-carousel space-y-3">
+            <li key={`${r.name}-${r.title}`} className="reviews-carousel">
               <ReviewCard r={r} />
             </li>
           ))}
@@ -108,9 +179,12 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     );
   }
 
+  const sizerReview =
+    reviews[layers.find((layer) => layer.state === "out")?.reviewIndex ?? index];
+
   return (
     <div
-      className={`reviews-carousel space-y-4 ${className}`.trim()}
+      className={`reviews-wrap ${className}`.trim()}
       role="region"
       aria-roledescription="carousel"
       aria-label="Client reviews from Trustpilot"
@@ -123,24 +197,28 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         }
       }}
     >
-      <p className="text-xs font-semibold uppercase tracking-wide text-blue-dark">
-        Verified On Trustpilot
-      </p>
+      <p className="reviews-verified">Verified on Trustpilot</p>
 
-      <div className="reviews-fade-stage" aria-live="polite" aria-atomic="true">
-        {reviews.map((r, i) => (
-          <div
-            key={`${r.name}-${r.title}`}
-            className={`reviews-fade-slide space-y-3 ${i === index ? "is-active" : ""}`}
-            aria-hidden={i !== index}
+      <div className="reviews-stage">
+        <article className="reviews-carousel reviews-card reviews-card-sizer" aria-hidden="true">
+          <ReviewCard r={sizerReview} />
+        </article>
+        {layers.map((layer) => (
+          <article
+            key={layer.key}
+            className={`reviews-carousel reviews-card reviews-card-layer is-${layer.state}`}
+            aria-hidden={layer.state !== "in"}
+            aria-live={layer.state === "in" ? "polite" : undefined}
+            aria-atomic="true"
+            onTransitionEnd={(event) => onLayerTransitionEnd(layer, event)}
           >
-            <ReviewCard r={r} />
-          </div>
+            <ReviewCard r={reviews[layer.reviewIndex]} />
+          </article>
         ))}
       </div>
 
-      <div className="mt-2 flex flex-wrap items-center gap-3">
-        <div className="flex gap-2" role="tablist" aria-label="Choose review">
+      <div className="reviews-controls">
+        <div className="reviews-dots" role="tablist" aria-label="Choose review">
           {reviews.map((_, i) => (
             <button
               key={i}
@@ -153,7 +231,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
             />
           ))}
         </div>
-        <div className="ml-auto flex gap-2">
+        <div className="reviews-arrows">
           <button
             type="button"
             className="reviews-nav"

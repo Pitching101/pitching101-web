@@ -10,7 +10,7 @@ const CLIPS = [
 ] as const;
 
 /**
- * Stadium-band showcase: ONE training clip at a time (auto carousel).
+ * Compact stadium-band clip: one small rectangle at a time, prev/next.
  * Muted autoplay when in view; tap/click to play or pause. Respects reduced-motion.
  */
 export default function TrainingClipsStrip() {
@@ -19,8 +19,8 @@ export default function TrainingClipsStrip() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [playing, setPlaying] = useState(false);
   const [inView, setInView] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -44,7 +44,6 @@ export default function TrainingClipsStrip() {
     return () => io.disconnect();
   }, []);
 
-  // Auto-advance carousel when in view (unless reduced motion or user paused)
   useEffect(() => {
     if (reduceMotion || paused || !inView || CLIPS.length < 2) return;
     const id = window.setInterval(() => {
@@ -53,19 +52,23 @@ export default function TrainingClipsStrip() {
     return () => window.clearInterval(id);
   }, [reduceMotion, paused, inView]);
 
-  // Play / pause current clip based on visibility + reduced motion
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    if (inView && !reduceMotion) {
+    v.pause();
+    v.currentTime = 0;
+    setPlaying(false);
+
+    if (!reduceMotion && inView) {
       v.play()
         .then(() => setPlaying(true))
         .catch(() => setPlaying(false));
-    } else {
-      v.pause();
-      setPlaying(false);
     }
   }, [index, inView, reduceMotion]);
+
+  const goTo = useCallback((next: number) => {
+    setIndex(((next % CLIPS.length) + CLIPS.length) % CLIPS.length);
+  }, []);
 
   const toggle = useCallback(() => {
     const v = videoRef.current;
@@ -73,15 +76,11 @@ export default function TrainingClipsStrip() {
     if (v.paused) {
       v.play()
         .then(() => setPlaying(true))
-        .catch(() => {});
+        .catch(() => setPlaying(false));
     } else {
       v.pause();
       setPlaying(false);
     }
-  }, []);
-
-  const goTo = useCallback((i: number) => {
-    setIndex(((i % CLIPS.length) + CLIPS.length) % CLIPS.length);
   }, []);
 
   const clip = CLIPS[index];
@@ -90,7 +89,9 @@ export default function TrainingClipsStrip() {
     <div
       ref={rootRef}
       className="training-clips"
-      aria-label="Real Training Clips"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="A look at training"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -100,48 +101,45 @@ export default function TrainingClipsStrip() {
         }
       }}
     >
-      <p className="training-clips-label">Real Training Clips</p>
-      <div className="training-clips-stage" aria-live="polite" aria-atomic="true">
-        <button
-          type="button"
-          className="training-clip-card training-clip-card-solo"
-          aria-label={`${clip.label} — ${playing ? "pause" : "play"}`}
-          onClick={toggle}
-        >
-          <video
-            key={clip.src}
-            ref={videoRef}
-            className="training-clip-video"
-            src={clip.src}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-          />
-          {!playing ? (
-            <span className="training-clip-play" aria-hidden="true">
-              ▶
-            </span>
-          ) : null}
-        </button>
-      </div>
-
-      <div className="training-clips-controls">
-        <div className="flex gap-2" role="tablist" aria-label="Choose training clip">
-          {CLIPS.map((_, i) => (
+      <p className="training-clips-label">A look at training</p>
+      <button
+        type="button"
+        className="training-clip-card"
+        aria-label={`${clip.label} — ${playing ? "pause" : "play"}`}
+        onClick={toggle}
+      >
+        <video
+          key={clip.src}
+          ref={videoRef}
+          className="training-clip-video"
+          src={clip.src}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+        {!playing ? (
+          <span className="training-clip-play" aria-hidden="true">
+            ▶
+          </span>
+        ) : null}
+      </button>
+      <div className="training-clips-nav">
+        <div className="training-clips-dots" role="tablist" aria-label="Choose clip">
+          {CLIPS.map((item, i) => (
             <button
-              key={CLIPS[i].src}
+              key={item.src}
               type="button"
               role="tab"
               aria-selected={i === index}
-              aria-label={`Clip ${i + 1} of ${CLIPS.length}`}
+              aria-label={`${item.label}, ${i + 1} of ${CLIPS.length}`}
               className={`reviews-dot ${i === index ? "is-active" : ""}`}
               onClick={() => goTo(i)}
             />
           ))}
         </div>
-        <div className="ml-auto flex gap-2">
+        <div className="training-clips-arrows">
           <button
             type="button"
             className="reviews-nav"

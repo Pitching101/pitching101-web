@@ -31,7 +31,7 @@ export default function Logo({
   return (
     <Link
       href="/"
-      className={`inline-flex shrink-0 items-center ${className}`}
+      className={`site-logo inline-flex shrink-0 items-center ${className}`}
       aria-label="Pitching101 home"
     >
       <Image

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import ParkSky from "@/components/ParkSky";
 
 export const metadata: Metadata = {
-  title: "Youth Pitching Lessons in Naples, FL",
+  title: "Youth pitching lessons in Naples, FL",
   description:
     "Youth pitching lessons in Naples, FL for ages 8–14 and SWFL parents. Text or call 845-768-2211 or email nickdeisng@gmail.com.",
   keywords: [
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     "Pitching101 Naples",
   ],
   openGraph: {
-    title: "Youth Pitching Lessons in Naples, FL | Pitching101",
+    title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Youth pitching lessons in Naples, FL — clear feedback, local focus.",
+      "Youth pitching lessons in Naples, FL — I help kids throw more strikes.",
     type: "website",
   },
 };
@@ -32,89 +32,73 @@ const offers = [
   {
     label: "In-person Naples lessons",
     note: "Local sessions. Reach out first.",
-    href: "mailto:nickdeisng@gmail.com?subject=Naples%20pitching%20lessons",
   },
   {
     label: "Pitching PDF",
     note: "Simple plan at home.",
-    href: "mailto:nickdeisng@gmail.com?subject=PDF%20pitching%20chart",
   },
   {
     label: "Virtual lessons",
     note: "Live coaching online.",
-    href: "mailto:nickdeisng@gmail.com?subject=Virtual%20pitching%20lesson",
   },
 ];
 
 export default function NaplesPitchingLessonsPage() {
   return (
-    <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
-      <Reveal className="space-y-5">
-        <p className="text-base font-semibold text-blue-dark">
-          <Link href="/" className="hover:underline">
-            ← Home
+    <ParkSky tone="park">
+      <article className="park-page">
+        <Reveal className="space-y-5">
+          <p className="text-base font-semibold text-blue-dark">
+            <Link href="/" className="hover:underline">
+              ← Home
+            </Link>
+          </p>
+          <p className="ui-chip px-3.5 py-1.5">Naples · SWFL</p>
+          <h1 className="ui-title ui-title-lg">
+            Youth pitching lessons in Naples, FL
+          </h1>
+          <p className="text-lg leading-relaxed text-ink-soft">
+            I help kids throw more strikes. Parents get a plan they can actually use.
+          </p>
+          <Link href="/contact/" className="btn">
+            Get your child started
           </Link>
+        </Reveal>
+
+        <Reveal className="mt-12 space-y-5">
+          <h2 className="ui-title ui-title-sm">Who this is for</h2>
+          <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
+            {whoFor.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className="mt-12 space-y-5">
+          <h2 className="ui-title ui-title-sm">Ways to start</h2>
+          <ul className="dugout-row">
+            {offers.map((item) => (
+              <li key={item.label} className="dugout-sign">
+                <h3 className="dugout-sign-title">{item.label}</h3>
+                <p className="dugout-sign-note">{item.note}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className="mt-12 space-y-4">
+          <p className="text-ink-soft">
+            No street address listed. Text, call, or email first.
+          </p>
+          <Link href="/contact/" className="btn">
+            Get your child started
+          </Link>
+        </Reveal>
+
+        <p className="mt-10 text-sm text-ink-soft">
+          Serving Naples &amp; SWFL · Pitching101
         </p>
-        <Image
-          src="/assets/pixel-pitcher.gif"
-          alt="Pixel art pitcher delivery"
-          width={72}
-          height={72}
-          className="h-[72px] w-[72px]"
-          style={{ imageRendering: "pixelated" }}
-          unoptimized
-        />
-        <p className="ui-chip px-3.5 py-1.5">Naples · SWFL</p>
-        <h1 className="ui-title ui-title-lg">
-          Youth pitching lessons in Naples, FL
-        </h1>
-        <p className="text-lg leading-relaxed text-ink-soft">
-          Clear coaching for ages 8–14. No jargon.
-        </p>
-        <Link href="/contact/" className="btn">
-          Contact
-        </Link>
-      </Reveal>
-
-      <Reveal className="mt-12 space-y-5">
-        <h2 className="ui-title ui-title-sm text-blue-dark">Who this is for</h2>
-        <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
-          {whoFor.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </Reveal>
-
-      <Reveal className="mt-12 space-y-5">
-        <h2 className="ui-title ui-title-sm text-blue-dark">Ways to start</h2>
-        <ul className="space-y-4 text-ink-soft">
-          {offers.map((item) => (
-            <li key={item.label} className="space-y-0.5">
-              <a
-                href={item.href}
-                className="font-semibold text-blue-dark underline-offset-4 hover:underline"
-              >
-                {item.label}
-              </a>
-              <p className="text-sm">{item.note}</p>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-
-      <Reveal className="mt-12 space-y-4 border-t border-blue/15 pt-10">
-        <h2 className="ui-title ui-title-sm text-blue-dark">Book a chat</h2>
-        <p className="text-ink-soft">
-          No street address listed. Text, call, or email first.
-        </p>
-        <Link href="/contact/" className="btn">
-          Contact
-        </Link>
-      </Reveal>
-
-      <p className="mt-10 text-sm text-ink-soft">
-        Serving Naples &amp; SWFL · Pitching101
-      </p>
-    </article>
+      </article>
+    </ParkSky>
   );
 }

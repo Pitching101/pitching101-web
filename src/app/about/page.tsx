@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import Reveal from "@/components/Reveal";
-import Logo from "@/components/Logo";
+import AboutHomeRedirect from "@/components/AboutHomeRedirect";
 
 export const metadata: Metadata = {
   title: "About",
@@ -11,58 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return (
-    <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
-      <Reveal className="space-y-6">
-        <p className="text-base font-semibold text-blue-dark">
-          <Link href="/" className="hover:underline">
-            ← Home
-          </Link>
-        </p>
-        <Logo height={64} />
-        <h1 className="ui-title ui-title-lg">Hey, I&apos;m Nick</h1>
-
-        <div className="grid items-start gap-8 sm:grid-cols-[minmax(0,14rem)_1fr]">
-          <Image
-            src="/assets/nick-coach-circle.png"
-            alt="Coach Nick — youth pitching coach in Naples, FL"
-            width={448}
-            height={448}
-            className="nick-coach-about mx-auto w-full max-w-[14rem] rounded-full object-cover object-center shadow-md sm:mx-0"
-            priority
-          />
-          <div className="space-y-4 text-base leading-relaxed text-ink-soft">
-            <p className="text-lg leading-relaxed text-ink">
-              I Help Young Pitchers (And Their Parents) Throw More Strikes Without
-              The Jargon Or The Crazy Price Tag.
-            </p>
-            <p>
-              In Plain English: Kids Ages 8–14 Need Clear Cues, Healthy Arm Habits,
-              And A Plan They Can Actually Use Between Practices. That&apos;s What I
-              Coach.
-            </p>
-            <p>
-              I Work With Naples, FL Families — In Person When It Fits, Plus PDF
-              And Virtual Options When Life Is Busy. Arm Care Comes First. Velocity
-              And Command Follow When Mechanics Are Honest.
-            </p>
-            <p>
-              If You&apos;re A Parent Who Wants Straight Talk And Affordable Help, You&apos;re
-              In The Right Place.
-            </p>
-          </div>
-        </div>
-
-        <p className="text-base font-semibold text-blue-dark">Naples, FL</p>
-        <div className="flex flex-wrap gap-3 pt-2">
-          <Link href="/contact/" className="btn">
-            Contact
-          </Link>
-          <Link href="/guides/" className="btn-ghost">
-            Free Guides
-          </Link>
-        </div>
-      </Reveal>
-    </article>
-  );
+  return <AboutHomeRedirect />;
 }

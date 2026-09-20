@@ -82,7 +82,7 @@
 }
 
 body {
-  background-color: var(--background);
+  background-color: color-mix(in srgb, #3295fb 48%, #BBD6F1);
   color: var(--ink);
   font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.65;
@@ -102,14 +102,14 @@ body {
 .heading-sm { font-size: clamp(1.1rem, 2vw, 1.35rem); }
 
 .site-header {
-  border-bottom: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
-  background: color-mix(in srgb, var(--background) 88%, transparent);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--blue) 14%, transparent);
+  background: color-mix(in srgb, #ffffff 88%, transparent);
+  box-shadow: none;
+  backdrop-filter: blur(10px);
 }
 .site-footer {
-  border-top: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
-  background: var(--surface);
+  border-top: none;
+  background: transparent;
 }
 
 .text-band {
@@ -128,20 +128,101 @@ body {
   color: var(--ink);
 }
 
-/* How It Works: soft-blue sky band with drifting pixel clouds */
-.how-clouds-band {
+/*
+  Homepage sky stack: CSS wash + transparent clouds + stadium art.
+  Sections stay transparent so the blue fade and clouds continue
+  from reviews through How It Works into the stadium.
+  Brand sky: #BBD6F1 → #3295fb. Stadium cyan is punched/retinted.
+*/
+.home-sky-scene {
   position: relative;
-  isolation: isolate;
+  /* Deepen point — SkyFadeAnchor pins this to #your-guy on home */
+  --sky-stop: 42%;
+}
+.home-sky-layers {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
-  /* Soft blue ombre under drifting clouds */
+  pointer-events: none;
+}
+.home-sky-wash {
+  position: absolute;
+  inset: 0;
+  /* Solid white through the hero, then fade into brand blue at --sky-stop */
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #BBD6F1 22%,
-    #9cc7ef 55%,
-    color-mix(in srgb, #3295fb 48%, #BBD6F1) 88%,
-    color-mix(in srgb, #3295fb 35%, #BBD6F1) 100%
+    #ffffff calc(var(--sky-stop) - 10%),
+    #f5f9fd calc(var(--sky-stop) - 3%),
+    #e8f1fa var(--sky-stop),
+    #BBD6F1 calc(var(--sky-stop) + 12%),
+    color-mix(in srgb, #3295fb 24%, #BBD6F1) calc(var(--sky-stop) + 26%),
+    color-mix(in srgb, #3295fb 40%, #BBD6F1) calc(var(--sky-stop) + 44%),
+    color-mix(in srgb, #3295fb 50%, #BBD6F1) 100%
   );
+}
+.home-sky-clouds {
+  z-index: 1;
+  /* Clouds wait for the blue — keep the hero a clean white field */
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent calc(var(--sky-stop) - 4%),
+    rgba(0, 0, 0, 0.35) var(--sky-stop),
+    #000 calc(var(--sky-stop) + 12%),
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent calc(var(--sky-stop) - 4%),
+    rgba(0, 0, 0, 0.35) var(--sky-stop),
+    #000 calc(var(--sky-stop) + 12%),
+    #000 100%
+  );
+}
+.home-sky-scene > section,
+.park-page {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+.park-sky-park {
+  --sky-stop: 8%;
+  min-height: 100%;
+}
+.park-sky-park .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    #cfe6fb 0%,
+    #dceefc 12%,
+    #e8f3fc 28%,
+    #BBD6F1 52%,
+    color-mix(in srgb, #3295fb 28%, #BBD6F1) 78%,
+    color-mix(in srgb, #3295fb 48%, #BBD6F1) 100%
+  );
+}
+.park-sky-park .home-sky-clouds {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.home-sky-scene .text-band,
+.home-sky-scene .band-soft,
+.home-sky-scene .how-clouds-band,
+.home-sky-scene .ages-band,
+.home-sky-scene .home-stadium-band {
+  background: transparent;
+}
+.home-sky-scene #reviews {
+  background: transparent;
+}
+
+/* How It Works: content only — sky/clouds come from .home-sky-scene */
+.how-clouds-band {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
 }
 .how-clouds-content {
   position: relative;
@@ -159,9 +240,8 @@ body {
   display: block;
   width: var(--cloud-size, clamp(4.5rem, 12vw, 9rem));
   height: auto;
-  opacity: 0.92;
+  opacity: 0.94;
   background: transparent;
-  background-color: transparent;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   user-select: none;
@@ -170,13 +250,21 @@ body {
   animation: cloud-drift var(--cloud-duration, 14s) ease-in-out infinite alternate;
   animation-delay: var(--cloud-delay, 0s);
 }
-.float-cloud-1 { left: 2%; top: 8%; --cloud-size: 7.5rem; --cloud-duration: 16s; --cloud-delay: 0s; }
-.float-cloud-2 { left: 18%; top: 42%; --cloud-size: 5.2rem; --cloud-duration: 13s; --cloud-delay: -3s; opacity: 0.75; }
-.float-cloud-3 { left: 38%; top: 6%; --cloud-size: 6.4rem; --cloud-duration: 18s; --cloud-delay: -6s; }
-.float-cloud-4 { right: 8%; top: 14%; --cloud-size: 8rem; --cloud-duration: 15s; --cloud-delay: -2s; }
-.float-cloud-5 { right: 22%; bottom: 12%; --cloud-size: 5.8rem; --cloud-duration: 12s; --cloud-delay: -5s; opacity: 0.8; }
-.float-cloud-6 { left: 55%; bottom: 8%; --cloud-size: 4.8rem; --cloud-duration: 17s; --cloud-delay: -8s; opacity: 0.7; }
-.float-cloud-7 { left: 72%; top: 36%; --cloud-size: 6.2rem; --cloud-duration: 14s; --cloud-delay: -4s; }
+/* Walk to the mound: far / small / high → bigger / lower as you scroll */
+.float-cloud-1 { left: 6%; top: 6%; --cloud-size: 4.2rem; --cloud-duration: 18s; --cloud-delay: 0s; opacity: 0.7; }
+.float-cloud-2 { right: 8%; top: 9%; --cloud-size: 3.4rem; --cloud-duration: 15s; --cloud-delay: -4s; opacity: 0.58; }
+.float-cloud-3 { left: 40%; top: 4%; --cloud-size: 4.6rem; --cloud-duration: 20s; --cloud-delay: -7s; opacity: 0.64; }
+.float-cloud-4 { right: 26%; top: 13%; --cloud-size: 3.6rem; --cloud-duration: 16s; --cloud-delay: -2s; opacity: 0.52; }
+.float-cloud-5 { left: 4%; top: 24%; --cloud-size: 5.2rem; --cloud-duration: 17s; --cloud-delay: -5s; opacity: 0.72; }
+.float-cloud-6 { right: 6%; top: 30%; --cloud-size: 4.6rem; --cloud-duration: 14s; --cloud-delay: -8s; opacity: 0.68; }
+.float-cloud-7 { left: 48%; top: 34%; --cloud-size: 5.8rem; --cloud-duration: 19s; --cloud-delay: -3s; opacity: 0.7; }
+.float-cloud-8 { left: 10%; top: 48%; --cloud-size: 7.4rem; --cloud-duration: 16s; --cloud-delay: -6s; }
+.float-cloud-9 { right: 8%; top: 54%; --cloud-size: 8.2rem; --cloud-duration: 18s; --cloud-delay: -1s; }
+.float-cloud-10 { left: 34%; top: 60%; --cloud-size: 7rem; --cloud-duration: 15s; --cloud-delay: -9s; opacity: 0.86; }
+.float-cloud-11 { left: 2%; top: 70%; --cloud-size: 9.6rem; --cloud-duration: 17s; --cloud-delay: -4s; }
+.float-cloud-12 { right: 3%; top: 74%; --cloud-size: 10.4rem; --cloud-duration: 20s; --cloud-delay: -7s; }
+.float-cloud-13 { left: 26%; top: 81%; --cloud-size: 8.8rem; --cloud-duration: 14s; --cloud-delay: -2.5s; opacity: 0.88; }
+.float-cloud-14 { right: 20%; top: 87%; --cloud-size: 11.2rem; --cloud-duration: 19s; --cloud-delay: -5.5s; }
 @keyframes cloud-drift {
   0% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0.9rem, -0.45rem, 0); }
@@ -186,7 +274,7 @@ body {
   .float-cloud { animation: none; }
 }
 
-/* Ages 8–14 section — clean white, no peanut decor */
+/* About / I'm Your Guy — clean copy on the shared sky, no peanut scatter */
 .ages-band {
   background: var(--background);
   position: relative;
@@ -201,6 +289,10 @@ body {
 .who-copy {
   position: relative;
   z-index: 2;
+  padding: 1.15rem 0.25rem;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 /* Color-matched content rows (text left / GIF right) */
@@ -563,6 +655,20 @@ button:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+/* Wordmark is already the mark — no pill/box around it, even on focus */
+.site-logo,
+.site-logo:focus,
+.site-logo:focus-visible,
+.site-logo img {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+.site-logo:focus-visible {
+  opacity: 0.72;
+}
+
 .trust-strip {
   background: var(--surface-raised);
   border: 1px solid color-mix(in srgb, var(--blue) 20%, transparent);
@@ -684,11 +790,10 @@ button:focus-visible {
   max-width: 40rem;
 }
 
-/* —— Hero: solid white; dark navy copy —— */
+/* —— Hero: already on the field; type sits over pale sky —— */
 .hero-overlay {
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
   color: var(--ink);
   background: #ffffff;
   min-height: clamp(22rem, 58vh, 32rem);
@@ -700,7 +805,7 @@ button:focus-visible {
 .hero-overlay-scrim { display: none; }
 .hero-overlay-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   max-width: 48rem;
   margin: 0 auto;
@@ -747,58 +852,112 @@ button:focus-visible {
   margin-right: auto;
 }
 
-/* Trustpilot band sits above ball/glove decor */
-.reviews-band {
-  position: relative;
-  z-index: 30;
-  isolation: isolate;
-  background: linear-gradient(180deg, #ffffff 0%, #f3f8fd 45%, #e8f2fb 100%);
+/* Client Reviews carousel — whole card fades; centered; no outline */
+.reviews-wrap,
+.reviews-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
-
-/* Client Reviews carousel — Nick: #BBD6F1 card, dark readable text; above glove/ball */
+.reviews-verified {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--blue-dark);
+}
+.reviews-stage {
+  position: relative;
+  width: 100%;
+}
 .reviews-carousel {
   position: relative;
-  z-index: 30; /* above .scroll-throw (z-index 25) */
-  background: #BBD6F1; /* Nick: soft blue card — not white */
-  border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 1.5rem 1.35rem;
-  color: #0f1a2e; /* dark navy readable on soft blue */
+  background: #BBD6F1;
+  border: 3px solid color-mix(in srgb, #1a78e8 32%, #BBD6F1);
+  border-radius: 3px;
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, #ffffff 45%, transparent),
+    3px 3px 0 color-mix(in srgb, #0f1a2e 12%, transparent);
+  padding: 1.65rem 1.45rem;
+  color: #0f1a2e;
+  text-align: center;
 }
-.reviews-stack {
-  position: relative;
-  z-index: 30;
-}
-/* Fade between Trustpilot slides */
-.reviews-fade-stage {
-  position: relative;
-  min-height: 9.5rem;
-}
-.reviews-fade-slide {
+.reviews-carousel::after {
+  content: "";
   position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
-  opacity: 0;
+  inset: 7px;
+  border: 2px dashed color-mix(in srgb, #1a78e8 38%, #ffffff);
+  border-radius: 1px;
+  pointer-events: none;
+}
+.reviews-card-sizer {
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.55s var(--ease-soft), visibility 0.55s var(--ease-soft);
 }
-.reviews-fade-slide.is-active {
-  position: relative;
+.reviews-card-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  transition:
+    opacity 0.56s var(--ease-soft),
+    transform 0.56s var(--ease-soft);
+  will-change: opacity, transform;
+}
+.reviews-card.is-in {
   opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  transform: none;
 }
-.reviews-slide {
-  transition: opacity 0.28s var(--ease-soft);
-  opacity: 1;
+.reviews-card.is-pre,
+.reviews-card.is-out {
+  opacity: 0;
+  transform: scale(0.97);
+  pointer-events: none;
 }
-.reviews-slide.is-out { opacity: 0; }
-.reviews-slide.is-in { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .reviews-fade-slide,
-  .reviews-slide { transition: none; }
+.reviews-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: center;
+}
+.reviews-card-title {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--blue-dark);
+  text-align: center;
+}
+.reviews-carousel blockquote,
+.reviews-carousel footer {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.reviews-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
+  margin-top: 0.95rem;
+}
+.reviews-dots,
+.reviews-arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
 }
 .reviews-carousel blockquote,
 .reviews-carousel .text-ink,
@@ -850,7 +1009,8 @@ button:focus-visible {
 }
 @media (prefers-reduced-motion: reduce) {
   .reviews-dot,
-  .reviews-nav {
+  .reviews-nav,
+  .reviews-card {
     transition: none;
   }
   .reviews-dot.is-active {
@@ -875,99 +1035,40 @@ button:focus-visible {
 .reviews-tp-link:hover { color: var(--blue); }
 
 .reviews-stars {
+  display: block;
+  width: 100%;
+  margin: 0;
   color: #00b67a; /* Trustpilot green for stars */
-  letter-spacing: 0.05em;
-  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  font-size: 1.35rem;
   font-weight: 700;
+  line-height: 1;
+  text-align: center;
 }
 
 
-/* Mid-flight hero overlays: empty first paint, then gloves slide in + balls cross. */
+/* Scroll-tied glove + ball — JS drives a single transform, no CSS keyframes. */
 .scroll-throw {
   position: fixed;
   inset: 0;
-  z-index: 25; /* under sticky header (z-40); over section chrome */
+  z-index: 1; /* above sky wash, under headings / cards / header */
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
-.scroll-throw[data-past-hero="true"] {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* ONE glove + ONE ball on EACH side (left pair + right pair) */
 .scroll-throw-pair {
   position: absolute;
   top: 0;
+  left: 0;
   display: flex;
   align-items: flex-end;
   gap: 0.2rem;
-  will-change: transform, opacity;
-  opacity: 0;
-}
-.scroll-throw-pair-cw {
-  left: 0.35rem;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 .scroll-throw-pair-ccw {
-  right: 0.35rem;
   flex-direction: row-reverse;
 }
-.scroll-throw-pair .scroll-throw-ball-img {
-  translate: var(--ball-nudge, 0px) -0.15rem;
-}
-
-.scroll-throw[data-past-hero="true"][data-entered="true"] .scroll-throw-glove,
-.scroll-throw[data-past-hero="true"][data-entered="true"] .scroll-throw-ball {
-  opacity: 1;
-  transition: transform 0.55s ease;
-}
-.scroll-throw-glove,
-.scroll-throw-ball {
-  position: absolute;
-  top: 0;
-  will-change: transform, opacity;
-  opacity: 0;
-}
-.scroll-throw-glove-left { left: 0.5rem; }
-.scroll-throw-glove-right { right: 0.5rem; }
-.scroll-throw-ball-a { left: 0; }
-.scroll-throw-ball-b { right: 0; }
-
-/* Entrance: gloves slide/fade from sides; baseballs throw across */
-.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-glove-left {
-  animation: glove-in-left 0.55s var(--ease-out) both;
-}
-.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-glove-right {
-  animation: glove-in-right 0.55s var(--ease-out) 0.08s both;
-}
-.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-ball-a {
-  animation: ball-cross-ltr 0.7s var(--ease-out) 0.05s both;
-}
-.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-ball-b {
-  animation: ball-cross-rtl 0.7s var(--ease-out) 0.12s both;
-}
-@keyframes glove-in-left {
-  0% { opacity: 0; transform: translate3d(-28vw, 14vh, 0); }
-  100% { opacity: 1; transform: translate3d(-2vw, 12vh, 0); }
-}
-@keyframes glove-in-right {
-  0% { opacity: 0; transform: translate3d(28vw, 22vh, 0); }
-  100% { opacity: 1; transform: translate3d(2vw, 20vh, 0); }
-}
-@keyframes ball-cross-ltr {
-  0% { opacity: 0; transform: translate3d(-40vw, 24vh, 0) rotate(-40deg); }
-  35% { opacity: 1; }
-  100% { opacity: 1; transform: translate3d(-8vw, 18vh, 0) rotate(20deg); }
-}
-@keyframes ball-cross-rtl {
-  0% { opacity: 0; transform: translate3d(40vw, 30vh, 0) rotate(40deg); }
-  35% { opacity: 1; }
-  100% { opacity: 1; transform: translate3d(8vw, 28vh, 0) rotate(-20deg); }
-}
-
 .scroll-throw-img {
   display: block;
   height: auto;
@@ -975,8 +1076,9 @@ button:focus-visible {
   image-rendering: crisp-edges;
   filter: drop-shadow(0 4px 10px rgba(15, 26, 46, 0.16));
   user-select: none;
-  transform: rotate(var(--throw-rot, 0deg));
   transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 .scroll-throw-glove-img {
   width: clamp(48px, 6.5vw, 72px);
@@ -984,12 +1086,17 @@ button:focus-visible {
 .scroll-throw-ball-img {
   width: clamp(32px, 4.2vw, 48px);
 }
+.scroll-throw-solo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(28px, 3.6vw, 40px);
+  opacity: 0;
+}
 @media (max-width: 720px) {
   .scroll-throw-glove-img { width: clamp(36px, 10vw, 52px); }
   .scroll-throw-ball-img { width: clamp(24px, 7vw, 36px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .scroll-throw { display: none !important; }
+  .scroll-throw-solo { width: clamp(22px, 7vw, 32px); }
 }
 
 
@@ -1000,8 +1107,13 @@ button:focus-visible {
   border-radius: 999px;
   object-fit: cover;
   object-position: center center;
-  box-shadow: var(--shadow-md);
-  border: 2px solid color-mix(in srgb, var(--blue) 40%, transparent);
+  box-shadow: none;
+  border: none;
+}
+.nick-coach-home {
+  width: 8.5rem;
+  height: 8.5rem;
+  margin: 0 auto;
 }
 /* Landscape nick-coach.png has face on the right — bias crop for circle use */
 .nick-coach-avatar-wide {
@@ -1021,19 +1133,13 @@ button:focus-visible {
 
 
 
-/* Bottom homepage CTA: stadium sky with overlay clouds (no baked checkerboard). */
+/* Arrive at the stadium — art fills the last frame instead of popping as a footer. */
 .home-stadium-band {
   position: relative;
   isolation: isolate;
-  min-height: 22rem;
+  min-height: clamp(32rem, 84vh, 48rem);
   overflow: hidden;
-  /* Ombre soft-blue into stadium sky seam */
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, #3295fb 35%, #BBD6F1) 0%,
-    #BBD6F1 40%,
-    #d7e8f8 100%
-  );
+  background: transparent;
 }
 .home-stadium-media {
   position: absolute;
@@ -1041,31 +1147,45 @@ button:focus-visible {
   z-index: 0;
   pointer-events: none;
 }
-.stadium-cloud-decor {
-  z-index: 1;
-  height: clamp(9rem, 25vw, 16rem);
-  inset: 0 0 auto;
-}
-.stadium-cloud-decor .float-cloud-1 { left: 4%; top: 5%; }
-.stadium-cloud-decor .float-cloud-2 { left: 28%; top: 22%; }
-.stadium-cloud-decor .float-cloud-3 { left: 54%; top: 4%; }
-.stadium-cloud-decor .float-cloud-4 { right: 5%; top: 14%; }
 .home-stadium-bg {
   object-fit: cover;
-  object-position: center top;
+  object-position: center 22%;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   opacity: 1;
+  /* Long arrival: field grows into the frame as you reach the clips */
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.06) 10%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.45) 36%,
+    rgba(0, 0, 0, 0.72) 52%,
+    rgba(0, 0, 0, 0.9) 68%,
+    #000 82%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.06) 10%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.45) 36%,
+    rgba(0, 0, 0, 0.72) 52%,
+    rgba(0, 0, 0, 0.9) 68%,
+    #000 82%,
+    #000 100%
+  );
 }
 .home-stadium-inner {
   position: relative;
   z-index: 2;
 }
 .home-stadium-inner .reveal {
-  padding: 1rem 1.15rem;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.76);
-  backdrop-filter: blur(2px);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
 }
 
 /* About profile stadium treatment. */
@@ -1123,42 +1243,14 @@ button:focus-visible {
   gap: 0.75rem;
 }
 
-/* Hero throw entrance: start empty, then let the balls play across the sky softly. */
-.scroll-throw[data-past-hero="true"][data-intro="true"] .scroll-throw-pair {
-  opacity: 0;
-}
-.scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair {
-  opacity: 1;
-  transition: opacity 0.35s var(--ease-soft), transform 0.7s var(--ease-out);
-}
-.scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair-cw .scroll-throw-ball-img {
-  animation: ball-cross-cw 5.8s var(--ease-soft) 0.65s infinite alternate;
-}
-.scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair-ccw .scroll-throw-ball-img {
-  animation: ball-cross-ccw 6.4s var(--ease-soft) 0.85s infinite alternate;
-}
-@keyframes ball-cross-cw {
-  0%, 18% { translate: 0 -0.35rem; }
-  72%, 100% { translate: min(38vw, 30rem) -0.35rem; }
-}
-@keyframes ball-cross-ccw {
-  0%, 18% { translate: 0 -0.35rem; }
-  72%, 100% { translate: max(-38vw, -30rem) -0.35rem; }
-}
-
 /* Reduced motion keeps the hero decor present, but fully still. */
 @media (prefers-reduced-motion: reduce) {
   .scroll-throw {
     display: block !important;
-    transition: none !important;
   }
-  .scroll-throw-pair,
-  .scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair {
+  .scroll-throw-pair {
     transition: none !important;
     animation: none !important;
-  }
-  .scroll-throw[data-past-hero="true"] .scroll-throw-pair {
-    opacity: 1;
   }
 }
 
@@ -1177,65 +1269,46 @@ button:focus-visible {
   text-underline-offset: 3px;
 }
 
-/* Stadium band — ONE training clip at a time (auto-rotate) */
+/* Stadium band — just one small clip rectangle */
 .training-clips {
-  width: 100%;
-  max-width: 28rem;
-  margin-top: 0.25rem;
-  padding: 1rem 1.15rem 1.15rem;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(2px);
+  width: fit-content;
+  max-width: 13.5rem;
+  margin: 0 auto;
+  padding: 0.7rem 0.75rem 0.8rem;
+  border: 3px solid color-mix(in srgb, #1a2438 45%, #3295fb);
+  border-radius: 2px;
+  background: color-mix(in srgb, #BBD6F1 28%, rgba(255, 255, 255, 0.88));
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, #ffffff 45%, transparent),
+    3px 3px 0 color-mix(in srgb, #0f1a2e 14%, transparent);
   text-align: center;
 }
 .training-clips-label {
-  margin: 0 0 0.85rem;
-  font-size: 0.95rem;
+  margin: 0 0 0.65rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--blue-dark);
 }
-.training-clips-stage,
-.training-clip-stage {
-  width: 100%;
-  max-width: 16rem;
-  margin: 0 auto 0.85rem;
-  transition: opacity 0.28s var(--ease-soft);
-  opacity: 1;
-}
-.training-clips-stage.is-fading,
-.training-clip-stage.is-fading {
-  opacity: 0;
-}
-.training-clips-stage.is-visible,
-.training-clip-stage.is-visible {
-  opacity: 1;
-}
 .training-clip-card {
   position: relative;
   display: block;
-  width: 100%;
+  width: min(9.25rem, 52vw);
+  margin: 0 auto;
   padding: 0;
-  border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
-  border-radius: var(--radius-sm);
+  border: none;
+  border-radius: 0.55rem;
   background: #0f1a2e;
   overflow: hidden;
   cursor: pointer;
   aspect-ratio: 3 / 4;
-  max-height: min(62vh, 28rem);
-  margin-left: auto;
-  margin-right: auto;
-  transition: border-color 0.18s var(--ease-soft), box-shadow 0.18s var(--ease-soft), transform 0.18s var(--ease-soft);
+  transition: box-shadow 0.18s var(--ease-soft), transform 0.18s var(--ease-soft);
 }
 .training-clip-card:hover,
 .training-clip-card:focus-visible {
-  border-color: var(--blue);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
   outline: none;
-}
-.training-clip-card-solo {
-  max-width: 16rem;
 }
 .training-clip-video {
   display: block;
@@ -1253,60 +1326,172 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.15rem;
+  height: 2.15rem;
   border-radius: 999px;
   background: color-mix(in srgb, var(--blue) 92%, #fff);
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   box-shadow: 0 2px 8px rgba(15, 26, 46, 0.35);
   pointer-events: none;
 }
-.training-clips-controls {
+.training-clips-nav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.25rem;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
 }
-.training-clip-dots {
+.training-clips-dots {
   display: flex;
-  justify-content: center;
-  gap: 0.45rem;
-  margin-top: 0.85rem;
+  gap: 0.35rem;
 }
-.training-clip-dot {
-  width: 0.65rem;
-  height: 0.65rem;
-  border-radius: 999px;
-  border: none;
-  padding: 0;
-  background: color-mix(in srgb, var(--blue) 28%, transparent);
-  cursor: pointer;
-  transition: background 0.2s var(--ease-soft), transform 0.2s var(--ease-soft);
-}
-.training-clip-dot.is-active {
-  background: var(--blue);
-  transform: scale(1.15);
+.training-clips-arrows {
+  display: flex;
+  gap: 0.35rem;
 }
 .home-stadium-inner > .mx-auto {
   width: 100%;
   max-width: 48rem;
 }
-.sr-only {
+
+/* Dugout signs — pixel lockers instead of SaaS pricing cards */
+.dugout-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+  width: 100%;
+  padding: 0.7rem 0 0;
+  margin: 0;
+  list-style: none;
+}
+@media (min-width: 640px) {
+  .dugout-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+.dugout-sign {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.2rem 0.95rem 1.15rem;
+  text-align: center;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #BBD6F1 78%, #ffffff) 0%,
+      color-mix(in srgb, #3295fb 18%, #BBD6F1) 100%
+    );
+  border: 4px solid color-mix(in srgb, #1a2438 62%, #3295fb);
+  border-radius: 0;
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, #ffffff 36%, transparent),
+    5px 5px 0 color-mix(in srgb, #0f1a2e 20%, transparent);
+  image-rendering: pixelated;
+}
+.dugout-sign::before {
+  content: "";
   position: absolute;
-  width: 1px;
-  height: 1px;
+  top: -9px;
+  left: 50%;
+  width: 2.1rem;
+  height: 0.7rem;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, #1a2438 70%, #3295fb);
+  border: 2px solid color-mix(in srgb, #0f1a2e 50%, #1a78e8);
+  border-radius: 1px 1px 0 0;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 28%, transparent);
+}
+.dugout-sign-title {
+  margin: 0;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.dugout-sign-note {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Guides / Contact sit in the same park as home */
+.park-page {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 4.5rem) 1.25rem 4rem;
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .park-page { padding-left: 2rem; padding-right: 2rem; }
+}
+.park-page-fence {
+  max-width: 36rem;
+  min-height: min(70vh, 36rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fence-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.15rem;
+  margin: 0.4rem 0 0;
   padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  list-style: none;
 }
-@media (prefers-reduced-motion: reduce) {
-  .training-clips-stage,
-  .training-clip-stage { transition: none; }
-  .training-clip-dot { transition: none; }
-  .training-clip-dot.is-active { transform: none; }
+.fence-links .footer-link {
+  font-weight: 500;
+  font-size: 0.92rem;
 }
+
+/* Thin dugout rail — last frame stays in the park */
+.dugout-rail-wrap {
+  background: color-mix(in srgb, #3295fb 48%, #BBD6F1);
+}
+.dugout-rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem 1.15rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0.55rem 1.25rem 0.7rem;
+  border-top: 4px solid color-mix(in srgb, #0f1a2e 28%, #1a78e8);
+  box-shadow: inset 0 2px 0 color-mix(in srgb, #ffffff 35%, transparent);
+  background: color-mix(in srgb, #BBD6F1 46%, color-mix(in srgb, #3295fb 18%, #ffffff));
+  text-align: center;
+}
+@media (min-width: 720px) {
+  .dugout-rail {
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+.dugout-rail-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1rem;
+}
+.dugout-rail-copy {
+  margin: 0;
+  width: 100%;
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 72%, #1a78e8);
+}
+@media (min-width: 720px) {
+  .dugout-rail-copy {
+    width: auto;
+    margin-left: auto;
+  }
+}
+
