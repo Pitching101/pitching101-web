@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Logo from "./Logo";
 
-/** Site footer — logo, Naples blurb, Call / Text / Email (Nick mock). */
+/** Site footer — logo + Naples FL + Call / Text / Email. */
 export default function Footer() {
   return (
     <footer className="site-footer mt-auto">
       <div className="footer-inner mx-auto flex max-w-5xl flex-col gap-10 px-5 py-12 sm:flex-row sm:items-start sm:justify-between sm:px-8">
-        <div className="footer-brand space-y-4">
+        <div className="footer-brand space-y-3">
           <Logo height={48} />
+          <p className="text-sm font-semibold text-blue-dark">Naples, FL</p>
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth pitching lessons for Naples, FL families. Clear coaching. No jargon.
           </p>
@@ -32,7 +33,6 @@ export default function Footer() {
               </a>
             </li>
           </ul>
-          <p className="text-sm text-ink-soft">Naples, FL area</p>
         </div>
 
         <div className="footer-explore space-y-2 text-sm">

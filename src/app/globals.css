@@ -1153,29 +1153,28 @@ button:focus-visible {
   text-underline-offset: 3px;
 }
 
-/* Stadium band — training clips strip (videos or Contact placeholders) */
+/* Stadium band — Real Training Clips grid / carousel */
 .training-clips {
   width: 100%;
-  max-width: 42rem;
-  margin-top: 0.5rem;
+  max-width: 48rem;
+  margin-top: 0.25rem;
   padding: 1rem 1.15rem 1.15rem;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(2px);
   text-align: center;
 }
 .training-clips-label {
-  margin: 0 0 0.75rem;
-  font-size: 0.75rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: var(--blue-dark);
 }
 .training-clips-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1183,66 +1182,76 @@ button:focus-visible {
 @media (min-width: 640px) {
   .training-clips-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
   }
 }
+.training-clip-item {
+  margin: 0;
+  min-width: 0;
+}
 .training-clip-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  min-height: 7.5rem;
-  padding: 0.85rem 0.65rem;
-  border-radius: var(--radius-sm);
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
   border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
-  background: #ffffff;
+  border-radius: var(--radius-sm);
+  background: #0f1a2e;
   overflow: hidden;
-  text-decoration: none;
-  color: var(--ink);
+  cursor: pointer;
+  aspect-ratio: 3 / 4;
   transition: border-color 0.18s var(--ease-soft), box-shadow 0.18s var(--ease-soft), transform 0.18s var(--ease-soft);
 }
-a.training-clip-card:hover {
+.training-clip-card:hover,
+.training-clip-card:focus-visible {
   border-color: var(--blue);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
+  outline: none;
 }
 .training-clip-video {
+  display: block;
   width: 100%;
-  height: 7.5rem;
+  height: 100%;
   object-fit: cover;
-  border-radius: calc(var(--radius-sm) - 2px);
   background: #0f1a2e;
+  pointer-events: none;
 }
 .training-clip-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: 999px;
-  background: var(--blue-soft);
-  color: var(--blue-dark);
-  font-size: 0.7rem;
-}
-.training-clip-title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.training-clip-note {
-  font-size: 0.7rem;
-  line-height: 1.35;
-  color: var(--ink-soft);
-  max-width: 11rem;
-}
-.training-clip-cta {
-  margin-top: 0.15rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--blue-dark);
+  background: color-mix(in srgb, var(--blue) 92%, #fff);
+  color: #fff;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 8px rgba(15, 26, 46, 0.35);
+  pointer-events: none;
 }
 .home-stadium-inner > .mx-auto {
   width: 100%;
-  max-width: 42rem;
+  max-width: 48rem;
+}
+
+/* Mobile: horizontal snap carousel for clips when very narrow */
+@media (max-width: 379px) {
+  .training-clips-grid {
+    display: flex;
+    gap: 0.65rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.25rem;
+  }
+  .training-clip-item {
+    flex: 0 0 72%;
+    scroll-snap-align: start;
+  }
 }
 
