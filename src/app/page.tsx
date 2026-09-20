@@ -4,6 +4,12 @@ import Reveal from "@/components/Reveal";
 import Logo from "@/components/Logo";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 
+const familiar = [
+  "How do I help my child throw harder and more accurately?",
+  "What’s the right way to train without risking an injury?",
+  "Why does every lesson or travel team have to cost a fortune?",
+];
+
 const ageGoals = [
   "Build skills that last beyond baseball",
   "Improve the physical and mental game",
@@ -37,18 +43,18 @@ const stanOffers = [
     cta: "Email To Book",
   },
   {
-    title: "Free Lead Signup",
-    note: "Grab the free checklist and email tips (Stan link soon).",
-    href: "mailto:nickdeisng@gmail.com?subject=Free%20Lead%20Signup",
-    cta: "Email To Join",
+    title: "Free Lead Magnet",
+    note: "Starter checklist and email tips (Stan store link soon).",
+    href: "#",
+    cta: "Coming Soon",
   },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — pitcher GIF as background overlay + scrim */}
-      <section className="hero-overlay" aria-label="Hero">
+      {/* 1. Hero — pitcher GIF as background overlay + dark scrim */}
+      <section className="hero-overlay" aria-label="Youth Pitching Lessons In Naples, FL">
         <div className="hero-overlay-media" aria-hidden="true">
           <Image
             src="/assets/pixel-pitcher.gif"
@@ -68,7 +74,7 @@ export default function HomePage() {
               Youth Pitching Lessons In Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-white/90 sm:text-xl">
-              Clear coaching for kids and parents. No jargon.
+              Clear Coaching For Kids And Parents. No Jargon.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <Link href="/contact/" className="btn">
@@ -76,34 +82,38 @@ export default function HomePage() {
               </Link>
             </div>
             <p className="text-sm text-white/80">
-              Arm care first · Reach out before you drive
+              Arm Care First · Reach Out Before You Drive
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* 2. #BBD6F1 — I’m Your Guy + larger logo on overlay */}
-      <section className="band-soft" aria-label="I'm your guy">
+      {/* 2. #BBD6F1 — larger logo overlay + I’m Your Guy title */}
+      <section className="band-soft" aria-label="I'm Your Guy">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal>
             <div className="logo-overlay-badge">
               <Logo variant="on-blue" height={72} className="logo-overlay-mark" />
             </div>
           </Reveal>
-          <Reveal delayMs={40} className="space-y-4">
+          <Reveal delayMs={40} className="space-y-5">
             <h2 className="ui-title ui-title-md">
               I’m Your Guy If You’re Looking To Throw Strikes, Build A Strong
-              Foundation, Train Healthy Patterns, And Affordable Lessons.
+              Foundation, Train Healthy Patterns, And Get Affordable Lessons.
             </h2>
-            <p className="text-base leading-relaxed text-ink-soft sm:text-lg">
-              Clear cues. Healthy arms. Plans that fit real families.
-            </p>
+            <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
+              {familiar.map((q) => (
+                <li key={q} className="pl-1">
+                  “{q}”
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
 
       {/* 3. WHITE — Client Reviews carousel */}
-      <section className="text-band" aria-label="Client Reviews">
+      <section className="text-band" id="reviews" aria-label="Client Reviews">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">Client Reviews</h2>
@@ -113,7 +123,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. #BBD6F1 — ages 8–14 goals (+ runner, flush) */}
-      <section id="who" className="band-soft scroll-mt-24" aria-label="Ages 8 to 14">
+      <section id="who" className="band-soft scroll-mt-24" aria-label="Ages 8 To 14">
         <div className="content-row">
           <Reveal from="left" className="content-row-copy content-row-copy-wide">
             <h2 className="ui-title ui-title-md">
@@ -146,7 +156,7 @@ export default function HomePage() {
               Your Child’s Journey Starts Here
             </h2>
             <p className="text-base text-ink-soft">
-              Four simple focus areas — confident, injury-free pitching.
+              Four Simple Focus Areas — Confident, Injury-Free Pitching.
             </p>
           </Reveal>
           <Reveal delayMs={40}>
@@ -168,7 +178,8 @@ export default function HomePage() {
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">Stan Store Offers</h2>
             <p className="text-base text-ink-soft">
-              Online options while the live Stan store URL is set up — email works now.
+              PDF, Virtual, And Lead-Magnet Options — Stan Store Links Update When
+              Ready. Email Works Now.
             </p>
           </Reveal>
           <Reveal delayMs={40}>
@@ -198,7 +209,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl space-y-10 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-4">
             <h2 className="ui-title ui-title-md">How It Works</h2>
-            <p className="text-base text-ink-soft">Easy to start today.</p>
+            <p className="text-base text-ink-soft">Easy To Start Today.</p>
           </Reveal>
 
           <Reveal delayMs={40} className="space-y-6">
@@ -240,7 +251,7 @@ export default function HomePage() {
           <Reveal className="space-y-5">
             <h2 className="ui-title ui-title-md">Ready To Talk?</h2>
             <p className="text-lg text-ink-soft">
-              Text, call, or email — Naples, FL families welcome.
+              Text, Call, Or Email — Naples, FL Families Welcome.
             </p>
             <div className="flex justify-center sm:justify-start">
               <Link href="/contact/" className="btn">

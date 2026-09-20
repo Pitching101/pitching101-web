@@ -6,26 +6,26 @@ const reviews = [
   {
     quote:
       "Our son finally understands what to work on between practices. Clear cues, no fluff.",
-    attribution: "Parent of 11-year-old pitcher",
+    attribution: "Parent Of 11-Year-Old Pitcher — Sample Review",
   },
   {
     quote:
       "We wanted healthy mechanics before chasing velocity. Nick keeps arm care first.",
-    attribution: "Parent of 9-year-old pitcher",
+    attribution: "Parent Of 9-Year-Old Pitcher — Sample Review",
   },
   {
     quote:
       "Affordable and practical. The DIY plan gave us drills we can do in the backyard.",
-    attribution: "Parent of 13-year-old pitcher",
+    attribution: "Parent Of 13-Year-Old Pitcher — Sample Review",
   },
   {
     quote:
       "Texting first made it easy. We knew what to expect before we committed.",
-    attribution: "Naples-area parent",
+    attribution: "Naples-Area Parent — Sample Review",
   },
 ];
 
-/** Auto-rotating parent testimonials. Pauses when prefers-reduced-motion is set. */
+/** Auto-rotating parent testimonials. Static stack when prefers-reduced-motion. */
 export default function ReviewsCarousel({ className = "" }: { className?: string }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -51,6 +51,28 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     setIndex(((i % reviews.length) + reviews.length) % reviews.length);
   }, []);
 
+  if (reduceMotion) {
+    return (
+      <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="Sample client reviews">
+        <p className="text-xs font-semibold uppercase tracking-wide text-blue-dark">
+          Sample Reviews · Placeholders Until Real Ones Arrive
+        </p>
+        <ul className="space-y-4">
+          {reviews.map((r) => (
+            <li key={r.attribution} className="reviews-carousel">
+              <blockquote className="text-lg leading-relaxed text-ink">
+                “{r.quote}”
+              </blockquote>
+              <footer className="mt-3 text-sm font-semibold text-ink-soft">
+                — {r.attribution}
+              </footer>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   const current = reviews[index];
 
   return (
@@ -58,7 +80,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
       className={`reviews-carousel ${className}`.trim()}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Client reviews"
+      aria-label="Sample client reviews"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -69,14 +91,10 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
       }}
     >
       <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-blue-dark">
-        Example reviews · placeholders
+        Sample Reviews · Placeholders Until Real Ones Arrive
       </p>
 
-      <div
-        className="reviews-slide space-y-4"
-        aria-live={reduceMotion ? "polite" : "off"}
-        aria-atomic="true"
-      >
+      <div className="reviews-slide space-y-4" aria-live="polite" aria-atomic="true">
         <blockquote className="text-lg leading-relaxed text-ink sm:text-xl">
           “{current.quote}”
         </blockquote>
