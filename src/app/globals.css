@@ -459,10 +459,12 @@ body {
 }
 .card-icon {
   display: block;
-  width: 4rem;
-  height: 4rem;
+  width: 3.75rem;
+  height: auto;
   flex: 0 0 auto;
   object-fit: contain;
+  background: transparent !important;
+  image-rendering: pixelated;
 }
 
 .card:hover {
@@ -1284,9 +1286,14 @@ html.glove-cursor * {
   border: 2px solid color-mix(in srgb, var(--blue) 40%, transparent);
 }
 .card-icon {
-  width: 4rem;
-  height: 4rem;
+  width: 3.75rem;
+  height: auto;
   object-fit: contain;
+  background: transparent !important;
+}
+.dugout-sign img,
+.dugout-sign span {
+  background: transparent !important;
 }
 
 

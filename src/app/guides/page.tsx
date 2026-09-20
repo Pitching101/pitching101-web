@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 
@@ -56,7 +55,8 @@ export default function GuidesPage() {
           <ul className="dugout-row">
             {guides.map((g) => (
               <li key={g.title} className="dugout-sign">
-                <Image src={g.icon} alt="" width={64} height={64} className="card-icon" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={g.icon} alt="" width={64} height={64} className="card-icon" />
                 <h2 className="dugout-sign-title">{g.title}</h2>
                 <p className="dugout-sign-note">{g.note}</p>
                 <a href={g.href} className="footer-link">
