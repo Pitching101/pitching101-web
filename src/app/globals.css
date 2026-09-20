@@ -896,11 +896,31 @@ button:focus-visible {
   color: #0f1a2e;
   text-align: center;
 }
-.reviews-card {
-  transition: opacity 0.48s var(--ease-soft);
+.reviews-card-sizer {
+  visibility: hidden;
+  pointer-events: none;
 }
-.reviews-card.is-in { opacity: 1; }
-.reviews-card.is-out { opacity: 0; }
+.reviews-card-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  transition:
+    opacity 0.56s var(--ease-soft),
+    transform 0.56s var(--ease-soft);
+  will-change: opacity, transform;
+}
+.reviews-card.is-in {
+  opacity: 1;
+  transform: none;
+}
+.reviews-card.is-pre,
+.reviews-card.is-out {
+  opacity: 0;
+  transform: scale(0.97);
+  pointer-events: none;
+}
 .reviews-card-inner {
   display: flex;
   flex-direction: column;

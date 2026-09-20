@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type TransitionEvent } from "react";
 import {
   TRUSTPILOT_URL,
   trustpilotReviews,
   type TrustpilotReview,
 } from "@/data/trustpilotReviews";
 
-const FADE_MS = 480;
+const FADE_MS = 560;
 
 function Stars({ n }: { n: number }) {
   const filled = Math.max(0, Math.min(5, Math.round(n)));
@@ -23,9 +23,7 @@ function ReviewCard({ r }: { r: TrustpilotReview }) {
   return (
     <div className="reviews-card-inner">
       <Stars n={r.stars} />
-      {r.title ? (
-        <p className="reviews-card-title">{r.title}</p>
-      ) : null}
+      {r.title ? <p className="reviews-card-title">{r.title}</p> : null}
       <blockquote className="text-lg leading-relaxed text-ink sm:text-xl">
         “{r.quote}”
       </blockquote>
@@ -34,22 +32,25 @@ function ReviewCard({ r }: { r: TrustpilotReview }) {
   );
 }
 
-/** Auto-rotating Trustpilot reviews. The whole card fades out, then the next fades in. */
+type Layer = {
+  key: number;
+  reviewIndex: number;
+  state: "in" | "out" | "pre";
+};
+
+/** Next fades the whole blue card out, then the next card fades in. */
 export default function ReviewsCarousel({ className = "" }: { className?: string }) {
   const reviews = trustpilotReviews;
-  const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [fade, setFade] = useState<"in" | "out">("in");
   const [busy, setBusy] = useState(false);
-  const timers = useRef<number[]>([]);
-
-  const clearTimers = useCallback(() => {
-    for (const id of timers.current) window.clearTimeout(id);
-    timers.current = [];
-  }, []);
-
-  useEffect(() => () => clearTimers(), [clearTimers]);
+  const [index, setIndex] = useState(0);
+  const [layers, setLayers] = useState<Layer[]>(
+    reviews.length ? [{ key: 0, reviewIndex: 0, state: "in" }] : [],
+  );
+  const nextKey = useRef(1);
+  const enterTimer = useRef(0);
+  const safetyTimer = useRef(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -59,6 +60,14 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     return () => mq.removeEventListener("change", sync);
   }, []);
 
+  useEffect(
+    () => () => {
+      window.clearTimeout(enterTimer.current);
+      window.clearTimeout(safetyTimer.current);
+    },
+    [],
+  );
+
   const goTo = useCallback(
     (i: number) => {
       if (reviews.length === 0) return;
@@ -67,29 +76,65 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
 
       if (reduceMotion) {
         setIndex(next);
+        setLayers([{ key: nextKey.current++, reviewIndex: next, state: "in" }]);
         return;
       }
 
       setBusy(true);
-      setFade("out");
-      const showNext = window.setTimeout(() => {
-        setIndex(next);
-        setFade("in");
-        const unlock = window.setTimeout(() => {
-          setBusy(false);
-        }, FADE_MS);
-        timers.current.push(unlock);
-      }, FADE_MS);
-      timers.current.push(showNext);
+      window.clearTimeout(enterTimer.current);
+      window.clearTimeout(safetyTimer.current);
+      safetyTimer.current = window.setTimeout(() => {
+        setLayers((current) =>
+          current
+            .filter((item) => item.state !== "out")
+            .map((item) => (item.state === "pre" ? { ...item, state: "in" as const } : item)),
+        );
+        setBusy(false);
+      }, FADE_MS * 2 + 120);
+      setIndex(next);
+      setLayers((current) => {
+        const outgoing = current
+          .filter((layer) => layer.state !== "out")
+          .map((layer) => ({ ...layer, state: "out" as const }));
+        return [
+          ...outgoing,
+          { key: nextKey.current++, reviewIndex: next, state: "pre" },
+        ];
+      });
     },
     [busy, index, reduceMotion, reviews.length],
+  );
+
+  const onLayerTransitionEnd = useCallback(
+    (layer: Layer, event: TransitionEvent<HTMLElement>) => {
+      if (event.propertyName !== "opacity") return;
+
+      if (layer.state === "out") {
+        setLayers((current) => current.filter((item) => item.key !== layer.key));
+        window.clearTimeout(enterTimer.current);
+        enterTimer.current = window.setTimeout(() => {
+          setLayers((current) =>
+            current.map((item) =>
+              item.state === "pre" ? { ...item, state: "in" } : item,
+            ),
+          );
+        }, 40);
+        return;
+      }
+
+      if (layer.state === "in") {
+        window.clearTimeout(safetyTimer.current);
+        setBusy(false);
+      }
+    },
+    [],
   );
 
   useEffect(() => {
     if (reduceMotion || paused || reviews.length === 0 || busy) return;
     const id = window.setInterval(() => {
       goTo(index + 1);
-    }, 5600);
+    }, 6200);
     return () => window.clearInterval(id);
   }, [reduceMotion, paused, reviews.length, busy, goTo, index]);
 
@@ -134,7 +179,8 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     );
   }
 
-  const current = reviews[index];
+  const sizerReview =
+    reviews[layers.find((layer) => layer.state === "out")?.reviewIndex ?? index];
 
   return (
     <div
@@ -154,13 +200,21 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
       <p className="reviews-verified">Verified On Trustpilot</p>
 
       <div className="reviews-stage">
-        <article
-          className={`reviews-carousel reviews-card is-${fade}`}
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <ReviewCard r={current} />
+        <article className="reviews-carousel reviews-card reviews-card-sizer" aria-hidden="true">
+          <ReviewCard r={sizerReview} />
         </article>
+        {layers.map((layer) => (
+          <article
+            key={layer.key}
+            className={`reviews-carousel reviews-card reviews-card-layer is-${layer.state}`}
+            aria-hidden={layer.state !== "in"}
+            aria-live={layer.state === "in" ? "polite" : undefined}
+            aria-atomic="true"
+            onTransitionEnd={(event) => onLayerTransitionEnd(layer, event)}
+          >
+            <ReviewCard r={reviews[layer.reviewIndex]} />
+          </article>
+        ))}
       </div>
 
       <div className="reviews-controls">
