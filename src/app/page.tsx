@@ -13,11 +13,11 @@ const programs = [
     icon: "video" as const,
   },
   {
-    heading: "PDF pitching plans you can follow at home",
+    heading: "PDF pitching chart you can follow at home",
     blurb:
-      "Simple written plans your pitcher can follow between sessions. No jargon — just next steps.",
-    cta: "Request a PDF plan",
-    href: "mailto:nickdeisng@gmail.com?subject=PDF%20pitching%20plan",
+      "A simple written chart your pitcher can follow between sessions — quality innings and throw-volume cues, no jargon.",
+    cta: "Request the PDF chart",
+    href: "mailto:nickdeisng@gmail.com?subject=PDF%20pitching%20chart",
     icon: "plan" as const,
   },
   {
@@ -117,7 +117,7 @@ export default function HomePage() {
               Pick a path that fits your week
             </p>
             <p className="leading-relaxed text-ink-soft">
-              Start with Stan video notes, a written PDF plan, or a virtual
+              Start with Stan video notes, a written PDF chart, or a virtual
               lesson. In-person Naples options are the heart of what we do —
               these are the easy on-ramps.
             </p>
@@ -162,7 +162,7 @@ export default function HomePage() {
               {
                 step: "2",
                 title: "Pick a format",
-                body: "Stan video, PDF plan, virtual lesson, or local Naples session.",
+                body: "Stan video, PDF chart, virtual lesson, or local Naples session.",
               },
               {
                 step: "3",
