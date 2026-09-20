@@ -150,7 +150,7 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 pt-20 pb-36 text-center sm:px-8 sm:pt-28 sm:pb-44">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-24 text-center sm:px-8 sm:pt-28 sm:pb-44">
             <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
