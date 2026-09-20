@@ -1,4 +1,4 @@
-/** Chunky pixel glyphs for program cards. */
+/** Chunky pixel glyphs for program cards — dark brand palette. */
 type IconName = "video" | "plan" | "virtual";
 
 const pixels: Record<IconName, Array<[number, number]>> = {
@@ -48,9 +48,9 @@ export default function PixelIcon({
         style={{ imageRendering: "pixelated" }}
         shapeRendering="crispEdges"
       >
-        <rect width="16" height="16" fill="#BBD6F1" />
+        <rect width="16" height="16" fill="#0C1424" />
         {pixels[name].map(([x, y]) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#1A4F8A" />
+          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#D4FF00" />
         ))}
       </svg>
     </span>

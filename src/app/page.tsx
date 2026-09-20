@@ -37,7 +37,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-5xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div className="space-y-7">
             <p className="pixel-chip px-3 py-1.5">Naples, Florida area</p>
-            <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl sm:leading-[1.12]">
+            <h1 className="pixel-title pixel-title-lg">
               Pitching lessons parents actually understand
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-ink-soft">
@@ -55,7 +55,7 @@ export default function HomePage() {
               </a>
               <Link
                 href="/naples-fl-pitching-lessons/"
-                className="px-2 py-3 text-sm font-semibold text-blue-dark underline-offset-4 hover:underline"
+                className="font-pixel-ui px-2 py-3 text-lg text-accent underline-offset-4 hover:underline"
               >
                 Youth pitching lessons Naples FL →
               </Link>
@@ -69,30 +69,30 @@ export default function HomePage() {
                   <PixelBall size={48} />
                 </span>
               </div>
-              <p className="font-pixel text-[0.7rem] leading-relaxed text-blue-dark sm:text-[0.8rem]">
+              <p className="font-pixel text-[0.65rem] leading-relaxed text-accent sm:text-[0.75rem]">
                 What families get
               </p>
               <ul className="mt-5 space-y-3.5 text-[0.95rem] leading-relaxed text-ink-soft">
                 <li className="flex gap-2.5">
-                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                  <span className="mt-0.5 text-accent" aria-hidden="true">
                     ▢
                   </span>
                   <span>Plain-English feedback after every look</span>
                 </li>
                 <li className="flex gap-2.5">
-                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                  <span className="mt-0.5 text-accent" aria-hidden="true">
                     ▢
                   </span>
                   <span>Age-right progress for youth &amp; elite arms</span>
                 </li>
                 <li className="flex gap-2.5">
-                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                  <span className="mt-0.5 text-accent" aria-hidden="true">
                     ▢
                   </span>
                   <span>Local Naples focus + flexible remote options</span>
                 </li>
                 <li className="flex gap-2.5">
-                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                  <span className="mt-0.5 text-accent" aria-hidden="true">
                     ▢
                   </span>
                   <span>Camps &amp; clinics tone — serious, still fun</span>
@@ -103,17 +103,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t-4 border-blue-dark bg-blue-soft/50">
+      <section className="border-t-4 border-blue bg-blue-soft/60">
         <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8">
           <TrustStrip />
         </div>
       </section>
 
-      <section id="programs" className="scroll-mt-24 border-t-4 border-blue-dark">
+      <section id="programs" className="scroll-mt-24 border-t-4 border-blue">
         <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
           <div className="max-w-2xl space-y-4">
             <p className="pixel-chip px-3 py-1.5">Programs</p>
-            <p className="text-3xl font-bold tracking-tight text-ink">
+            <p className="pixel-title pixel-title-md">
               Pick a path that fits your week
             </p>
             <p className="leading-relaxed text-ink-soft">
@@ -126,7 +126,7 @@ export default function HomePage() {
             {programs.map((item) => (
               <article key={item.heading} className="pixel-card flex flex-col p-7">
                 <PixelIcon name={item.icon} />
-                <h2 className="mt-4 text-lg font-semibold leading-snug text-ink">
+                <h2 className="mt-4 font-pixel text-[0.65rem] leading-snug text-blue-light sm:text-[0.7rem]">
                   {item.heading}
                 </h2>
                 <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">
@@ -146,12 +146,10 @@ export default function HomePage() {
 
       <section
         id="how-it-works"
-        className="scroll-mt-24 border-t-4 border-blue-dark bg-surface"
+        className="scroll-mt-24 border-t-4 border-blue bg-surface"
       >
         <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <h2 className="text-3xl font-bold tracking-tight text-ink">
-            How it works
-          </h2>
+          <h2 className="pixel-title pixel-title-md">How it works</h2>
           <ol className="mt-10 grid gap-7 sm:grid-cols-3">
             {[
               {
@@ -172,7 +170,9 @@ export default function HomePage() {
             ].map((s) => (
               <li key={s.step} className="pixel-card-alt p-7">
                 <span className="pixel-step">{s.step}</span>
-                <h3 className="mt-4 font-semibold text-ink">{s.title}</h3>
+                <h3 className="mt-4 font-pixel text-[0.6rem] text-accent">
+                  {s.title}
+                </h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">
                   {s.body}
                 </p>
@@ -182,11 +182,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t-4 border-blue-dark">
+      <section className="border-t-4 border-blue">
         <div className="mx-auto max-w-5xl px-5 py-16 text-center sm:px-8 sm:py-20">
-          <h2 className="text-3xl font-bold tracking-tight text-ink">
-            Ready when you are
-          </h2>
+          <h2 className="pixel-title pixel-title-md">Ready when you are</h2>
           <p className="mx-auto mt-4 max-w-xl leading-relaxed text-ink-soft">
             Serving families across the Naples, FL area. No street address
             listed yet — call or email and we’ll point you to the right next

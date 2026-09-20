@@ -12,15 +12,15 @@ export default function Footer() {
           </p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-[0.55rem] text-ink">Contact</p>
+          <p className="font-pixel text-[0.55rem] text-accent">Contact</p>
           <p>
-            <a className="text-blue hover:underline" href="tel:8457682211">
+            <a className="text-blue-light hover:text-accent hover:underline" href="tel:8457682211">
               845-768-2211
             </a>
           </p>
           <p>
             <a
-              className="text-blue hover:underline"
+              className="text-blue-light hover:text-accent hover:underline"
               href="mailto:nickdeisng@gmail.com"
             >
               nickdeisng@gmail.com
@@ -29,15 +29,15 @@ export default function Footer() {
           <p className="text-ink-soft">Naples, FL area</p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-[0.55rem] text-ink">Explore</p>
+          <p className="font-pixel text-[0.55rem] text-accent">Explore</p>
           <p>
-            <a className="text-ink-soft hover:text-blue" href="/">
+            <a className="text-ink-soft hover:text-accent" href="/">
               Home
             </a>
           </p>
           <p>
             <a
-              className="text-ink-soft hover:text-blue"
+              className="text-ink-soft hover:text-accent"
               href="/naples-fl-pitching-lessons/"
             >
               Naples FL pitching lessons
@@ -45,7 +45,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="border-t-4 border-blue-dark py-4 text-center text-xs text-ink-soft">
+      <div className="border-t-4 border-blue py-4 text-center text-xs text-ink-soft">
         © {new Date().getFullYear()} Pitching101 · Naples, FL
       </div>
     </footer>

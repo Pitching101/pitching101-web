@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 export default function NaplesPitchingLessonsPage() {
   return (
     <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
-      <p className="text-sm font-bold text-blue">
-        <Link href="/" className="hover:underline">
+      <p className="font-pixel-ui text-lg text-blue-light">
+        <Link href="/" className="hover:text-accent hover:underline">
           ← Back to Pitching101 home
         </Link>
       </p>
@@ -39,7 +39,7 @@ export default function NaplesPitchingLessonsPage() {
 
       <p className="pixel-chip mt-5 px-3 py-1.5">Naples · Collier County</p>
 
-      <h1 className="mt-5 text-4xl font-bold tracking-tight text-ink sm:leading-[1.15]">
+      <h1 className="pixel-title pixel-title-lg mt-5">
         Youth pitching lessons Naples FL
       </h1>
 
@@ -59,7 +59,9 @@ export default function NaplesPitchingLessonsPage() {
       </div>
 
       <section className="mt-12 space-y-4">
-        <h2 className="text-2xl font-bold text-ink">Who it’s for</h2>
+        <h2 className="pixel-title pixel-title-sm text-blue-light">
+          Who it’s for
+        </h2>
         <p className="leading-relaxed text-ink-soft">
           Built for{" "}
           <strong className="text-ink">youth pitchers ages 8–14</strong>, their
@@ -71,7 +73,7 @@ export default function NaplesPitchingLessonsPage() {
         </p>
         <ul className="space-y-3 text-ink-soft">
           <li className="flex gap-3">
-            <span className="mt-1 text-blue" aria-hidden="true">
+            <span className="mt-1 text-accent" aria-hidden="true">
               ■
             </span>
             <span>
@@ -80,7 +82,7 @@ export default function NaplesPitchingLessonsPage() {
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1 text-blue" aria-hidden="true">
+            <span className="mt-1 text-accent" aria-hidden="true">
               ■
             </span>
             <span>
@@ -89,7 +91,7 @@ export default function NaplesPitchingLessonsPage() {
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1 text-blue" aria-hidden="true">
+            <span className="mt-1 text-accent" aria-hidden="true">
               ■
             </span>
             <span>
@@ -102,12 +104,12 @@ export default function NaplesPitchingLessonsPage() {
       </section>
 
       <section className="mt-12 space-y-4">
-        <h2 className="text-2xl font-bold text-ink">
+        <h2 className="pixel-title pixel-title-sm text-blue-light">
           Why Naples parents choose Pitching101
         </h2>
         <ul className="space-y-3 text-ink-soft">
           <li className="flex gap-3">
-            <span className="mt-1 text-blue" aria-hidden="true">
+            <span className="mt-1 text-accent" aria-hidden="true">
               ■
             </span>
             <span>
@@ -117,7 +119,7 @@ export default function NaplesPitchingLessonsPage() {
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1 text-blue" aria-hidden="true">
+            <span className="mt-1 text-accent" aria-hidden="true">
               ■
             </span>
             <span>
@@ -126,7 +128,7 @@ export default function NaplesPitchingLessonsPage() {
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1 text-blue" aria-hidden="true">
+            <span className="mt-1 text-accent" aria-hidden="true">
               ■
             </span>
             <span>
@@ -136,7 +138,7 @@ export default function NaplesPitchingLessonsPage() {
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="mt-1 text-blue" aria-hidden="true">
+            <span className="mt-1 text-accent" aria-hidden="true">
               ■
             </span>
             <span>
@@ -148,7 +150,7 @@ export default function NaplesPitchingLessonsPage() {
       </section>
 
       <section className="mt-12 space-y-4">
-        <h2 className="text-2xl font-bold text-ink">
+        <h2 className="pixel-title pixel-title-sm text-blue-light">
           What good youth pitching lessons look like here
         </h2>
         <p className="leading-relaxed text-ink-soft">
@@ -168,7 +170,7 @@ export default function NaplesPitchingLessonsPage() {
       </section>
 
       <section className="pixel-card mt-12 p-7 sm:p-9">
-        <h2 className="text-xl font-bold text-ink">
+        <h2 className="pixel-title pixel-title-sm text-accent">
           Book a Naples pitching conversation
         </h2>
         <p className="mt-3 leading-relaxed text-ink-soft">
@@ -188,14 +190,14 @@ export default function NaplesPitchingLessonsPage() {
           </a>
           <Link
             href="/#programs"
-            className="px-2 py-2.5 text-sm font-bold text-blue-dark underline-offset-4 hover:underline"
+            className="font-pixel-ui px-2 py-2.5 text-lg text-accent underline-offset-4 hover:underline"
           >
             See program paths →
           </Link>
         </div>
       </section>
 
-      <p className="mt-12 text-sm font-bold text-ink-soft">
+      <p className="mt-12 font-pixel-ui text-base text-ink-soft">
         Serving Naples &amp; Collier County, FL · Pitching101
       </p>
     </article>
