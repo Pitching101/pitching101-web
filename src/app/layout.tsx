@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Pitching101 Naples FL",
   },
   description:
-    "Parent-friendly pitching lessons in Naples, Florida. Youth and elite coaching, camps, clinics, Stan video feedback, PDF plans, and virtual options. Call 845-768-2211.",
+    "Parent-friendly pitching lessons in Naples, Florida. Youth and elite coaching, camps, clinics, Stan video feedback, PDF charts, and virtual options. Call 845-768-2211.",
   keywords: [
     "Naples FL pitching lessons",
     "youth pitching coach Naples",

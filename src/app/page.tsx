@@ -1,10 +1,11 @@
 import Link from "next/link";
 import PixelBall from "@/components/PixelBall";
 import PixelIcon from "@/components/PixelIcon";
+import TrustStrip from "@/components/TrustStrip";
 
 const programs = [
   {
-    title: "Stan video feedback",
+    heading: "Stan video feedback for busy Naples weeks",
     blurb:
       "Send a throwing video. Get clear, coach-level notes back — easy for kids, easy for parents.",
     cta: "Ask about Stan",
@@ -12,7 +13,7 @@ const programs = [
     icon: "video" as const,
   },
   {
-    title: "PDF pitching plans",
+    heading: "PDF pitching plans you can follow at home",
     blurb:
       "Simple written plans your pitcher can follow between sessions. No jargon — just next steps.",
     cta: "Request a PDF plan",
@@ -20,7 +21,7 @@ const programs = [
     icon: "plan" as const,
   },
   {
-    title: "Virtual lessons",
+    heading: "Virtual pitching lessons when travel hits",
     blurb:
       "Live online coaching when you can’t make it in person. Great for travel weeks or check-ins.",
     cta: "Book a virtual chat",
@@ -35,9 +36,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-5xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div className="space-y-7">
-            <p className="wabi-chip inline-flex px-3.5 py-1.5 text-sm font-medium text-blue-dark">
-              Naples, Florida area
-            </p>
+            <p className="pixel-chip px-3 py-1.5">Naples, Florida area</p>
             <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl sm:leading-[1.12]">
               Pitching lessons parents actually understand
             </h1>
@@ -58,54 +57,65 @@ export default function HomePage() {
                 href="/naples-fl-pitching-lessons/"
                 className="px-2 py-3 text-sm font-semibold text-blue-dark underline-offset-4 hover:underline"
               >
-                Naples FL pitching lessons →
+                Youth pitching lessons Naples FL →
               </Link>
             </div>
           </div>
 
-          <div className="wabi-panel p-8 text-ink sm:p-10">
-            <div className="mb-6 inline-flex">
-              <span className="pixel-icon-frame p-1.5" aria-hidden="true">
-                <PixelBall size={48} />
-              </span>
+          <div className="pixel-panel pixel-scanlines relative p-8 text-ink sm:p-10">
+            <div className="relative z-10">
+              <div className="mb-6 inline-flex">
+                <span className="pixel-icon-frame p-1.5" aria-hidden="true">
+                  <PixelBall size={48} />
+                </span>
+              </div>
+              <p className="font-pixel text-[0.7rem] leading-relaxed text-blue-dark sm:text-[0.8rem]">
+                What families get
+              </p>
+              <ul className="mt-5 space-y-3.5 text-[0.95rem] leading-relaxed text-ink-soft">
+                <li className="flex gap-2.5">
+                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                    ▢
+                  </span>
+                  <span>Plain-English feedback after every look</span>
+                </li>
+                <li className="flex gap-2.5">
+                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                    ▢
+                  </span>
+                  <span>Age-right progress for youth &amp; elite arms</span>
+                </li>
+                <li className="flex gap-2.5">
+                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                    ▢
+                  </span>
+                  <span>Local Naples focus + flexible remote options</span>
+                </li>
+                <li className="flex gap-2.5">
+                  <span className="mt-0.5 text-blue" aria-hidden="true">
+                    ▢
+                  </span>
+                  <span>Camps &amp; clinics tone — serious, still fun</span>
+                </li>
+              </ul>
             </div>
-            <h2 className="text-2xl font-bold text-blue-dark">What families get</h2>
-            <ul className="mt-5 space-y-3.5 text-[0.95rem] leading-relaxed text-ink-soft">
-              <li className="flex gap-2.5">
-                <span className="mt-0.5 text-blue" aria-hidden="true">
-                  ▢
-                </span>
-                <span>Plain-English feedback after every look</span>
-              </li>
-              <li className="flex gap-2.5">
-                <span className="mt-0.5 text-blue" aria-hidden="true">
-                  ▢
-                </span>
-                <span>Age-right progress for youth &amp; elite arms</span>
-              </li>
-              <li className="flex gap-2.5">
-                <span className="mt-0.5 text-blue" aria-hidden="true">
-                  ▢
-                </span>
-                <span>Local Naples focus + flexible remote options</span>
-              </li>
-              <li className="flex gap-2.5">
-                <span className="mt-0.5 text-blue" aria-hidden="true">
-                  ▢
-                </span>
-                <span>Camps &amp; clinics tone — serious, still fun</span>
-              </li>
-            </ul>
           </div>
         </div>
       </section>
 
-      <section id="programs" className="scroll-mt-24 border-t border-edge/70">
+      <section className="border-t-4 border-blue-dark bg-blue-soft/50">
+        <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8">
+          <TrustStrip />
+        </div>
+      </section>
+
+      <section id="programs" className="scroll-mt-24 border-t-4 border-blue-dark">
         <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
           <div className="max-w-2xl space-y-4">
-            <h2 className="text-3xl font-bold tracking-tight text-ink">
+            <p className="pixel-chip px-3 py-1.5">Programs</p>
+            <p className="text-3xl font-bold tracking-tight text-ink">
               Pick a path that fits your week
-            </h2>
+            </p>
             <p className="leading-relaxed text-ink-soft">
               Start with Stan video notes, a written PDF plan, or a virtual
               lesson. In-person Naples options are the heart of what we do —
@@ -114,13 +124,18 @@ export default function HomePage() {
           </div>
           <div className="mt-12 grid gap-7 sm:grid-cols-3">
             {programs.map((item) => (
-              <article key={item.title} className="wabi-card flex flex-col p-7">
+              <article key={item.heading} className="pixel-card flex flex-col p-7">
                 <PixelIcon name={item.icon} />
-                <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+                <h2 className="mt-4 text-lg font-semibold leading-snug text-ink">
+                  {item.heading}
+                </h2>
                 <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">
                   {item.blurb}
                 </p>
-                <a href={item.href} className="pixel-btn-ghost mt-6 !px-3.5 !py-2 text-sm">
+                <a
+                  href={item.href}
+                  className="pixel-btn-ghost mt-6 !px-3.5 !py-2"
+                >
                   {item.cta}
                 </a>
               </article>
@@ -131,10 +146,12 @@ export default function HomePage() {
 
       <section
         id="how-it-works"
-        className="scroll-mt-24 border-t border-edge/70 bg-blue-soft/40"
+        className="scroll-mt-24 border-t-4 border-blue-dark bg-surface"
       >
         <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <h2 className="text-3xl font-bold tracking-tight text-ink">How it works</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-ink">
+            How it works
+          </h2>
           <ol className="mt-10 grid gap-7 sm:grid-cols-3">
             {[
               {
@@ -153,17 +170,19 @@ export default function HomePage() {
                 body: "You’ll leave knowing what to practice — not guessing.",
               },
             ].map((s) => (
-              <li key={s.step} className="wabi-card-alt p-7">
+              <li key={s.step} className="pixel-card-alt p-7">
                 <span className="pixel-step">{s.step}</span>
                 <h3 className="mt-4 font-semibold text-ink">{s.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">{s.body}</p>
+                <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">
+                  {s.body}
+                </p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="border-t border-edge/70">
+      <section className="border-t-4 border-blue-dark">
         <div className="mx-auto max-w-5xl px-5 py-16 text-center sm:px-8 sm:py-20">
           <h2 className="text-3xl font-bold tracking-tight text-ink">
             Ready when you are

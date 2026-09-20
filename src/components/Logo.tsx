@@ -15,7 +15,7 @@ export default function Logo({ className = "" }: { className?: string }) {
         <span className="font-pixel text-[9px] text-blue-dark sm:text-[10px]">
           Pitching<span className="text-blue">101</span>
         </span>
-        <span className="mt-1.5 text-[10px] font-medium tracking-wide text-ink-soft">
+        <span className="mt-1.5 font-pixel text-[7px] tracking-wide text-ink-soft">
           Naples, FL
         </span>
       </span>

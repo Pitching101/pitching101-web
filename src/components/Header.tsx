@@ -5,7 +5,7 @@ export default function Header() {
     <header className="site-header sticky top-0 z-40">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Logo />
-        <nav className="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm font-medium text-ink-soft">
+        <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-medium text-ink-soft">
           <a href="/#programs" className="hover:text-blue-dark">
             Programs
           </a>
@@ -15,7 +15,7 @@ export default function Header() {
           <a href="/naples-fl-pitching-lessons/" className="hover:text-blue-dark">
             Naples FL
           </a>
-          <a href="tel:8457682211" className="pixel-btn !px-3 !py-1.5 text-xs">
+          <a href="tel:8457682211" className="pixel-btn !px-3 !py-1.5 !text-[0.5rem]">
             Call
           </a>
         </nav>

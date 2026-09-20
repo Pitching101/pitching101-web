@@ -1,8 +1,7 @@
-/** Tiny pixel glyphs for program cards — accents only. */
+/** Chunky pixel glyphs for program cards. */
 type IconName = "video" | "plan" | "virtual";
 
 const pixels: Record<IconName, Array<[number, number]>> = {
-  // camera / video
   video: [
     [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5], [9, 5],
     [3, 6], [9, 6], [10, 6],
@@ -10,7 +9,6 @@ const pixels: Record<IconName, Array<[number, number]>> = {
     [3, 8], [9, 8], [10, 8],
     [3, 9], [4, 9], [5, 9], [6, 9], [7, 9], [8, 9], [9, 9],
   ],
-  // document / plan
   plan: [
     [4, 3], [5, 3], [6, 3], [7, 3], [8, 3], [9, 3], [10, 3], [11, 3],
     [4, 4], [11, 4],
@@ -22,7 +20,6 @@ const pixels: Record<IconName, Array<[number, number]>> = {
     [4, 10], [11, 10],
     [4, 11], [5, 11], [6, 11], [7, 11], [8, 11], [9, 11], [10, 11], [11, 11],
   ],
-  // screen / virtual
   virtual: [
     [3, 4], [4, 4], [5, 4], [6, 4], [7, 4], [8, 4], [9, 4], [10, 4], [11, 4], [12, 4],
     [3, 5], [12, 5],
@@ -51,9 +48,9 @@ export default function PixelIcon({
         style={{ imageRendering: "pixelated" }}
         shapeRendering="crispEdges"
       >
-        <rect width="16" height="16" fill="#E8F1F8" />
+        <rect width="16" height="16" fill="#BBD6F1" />
         {pixels[name].map(([x, y]) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#3D6A8F" />
+          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#1A4F8A" />
         ))}
       </svg>
     </span>
