@@ -33,8 +33,8 @@ export default function Logo({
         alt="Pitching101"
         width={width}
         height={height}
-        className="h-auto w-auto max-h-10"
-        style={{ height, width: "auto" }}
+        className="h-auto w-auto"
+        style={{ height, width: "auto", maxHeight: height }}
         priority
       />
     </Link>
