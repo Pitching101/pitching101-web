@@ -8,37 +8,37 @@ export default function Footer() {
           <Logo />
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth &amp; elite pitching instruction for families in the Naples,
-            Florida area — clear coaching, confident arms, a little fun on the
-            side.
+            Florida area — clear coaching, confident arms, a little arcade fun
+            on the side.
           </p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-sm font-semibold text-accent">Contact</p>
+          <p className="font-pixel text-sm font-semibold text-yellow">Contact</p>
           <p>
-            <a className="text-blue-light hover:text-accent hover:underline" href="tel:8457682211">
+            <a className="text-blue-light hover:text-yellow hover:underline" href="tel:8457682211">
               845-768-2211
             </a>
           </p>
           <p>
             <a
-              className="text-blue-light hover:text-accent hover:underline"
+              className="text-blue-light hover:text-yellow hover:underline"
               href="mailto:nickdeisng@gmail.com"
             >
               nickdeisng@gmail.com
             </a>
           </p>
-          <p className="text-ink-soft">Naples, FL area</p>
+          <p className="font-pixel-ui text-base text-ink-soft">Naples, FL area</p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-sm font-semibold text-accent">Explore</p>
+          <p className="font-pixel text-sm font-semibold text-yellow">Explore</p>
           <p>
-            <a className="text-ink-soft hover:text-accent" href="/">
+            <a className="text-ink-soft hover:text-yellow" href="/">
               Home
             </a>
           </p>
           <p>
             <a
-              className="text-ink-soft hover:text-accent"
+              className="text-ink-soft hover:text-yellow"
               href="/naples-fl-pitching-lessons/"
             >
               Naples FL pitching lessons
@@ -46,7 +46,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="border-t-4 border-blue py-4 text-center text-xs text-ink-soft">
+      <div className="border-t-4 border-teal py-4 text-center font-pixel-ui text-sm text-ink-soft">
         © {new Date().getFullYear()} Pitching101 · Naples, FL
       </div>
     </footer>
