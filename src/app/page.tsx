@@ -15,33 +15,22 @@ const ageGoals = [
   "Use routines they can do anywhere — no fancy gear required",
 ];
 
-const journeyAreas = [
+const trainingOptions = [
   {
-    title: "Affordable Training",
-    note: "Real help without the crazy price tag.",
+    label: "Private",
+    note: "In-person, Naples-area focus.",
     icon: "/assets/icons/icon-plan-checklist.png",
   },
   {
-    title: "Lifelong Routines",
-    note: "Simple habits kids can keep.",
-    icon: "/assets/icons/icon-arm-care-v2.png",
-  },
-  {
-    title: "Safe Techniques",
-    note: "Arm care first. Stay on the mound.",
-    icon: "/assets/icons/icon-strikes.png",
-  },
-  {
-    title: "Flexible Options",
-    note: "Local, DIY, or hybrid — your call.",
+    label: "DIY",
+    note: "Guide + video — train at home with a clear plan.",
     icon: "/assets/icons/icon-free-guide-v2.png",
   },
-];
-
-const trainingOptions = [
-  { label: "Private", note: "In-person, Naples-area focus." },
-  { label: "DIY", note: "Guide + video — train at home with a clear plan." },
-  { label: "Hybrid", note: "Mix DIY with live check-ins." },
+  {
+    label: "Hybrid",
+    note: "Mix DIY with live check-ins.",
+    icon: "/assets/icons/icon-strikes.png",
+  },
 ];
 
 const freeGuides = [
@@ -97,24 +86,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. WHITE — I'm Your Guy */}
-      <section className="text-band" aria-label="I'm Your Guy">
-        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal delayMs={40} className="space-y-5">
-            <h2 className="ui-title ui-title-md">
-              I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
-              Foundation, Train Healthy Patterns, And Get Affordable Lessons.
-            </h2>
-            <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
-              {familiar.map((q) => (
-                <li key={q} className="pl-1">
-                  &ldquo;{q}&rdquo;
-                </li>
-              ))}
-            </ul>
-            <p className="text-base text-ink-soft">
-              ELI5: parents ask this — here&apos;s what they say on Trustpilot.
-            </p>
+      {/* 2. WHITE — I'm Your Guy + Ages 8–14 (peanuts who-band) */}
+      <section
+        id="who"
+        className="text-band ages-band scroll-mt-24"
+        aria-label="I'm Your Guy — Ages 8 To 14"
+      >
+        <div className="peanut-decor" aria-hidden="true">
+          {Array.from({ length: 28 }, (_, index) => (
+            <Image
+              key={index}
+              src="/assets/pixel-peanut.png"
+              alt=""
+              width={48}
+              height={48}
+              className={`peanut peanut-${index + 1}`}
+            />
+          ))}
+        </div>
+        <div className="content-row ages-band-content">
+          <Reveal from="left" className="content-row-copy content-row-copy-wide space-y-8">
+            <div className="space-y-5">
+              <h2 className="ui-title ui-title-md">
+                I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
+                Foundation, Train Healthy Patterns, And Get Affordable Lessons.
+              </h2>
+              <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
+                {familiar.map((q) => (
+                  <li key={q} className="pl-1">
+                    &ldquo;{q}&rdquo;
+                  </li>
+                ))}
+              </ul>
+              <p className="text-base text-ink-soft">
+                ELI5: parents ask this — here&apos;s what they say on Trustpilot.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h3 className="ui-title ui-title-md">
+                To Help Young Pitchers Ages 8–14
+              </h3>
+              <p className="peanut-eli5">
+                ELI5: peanuts = younger pitchers — ballpark fun.
+              </p>
+              <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
+                {ageGoals.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal from="right" delayMs={80} className="content-row-media">
+            <Image
+              src="/assets/pixel-runner.gif"
+              alt="Pixel art baseball runner"
+              width={800}
+              height={600}
+              className="row-gif"
+              unoptimized
+            />
           </Reveal>
         </div>
       </section>
@@ -132,85 +162,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. WHITE — ages 8–14 + peanuts */}
-      <section
-        id="who"
-        className="text-band ages-band scroll-mt-24"
-        aria-label="Ages 8 To 14"
-      >
-        <div className="peanut-decor" aria-hidden="true">
-          {Array.from({ length: 28 }, (_, index) => (
-            <Image
-              key={index}
-              src="/assets/pixel-peanut.png"
-              alt=""
-              width={48}
-              height={48}
-              className={`peanut peanut-${index + 1}`}
-            />
-          ))}
-        </div>
-        <div className="content-row ages-band-content">
-          <Reveal from="left" className="content-row-copy content-row-copy-wide">
-            <h2 className="ui-title ui-title-md">
-              To Help Young Pitchers Ages 8–14
-            </h2>
-            <p className="peanut-eli5">
-              ELI5: peanuts = younger pitchers — ballpark fun.
-            </p>
-            <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
-              {ageGoals.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal from="right" delayMs={80} className="content-row-media">
-            <Image
-              src="/assets/pixel-runner.gif"
-              alt="Pixel art baseball runner"
-              width={800}
-              height={600}
-              className="row-gif"
-              unoptimized
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 5. Journey */}
-      <section className="text-band" aria-label="Journey">
-        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal className="space-y-4">
-            <h2 className="ui-title ui-title-md">
-              Your Child&apos;s Journey Starts Here
-            </h2>
-            <p className="text-base text-ink-soft">
-              Four Simple Focus Areas — Confident, Injury-Free Pitching.
-            </p>
-          </Reveal>
-          <Reveal delayMs={40}>
-            <ul className="grid gap-5 sm:grid-cols-2">
-              {journeyAreas.map((item) => (
-                <li key={item.title} className="flex gap-3">
-                  <Image
-                    src={item.icon}
-                    alt=""
-                    width={56}
-                    height={56}
-                    className="mt-0.5 h-14 w-14 shrink-0 object-contain"
-                  />
-                  <div className="space-y-1">
-                    <p className="font-semibold text-blue-dark">{item.title}</p>
-                    <p className="text-base text-ink-soft">{item.note}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 6. How It Works */}
+      {/* 4. How It Works — Private / DIY / Hybrid only */}
       <section
         id="how-it-works"
         className="band-soft scroll-mt-24"
@@ -222,70 +174,29 @@ export default function HomePage() {
             <p className="text-base text-ink-soft">Easy To Start Today.</p>
           </Reveal>
 
-          <div className="grid gap-5">
-            <Reveal delayMs={40}>
-              <article className="card space-y-4 p-6">
-                <Image src="/assets/icons/icon-plan-checklist.png" alt="" width={64} height={64} className="card-icon" />
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="ui-chip px-3 py-1">Step 1</span>
-                  <h3 className="font-semibold text-blue-dark">
-                    Choose Your Training Option
-                  </h3>
-                </div>
-                <ul className="grid gap-3 sm:grid-cols-3">
-                  {trainingOptions.map((opt) => (
-                    <li key={opt.label} className="option-chip">
-                      <p className="text-sm font-semibold text-blue-dark">
-                        {opt.label}
-                      </p>
-                      <p className="mt-1 text-xs leading-relaxed text-ink-soft">
-                        {opt.note}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            </Reveal>
-
-            <Reveal delayMs={80}>
-              <article className="card space-y-3 p-6">
-                <Image src="/assets/icons/icon-strikes.png" alt="" width={64} height={64} className="card-icon" />
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="ui-chip px-3 py-1">Step 2</span>
-                  <h3 className="font-semibold text-blue-dark">Start Training</h3>
-                </div>
-                <ul className="grid gap-2 text-sm leading-relaxed text-ink-soft sm:grid-cols-3">
-                  <li className="option-chip !py-2.5">
-                    A pitching plan that fits your child
-                  </li>
-                  <li className="option-chip !py-2.5">
-                    Video demos for drills and routines
-                  </li>
-                  <li className="option-chip !py-2.5">
-                    Ongoing tips so they keep improving
-                  </li>
-                </ul>
-              </article>
-            </Reveal>
-
-            <Reveal delayMs={120}>
-              <article className="card space-y-3 p-6">
-                <Image src="/assets/icons/icon-arm-care-v2.png" alt="" width={64} height={64} className="card-icon" />
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="ui-chip px-3 py-1">Step 3</span>
-                  <h3 className="font-semibold text-blue-dark">Watch Them Thrive</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-ink-soft sm:text-base">
-                  Strength, confidence, and mound skills — and you&apos;ll know you
-                  helped them get there.
-                </p>
-              </article>
-            </Reveal>
-          </div>
+          <Reveal delayMs={40}>
+            <ul className="grid gap-5 sm:grid-cols-3">
+              {trainingOptions.map((opt) => (
+                <li key={opt.label} className="card flex flex-col gap-3 p-6">
+                  <Image
+                    src={opt.icon}
+                    alt=""
+                    width={64}
+                    height={64}
+                    className="card-icon"
+                  />
+                  <h3 className="font-semibold text-blue-dark">{opt.label}</h3>
+                  <p className="text-sm leading-relaxed text-ink-soft sm:text-base">
+                    {opt.note}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
-      {/* 7. Free Guides — just above stadium bottom band */}
+      {/* 5. Free Guides — just above stadium bottom band */}
       <section id="guides" className="text-band scroll-mt-24" aria-label="Free Guides">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
@@ -322,7 +233,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Bottom — seamless white→stadium blend + Ready To Talk */}
+      {/* 6. Bottom — seamless white→stadium blend + Ready To Talk */}
       <section
         id="contact"
         className="home-stadium-band scroll-mt-24"
