@@ -99,14 +99,23 @@ export default function HomePage() {
         aria-label="How It Works"
       >
         <div className="cloud-decor" aria-hidden="true">
-          {Array.from({ length: 7 }, (_, index) => (
+          {[
+            { src: "/assets/pixel-cloud-1-transparent.png", w: 279, h: 145 },
+            { src: "/assets/pixel-cloud-2-transparent.png", w: 210, h: 99 },
+            { src: "/assets/pixel-cloud-3-transparent.png", w: 200, h: 96 },
+            { src: "/assets/pixel-cloud-4-transparent.png", w: 223, h: 99 },
+            { src: "/assets/pixel-cloud-2-transparent.png", w: 210, h: 99 },
+            { src: "/assets/pixel-cloud-1-transparent.png", w: 279, h: 145 },
+            { src: "/assets/pixel-cloud-3-transparent.png", w: 200, h: 96 },
+          ].map((cloud, index) => (
             <Image
-              key={index}
-              src="/assets/pixel-cloud-transparent.png"
+              key={`${cloud.src}-${index}`}
+              src={cloud.src}
               alt=""
-              width={160}
-              height={90}
+              width={cloud.w}
+              height={cloud.h}
               className={`float-cloud float-cloud-${index + 1}`}
+              style={{ background: "transparent" }}
             />
           ))}
         </div>

@@ -160,6 +160,8 @@ body {
   width: var(--cloud-size, clamp(4.5rem, 12vw, 9rem));
   height: auto;
   opacity: 0.92;
+  background: transparent;
+  background-color: transparent;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   user-select: none;
