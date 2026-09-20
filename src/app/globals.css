@@ -1839,6 +1839,129 @@ html.glove-cursor * {
   color: var(--ink-soft);
 }
 
+/* Free lead magnets — one baseball-card template for every guide */
+.park-page-magnets {
+  max-width: 56rem;
+}
+.magnet-shelf {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem 1.2rem;
+  width: 100%;
+  margin: 2rem 0 0;
+  padding: 0.6rem 0.35rem 1.1rem;
+  list-style: none;
+}
+@media (min-width: 700px) {
+  .magnet-shelf {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+.magnet-slot {
+  min-width: 0;
+}
+.magnet-card {
+  --magnet-tilt: -1.6deg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 0.42rem 0.42rem 0.85rem;
+  text-align: center;
+  text-decoration: none;
+  color: #0f1a2e;
+  background: linear-gradient(180deg, #fff8e6 0%, #f3e2b4 100%);
+  border: 5px solid #e6d08a;
+  border-radius: 7px;
+  box-shadow:
+    0 0 0 2px #0f1a2e,
+    7px 9px 0 rgba(15, 26, 46, 0.14);
+  transform: rotate(var(--magnet-tilt));
+  transition: transform 0.2s var(--ease-soft);
+}
+.magnet-slot:nth-child(3n + 2) .magnet-card { --magnet-tilt: 2.1deg; }
+.magnet-slot:nth-child(3n + 3) .magnet-card { --magnet-tilt: -2.3deg; }
+.magnet-card:hover,
+.magnet-card:focus-visible {
+  transform: rotate(0deg) translateY(-5px);
+  outline: none;
+}
+.magnet-card-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  background: #3295fb;
+  border: 2px solid #0f1a2e;
+}
+.magnet-card-art img {
+  width: 4.6rem;
+  height: auto;
+  image-rendering: pixelated;
+}
+.magnet-card-kicker {
+  margin: 0.55rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #0f1a2e 72%, #3295fb);
+}
+.magnet-card-title {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.magnet-card-note {
+  margin: 0.45rem 0.4rem 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #1a2438;
+}
+.magnet-card-stamp {
+  margin: 0.75rem 0 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1a78e8;
+}
+.magnet-page {
+  max-width: 36rem;
+}
+.magnet-page-card {
+  width: min(12.5rem, 58vw);
+  margin: 0.4rem auto 0.2rem;
+  padding: 0.42rem 0.42rem 0.7rem;
+  background: linear-gradient(180deg, #fff8e6 0%, #f3e2b4 100%);
+  border: 5px solid #e6d08a;
+  border-radius: 7px;
+  box-shadow:
+    0 0 0 2px #0f1a2e,
+    7px 9px 0 rgba(15, 26, 46, 0.14);
+  transform: rotate(-1.4deg);
+}
+@media (max-width: 639px) {
+  .magnet-shelf { padding-left: 0.15rem; padding-right: 0.15rem; }
+  .magnet-card { --magnet-tilt: 0deg; }
+  .magnet-slot:nth-child(3n + 2) .magnet-card { --magnet-tilt: 0.8deg; }
+  .magnet-slot:nth-child(3n + 3) .magnet-card { --magnet-tilt: -0.8deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magnet-card,
+  .magnet-card:hover,
+  .magnet-card:focus-visible,
+  .magnet-page-card {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Phone: keep the park on the field, no sideways scroll */
 @media (max-width: 639px) {
   .hero-overlay {
