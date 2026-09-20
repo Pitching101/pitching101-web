@@ -6,6 +6,7 @@ const CLIPS = [
   { src: "/videos/IMG_1238.mp4", label: "Training clip 1" },
   { src: "/videos/IMG_2676.mp4", label: "Training clip 2" },
   { src: "/videos/IMG_1247.mp4", label: "Training clip 3" },
+  { src: "/videos/IMG_2698.mp4", label: "Training clip 4" },
 ] as const;
 
 /**
@@ -66,9 +67,9 @@ export default function TrainingClipsStrip() {
     <div
       ref={rootRef}
       className="training-clips"
-      aria-label="Training clips"
+      aria-label="Real Training Clips"
     >
-      <p className="training-clips-label">Training Clips</p>
+      <p className="training-clips-label">Real Training Clips</p>
       <ul className="training-clips-grid">
         {CLIPS.map((clip, i) => (
           <li key={clip.src} className="training-clip-item">
