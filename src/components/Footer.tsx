@@ -12,6 +12,9 @@ export default function Footer() {
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth pitching lessons for Naples, FL families. Clear coaching. No jargon.
           </p>
+          <Link href="/contact/" className="btn">
+            Get Your Child Started
+          </Link>
         </div>
 
         <div className="footer-contact space-y-3 text-sm">
