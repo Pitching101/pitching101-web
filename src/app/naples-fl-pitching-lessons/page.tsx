@@ -27,8 +27,8 @@ export default function NaplesPitchingLessonsPage() {
   return (
     <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <p className="font-pixel-ui text-base font-semibold text-blue-light">
-          <Link href="/" className="hover:text-yellow hover:underline">
+        <p className="font-pixel-ui text-base font-semibold text-blue-dark">
+          <Link href="/" className="hover:text-blue hover:underline">
             ← Back to Pitching101 home
           </Link>
         </p>
@@ -67,7 +67,7 @@ export default function NaplesPitchingLessonsPage() {
       </Reveal>
 
       <Reveal className="mt-12 space-y-4">
-        <h2 className="pixel-title pixel-title-sm text-blue-light">
+        <h2 className="pixel-title pixel-title-sm text-blue-dark">
           Who’s on the roster
         </h2>
         <p className="leading-relaxed text-ink-soft">
@@ -111,7 +111,7 @@ export default function NaplesPitchingLessonsPage() {
       </Reveal>
 
       <Reveal className="mt-12 space-y-4">
-        <h2 className="pixel-title pixel-title-sm text-blue-light">
+        <h2 className="pixel-title pixel-title-sm text-blue-dark">
           What you unlock
         </h2>
         <p className="leading-relaxed text-ink-soft">
@@ -123,7 +123,7 @@ export default function NaplesPitchingLessonsPage() {
       </Reveal>
 
       <Reveal className="mt-12 space-y-4">
-        <h2 className="pixel-title pixel-title-sm text-blue-light">
+        <h2 className="pixel-title pixel-title-sm text-blue-dark">
           Naples FL pitching lessons — local SEO, local families
         </h2>
         <p className="leading-relaxed text-ink-soft">
@@ -137,7 +137,7 @@ export default function NaplesPitchingLessonsPage() {
 
       <Reveal>
         <section className="pixel-card mt-12 p-7 sm:p-9">
-          <h2 className="pixel-title pixel-title-sm text-yellow">
+          <h2 className="pixel-title pixel-title-sm text-blue-dark">
             Ready to load in? Book a Naples chat
           </h2>
           <p className="mt-3 leading-relaxed text-ink-soft">
@@ -145,7 +145,7 @@ export default function NaplesPitchingLessonsPage() {
             you choose Stan video feedback, a PDF chart, a virtual lesson, or an
             in-area session.
           </p>
-          <p className="mt-4 font-pixel text-sm text-yellow">
+          <p className="mt-4 font-pixel text-sm text-blue-dark">
             Text or Call 845-768-2211
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -163,7 +163,7 @@ export default function NaplesPitchingLessonsPage() {
             </a>
             <Link
               href="/#programs"
-              className="font-pixel-ui px-2 py-2.5 text-base font-semibold text-blue-light underline-offset-4 hover:underline"
+              className="font-pixel-ui px-2 py-2.5 text-base font-semibold text-blue-dark underline-offset-4 hover:underline"
             >
               See program paths →
             </Link>

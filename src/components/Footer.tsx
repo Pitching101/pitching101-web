@@ -13,23 +13,23 @@ export default function Footer() {
           </p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-sm font-semibold text-yellow">Contact</p>
+          <p className="font-pixel text-sm font-semibold text-blue-dark">Contact</p>
           <p className="font-pixel text-xs uppercase tracking-wide text-ink-soft">
             Text or Call 845-768-2211
           </p>
           <p>
-            <a className="text-blue-light hover:text-yellow hover:underline" href="tel:8457682211">
+            <a className="text-blue-dark hover:text-blue hover:underline" href="tel:8457682211">
               Call 845-768-2211
             </a>
           </p>
           <p>
-            <a className="text-blue-light hover:text-yellow hover:underline" href="sms:8457682211">
+            <a className="text-blue-dark hover:text-blue hover:underline" href="sms:8457682211">
               Text 845-768-2211
             </a>
           </p>
           <p>
             <a
-              className="text-blue-light hover:text-yellow hover:underline"
+              className="text-blue-dark hover:text-blue hover:underline"
               href="mailto:nickdeisng@gmail.com"
             >
               nickdeisng@gmail.com
@@ -38,15 +38,15 @@ export default function Footer() {
           <p className="font-pixel-ui text-base text-ink-soft">Naples, FL area</p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-sm font-semibold text-yellow">Explore</p>
+          <p className="font-pixel text-sm font-semibold text-blue-dark">Explore</p>
           <p>
-            <a className="text-ink-soft hover:text-yellow" href="/">
+            <a className="text-ink-soft hover:text-blue-dark" href="/">
               Home
             </a>
           </p>
           <p>
             <a
-              className="text-ink-soft hover:text-yellow"
+              className="text-ink-soft hover:text-blue-dark"
               href="/naples-fl-pitching-lessons/"
             >
               Naples FL pitching lessons

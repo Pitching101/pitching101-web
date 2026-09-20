@@ -35,7 +35,7 @@ const programs = [
 export default function HomePage() {
   return (
     <>
-      {/* 1–2. H1 / offer + Text/Call CTAs — dark readable band */}
+      {/* Hero — light shell */}
       <section className="text-band">
         <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
           <Reveal className="mx-auto max-w-3xl space-y-6 text-center sm:text-left">
@@ -50,12 +50,12 @@ export default function HomePage() {
               clear paths when you need them.
             </p>
             <ContactCtas className="justify-center pt-1 sm:justify-start" />
-            <p className="font-pixel text-sm text-yellow">
+            <p className="font-pixel text-sm text-blue-dark">
               Text or Call 845-768-2211
             </p>
             <Link
               href="/naples-fl-pitching-lessons/"
-              className="font-pixel-ui inline-block min-h-11 px-1 py-2 text-base font-semibold text-blue-light underline-offset-4 hover:text-yellow hover:underline"
+              className="font-pixel-ui inline-block min-h-11 px-1 py-2 text-base font-semibold text-blue-dark underline-offset-4 hover:text-blue hover:underline"
             >
               Youth pitching lessons Naples FL →
             </Link>
@@ -63,7 +63,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Trust strip */}
+      {/* Trust */}
       <section className="text-band border-t-4 border-blue">
         <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-12">
           <Reveal>
@@ -72,7 +72,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Stan / PDF / virtual programs */}
+      {/* Yellow runner — text left / GIF right */}
+      <section
+        className="asset-band-yellow"
+        aria-label="Clear next reps with pixel runner"
+      >
+        <div className="content-row">
+          <Reveal className="content-row-copy">
+            <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
+              Clear next reps
+            </p>
+            <h2 className="pixel-title pixel-title-md">
+              Run the bases with feedback parents understand
+            </h2>
+            <p className="text-base leading-relaxed">
+              No jargon — just plain-English notes your pitcher can use between
+              sessions. Parents stay in the loop the whole run.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a href="sms:8457682211" className="pixel-btn-on-light">
+                Text 845-768-2211
+              </a>
+              <a href="tel:8457682211" className="pixel-btn-ghost-on-light">
+                Call 845-768-2211
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delayMs={90} className="content-row-media">
+            <div className="gift-frame-yellow overflow-hidden">
+              <Image
+                src="/assets/pixel-runner.gif"
+                alt="Pixel art baseball runner sprinting"
+                width={800}
+                height={600}
+                className="row-gif"
+                unoptimized
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Programs */}
       <section
         id="programs"
         className="text-band scroll-mt-24 border-t-4 border-blue"
@@ -92,7 +133,7 @@ export default function HomePage() {
               <Reveal key={item.heading} delayMs={i * 80}>
                 <article className="pixel-card flex h-full flex-col p-6 sm:p-7">
                   <PixelIcon name={item.icon} />
-                  <h3 className="mt-4 font-pixel text-base font-semibold leading-snug text-blue-light">
+                  <h3 className="mt-4 font-pixel text-base font-semibold leading-snug text-blue-dark">
                     {item.heading}
                   </h3>
                   <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">
@@ -111,7 +152,51 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How it works — still content, before decorative slabs */}
+      {/* Teal swing — text left / GIF right */}
+      <section
+        className="asset-band-teal"
+        aria-label="Mechanics with pixel swing"
+      >
+        <div className="content-row">
+          <Reveal className="content-row-copy">
+            <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
+              Mechanics that click
+            </p>
+            <h2 className="pixel-title pixel-title-md">
+              Age-right progress without the noise
+            </h2>
+            <p className="text-base leading-relaxed">
+              Youth and elite arms get coaching that talks like a human — not a
+              scouting-report printer. You leave knowing what to watch for.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a href="tel:8457682211" className="pixel-btn-on-light">
+                Call 845-768-2211
+              </a>
+              <a
+                href="mailto:nickdeisng@gmail.com"
+                className="pixel-btn-ghost-on-light"
+              >
+                Email nickdeisng@gmail.com
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delayMs={90} className="content-row-media">
+            <div className="gift-frame-teal overflow-hidden">
+              <Image
+                src="/assets/pixel-swing-teal.gif"
+                alt="Pixel art batter swinging on teal"
+                width={800}
+                height={600}
+                className="row-gif"
+                unoptimized
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* How it works */}
       <section
         id="how-it-works"
         className="text-band scroll-mt-24 border-t-4 border-blue bg-surface"
@@ -141,7 +226,7 @@ export default function HomePage() {
               <Reveal key={s.step} delayMs={i * 90}>
                 <li className="pixel-card-alt list-none p-6 sm:p-7">
                   <span className="pixel-step">{s.step}</span>
-                  <h3 className="mt-4 font-pixel text-base font-semibold text-yellow">
+                  <h3 className="mt-4 font-pixel text-base font-semibold text-blue-dark">
                     {s.title}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">
@@ -154,56 +239,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. GIF color slabs as SUPPORT — art-forward, no competing copy */}
+      {/* White batter — text left / still right */}
       <section
-        className="asset-band-yellow asset-band-full"
-        aria-label="Pixel runner"
+        className="asset-band-white"
+        aria-label="Naples focus with pixel batter"
       >
-        <div className="band-inner">
-          <Image
-            src="/assets/pixel-runner.gif"
-            alt="Pixel art baseball runner sprinting"
-            width={960}
-            height={720}
-            className="band-gif"
-            unoptimized
-          />
+        <div className="content-row">
+          <Reveal className="content-row-copy">
+            <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
+              Naples · Collier County
+            </p>
+            <h2 className="pixel-title pixel-title-md">
+              Local families, flexible options
+            </h2>
+            <p className="text-base leading-relaxed">
+              Built for youth pitchers and parents across the Naples, FL area.
+              Text or call first — we’ll point you to Stan video, a PDF chart, a
+              virtual lesson, or an in-area session.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a href="sms:8457682211" className="pixel-btn-on-light">
+                Text 845-768-2211
+              </a>
+              <a
+                href="/naples-fl-pitching-lessons/"
+                className="pixel-btn-ghost-on-light"
+              >
+                Naples FL lessons →
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delayMs={90} className="content-row-media">
+            <div className="gift-frame-white overflow-hidden">
+              <Image
+                src="/assets/pixel-batter.jpg"
+                alt="Pixel art baseball batter on white"
+                width={640}
+                height={640}
+                className="row-still"
+                style={{ imageRendering: "pixelated" }}
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section
-        className="asset-band-white asset-band-full"
-        aria-label="Pixel batter"
-      >
-        <div className="band-inner">
-          <Image
-            src="/assets/pixel-batter.jpg"
-            alt="Pixel art baseball batter on white"
-            width={640}
-            height={640}
-            className="band-still"
-            style={{ imageRendering: "pixelated" }}
-          />
-        </div>
-      </section>
-
-      <section
-        className="asset-band-teal asset-band-full"
-        aria-label="Pixel swing"
-      >
-        <div className="band-inner">
-          <Image
-            src="/assets/pixel-swing-teal.gif"
-            alt="Pixel art batter swinging on teal"
-            width={960}
-            height={720}
-            className="band-gif"
-            unoptimized
-          />
-        </div>
-      </section>
-
-      {/* Full-width scenic pitcher — pure visual slab, no text */}
+      {/* Full-bleed pitcher — pure visual, no text */}
       <section
         className="asset-band-stadium asset-band-bleed"
         aria-label="Pixel pitcher scenic"
@@ -219,7 +300,7 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Closing CTA — dark readable band */}
+      {/* Closing CTA */}
       <section className="text-band border-t-4 border-blue">
         <div className="mx-auto max-w-5xl px-5 py-14 text-center sm:px-8 sm:py-20">
           <Reveal>
@@ -229,14 +310,14 @@ export default function HomePage() {
               listed yet — text, call, or email and we’ll point you to the right
               next step.
             </p>
-            <p className="mt-4 font-pixel text-base text-yellow">
+            <p className="mt-4 font-pixel text-base text-blue-dark">
               Text or Call 845-768-2211
             </p>
             <ContactCtas className="mt-8 justify-center" />
             <p className="mt-8">
               <Link
                 href="/naples-fl-pitching-lessons/"
-                className="font-pixel-ui inline-block min-h-11 py-2 text-base font-semibold text-blue-light underline-offset-4 hover:text-yellow hover:underline"
+                className="font-pixel-ui inline-block min-h-11 py-2 text-base font-semibold text-blue-dark underline-offset-4 hover:text-blue hover:underline"
               >
                 Youth pitching lessons Naples FL →
               </Link>
