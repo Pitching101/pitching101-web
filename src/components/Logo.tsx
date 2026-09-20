@@ -1,25 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 
-/** Official Pitching101 mark — pick variant to match section background. */
+/** Primary mark: bold-blue card (white baseball + Pitching101). */
 export default function Logo({
   className = "",
-  variant = "on-white",
-  height = 40,
+  height = 44,
+  variant: _variant = "primary",
 }: {
   className?: string;
-  /** on-white: brand-blue mark (nav / light bands).
-   *  on-blue: white mark on bright blue badge (colored / blue sections). */
-  variant?: "on-white" | "on-blue";
+  /** primary / on-white / on-blue — all use the bold-blue card mark. */
+  variant?: "primary" | "on-white" | "on-blue";
   height?: number;
 }) {
-  const src =
-    variant === "on-blue"
-      ? "/assets/logo-white-on-blue.png"
-      : "/assets/logo-blue-on-white.png";
-
-  // Intrinsic sizes: proper blue-on-white 1458×392; white-on-blue 1142×654
-  const aspect = variant === "on-blue" ? 1142 / 654 : 1458 / 392;
+  void _variant;
+  const src = "/assets/logo-bold-blue-white.png";
+  // Intrinsic size of logo-bold-blue-white.png
+  const aspect = 578 / 324;
   const width = Math.round(height * aspect);
 
   return (

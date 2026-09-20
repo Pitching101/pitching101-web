@@ -45,8 +45,29 @@ const stanOffers = [
   {
     title: "Free Lead Magnet",
     note: "Starter checklist and email tips (Stan store link soon).",
-    href: "#",
-    cta: "Coming Soon",
+    href: "/guides/",
+    cta: "See Free Guides",
+  },
+];
+
+const freeGuides = [
+  {
+    title: "Arm-Care Checklist",
+    note: "Simple warm-up and cool-down steps so young arms stay healthy.",
+    href: "mailto:nickdeisng@gmail.com?subject=Arm-Care%20Checklist",
+    cta: "Get The Checklist",
+  },
+  {
+    title: "Strike % Tips",
+    note: "Parent-friendly cues that help kids throw more strikes.",
+    href: "mailto:nickdeisng@gmail.com?subject=Strike%20Percent%20Tips",
+    cta: "Get The Tips",
+  },
+  {
+    title: "Pre-Catch Warmup",
+    note: "A short routine before catch so practice starts right.",
+    href: "mailto:nickdeisng@gmail.com?subject=Pre-Catch%20Warmup",
+    cta: "Get The Warmup",
   },
 ];
 
@@ -80,6 +101,9 @@ export default function HomePage() {
               <Link href="/contact/" className="btn">
                 Contact
               </Link>
+              <Link href="/guides/" className="btn-secondary !border-white/70 !bg-transparent !text-white hover:!bg-white/15 hover:!text-white">
+                Free Guides
+              </Link>
             </div>
             <p className="text-sm text-white/80">
               Arm Care First · Reach Out Before You Drive
@@ -88,13 +112,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. #BBD6F1 — larger logo overlay + I’m Your Guy title */}
+      {/* 2. #BBD6F1 — bold-blue card logo + I’m Your Guy */}
       <section className="band-soft" aria-label="I'm Your Guy">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal>
-            <div className="logo-overlay-badge">
-              <Logo variant="on-blue" height={72} className="logo-overlay-mark" />
-            </div>
+            <Logo height={88} className="logo-overlay-mark" />
           </Reveal>
           <Reveal delayMs={40} className="space-y-5">
             <h2 className="ui-title ui-title-md">
@@ -112,7 +134,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. WHITE — Client Reviews carousel */}
+      {/* 3. WHITE — Client Reviews carousel (real Trustpilot) */}
       <section className="text-band" id="reviews" aria-label="Client Reviews">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
@@ -172,8 +194,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. #BBD6F1 — Stan Store Offers (replaces “I’ve been where you are”) */}
-      <section id="offers" className="band-soft scroll-mt-24" aria-label="Stan Store Offers">
+      {/* 6. #BBD6F1 — Free Guides lead magnets */}
+      <section id="guides" className="band-soft scroll-mt-24" aria-label="Free Guides">
+        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal className="space-y-3">
+            <h2 className="ui-title ui-title-md">Free Guides</h2>
+            <p className="text-base text-ink-soft">
+              Quick Parent-Friendly PDFs. Stan Store Capture Links Coming — Email Works Now.
+            </p>
+          </Reveal>
+          <Reveal delayMs={40}>
+            <ul className="grid gap-4 sm:grid-cols-3">
+              {freeGuides.map((g) => (
+                <li key={g.title} className="card flex flex-col gap-3 p-5">
+                  <p className="font-semibold text-blue-dark">{g.title}</p>
+                  <p className="flex-1 text-sm leading-relaxed text-ink-soft">{g.note}</p>
+                  <a href={g.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
+                    {g.cta}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal delayMs={60}>
+            <Link href="/guides/" className="nav-link font-semibold text-blue-dark underline underline-offset-4">
+              See All Free Guides
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 7. WHITE — Stan Store Offers */}
+      <section id="offers" className="text-band scroll-mt-24" aria-label="Stan Store Offers">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">Stan Store Offers</h2>
@@ -190,9 +242,15 @@ export default function HomePage() {
                   <p className="flex-1 text-sm leading-relaxed text-ink-soft">
                     {offer.note}
                   </p>
-                  <a href={offer.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
-                    {offer.cta}
-                  </a>
+                  {offer.href.startsWith("/") ? (
+                    <Link href={offer.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
+                      {offer.cta}
+                    </Link>
+                  ) : (
+                    <a href={offer.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
+                      {offer.cta}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -200,10 +258,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. WHITE — how it works */}
+      {/* 8. #BBD6F1 — how it works */}
       <section
         id="how-it-works"
-        className="text-band scroll-mt-24"
+        className="band-soft scroll-mt-24"
         aria-label="How It Works"
       >
         <div className="mx-auto max-w-3xl space-y-10 px-5 py-14 sm:px-8 sm:py-16">
@@ -245,8 +303,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. #BBD6F1 — single Contact CTA → /contact/ */}
-      <section id="contact" className="band-soft scroll-mt-24" aria-label="Contact">
+      {/* 9. WHITE — single Contact CTA → /contact/ */}
+      <section id="contact" className="text-band scroll-mt-24" aria-label="Contact">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 text-center sm:px-8 sm:py-16 sm:text-left">
           <Reveal className="space-y-5">
             <h2 className="ui-title ui-title-md">Ready To Talk?</h2>

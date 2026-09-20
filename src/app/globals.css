@@ -77,24 +77,25 @@
   --color-edge: var(--edge);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-mono: ui-monospace, monospace;
 }
 
 body {
   background-color: var(--background);
   color: var(--ink);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.65;
 }
 
-/* Clean professional headings — no pixel letter fonts */
+/* Distinctive modern display titles — Outfit (not pixel) */
 .heading {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   color: var(--ink);
+  text-wrap: balance;
 }
 .heading-lg { font-size: clamp(1.85rem, 4.2vw, 2.75rem); }
 .heading-md { font-size: clamp(1.35rem, 2.6vw, 1.85rem); }
@@ -311,7 +312,7 @@ body {
   border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
   color: var(--blue-dark);
   border-radius: 999px;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -334,7 +335,7 @@ body {
   height: 2.5rem;
   background: var(--blue);
   color: #ffffff;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1;
@@ -351,7 +352,7 @@ body {
   border: none;
   background: var(--blue);
   color: #ffffff;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: -0.01em;
@@ -382,7 +383,7 @@ body {
   border: 1.5px solid var(--blue-dark);
   background: var(--background);
   color: var(--blue-dark);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: -0.01em;
@@ -417,7 +418,7 @@ body {
   border: none;
   background: #0f1a2e;
   color: #ffffff;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: -0.01em;
@@ -444,7 +445,7 @@ body {
   border: 1.5px solid currentColor;
   background: transparent;
   color: inherit;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: -0.01em;
@@ -481,7 +482,7 @@ button:focus-visible {
 }
 
 .nav-link {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--ink-soft);
@@ -542,20 +543,20 @@ button:focus-visible {
 }
 
 /* Class aliases — keep markup flexible */
-.ui-title { font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); }
+.ui-title { font-family: var(--font-display), var(--font-body), system-ui, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); text-wrap: balance; }
 .ui-title-lg { font-size: clamp(1.85rem, 4.2vw, 2.75rem); }
 .ui-title-md { font-size: clamp(1.35rem, 2.6vw, 1.85rem); }
 .ui-title-sm { font-size: clamp(1.1rem, 2vw, 1.35rem); }
-.ui-chip { display: inline-flex; align-items: center; background: var(--blue-soft); border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent); color: var(--blue-dark); border-radius: 999px; font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; }
+.ui-chip { display: inline-flex; align-items: center; background: var(--blue-soft); border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent); color: var(--blue-dark); border-radius: 999px; font-family: var(--font-body), system-ui, sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; }
 .ui-card { background: var(--surface-raised); border: 1px solid color-mix(in srgb, var(--blue) 18%, transparent); box-shadow: var(--shadow-sm); border-radius: var(--radius); transition: transform 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft); }
 .ui-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .ui-card-alt { background: var(--blue-soft); border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent); box-shadow: var(--shadow-sm); border-radius: var(--radius); transition: transform 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft); }
 .ui-card-alt:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.ui-step { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; background: var(--blue); color: #ffffff; font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: 1rem; font-weight: 700; line-height: 1; border-radius: 999px; box-shadow: var(--shadow-sm); }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: none; background: var(--blue); color: #ffffff; font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.75rem 1.25rem; box-shadow: 0 4px 14px -4px rgba(42, 125, 225, 0.45); transition: transform 0.2s var(--ease-soft), box-shadow 0.2s var(--ease-soft), background 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
+.ui-step { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; background: var(--blue); color: #ffffff; font-family: var(--font-body), system-ui, sans-serif; font-size: 1rem; font-weight: 700; line-height: 1; border-radius: 999px; box-shadow: var(--shadow-sm); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: none; background: var(--blue); color: #ffffff; font-family: var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.75rem 1.25rem; box-shadow: 0 4px 14px -4px rgba(42, 125, 225, 0.45); transition: transform 0.2s var(--ease-soft), box-shadow 0.2s var(--ease-soft), background 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
 .btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
-.btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: 1.5px solid var(--blue-dark); background: var(--background); color: var(--blue-dark); font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.7rem 1.15rem; transition: transform 0.2s var(--ease-soft), background 0.2s var(--ease-soft), color 0.2s var(--ease-soft), border-color 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
+.btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: 1.5px solid var(--blue-dark); background: var(--background); color: var(--blue-dark); font-family: var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.7rem 1.15rem; transition: transform 0.2s var(--ease-soft), background 0.2s var(--ease-soft), color 0.2s var(--ease-soft), border-color 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
 .btn-ghost:hover { background: var(--blue-soft); color: var(--ink); border-color: var(--blue); transform: translateY(-1px); }
 .btn-ghost:active { transform: translateY(0); }
 /* Flush media — no card border / radius / drop shadow around GIFs */
@@ -575,9 +576,10 @@ button:focus-visible {
 
 /* MacStrength-inspired spacing — Pitching101 brand only */
 .ui-title-hero {
-  font-size: clamp(2.15rem, 5.2vw, 3.35rem);
-  letter-spacing: -0.03em;
-  line-height: 1.12;
+  font-size: clamp(2.35rem, 5.8vw, 3.75rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  font-weight: 800;
 }
 .content-row-hero {
   padding-top: clamp(3rem, 8vw, 5.5rem);
@@ -644,8 +646,19 @@ button:focus-visible {
   max-width: 36rem;
 }
 .hero-overlay-title {
-  color: #ffffff;
-  text-shadow: 0 1px 2px rgba(15, 26, 46, 0.35);
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(15, 26, 46, 0.45);
+}
+.hero-overlay .ui-title,
+.hero-overlay h1,
+.hero-overlay h2 {
+  color: #ffffff !important;
+}
+.section-on-dark .ui-title,
+.section-on-dark h1,
+.section-on-dark h2,
+.section-on-dark .heading {
+  color: #ffffff !important;
 }
 .hero-overlay .ui-chip {
   background: color-mix(in srgb, var(--blue-soft) 88%, transparent);
@@ -722,4 +735,27 @@ button:focus-visible {
   .reviews-dot.is-active {
     transform: none;
   }
+}
+
+
+/* Trustpilot link under reviews */
+.reviews-tp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.reviews-tp-link:hover { color: var(--blue); }
+
+.reviews-stars {
+  color: #00b67a; /* Trustpilot green for stars */
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+  font-weight: 700;
 }

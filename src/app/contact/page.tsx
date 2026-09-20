@@ -18,7 +18,7 @@ export default function ContactPage() {
             ← Home
           </Link>
         </p>
-        <Logo variant="on-white" height={44} />
+        <Logo variant="primary" height={44} />
         <h1 className="ui-title ui-title-lg">Contact</h1>
         <p className="text-lg leading-relaxed text-ink-soft">
           Want pitching help for your kid? Reach out. We’ll keep it simple.

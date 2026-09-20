@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="site-footer mt-auto">
       <div className="mx-auto flex max-w-5xl flex-col gap-8 px-5 py-12 sm:flex-row sm:items-start sm:justify-between sm:px-8">
         <div className="space-y-4">
-          <Logo variant="on-white" />
+          <Logo height={48} />
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth pitching lessons for Naples, FL families. Clear coaching. No jargon.
           </p>
@@ -41,8 +41,23 @@ export default function Footer() {
         <div className="space-y-2 text-sm">
           <p className="text-sm font-semibold text-blue-dark">Explore</p>
           <p>
-            <a className="text-ink-soft hover:text-blue-dark" href="/">
+            <Link className="text-ink-soft hover:text-blue-dark" href="/">
               Home
+            </Link>
+          </p>
+          <p>
+            <Link className="text-ink-soft hover:text-blue-dark" href="/about/">
+              About
+            </Link>
+          </p>
+          <p>
+            <Link className="text-ink-soft hover:text-blue-dark" href="/guides/">
+              Free Guides
+            </Link>
+          </p>
+          <p>
+            <a className="text-ink-soft hover:text-blue-dark" href="/#how-it-works">
+              How It Works
             </a>
           </p>
           <p>
