@@ -5,7 +5,7 @@ import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const familiar = [
   "How do I help my child throw harder and more accurately?",
-  "What’s the right way to train without risking an injury?",
+  "What's the right way to train without risking an injury?",
   "Why does every lesson or travel team have to cost a fortune?",
 ];
 
@@ -16,10 +16,26 @@ const ageGoals = [
 ];
 
 const journeyAreas = [
-  { title: "Affordable Training", note: "Real help without the crazy price tag." },
-  { title: "Lifelong Routines", note: "Simple habits kids can keep." },
-  { title: "Safe Techniques", note: "Arm care first. Stay on the mound." },
-  { title: "Flexible Options", note: "Local, DIY, or hybrid — your call." },
+  {
+    title: "Affordable Training",
+    note: "Real help without the crazy price tag.",
+    icon: "/assets/icons/icon-plan-checklist.png",
+  },
+  {
+    title: "Lifelong Routines",
+    note: "Simple habits kids can keep.",
+    icon: "/assets/icons/icon-arm-care-v2.png",
+  },
+  {
+    title: "Safe Techniques",
+    note: "Arm care first. Stay on the mound.",
+    icon: "/assets/icons/icon-strikes.png",
+  },
+  {
+    title: "Flexible Options",
+    note: "Local, DIY, or hybrid — your call.",
+    icon: "/assets/icons/icon-free-guide-v2.png",
+  },
 ];
 
 const trainingOptions = [
@@ -34,79 +50,70 @@ const freeGuides = [
     note: "Simple warm-up and cool-down steps so young arms stay healthy.",
     href: "mailto:nickdeisng@gmail.com?subject=Arm-Care%20Checklist",
     cta: "Get The Checklist",
+    icon: "/assets/icons/icon-arm-care-v2.png",
   },
   {
     title: "Strike % Tips",
     note: "Parent-friendly cues that help kids throw more strikes.",
     href: "mailto:nickdeisng@gmail.com?subject=Strike%20Percent%20Tips",
     cta: "Get The Tips",
+    icon: "/assets/icons/icon-strikes.png",
   },
   {
     title: "Pre-Catch Warmup",
     note: "A short routine before catch so practice starts right.",
     href: "mailto:nickdeisng@gmail.com?subject=Pre-Catch%20Warmup",
     cta: "Get The Warmup",
+    icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — pitcher GIF as background overlay + dark scrim */}
+      {/* 1. Hero — solid white, dark navy copy */}
       <section className="hero-overlay" aria-label="Youth Pitching Lessons In Naples, FL">
-        <div className="hero-overlay-media" aria-hidden="true">
-          <Image
-            src="/assets/pixel-pitcher.gif"
-            alt=""
-            fill
-            className="hero-overlay-gif"
-            unoptimized
-            priority
-            sizes="100vw"
-          />
-          <div className="hero-overlay-scrim" />
-        </div>
         <div className="hero-overlay-inner">
           <Reveal from="left" className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL</p>
             <h1 className="ui-title ui-title-hero hero-overlay-title">
               Youth Pitching Lessons In Naples, FL
             </h1>
-            <p className="text-lg leading-relaxed text-white/90 sm:text-xl">
+            <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
               Clear Coaching For Kids And Parents. No Jargon.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <Link href="/contact/" className="btn">
                 Contact
               </Link>
-              <Link href="/guides/" className="btn-secondary !border-white/70 !bg-transparent !text-white hover:!bg-white/15 hover:!text-white">
+              <Link href="/guides/" className="btn-ghost">
                 Free Guides
               </Link>
             </div>
-            <p className="text-sm text-white/80">
+            <p className="text-sm text-ink-soft">
               Arm Care First · Reach Out Before You Drive
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* 2. WHITE — I’m Your Guy */}
+      {/* 2. WHITE — I'm Your Guy */}
       <section className="text-band" aria-label="I'm Your Guy">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal delayMs={40} className="space-y-5">
             <h2 className="ui-title ui-title-md">
-              I’m Your Guy If You’re Looking To Throw Strikes, Build A Strong
+              I'm Your Guy If You're Looking To Throw Strikes, Build A Strong
               Foundation, Train Healthy Patterns, And Get Affordable Lessons.
             </h2>
             <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
               {familiar.map((q) => (
                 <li key={q} className="pl-1">
-                  “{q}”
+                  "{q}"
                 </li>
               ))}
             </ul>
             <p className="text-base text-ink-soft">
-              ELI5: parents ask this — here’s what they say on Trustpilot.
+              ELI5: parents ask this — here's what they say on Trustpilot.
             </p>
           </Reveal>
         </div>
@@ -118,17 +125,17 @@ export default function HomePage() {
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">From Trustpilot</h2>
             <p className="text-base leading-relaxed text-ink-soft">
-              Parents ask those questions — here’s what they say after working together.
+              Parents ask those questions — here's what they say after working together.
             </p>
             <ReviewsCarousel />
           </Reveal>
         </div>
       </section>
 
-      {/* 4. #BBD6F1 — ages 8–14 goals (+ runner, flush) */}
+      {/* 4. WHITE — ages 8–14 + peanuts bounce */}
       <section
         id="who"
-        className="band-soft ages-band scroll-mt-24"
+        className="text-band ages-band scroll-mt-24"
         aria-label="Ages 8 To 14"
       >
         <div className="peanut-decor" aria-hidden="true">
@@ -170,12 +177,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. WHITE — child’s journey / four key areas */}
+      {/* 5. WHITE — child's journey / four key areas */}
       <section className="text-band" aria-label="Journey">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-4">
             <h2 className="ui-title ui-title-md">
-              Your Child’s Journey Starts Here
+              Your Child's Journey Starts Here
             </h2>
             <p className="text-base text-ink-soft">
               Four Simple Focus Areas — Confident, Injury-Free Pitching.
@@ -184,9 +191,18 @@ export default function HomePage() {
           <Reveal delayMs={40}>
             <ul className="grid gap-5 sm:grid-cols-2">
               {journeyAreas.map((item) => (
-                <li key={item.title} className="space-y-1">
-                  <p className="font-semibold text-blue-dark">{item.title}</p>
-                  <p className="text-base text-ink-soft">{item.note}</p>
+                <li key={item.title} className="flex gap-3 space-y-0">
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={56}
+                    height={56}
+                    className="mt-0.5 h-14 w-14 shrink-0 object-contain"
+                  />
+                  <div className="space-y-1">
+                    <p className="font-semibold text-blue-dark">{item.title}</p>
+                    <p className="text-base text-ink-soft">{item.note}</p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -194,37 +210,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. #BBD6F1 — Free Guides lead magnets */}
-      <section id="guides" className="band-soft scroll-mt-24" aria-label="Free Guides">
-        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">Free Guides</h2>
-            <p className="text-base text-ink-soft">
-              Quick Parent-Friendly PDFs. Stan Store Capture Links Coming — Email Works Now.
-            </p>
-          </Reveal>
-          <Reveal delayMs={40}>
-            <ul className="grid gap-4 sm:grid-cols-3">
-              {freeGuides.map((g) => (
-                <li key={g.title} className="card flex flex-col gap-3 p-5">
-                  <p className="font-semibold text-blue-dark">{g.title}</p>
-                  <p className="flex-1 text-sm leading-relaxed text-ink-soft">{g.note}</p>
-                  <a href={g.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
-                    {g.cta}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal delayMs={60}>
-            <Link href="/guides/" className="nav-link font-semibold text-blue-dark underline underline-offset-4">
-              See All Free Guides
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 7. #BBD6F1 — how it works (card layout) */}
+      {/* 6. #BBD6F1 — how it works */}
       <section
         id="how-it-works"
         className="band-soft scroll-mt-24"
@@ -239,6 +225,7 @@ export default function HomePage() {
           <div className="grid gap-5">
             <Reveal delayMs={40}>
               <article className="card space-y-4 p-6">
+                <Image src="/assets/icons/icon-plan-checklist.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 1</span>
                   <h3 className="font-semibold text-blue-dark">
@@ -262,6 +249,7 @@ export default function HomePage() {
 
             <Reveal delayMs={80}>
               <article className="card space-y-3 p-6">
+                <Image src="/assets/icons/icon-strikes.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 2</span>
                   <h3 className="font-semibold text-blue-dark">Start Training</h3>
@@ -282,12 +270,13 @@ export default function HomePage() {
 
             <Reveal delayMs={120}>
               <article className="card space-y-3 p-6">
+                <Image src="/assets/icons/icon-arm-care-v2.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 3</span>
                   <h3 className="font-semibold text-blue-dark">Watch Them Thrive</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-ink-soft sm:text-base">
-                  Strength, confidence, and mound skills — and you’ll know you
+                  Strength, confidence, and mound skills — and you'll know you
                   helped them get there.
                 </p>
               </article>
@@ -296,9 +285,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. WHITE — single Contact CTA → /contact/ */}
+      {/* 7. WHITE — Ready To Talk + coach photo */}
       <section id="contact" className="text-band scroll-mt-24" aria-label="Contact">
-        <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 text-center sm:px-8 sm:py-16 sm:text-left">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-5 py-14 text-center sm:flex-row sm:items-center sm:px-8 sm:py-16 sm:text-left">
+          <Image
+            src="/assets/photos/nick-coach.png"
+            alt="Coach Nick — Pitching101 Naples FL"
+            width={120}
+            height={120}
+            className="nick-coach-avatar"
+          />
           <Reveal className="space-y-5">
             <h2 className="ui-title ui-title-md">Ready To Talk?</h2>
             <p className="text-lg text-ink-soft">
@@ -309,6 +305,43 @@ export default function HomePage() {
                 Contact
               </Link>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 8. Free Guides — bottom band (own section) */}
+      <section id="guides" className="band-soft scroll-mt-24" aria-label="Free Guides">
+        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal className="space-y-3">
+            <h2 className="ui-title ui-title-md">Free Guides</h2>
+            <p className="text-base text-ink-soft">
+              Quick Parent-Friendly PDFs. Stan Store Capture Links Coming — Email Works Now.
+            </p>
+          </Reveal>
+          <Reveal delayMs={40}>
+            <ul className="grid gap-4 sm:grid-cols-3">
+              {freeGuides.map((g) => (
+                <li key={g.title} className="card flex flex-col gap-3 p-5">
+                  <Image
+                    src={g.icon}
+                    alt=""
+                    width={64}
+                    height={64}
+                    className="h-16 w-16 object-contain"
+                  />
+                  <p className="font-semibold text-blue-dark">{g.title}</p>
+                  <p className="flex-1 text-sm leading-relaxed text-ink-soft">{g.note}</p>
+                  <a href={g.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
+                    {g.cta}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal delayMs={60}>
+            <Link href="/guides/" className="nav-link font-semibold text-blue-dark underline underline-offset-4">
+              See All Free Guides
+            </Link>
           </Reveal>
         </div>
       </section>

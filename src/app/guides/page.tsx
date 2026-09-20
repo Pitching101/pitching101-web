@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import Logo from "@/components/Logo";
 
@@ -15,18 +16,21 @@ const guides = [
     note: "Warm-up and cool-down steps so young arms stay healthy through the season.",
     href: "mailto:nickdeisng@gmail.com?subject=Arm-Care%20Checklist%20Guide",
     cta: "Email Me The Checklist",
+    icon: "/assets/icon-arm-care-v2.png",
   },
   {
     title: "Strike % Tips",
     note: "Simple cues parents can repeat so kids throw more strikes without overthinking.",
     href: "mailto:nickdeisng@gmail.com?subject=Strike%20Percent%20Tips%20Guide",
     cta: "Email Me The Tips",
+    icon: "/assets/icon-strikes.png",
   },
   {
     title: "Pre-Catch Warmup",
     note: "A short routine before catch so practice starts sharp and safe.",
     href: "mailto:nickdeisng@gmail.com?subject=Pre-Catch%20Warmup%20Guide",
     cta: "Email Me The Warmup",
+    icon: "/assets/icon-plan-checklist.png",
   },
 ];
 
@@ -52,6 +56,7 @@ export default function GuidesPage() {
         <ul className="grid gap-5 sm:grid-cols-3">
           {guides.map((g) => (
             <li key={g.title} className="card flex flex-col gap-3 p-5">
+              <Image src={g.icon} alt="" width={64} height={64} className="card-icon" />
               <h2 className="ui-title text-lg text-blue-dark">{g.title}</h2>
               <p className="flex-1 text-sm leading-relaxed text-ink-soft">{g.note}</p>
               <a href={g.href} className="btn !min-h-9 !px-3 !py-1.5 !text-sm">
