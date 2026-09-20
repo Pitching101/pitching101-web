@@ -57,17 +57,15 @@ export default function NaplesPitchingLessonsPage() {
             ← Home
           </Link>
         </p>
-        <div className="media-frame media-frame-white inline-flex overflow-hidden">
-          <Image
-            src="/assets/pixel-pitcher.gif"
-            alt="Pixel art pitcher delivery"
-            width={72}
-            height={72}
-            className="h-[72px] w-[72px]"
-            style={{ imageRendering: "pixelated" }}
-            unoptimized
-          />
-        </div>
+        <Image
+          src="/assets/pixel-pitcher.gif"
+          alt="Pixel art pitcher delivery"
+          width={72}
+          height={72}
+          className="h-[72px] w-[72px]"
+          style={{ imageRendering: "pixelated" }}
+          unoptimized
+        />
         <p className="ui-chip px-3.5 py-1.5">Naples · SWFL</p>
         <h1 className="ui-title ui-title-lg">
           Youth pitching lessons in Naples, FL
@@ -75,7 +73,11 @@ export default function NaplesPitchingLessonsPage() {
         <p className="text-lg leading-relaxed text-ink-soft">
           Clear coaching for ages 8–14. No jargon.
         </p>
-        <ContactCtas mailtoSubject="Youth pitching lessons in Naples, FL" />
+        <div className="flex flex-wrap gap-3">
+          <Link href="/contact/" className="btn">
+            Contact
+          </Link>
+        </div>
       </Reveal>
 
       <Reveal className="mt-8" delayMs={60}>

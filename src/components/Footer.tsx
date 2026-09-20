@@ -43,6 +43,11 @@ export default function Footer() {
             </a>
           </p>
           <p>
+            <a className="text-ink-soft hover:text-blue-dark" href="/contact/">
+              Contact
+            </a>
+          </p>
+          <p>
             <a
               className="text-ink-soft hover:text-blue-dark"
               href="/naples-fl-pitching-lessons/"

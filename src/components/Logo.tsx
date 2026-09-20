@@ -8,7 +8,7 @@ export default function Logo({
   height = 40,
 }: {
   className?: string;
-  /** on-white: brand-blue mark on transparent (nav / light bands).
+  /** on-white: brand-blue mark on transparent/white (nav / light bands).
    *  on-blue: white mark on bright blue badge (colored / blue sections). */
   variant?: "on-white" | "on-blue";
   height?: number;
@@ -18,8 +18,8 @@ export default function Logo({
       ? "/assets/logo-white-on-blue.png"
       : "/assets/logo-blue-on-white.png";
 
-  // Intrinsic sizes after crop (see public/assets logos)
-  const aspect = variant === "on-blue" ? 1142 / 654 : 1502 / 465;
+  // Proper blue-on-white: 1458×392; white-on-blue badge: 1142×654
+  const aspect = variant === "on-blue" ? 1142 / 654 : 1458 / 392;
   const width = Math.round(height * aspect);
 
   return (

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "./Logo";
 
 export default function Header() {
@@ -12,12 +13,9 @@ export default function Header() {
           <a href="/naples-fl-pitching-lessons/" className="nav-link">
             Naples FL
           </a>
-          <a href="sms:8457682211" className="btn !min-h-9 !px-3.5 !py-1.5 !text-sm">
-            Text 845-768-2211
-          </a>
-          <a href="tel:8457682211" className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
-            Call
-          </a>
+          <Link href="/contact/" className="btn !min-h-9 !px-3.5 !py-1.5 !text-sm">
+            Contact
+          </Link>
         </nav>
       </div>
     </header>
