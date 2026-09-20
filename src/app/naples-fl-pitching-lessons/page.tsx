@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
-import TrustStrip from "@/components/TrustStrip";
-import ContactCtas from "@/components/ContactCtas";
 
 export const metadata: Metadata = {
   title: "Youth Pitching Lessons in Naples, FL",
@@ -33,7 +31,7 @@ const whoFor = [
 const offers = [
   {
     label: "In-person Naples lessons",
-    note: "Local sessions. Text first.",
+    note: "Local sessions. Reach out first.",
     href: "mailto:nickdeisng@gmail.com?subject=Naples%20pitching%20lessons",
   },
   {
@@ -73,15 +71,9 @@ export default function NaplesPitchingLessonsPage() {
         <p className="text-lg leading-relaxed text-ink-soft">
           Clear coaching for ages 8–14. No jargon.
         </p>
-        <div className="flex flex-wrap gap-3">
-          <Link href="/contact/" className="btn">
-            Contact
-          </Link>
-        </div>
-      </Reveal>
-
-      <Reveal className="mt-8" delayMs={60}>
-        <TrustStrip />
+        <Link href="/contact/" className="btn">
+          Contact
+        </Link>
       </Reveal>
 
       <Reveal className="mt-12 space-y-5">
@@ -115,10 +107,9 @@ export default function NaplesPitchingLessonsPage() {
         <p className="text-ink-soft">
           No street address listed. Text, call, or email first.
         </p>
-        <p className="text-sm font-semibold text-blue-dark">
-          Text or Call 845-768-2211
-        </p>
-        <ContactCtas mailtoSubject="Youth pitching lessons in Naples, FL" />
+        <Link href="/contact/" className="btn">
+          Contact
+        </Link>
       </Reveal>
 
       <p className="mt-10 text-sm text-ink-soft">

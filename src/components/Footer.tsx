@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -12,8 +13,10 @@ export default function Footer() {
         </div>
         <div className="space-y-2 text-sm">
           <p className="text-sm font-semibold text-blue-dark">Contact</p>
-          <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">
-            Text or Call 845-768-2211
+          <p>
+            <Link className="text-blue-dark hover:text-blue hover:underline" href="/contact/">
+              Contact page
+            </Link>
           </p>
           <p>
             <a className="text-blue-dark hover:text-blue hover:underline" href="tel:8457682211">
@@ -43,17 +46,17 @@ export default function Footer() {
             </a>
           </p>
           <p>
-            <a className="text-ink-soft hover:text-blue-dark" href="/contact/">
-              Contact
-            </a>
-          </p>
-          <p>
             <a
               className="text-ink-soft hover:text-blue-dark"
               href="/naples-fl-pitching-lessons/"
             >
               Naples FL pitching lessons
             </a>
+          </p>
+          <p>
+            <Link className="text-ink-soft hover:text-blue-dark" href="/contact/">
+              Contact
+            </Link>
           </p>
         </div>
       </div>
