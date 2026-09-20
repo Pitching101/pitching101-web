@@ -151,11 +151,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Bottom — seamless stadium sky (no white fade) + Ready To Talk */}
+      {/* 5. Bottom — stadium / plate band: Real Training Clips + light Ready To Talk */}
       <section
         id="contact"
         className="home-stadium-band scroll-mt-24"
-        aria-label="Contact"
+        aria-label="Real Training Clips And Contact"
       >
         <div className="home-stadium-media" aria-hidden="true">
           <Image
@@ -168,7 +168,7 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-5 py-16 text-center sm:px-8 sm:py-20">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 px-5 py-16 text-center sm:px-8 sm:py-20">
             <Image
               src="/assets/nick-coach-circle.png"
               alt="Coach Nick — Pitching101 Naples FL"
@@ -176,10 +176,13 @@ export default function HomePage() {
               height={120}
               className="nick-coach-avatar"
             />
-            <Reveal className="space-y-5">
+            <Reveal>
+              <TrainingClipsStrip />
+            </Reveal>
+            <Reveal className="space-y-4" delayMs={40}>
               <h2 className="ui-title ui-title-md">Ready To Talk?</h2>
-              <p className="text-lg text-ink-soft">
-                Text, Call, Or Email — Naples, FL Families Welcome.
+              <p className="text-base text-ink-soft sm:text-lg">
+                Naples, FL Families Welcome.
               </p>
               <div className="flex justify-center">
                 <Link href="/contact/" className="btn">
@@ -187,7 +190,6 @@ export default function HomePage() {
                 </Link>
               </div>
             </Reveal>
-            <TrainingClipsStrip />
           </div>
         </div>
       </section>
