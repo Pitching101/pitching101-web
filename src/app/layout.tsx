@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Outfit } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollThrowDecor from "@/components/ScrollThrowDecor";
 import "./globals.css";
 
 /** Friendly big-headline display — conversion feel, not pixel fonts. */
@@ -53,6 +54,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <Header />
+        <ScrollThrowDecor />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

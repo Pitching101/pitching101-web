@@ -747,3 +747,61 @@ button:focus-visible {
   font-size: 0.95rem;
   font-weight: 700;
 }
+
+
+/* Floating baseball + glove over sections (scroll throw) */
+.scroll-throw {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  overflow: hidden;
+}
+.scroll-throw-item {
+  position: absolute;
+  top: 0;
+  will-change: transform;
+}
+.scroll-throw-ball {
+  left: 0.5rem;
+  opacity: 0.42;
+}
+.scroll-throw-glove {
+  right: 0.5rem;
+  opacity: 0.4;
+}
+.scroll-throw-img {
+  display: block;
+  width: clamp(52px, 7vw, 78px);
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 4px 10px rgba(15, 26, 46, 0.18));
+  user-select: none;
+}
+.scroll-throw-spin-cw {
+  animation: scroll-throw-spin-cw 14s linear infinite;
+}
+.scroll-throw-spin-ccw {
+  animation: scroll-throw-spin-ccw 16s linear infinite;
+}
+@keyframes scroll-throw-spin-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes scroll-throw-spin-ccw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+@media (max-width: 720px) {
+  .scroll-throw-ball { opacity: 0.28; }
+  .scroll-throw-glove { opacity: 0.26; }
+  .scroll-throw-img { width: clamp(40px, 11vw, 56px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-throw { display: none !important; }
+  .scroll-throw-spin-cw,
+  .scroll-throw-spin-ccw {
+    animation: none !important;
+  }
+}
