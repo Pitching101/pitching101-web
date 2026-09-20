@@ -10,6 +10,9 @@ export default function Header() {
           <a href="/#who" className="nav-link">
             Who it’s for
           </a>
+          <a href="/#how-it-works" className="nav-link">
+            How it works
+          </a>
           <a href="/naples-fl-pitching-lessons/" className="nav-link">
             Naples FL
           </a>

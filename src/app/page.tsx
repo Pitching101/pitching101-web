@@ -38,7 +38,7 @@ const trainingOptions = [
 export default function HomePage() {
   return (
     <>
-      {/* 1. WHITE — hero: text LEFT, pitcher RIGHT (flush, no frame) */}
+      {/* 1. WHITE — hero: text LEFT, pitcher RIGHT */}
       <section className="text-band">
         <div className="content-row content-row-hero">
           <Reveal from="left" className="content-row-copy content-row-copy-wide">
@@ -52,9 +52,6 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-3 pt-1">
               <Link href="/contact/" className="btn">
                 Contact
-              </Link>
-              <Link href="/naples-fl-pitching-lessons/" className="btn-ghost">
-                Naples FL →
               </Link>
             </div>
             <p className="text-sm text-ink-soft">
@@ -75,7 +72,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. LIGHT BLUE — parent pain / sounds familiar */}
+      {/* 2. #BBD6F1 — parent pain / sounds familiar */}
       <section className="band-soft" aria-label="Sounds familiar">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal>
@@ -110,14 +107,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. YELLOW (matches runner GIF bg) — ages 8–14 + runner flush, no frame */}
-      <section id="who" className="asset-band-yellow scroll-mt-24" aria-label="Ages 8 to 14">
+      {/* 4. #BBD6F1 — ages 8–14 goals (+ runner, flush) */}
+      <section id="who" className="band-soft scroll-mt-24" aria-label="Ages 8 to 14">
         <div className="content-row">
           <Reveal from="left" className="content-row-copy content-row-copy-wide">
             <h2 className="ui-title ui-title-md">
-              For young pitchers ages 8–14
+              To help young pitchers ages 8–14
             </h2>
-            <ul className="space-y-3 text-lg leading-relaxed">
+            <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
               {ageGoals.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -136,7 +133,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. WHITE — four key areas / journey */}
+      {/* 5. WHITE — child’s journey / four key areas */}
       <section className="text-band" aria-label="Journey">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-4">
@@ -160,11 +157,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. LIGHT BLUE — I’ve been where you are */}
+      {/* 6. #BBD6F1 — I’ve been where you are */}
       <section className="band-soft" aria-label="Been where you are">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-5">
-            <h2 className="ui-title ui-title-md">I’ve been where you are.</h2>
+            <h2 className="ui-title ui-title-md">
+              Because I’ve been where you are
+            </h2>
             <p className="text-lg leading-relaxed text-ink-soft">
               Balancing cost, time, and what’s best for your kid is hard. This
               program stays simple, affordable, and built for real families.
@@ -182,8 +181,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. WHITE — how it works + training options */}
-      <section id="how-it-works" className="text-band scroll-mt-24" aria-label="How it works">
+      {/* 7. WHITE — how it works */}
+      <section
+        id="how-it-works"
+        className="text-band scroll-mt-24"
+        aria-label="How it works"
+      >
         <div className="mx-auto max-w-3xl space-y-10 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-4">
             <h2 className="ui-title ui-title-md">How it works</h2>
@@ -193,7 +196,7 @@ export default function HomePage() {
           <Reveal delayMs={40} className="space-y-6">
             <div className="space-y-3">
               <p className="font-semibold text-blue-dark">
-                1. Choose your training option
+                Step 1: Choose your training option
               </p>
               <ul className="grid gap-4 sm:grid-cols-3">
                 {trainingOptions.map((opt) => (
@@ -205,7 +208,7 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="space-y-2">
-              <p className="font-semibold text-blue-dark">2. Start training</p>
+              <p className="font-semibold text-blue-dark">Step 2: Start training</p>
               <ul className="space-y-1.5 text-base text-ink-soft">
                 <li>A pitching plan that fits your child</li>
                 <li>Video demos for drills and routines</li>
@@ -213,7 +216,7 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="space-y-2">
-              <p className="font-semibold text-blue-dark">3. Watch them thrive</p>
+              <p className="font-semibold text-blue-dark">Step 3: Watch them thrive</p>
               <p className="text-base text-ink-soft">
                 Strength, confidence, and mound skills — and you’ll know you
                 helped them get there.
@@ -223,7 +226,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. LIGHT BLUE — single Contact CTA */}
+      {/* 8. #BBD6F1 — single Contact CTA → /contact/ */}
       <section id="contact" className="band-soft scroll-mt-24" aria-label="Contact">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 text-center sm:px-8 sm:py-16 sm:text-left">
           <Reveal className="space-y-5">
