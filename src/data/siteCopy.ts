@@ -23,51 +23,51 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Pitching101 is Coach Nick's pitching lessons for kids ages 8-14 in Naples, FL. You get clear cues, healthy arm habits, and a plan you can use between practices — not a binder of jargon.",
+    a: "Coach Nick. Kids 8–14 in Naples, FL. Clear cues, arm care, and a plan you can use Tuesday — not a binder of jargon.",
   },
   {
     q: "What ages do you coach?",
-    a: "I work with young pitchers ages 8-14. That's the window where simple cues and good habits actually stick.",
+    a: "8–14. That's when simple cues actually stick.",
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
-    a: "I coach Naples and Southwest Florida families. There's no walk-up street address — text or call 845-768-2211 first and I'll tell you where to meet.",
+    a: "Naples and SWFL. No walk-up address — text 845-768-2211 and I'll tell you where to meet.",
   },
   {
     q: "Do you only do in-person lessons?",
-    a: "Nope. Throw with me in person, train at home with a guide, or mix both. Pick what fits your kid's week.",
+    a: "Nope. In person, at home, or both. Pick what fits the week.",
   },
   {
     q: "How do I get my child started?",
-    a: "Text or call 845-768-2211, or email nickdeisng@gmail.com. One conversation. I'll keep it simple.",
+    a: "Text or call 845-768-2211. One conversation.",
   },
   {
     q: "Do you teach arm care with pitching?",
-    a: "Yes. Warm-up and cool-down come with the work. A healthy arm is the point, not an extra.",
+    a: "Yes. Warm-up and cool-down come with the work.",
   },
 ];
 
 export const trainingOptions = [
   {
     label: "In person",
-    note: "Throw with me around Naples. I’ll tell you where once we talk.",
+    note: "Around Naples. I'll say where.",
     icon: "/assets/icons/icon-strikes.png",
   },
   {
     label: "At home",
-    note: "A short plan and video for between practices.",
+    note: "A plan for between practices.",
     icon: "/assets/icons/icon-free-guide-v2.png",
   },
   {
     label: "A mix",
-    note: "Most days at home. Live check-ins when you want eyes on it.",
+    note: "Home work plus live check-ins.",
     icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
 
-export const guyBullets = [
-    "Kids ages 8-14 who are still learning the mound.",
-  "More strikes, clean basics, and an arm that lasts the season.",
-  "Cues you can repeat in the backyard — no fancy gear.",
-  "Plain English for parents. Affordable. Zero coach-speak.",
+export const guyChips = [
+  "Ages 8–14",
+  "Naples, FL",
+  "More strikes",
+  "Arm care first",
 ];

@@ -48,8 +48,7 @@ export default function NaplesPitchingLessonsPage() {
             Youth pitching lessons in Naples, FL
           </h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Pitching101 is Coach Nick. I help kids ages 8–14 throw more strikes —
-            in person around Naples, or with a plan you can run at home.
+            Coach Nick. Kids 8–14. More strikes — in person or at home.
           </p>
           <Link href="/contact/" className="btn">
             Get your child started
@@ -57,7 +56,7 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">Who youth pitching lessons are for</h2>
+          <h2 className="ui-title ui-title-sm">Who it&apos;s for</h2>
           <ul className="bb-chip-row">
             {whoFor.map((item) => (
               <li key={item} className="bb-chip">
@@ -68,7 +67,7 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">How to start pitching lessons here</h2>
+          <h2 className="ui-title ui-title-sm">How we train</h2>
           <ul className="dugout-row">
             {trainingOptions.map((item) => (
               <li key={item.label} className="dugout-sign">
@@ -80,15 +79,12 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">Questions about pitching lessons in Naples</h2>
+          <h2 className="ui-title ui-title-sm">Parents ask</h2>
           <FaqList items={faqs} />
         </Reveal>
 
         <Reveal className="mt-12 space-y-4">
-          <p className="text-ink-soft">
-            No street address listed. Text, call, or email first and I&apos;ll
-            tell you where to meet.
-          </p>
+          <p className="text-ink-soft">Text first. I&apos;ll point you to the field.</p>
           <Link href="/contact/" className="btn">
             Get your child started
           </Link>

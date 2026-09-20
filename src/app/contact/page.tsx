@@ -20,12 +20,15 @@ export default function ContactPage() {
               ← Home
             </Link>
           </p>
-          <h1 className="ui-title ui-title-lg">Let&apos;s get your kid on the mound</h1>
+          <h1 className="ui-title ui-title-lg">Let&apos;s throw</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Want youth pitching lessons in Naples, FL? Text or call. I&apos;ll tell
-            you if we&apos;re a fit before you drive.
+            Text me. I&apos;ll tell you if we&apos;re a fit.
           </p>
-          <p className="text-base text-ink-soft">Coach Nick · ages 8–14 · Naples, FL</p>
+          <ul className="bb-chip-row">
+            <li className="bb-chip">Coach Nick</li>
+            <li className="bb-chip">Ages 8–14</li>
+            <li className="bb-chip">Naples, FL</li>
+          </ul>
 
           <div className="home-cta-row pt-2">
             <a href="sms:8457682211" className="btn">
@@ -49,11 +52,6 @@ export default function ContactPage() {
               </a>
             </li>
           </ul>
-
-          <p className="pt-2 text-sm text-ink-soft">
-            No street address listed — text, call, or email first and I&apos;ll
-            point you to the field.
-          </p>
         </Reveal>
       </article>
     </ParkSky>

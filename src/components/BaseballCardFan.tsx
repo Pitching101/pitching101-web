@@ -8,7 +8,7 @@ export default function BaseballCardFan() {
         <p className="bb-card-kicker">Roster</p>
         <p className="bb-card-stat">8–14</p>
         <p className="bb-card-label">Ages</p>
-        <p className="bb-card-note">Kids still learning the mound. Not high-school showcase stuff.</p>
+        <p className="bb-card-note">Still learning the mound.</p>
       </li>
       <li className="bb-card bb-card-main">
         <div className="bb-card-photo">

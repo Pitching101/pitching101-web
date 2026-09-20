@@ -8,7 +8,7 @@ import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, trainingOptions } from "@/data/siteCopy";
+import { faqs, guyChips, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -38,17 +38,14 @@ export default function HomePage() {
               Youth pitching lessons in Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
-              Kids throw more strikes. Parents leave with a plan they can say
-              out loud.
+              More strikes. A healthy arm. A plan you can say in the car.
             </p>
             <div className="home-cta-row pt-1">
               <Link href="#contact" className="btn">
                 Get your child started
               </Link>
             </div>
-            <p className="text-sm text-ink-soft">
-              Arm care first. Text me before you drive.
-            </p>
+            <p className="text-sm text-ink-soft">Text first. Then we pick a field.</p>
           </Reveal>
         </div>
       </section>
@@ -73,14 +70,16 @@ export default function HomePage() {
           <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              Pitching coach for kids 8–14 in Naples. More strikes. Healthy arms.
-              A plan you can say out loud.
+              I coach kids 8–14 in Naples.
             </p>
             <BaseballCardFan />
-            <p id="your-guy" className="text-base leading-relaxed text-ink-soft">
-              In person around Naples, at home, or a mix. Text me and I&apos;ll
-              tell you what fits.
-            </p>
+            <ul id="your-guy" className="bb-chip-row">
+              {guyChips.map((chip) => (
+                <li key={chip} className="bb-chip">
+                  {chip}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
@@ -92,10 +91,8 @@ export default function HomePage() {
       >
         <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">How pitching lessons work</h2>
-            <p className="text-base text-ink-soft">
-              Three doors. Same coach. Pick the one that fits your week.
-            </p>
+            <h2 className="ui-title ui-title-md">How we train</h2>
+            <p className="text-base text-ink-soft">Pick what fits this week.</p>
           </Reveal>
 
           <Reveal delayMs={40}>
@@ -126,12 +123,8 @@ export default function HomePage() {
       >
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">
-              Questions parents ask about pitching lessons
-            </h2>
-            <p className="text-base text-ink-soft">
-              Short answers. The long version is a text.
-            </p>
+            <h2 className="ui-title ui-title-md">Parents ask</h2>
+            <p className="text-base text-ink-soft">Tap a question.</p>
           </Reveal>
           <Reveal delayMs={40}>
             <FaqList items={faqs} />
@@ -156,7 +149,7 @@ export default function HomePage() {
         </div>
         <div className="home-stadium-inner">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 pt-20 pb-36 text-center sm:px-8 sm:pt-28 sm:pb-44">
-            <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get your kid on it.</p>
+            <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
               Get your child started
