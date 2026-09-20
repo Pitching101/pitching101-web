@@ -74,6 +74,7 @@ export default function ScrollThrowDecor() {
     let raf = 0;
     let running = false;
     let lastTs = 0;
+    let entered = false;
 
     const apply = (p: number, reduced: boolean) => {
       const home = Boolean(heroEl());
@@ -82,10 +83,12 @@ export default function ScrollThrowDecor() {
       const pairW = cw.offsetWidth || 120;
       const edge = Math.max(8, Math.min(22, vw * 0.012));
 
-      // Stay off the first paint — gloves walk in after the first scroll.
-      const intro = home ? smoothstep(24, 140, window.scrollY) : 0;
-      const fade = home ? 1 - smoothstep(0.88, 1, p) : 0;
-      root.style.opacity = (intro * fade).toFixed(3);
+      // First paint stays clean. A real scroll lets them in; back at the top hides them.
+      if (window.scrollY > 100) entered = true;
+      if (window.scrollY < 16) entered = false;
+      const fade = home && entered ? 1 - smoothstep(0.88, 1, p) : 0;
+      root.classList.toggle("is-in", fade > 0.02);
+      root.style.opacity = fade.toFixed(3);
       cw.style.opacity = "1";
       ccw.style.opacity = "1";
 
@@ -172,7 +175,7 @@ export default function ScrollThrowDecor() {
     solos.forEach(parkSolo);
 
     const spawnSolo = (now: number) => {
-      if (!parkEl() || mq.matches || window.scrollY < 80) return;
+      if (!parkEl() || mq.matches || window.scrollY < 100) return;
       const slot = flights[0] ? 1 : 0;
       if (flights[slot]) return;
       const vw = window.innerWidth;

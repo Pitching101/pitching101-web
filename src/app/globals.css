@@ -1093,6 +1093,10 @@ html.glove-cursor * {
   pointer-events: none;
   overflow: visible;
   opacity: 0;
+  visibility: hidden;
+}
+.scroll-throw.is-in {
+  visibility: visible;
 }
 .scroll-throw-pair {
   position: absolute;
