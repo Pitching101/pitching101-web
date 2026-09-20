@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 import { useEffect, useRef } from "react";
 
 /**
- * Glove + ball float from the home/hero section through to Ages/peanuts (#who).
- * The first entrance starts empty, then gently brings the throw in from both sides.
+ * Glove + ball track the homepage scroll from the hero through About.
+ * Position is lerped every frame so motion stays smooth the whole way.
  */
 export default function ScrollThrowDecor() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -18,105 +18,85 @@ export default function ScrollThrowDecor() {
     if (!root || !cw || !ccw) return;
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const heroEl = () =>
-      document.querySelector<HTMLElement>(".hero-overlay") ??
-      document.querySelector<HTMLElement>('[aria-label*="Youth Pitching"]');
-    const agesEl = () =>
+    const heroEl = () => document.querySelector<HTMLElement>(".hero-overlay");
+    const endEl = () =>
+      document.querySelector<HTMLElement>("#about") ??
       document.querySelector<HTMLElement>("#who") ??
       document.querySelector<HTMLElement>(".ages-band");
 
-    /** Home only: visible from hero load until peanuts/#who enters mid-viewport. */
-    const inThrowZone = () => {
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const zoneProgress = () => {
       const hero = heroEl();
-      const ages = agesEl();
-      if (!hero && !ages) return false;
-      if (ages && ages.getBoundingClientRect().top <= window.innerHeight * 0.55) {
+      const end = endEl();
+      if (!hero) return 0;
+      const startY = window.scrollY + hero.getBoundingClientRect().top;
+      const endY = end
+        ? window.scrollY + end.getBoundingClientRect().top - window.innerHeight * 0.18
+        : startY + window.innerHeight * 1.35;
+      const span = Math.max(1, endY - startY);
+      return Math.min(1, Math.max(0, (window.scrollY - startY) / span));
+    };
+
+    const zoneVisible = () => {
+      if (!heroEl()) return false;
+      const end = endEl();
+      if (end && end.getBoundingClientRect().top <= window.innerHeight * 0.4) {
         return false;
       }
       return true;
     };
 
-    let introStarted = false;
-    let introFrame = 0;
+    let currentP = zoneProgress();
+    let currentOpacity = zoneVisible() ? 1 : 0;
+    let raf = 0;
 
-    const setPairPosition = (p: number) => {
-      const cwY = 10 + p * 58;
-      const ccwY = 22 + p * 52;
-      cw.style.transform = `translate3d(${(-4 + p * 10).toFixed(2)}vw, ${cwY.toFixed(2)}vh, 0)`;
-      ccw.style.transform = `translate3d(${(4 - p * 10).toFixed(2)}vw, ${ccwY.toFixed(2)}vh, 0)`;
+    const apply = (p: number, opacity: number) => {
+      const cwY = 8 + p * 64;
+      const ccwY = 18 + p * 58;
+      cw.style.transform = `translate3d(${(-3 + p * 9).toFixed(2)}vw, ${cwY.toFixed(2)}vh, 0)`;
+      ccw.style.transform = `translate3d(${(3 - p * 9).toFixed(2)}vw, ${ccwY.toFixed(2)}vh, 0)`;
+      const rot = p * 260;
+      cw.style.setProperty("--throw-rot", `${rot.toFixed(2)}deg`);
+      ccw.style.setProperty("--throw-rot", `${(-rot).toFixed(2)}deg`);
+      const ballLead = p * 16;
+      cw.style.setProperty("--ball-nudge", `${ballLead.toFixed(2)}px`);
+      ccw.style.setProperty("--ball-nudge", `${(-ballLead).toFixed(2)}px`);
+      root.style.opacity = opacity.toFixed(3);
+      root.style.visibility = opacity > 0.02 ? "visible" : "hidden";
+      root.dataset.pastHero = opacity > 0.02 ? "true" : "false";
     };
 
-    const setStaticPosition = () => {
-      cw.style.transform = "translate3d(-4vw, 10vh, 0)";
-      ccw.style.transform = "translate3d(4vw, 22vh, 0)";
-      cw.style.setProperty("--throw-rot", "0deg");
-      ccw.style.setProperty("--throw-rot", "0deg");
-      cw.style.setProperty("--ball-nudge", "0px");
-      ccw.style.setProperty("--ball-nudge", "0px");
-    };
-
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const visible = inThrowZone();
+    const tick = () => {
       const reduced = mq.matches;
-      root.dataset.pastHero = visible ? "true" : "false";
-      root.dataset.reducedMotion = reduced ? "true" : "false";
-      if (visible) root.dataset.wasVisible = "true";
+      const visible = zoneVisible();
+      const targetP = zoneProgress();
+      const targetOpacity = visible ? 1 : 0;
 
-      const max = Math.max(
-        1,
-        document.documentElement.scrollHeight - window.innerHeight,
-      );
-      const p = Math.min(1, Math.max(0, window.scrollY / max));
-      const rot = p * 320;
-
-      if (visible) {
-        if (reduced) {
-          setStaticPosition();
-        } else if (!introStarted) {
-          introStarted = true;
-          root.dataset.intro = "true";
-          cw.style.transform = "translate3d(-26vw, 10vh, 0)";
-          ccw.style.transform = "translate3d(26vw, 22vh, 0)";
-          introFrame = window.requestAnimationFrame(() => {
-            root.dataset.intro = "false";
-            setPairPosition(p);
-          });
-        } else {
-          setPairPosition(p);
-        }
-      } else if (root.dataset.wasVisible === "true") {
-        cw.style.transform = `translate3d(-28vw, ${(10 + p * 58).toFixed(2)}vh, 0)`;
-        ccw.style.transform = `translate3d(28vw, ${(22 + p * 52).toFixed(2)}vh, 0)`;
+      if (reduced) {
+        currentP = targetP;
+        currentOpacity = targetOpacity;
+        cw.style.transform = "translate3d(-4vw, 12vh, 0)";
+        ccw.style.transform = "translate3d(4vw, 22vh, 0)";
+        cw.style.setProperty("--throw-rot", "0deg");
+        ccw.style.setProperty("--throw-rot", "0deg");
+        cw.style.setProperty("--ball-nudge", "0px");
+        ccw.style.setProperty("--ball-nudge", "0px");
+        root.style.opacity = currentOpacity.toFixed(3);
+        root.style.visibility = visible ? "visible" : "hidden";
+        root.dataset.pastHero = visible ? "true" : "false";
+      } else {
+        currentP = lerp(currentP, targetP, 0.16);
+        currentOpacity = lerp(currentOpacity, targetOpacity, visible ? 0.14 : 0.1);
+        apply(currentP, currentOpacity);
       }
 
-      if (!reduced) {
-        cw.style.setProperty("--throw-rot", `${rot.toFixed(2)}deg`);
-        ccw.style.setProperty("--throw-rot", `${(-rot).toFixed(2)}deg`);
-        const ballLead = p * 18;
-        cw.style.setProperty("--ball-nudge", `${ballLead.toFixed(2)}px`);
-        ccw.style.setProperty("--ball-nudge", `${(-ballLead).toFixed(2)}px`);
-      }
+      raf = window.requestAnimationFrame(tick);
     };
 
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    mq.addEventListener("change", onScroll);
-
-    return () => {
-      window.cancelAnimationFrame(introFrame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      mq.removeEventListener("change", onScroll);
-    };
+    apply(currentP, currentOpacity);
+    raf = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(raf);
   }, []);
 
   return (
@@ -125,9 +105,6 @@ export default function ScrollThrowDecor() {
       className="scroll-throw"
       aria-hidden="true"
       data-past-hero="false"
-      data-was-visible="false"
-      data-intro="false"
-      data-reduced-motion="false"
     >
       <div ref={cwRef} className="scroll-throw-pair scroll-throw-pair-cw">
         {/* eslint-disable-next-line @next/next/no-img-element */}

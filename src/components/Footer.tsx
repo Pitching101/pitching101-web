@@ -43,7 +43,7 @@ export default function Footer() {
             </Link>
           </p>
           <p>
-            <Link className="text-ink-soft hover:text-blue-dark" href="/about/">
+            <Link className="text-ink-soft hover:text-blue-dark" href="/#about">
               About
             </Link>
           </p>

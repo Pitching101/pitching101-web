@@ -2,5 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "out",
   "framework": null,
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "redirects": [
+    { "source": "/about", "destination": "/#about", "permanent": true },
+    { "source": "/about/", "destination": "/#about", "permanent": true }
+  ]
 }

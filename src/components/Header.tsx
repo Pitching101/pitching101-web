@@ -8,17 +8,8 @@ export default function Header() {
         {/* Transparent dark navy (~#181850) header mark; accents stay #3295fb */}
         <Logo variant="primary" width={160} />
         <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-medium text-ink-soft sm:gap-x-5">
-          <Link href="/" className="nav-link">
-            Home
-          </Link>
-          <Link href="/about/" className="nav-link">
-            About
-          </Link>
           <Link href="/guides/" className="nav-link">
             Free Guides
-          </Link>
-          <Link href="/contact/" className="btn !min-h-9 !px-3.5 !py-1.5 !text-sm">
-            Contact
           </Link>
         </nav>
       </div>

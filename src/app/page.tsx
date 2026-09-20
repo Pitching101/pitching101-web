@@ -44,11 +44,8 @@ export default function HomePage() {
               Clear Coaching For Kids And Parents. No Jargon.
             </p>
             <div className="home-cta-row pt-1">
-              <Link href="/contact/" className="btn">
-                Contact
-              </Link>
-              <Link href="/guides/" className="btn-ghost">
-                Free Guides
+              <Link href="#contact" className="btn">
+                Get Your Child Started
               </Link>
             </div>
             <p className="text-sm text-ink-soft">
@@ -58,7 +55,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Shared sky: gradient wash + transparent clouds + stadium fade */}
+      {/* Shared sky: white on top, then a soft brand-blue fade with clouds */}
       <div className="home-sky-scene">
         <div className="home-sky-layers" aria-hidden="true">
           <div className="home-sky-wash" />
@@ -76,7 +73,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* 2. From Trustpilot (ball/glove scroll window before #who) */}
+        {/* 2. From Trustpilot */}
         <section className="text-band" id="reviews" aria-label="From Trustpilot">
           <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
             <Reveal className="space-y-6">
@@ -89,11 +86,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 3. I'm Your Guy + Ages 8–14, bouncing peanuts */}
+        {/* 3. About + I'm Your Guy (collapsed from /about) */}
         <section
-          id="who"
+          id="about"
           className="text-band ages-band scroll-mt-24"
-          aria-label="I'm Your Guy — Ages 8 To 14"
+          aria-label="About Coach Nick — Ages 8 To 14"
         >
           <div className="peanut-decor" aria-hidden="true">
             {Array.from({ length: 28 }, (_, index) => (
@@ -109,10 +106,27 @@ export default function HomePage() {
           </div>
           <div className="content-row ages-band-content">
             <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
-              <h2 className="ui-title ui-title-md">
+              <Image
+                src="/assets/nick-coach-circle.png"
+                alt="Coach Nick — youth pitching coach in Naples, FL"
+                width={160}
+                height={160}
+                className="nick-coach-avatar nick-coach-home"
+              />
+              <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
+              <p className="text-lg leading-relaxed text-ink">
+                I Help Young Pitchers (And Their Parents) Throw More Strikes Without
+                The Jargon Or The Crazy Price Tag.
+              </p>
+              <p className="text-base leading-relaxed text-ink-soft">
+                Kids Ages 8–14 Need Clear Cues, Healthy Arm Habits, And A Plan They
+                Can Actually Use Between Practices. I Work With Naples, FL Families —
+                In Person When It Fits, Plus PDF And Virtual Options When Life Is Busy.
+              </p>
+              <h3 className="ui-title ui-title-sm">
                 I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
                 Foundation, Train Healthy Patterns, And Get Affordable Lessons.
-              </h2>
+              </h3>
               <p className="peanut-eli5">
                 ELI5: peanuts = younger pitchers (ages 8–14) — ballpark fun.
               </p>
@@ -157,7 +171,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 5. Bottom — stadium fades in over the same sky blue */}
+        {/* 5. Bottom — one small clip rectangle + the enroll CTA */}
         <section
           id="contact"
           className="home-stadium-band scroll-mt-24"
@@ -174,28 +188,11 @@ export default function HomePage() {
             />
           </div>
           <div className="home-stadium-inner">
-            <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 px-5 py-16 text-center sm:px-8 sm:py-20">
-              <Image
-                src="/assets/nick-coach-circle.png"
-                alt="Coach Nick — Pitching101 Naples FL"
-                width={120}
-                height={120}
-                className="nick-coach-avatar"
-              />
-              <Reveal>
-                <TrainingClipsStrip />
-              </Reveal>
-              <Reveal className="space-y-4" delayMs={40}>
-                <h2 className="ui-title ui-title-md">Ready To Talk?</h2>
-                <p className="text-base text-ink-soft sm:text-lg">
-                  Naples, FL Families Welcome.
-                </p>
-                <div className="flex justify-center">
-                  <Link href="/contact/" className="btn">
-                    Contact
-                  </Link>
-                </div>
-              </Reveal>
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 py-16 text-center sm:px-8 sm:py-20">
+              <TrainingClipsStrip />
+              <Link href="/contact/" className="btn">
+                Get Your Child Started
+              </Link>
             </div>
           </div>
         </section>
