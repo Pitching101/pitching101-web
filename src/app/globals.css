@@ -568,3 +568,17 @@ button:focus-visible {
   .btn, .btn-ghost, .ui-card, .ui-card-alt { transition: none; }
   .btn:hover, .btn-ghost:hover, .ui-card:hover, .ui-card-alt:hover { transform: none; }
 }
+
+/* MacStrength-inspired spacing — Pitching101 brand only */
+.ui-title-hero {
+  font-size: clamp(2.15rem, 5.2vw, 3.35rem);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+.content-row-hero {
+  padding-top: clamp(3rem, 8vw, 5.5rem);
+  padding-bottom: clamp(3rem, 8vw, 5.5rem);
+}
+.content-row-copy-wide {
+  max-width: 34rem;
+}
