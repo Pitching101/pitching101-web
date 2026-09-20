@@ -12,23 +12,29 @@ export default function MouseGlove() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
 
     let shown = false;
     const hotX = 22;
     const hotY = 20;
 
-    const move = (e: PointerEvent) => {
+    const place = (clientX: number, clientY: number, target: EventTarget | null) => {
       if (!shown) {
         shown = true;
         document.documentElement.classList.add("glove-cursor");
         el.style.opacity = "1";
       }
-      const over = e.target;
       const ready =
-        over instanceof Element &&
-        Boolean(over.closest("a, button, [role='button'], input, textarea, select, label"));
-      el.style.transform = `translate3d(${e.clientX - hotX}px, ${e.clientY - hotY}px, 0) scale(${ready ? 1.1 : 1})`;
+        target instanceof Element &&
+        Boolean(target.closest("a, button, [role='button'], input, textarea, select, label"));
+      el.style.transform = `translate3d(${clientX - hotX}px, ${clientY - hotY}px, 0) scale(${ready ? 1.1 : 1})`;
+    };
+
+    const onPointer = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
+      place(e.clientX, e.clientY, e.target);
+    };
+    const onMouse = (e: MouseEvent) => {
+      place(e.clientX, e.clientY, e.target);
     };
 
     const leave = () => {
@@ -37,10 +43,12 @@ export default function MouseGlove() {
       document.documentElement.classList.remove("glove-cursor");
     };
 
-    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("pointermove", onPointer, { passive: true });
+    window.addEventListener("mousemove", onMouse, { passive: true });
     document.addEventListener("mouseleave", leave);
     return () => {
-      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointermove", onPointer);
+      window.removeEventListener("mousemove", onMouse);
       document.removeEventListener("mouseleave", leave);
       document.documentElement.classList.remove("glove-cursor");
     };
