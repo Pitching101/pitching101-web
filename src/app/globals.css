@@ -893,3 +893,68 @@ button:focus-visible {
   height: 4rem;
   object-fit: contain;
 }
+
+
+/* About — pixel stadium bg + soft readability (no heavy dark wash) */
+.about-stadium {
+  min-height: 70vh;
+  background: #ffffff;
+}
+.about-stadium-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-stadium-bg {
+  object-fit: cover;
+  object-position: center bottom;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  opacity: 0.55;
+}
+.about-stadium-wash {
+  position: absolute;
+  inset: 0;
+  /* Soft lift for copy — keep stadium visible */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.55) 45%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+}
+.about-stadium-copy {
+  padding: 1rem 1.15rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(2px);
+}
+
+/* About page: let the coach profile sit in a bright pixel stadium scene. */
+.about-stadium {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--blue-dark) 20%, transparent);
+  border-radius: calc(var(--radius) + 0.35rem);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background: url("/assets/pixel-stadium-bg-v2.png") center / cover no-repeat;
+}
+.about-stadium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+.about-stadium .coach-photo {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.about-stadium .space-y-4 {
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.88);
+}
