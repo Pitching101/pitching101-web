@@ -8,8 +8,8 @@ export default function Logo({
   height = 40,
 }: {
   className?: string;
-  /** on-white: light-blue baseball on white (nav / light bands).
-   *  on-blue: white baseball on bright blue (colored / blue headers). */
+  /** on-white: brand-blue mark on transparent (nav / light bands).
+   *  on-blue: white mark on bright blue badge (colored / blue sections). */
   variant?: "on-white" | "on-blue";
   height?: number;
 }) {
@@ -18,7 +18,8 @@ export default function Logo({
       ? "/assets/logo-white-on-blue.png"
       : "/assets/logo-blue-on-white.png";
 
-  const aspect = variant === "on-blue" ? 1240 / 874 : 1528 / 644;
+  // Intrinsic sizes after crop (see public/assets logos)
+  const aspect = variant === "on-blue" ? 1142 / 654 : 1502 / 465;
   const width = Math.round(height * aspect);
 
   return (
@@ -32,8 +33,8 @@ export default function Logo({
         alt="Pitching101"
         width={width}
         height={height}
-        className="w-auto"
-        style={{ height }}
+        className="h-auto w-auto max-h-10"
+        style={{ height, width: "auto" }}
         priority
       />
     </Link>

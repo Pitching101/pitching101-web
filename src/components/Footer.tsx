@@ -7,8 +7,7 @@ export default function Footer() {
         <div className="space-y-4">
           <Logo variant="on-white" />
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
-            Youth &amp; elite pitching instruction for families in the Naples,
-            Florida area — clear coaching and confident arms.
+            Youth pitching lessons for Naples, FL families. Clear coaching. No jargon.
           </p>
         </div>
         <div className="space-y-2 text-sm">

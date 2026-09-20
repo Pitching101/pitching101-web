@@ -4,6 +4,7 @@ import PixelIcon from "@/components/PixelIcon";
 import Reveal from "@/components/Reveal";
 import TrustStrip from "@/components/TrustStrip";
 import ContactCtas from "@/components/ContactCtas";
+import Logo from "@/components/Logo";
 
 const programs = [
   {
@@ -65,10 +66,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. COLORED — trust */}
+      {/* 2. COLORED — trust + white-on-blue mark */}
       <section className="band-soft">
-        <div className="mx-auto max-w-5xl px-5 py-8 sm:px-8 sm:py-10">
-          <Reveal>
+        <div className="mx-auto max-w-5xl space-y-6 px-5 py-8 sm:px-8 sm:py-10">
+          <Reveal className="flex justify-center sm:justify-start">
+            <Logo variant="on-blue" height={48} />
+          </Reveal>
+          <Reveal delayMs={60}>
             <TrustStrip />
           </Reveal>
         </div>
@@ -198,16 +202,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. WHITE spacer before scenic */}
-      <section className="text-band">
-        <div className="mx-auto max-w-5xl px-5 py-8 text-center sm:px-8">
-          <Reveal>
-            <p className="text-base font-semibold text-blue-dark">
-              Ready? Text or Call{" "}
-              <a href="tel:8457682211" className="hover:underline">
-                845-768-2211
+      {/* 7. WHITE how-it-works — short steps, then media LEFT (#4 alternate) */}
+      <section id="how-it-works" className="text-band scroll-mt-24">
+        <div className="content-row content-row-flip">
+          <Reveal from="right" className="content-row-copy">
+            <h2 className="ui-title ui-title-md">How it works</h2>
+            <ol className="space-y-2 text-base leading-relaxed">
+              <li><strong className="text-blue-dark">1.</strong> Text or call.</li>
+              <li><strong className="text-blue-dark">2.</strong> Pick Stan, PDF, virtual, or Naples.</li>
+              <li><strong className="text-blue-dark">3.</strong> Know your next reps.</li>
+            </ol>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <a href="sms:8457682211" className="btn">
+                Text 845-768-2211
               </a>
-            </p>
+              <a href="tel:8457682211" className="btn-ghost">
+                Call
+              </a>
+            </div>
+          </Reveal>
+          <Reveal from="left" delayMs={80} className="content-row-media">
+            <div className="media-frame media-frame-white">
+              <Image
+                src="/assets/pixel-runner.gif"
+                alt="Pixel art baseball runner"
+                width={800}
+                height={600}
+                className="row-gif"
+                unoptimized
+              />
+            </div>
           </Reveal>
         </div>
       </section>
