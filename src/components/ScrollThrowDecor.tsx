@@ -87,7 +87,8 @@ export default function ScrollThrowDecor() {
       cw.style.opacity = fade.toFixed(3);
       ccw.style.opacity = fade.toFixed(3);
 
-      const startTop = Math.max(80, vh * 0.2);
+      // Stay under type: on a phone the title fills the width, so start lower.
+      const startTop = vw < 720 ? Math.max(260, vh * 0.44) : Math.max(96, vh * 0.22);
 
       if (reduced) {
         const restX = edge;
