@@ -33,10 +33,10 @@ const programs = [
 export default function HomePage() {
   return (
     <>
-      {/* 1. WHITE — conversion hero */}
+      {/* 1. WHITE — hero: text LEFT, pitcher RIGHT */}
       <section className="text-band">
-        <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
-          <Reveal className="mx-auto max-w-2xl space-y-5 text-center sm:mx-0 sm:text-left">
+        <div className="content-row">
+          <Reveal from="left" className="content-row-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL</p>
             <h1 className="ui-title ui-title-lg">
               Youth pitching lessons Naples FL
@@ -44,24 +44,23 @@ export default function HomePage() {
             <p className="text-lg leading-relaxed text-ink-soft">
               Clear coaching for kids and parents. No jargon.
             </p>
-            <ContactCtas className="justify-center sm:justify-start" />
-            <p className="text-base font-semibold text-blue-dark">
-              Text or Call{" "}
-              <a href="tel:8457682211" className="hover:underline">
-                845-768-2211
-              </a>
-              {" · "}
-              <a href="sms:8457682211" className="hover:underline">
-                Text
-              </a>
-              {" · "}
-              <a href="mailto:nickdeisng@gmail.com" className="hover:underline">
-                Email
-              </a>
-            </p>
+            <ContactCtas className="justify-start" />
             <p className="text-sm text-ink-soft">
               Arm care first · Text or call before you drive
             </p>
+          </Reveal>
+          <Reveal from="right" delayMs={80} className="content-row-media">
+            <div className="media-frame media-frame-stadium">
+              <Image
+                src="/assets/pixel-pitcher.gif"
+                alt="Pixel art pitcher delivery"
+                width={800}
+                height={600}
+                className="row-gif"
+                unoptimized
+                priority
+              />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -106,7 +105,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. COLORED yellow — GIF RIGHT */}
+      {/* 4. COLORED yellow — runner RIGHT */}
       <section className="asset-band-yellow" aria-label="Clear next reps">
         <div className="content-row">
           <Reveal from="left" className="content-row-copy">
@@ -138,7 +137,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. WHITE batter — GIF LEFT (alternate) */}
+      {/* 5. WHITE Naples — pitcher LEFT (alternate) */}
       <section className="asset-band-white" aria-label="Naples families">
         <div className="content-row content-row-flip">
           <Reveal from="right" className="content-row-copy">
@@ -156,21 +155,21 @@ export default function HomePage() {
             </div>
           </Reveal>
           <Reveal from="left" delayMs={80} className="content-row-media">
-            <div className="media-frame media-frame-white">
+            <div className="media-frame media-frame-stadium">
               <Image
-                src="/assets/pixel-batter.jpg"
-                alt="Pixel art baseball batter"
-                width={640}
-                height={640}
-                className="row-still"
-                style={{ imageRendering: "pixelated" }}
+                src="/assets/pixel-pitcher.gif"
+                alt="Pixel art pitcher delivery"
+                width={800}
+                height={600}
+                className="row-gif"
+                unoptimized
               />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 6. COLORED teal — GIF RIGHT */}
+      {/* 6. COLORED teal — runner RIGHT */}
       <section className="asset-band-teal" aria-label="Mechanics">
         <div className="content-row">
           <Reveal from="left" className="content-row-copy">
@@ -190,8 +189,8 @@ export default function HomePage() {
           <Reveal from="right" delayMs={80} className="content-row-media">
             <div className="media-frame media-frame-teal">
               <Image
-                src="/assets/pixel-swing-teal.gif"
-                alt="Pixel art batter swinging"
+                src="/assets/pixel-runner.gif"
+                alt="Pixel art baseball runner"
                 width={800}
                 height={600}
                 className="row-gif"
@@ -202,7 +201,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. WHITE how-it-works — short steps, then media LEFT (#4 alternate) */}
+      {/* 7. WHITE how-it-works — runner LEFT (alternate) */}
       <section id="how-it-works" className="text-band scroll-mt-24">
         <div className="content-row content-row-flip">
           <Reveal from="right" className="content-row-copy">
@@ -236,23 +235,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. COLORED — full-bleed pitcher, no text */}
-      <section
-        className="asset-band-stadium asset-band-bleed"
-        aria-label="Pixel pitcher scenic"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/pixel-pitcher.gif"
-          alt="Pixel art pitcher delivery in a stadium"
-          className="bleed-gif"
-          width={1280}
-          height={720}
-          decoding="async"
-        />
-      </section>
-
-      {/* 9. WHITE — closing */}
+      {/* 8. WHITE — closing */}
       <section className="text-band">
         <div className="mx-auto max-w-5xl px-5 py-12 text-center sm:px-8 sm:py-16">
           <Reveal className="space-y-5">

@@ -34,12 +34,13 @@ export default function NaplesPitchingLessonsPage() {
         </p>
         <div className="media-frame media-frame-white inline-flex overflow-hidden">
           <Image
-            src="/assets/pixel-batter.jpg"
-            alt="Pixel art baseball batter"
+            src="/assets/pixel-pitcher.gif"
+            alt="Pixel art pitcher delivery"
             width={72}
             height={72}
             className="h-[72px] w-[72px]"
             style={{ imageRendering: "pixelated" }}
+            unoptimized
           />
         </div>
         <p className="ui-chip px-3.5 py-1.5">Naples · Collier County</p>
