@@ -3,23 +3,18 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 
-const familiar = [
-  "How do I help my child throw harder and more accurately?",
-  "What's the right way to train without risking an injury?",
-  "Why does every lesson or travel team have to cost a fortune?",
-];
-
-const ageGoals = [
-  "Build skills that last beyond baseball",
-  "Improve the physical and mental game",
-  "Use routines they can do anywhere — no fancy gear required",
+const guyBullets = [
+  "Ages 8–14 — young pitchers learning the game.",
+  "More strikes, strong basics, healthy arm habits.",
+  "Simple routines kids can do anywhere — no fancy gear.",
+  "Clear coaching parents get. Affordable. No jargon.",
 ];
 
 const trainingOptions = [
   {
     label: "Private",
     note: "In-person, Naples-area focus.",
-    icon: "/assets/icons/icon-plan-checklist.png",
+    icon: "/assets/icons/icon-strikes.png",
   },
   {
     label: "DIY",
@@ -29,7 +24,7 @@ const trainingOptions = [
   {
     label: "Hybrid",
     note: "Mix DIY with live check-ins.",
-    icon: "/assets/icons/icon-strikes.png",
+    icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
 
@@ -86,7 +81,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. WHITE — I'm Your Guy + Ages 8–14 (peanuts who-band) */}
+      {/* 2. WHITE — From Trustpilot (keeps ball/glove scroll window before #who) */}
+      <section className="text-band" id="reviews" aria-label="From Trustpilot">
+        <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal className="space-y-6">
+            <h2 className="ui-title ui-title-md">From Trustpilot</h2>
+            <p className="text-base leading-relaxed text-ink-soft">
+              Here&apos;s what parents say after working together.
+            </p>
+            <ReviewsCarousel />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 3. WHITE — I'm Your Guy + Ages 8–14 merged, bouncing peanuts @ 100% */}
       <section
         id="who"
         className="text-band ages-band scroll-mt-24"
@@ -105,36 +113,19 @@ export default function HomePage() {
           ))}
         </div>
         <div className="content-row ages-band-content">
-          <Reveal from="left" className="content-row-copy content-row-copy-wide space-y-8">
-            <div className="space-y-5">
-              <h2 className="ui-title ui-title-md">
-                I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
-                Foundation, Train Healthy Patterns, And Get Affordable Lessons.
-              </h2>
-              <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
-                {familiar.map((q) => (
-                  <li key={q} className="pl-1">
-                    &ldquo;{q}&rdquo;
-                  </li>
-                ))}
-              </ul>
-              <p className="text-base text-ink-soft">
-                ELI5: parents ask this — here&apos;s what they say on Trustpilot.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="ui-title ui-title-md">
-                To Help Young Pitchers Ages 8–14
-              </h3>
-              <p className="peanut-eli5">
-                ELI5: peanuts = younger pitchers — ballpark fun.
-              </p>
-              <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
-                {ageGoals.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
+          <Reveal from="left" className="content-row-copy content-row-copy-wide space-y-5">
+            <h2 className="ui-title ui-title-md">
+              I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
+              Foundation, Train Healthy Patterns, And Get Affordable Lessons.
+            </h2>
+            <p className="peanut-eli5">
+              ELI5: peanuts = younger pitchers (ages 8–14) — ballpark fun.
+            </p>
+            <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
+              {guyBullets.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </Reveal>
           <Reveal from="right" delayMs={80} className="content-row-media">
             <Image
@@ -149,19 +140,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. WHITE — From Trustpilot */}
-      <section className="text-band" id="reviews" aria-label="From Trustpilot">
-        <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal className="space-y-6">
-            <h2 className="ui-title ui-title-md">From Trustpilot</h2>
-            <p className="text-base leading-relaxed text-ink-soft">
-              Parents ask those questions — here&apos;s what they say after working together.
-            </p>
-            <ReviewsCarousel />
-          </Reveal>
-        </div>
-      </section>
-
       {/* 4. How It Works — Private / DIY / Hybrid only */}
       <section
         id="how-it-works"
@@ -171,7 +149,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">How It Works</h2>
-            <p className="text-base text-ink-soft">Easy To Start Today.</p>
+            <p className="text-base text-ink-soft">Pick What Fits. Easy To Start Today.</p>
           </Reveal>
 
           <Reveal delayMs={40}>
@@ -186,9 +164,7 @@ export default function HomePage() {
                     className="card-icon"
                   />
                   <h3 className="font-semibold text-blue-dark">{opt.label}</h3>
-                  <p className="text-sm leading-relaxed text-ink-soft sm:text-base">
-                    {opt.note}
-                  </p>
+                  <p className="text-sm leading-relaxed text-ink-soft">{opt.note}</p>
                 </li>
               ))}
             </ul>
