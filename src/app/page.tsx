@@ -19,22 +19,22 @@ const journeyAreas = [
   {
     title: "Affordable Training",
     note: "Real help without the crazy price tag.",
-    icon: "/assets/icons/icon-plan-checklist.png",
+    icon: "/assets/icon-plan-checklist.png",
   },
   {
     title: "Lifelong Routines",
     note: "Simple habits kids can keep.",
-    icon: "/assets/icons/icon-arm-care-v2.png",
+    icon: "/assets/icon-arm-care-v2.png",
   },
   {
     title: "Safe Techniques",
     note: "Arm care first. Stay on the mound.",
-    icon: "/assets/icons/icon-strikes.png",
+    icon: "/assets/icon-strikes.png",
   },
   {
     title: "Flexible Options",
     note: "Local, DIY, or hybrid — your call.",
-    icon: "/assets/icons/icon-free-guide-v2.png",
+    icon: "/assets/icon-free-guide-v2.png",
   },
 ];
 
@@ -50,21 +50,21 @@ const freeGuides = [
     note: "Simple warm-up and cool-down steps so young arms stay healthy.",
     href: "mailto:nickdeisng@gmail.com?subject=Arm-Care%20Checklist",
     cta: "Get The Checklist",
-    icon: "/assets/icons/icon-arm-care-v2.png",
+    icon: "/assets/icon-arm-care-v2.png",
   },
   {
     title: "Strike % Tips",
     note: "Parent-friendly cues that help kids throw more strikes.",
     href: "mailto:nickdeisng@gmail.com?subject=Strike%20Percent%20Tips",
     cta: "Get The Tips",
-    icon: "/assets/icons/icon-strikes.png",
+    icon: "/assets/icon-strikes.png",
   },
   {
     title: "Pre-Catch Warmup",
     note: "A short routine before catch so practice starts right.",
     href: "mailto:nickdeisng@gmail.com?subject=Pre-Catch%20Warmup",
     cta: "Get The Warmup",
-    icon: "/assets/icons/icon-plan-checklist.png",
+    icon: "/assets/icon-plan-checklist.png",
   },
 ];
 
@@ -102,37 +102,37 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal delayMs={40} className="space-y-5">
             <h2 className="ui-title ui-title-md">
-              I'm Your Guy If You're Looking To Throw Strikes, Build A Strong
+              I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
               Foundation, Train Healthy Patterns, And Get Affordable Lessons.
             </h2>
             <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
               {familiar.map((q) => (
                 <li key={q} className="pl-1">
-                  "{q}"
+                  &ldquo;{q}&rdquo;
                 </li>
               ))}
             </ul>
             <p className="text-base text-ink-soft">
-              ELI5: parents ask this — here's what they say on Trustpilot.
+              ELI5: parents ask this — here&apos;s what they say on Trustpilot.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* 3. WHITE — From Trustpilot carousel */}
+      {/* 3. WHITE — From Trustpilot */}
       <section className="text-band" id="reviews" aria-label="From Trustpilot">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">From Trustpilot</h2>
             <p className="text-base leading-relaxed text-ink-soft">
-              Parents ask those questions — here's what they say after working together.
+              Parents ask those questions — here&apos;s what they say after working together.
             </p>
             <ReviewsCarousel />
           </Reveal>
         </div>
       </section>
 
-      {/* 4. WHITE — ages 8–14 + peanuts bounce */}
+      {/* 4. WHITE — ages 8–14 + peanuts */}
       <section
         id="who"
         className="text-band ages-band scroll-mt-24"
@@ -177,12 +177,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. WHITE — child's journey / four key areas */}
+      {/* 5. Journey */}
       <section className="text-band" aria-label="Journey">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-4">
             <h2 className="ui-title ui-title-md">
-              Your Child's Journey Starts Here
+              Your Child&apos;s Journey Starts Here
             </h2>
             <p className="text-base text-ink-soft">
               Four Simple Focus Areas — Confident, Injury-Free Pitching.
@@ -191,7 +191,7 @@ export default function HomePage() {
           <Reveal delayMs={40}>
             <ul className="grid gap-5 sm:grid-cols-2">
               {journeyAreas.map((item) => (
-                <li key={item.title} className="flex gap-3 space-y-0">
+                <li key={item.title} className="flex gap-3">
                   <Image
                     src={item.icon}
                     alt=""
@@ -210,7 +210,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. #BBD6F1 — how it works */}
+      {/* 6. How It Works */}
       <section
         id="how-it-works"
         className="band-soft scroll-mt-24"
@@ -225,7 +225,6 @@ export default function HomePage() {
           <div className="grid gap-5">
             <Reveal delayMs={40}>
               <article className="card space-y-4 p-6">
-                <Image src="/assets/icons/icon-plan-checklist.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 1</span>
                   <h3 className="font-semibold text-blue-dark">
@@ -249,7 +248,6 @@ export default function HomePage() {
 
             <Reveal delayMs={80}>
               <article className="card space-y-3 p-6">
-                <Image src="/assets/icons/icon-strikes.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 2</span>
                   <h3 className="font-semibold text-blue-dark">Start Training</h3>
@@ -270,13 +268,12 @@ export default function HomePage() {
 
             <Reveal delayMs={120}>
               <article className="card space-y-3 p-6">
-                <Image src="/assets/icons/icon-arm-care-v2.png" alt="" width={64} height={64} className="card-icon" />
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="ui-chip px-3 py-1">Step 3</span>
                   <h3 className="font-semibold text-blue-dark">Watch Them Thrive</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-ink-soft sm:text-base">
-                  Strength, confidence, and mound skills — and you'll know you
+                  Strength, confidence, and mound skills — and you&apos;ll know you
                   helped them get there.
                 </p>
               </article>
@@ -285,32 +282,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. WHITE — Ready To Talk + coach photo */}
-      <section id="contact" className="text-band scroll-mt-24" aria-label="Contact">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-5 py-14 text-center sm:flex-row sm:items-center sm:px-8 sm:py-16 sm:text-left">
-          <Image
-            src="/assets/photos/nick-coach.png"
-            alt="Coach Nick — Pitching101 Naples FL"
-            width={120}
-            height={120}
-            className="nick-coach-avatar"
-          />
-          <Reveal className="space-y-5">
-            <h2 className="ui-title ui-title-md">Ready To Talk?</h2>
-            <p className="text-lg text-ink-soft">
-              Text, Call, Or Email — Naples, FL Families Welcome.
-            </p>
-            <div className="flex justify-center sm:justify-start">
-              <Link href="/contact/" className="btn">
-                Contact
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 8. Free Guides — bottom band (own section) */}
-      <section id="guides" className="band-soft scroll-mt-24" aria-label="Free Guides">
+      {/* 7. Free Guides — just above stadium bottom band */}
+      <section id="guides" className="text-band scroll-mt-24" aria-label="Free Guides">
         <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">Free Guides</h2>
@@ -343,6 +316,46 @@ export default function HomePage() {
               See All Free Guides
             </Link>
           </Reveal>
+        </div>
+      </section>
+
+      {/* 8. Bottom — seamless white→stadium blend + Ready To Talk */}
+      <section
+        id="contact"
+        className="home-stadium-band scroll-mt-24"
+        aria-label="Contact"
+      >
+        <div className="home-stadium-media" aria-hidden="true">
+          <Image
+            src="/assets/pixel-stadium-bg-v2.png"
+            alt=""
+            fill
+            className="home-stadium-bg"
+            sizes="100vw"
+            priority={false}
+          />
+        </div>
+        <div className="home-stadium-inner">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-5 py-16 text-center sm:flex-row sm:items-center sm:px-8 sm:py-20 sm:text-left">
+            <Image
+              src="/assets/nick-coach-circle.png"
+              alt="Coach Nick — Pitching101 Naples FL"
+              width={120}
+              height={120}
+              className="nick-coach-avatar"
+            />
+            <Reveal className="space-y-5">
+              <h2 className="ui-title ui-title-md">Ready To Talk?</h2>
+              <p className="text-lg text-ink-soft">
+                Text, Call, Or Email — Naples, FL Families Welcome.
+              </p>
+              <div className="flex justify-center sm:justify-start">
+                <Link href="/contact/" className="btn">
+                  Contact
+                </Link>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>
