@@ -821,14 +821,14 @@ button:focus-visible {
 }
 
 
-/* Floating baseball + glove over the post-hero path, then off before #who. */
+/* Floating baseball + glove from hero through the path, then off before #who. */
 .scroll-throw {
   position: fixed;
   inset: 0;
   z-index: 25; /* under sticky header (z-40); over section chrome */
   pointer-events: none;
   overflow: hidden;
-  /* Softly fade in after the hero and fade out before the ages/peanuts section. */
+  /* Visible on hero; fade out before the ages/peanuts section. */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
@@ -891,7 +891,16 @@ button:focus-visible {
   flex-shrink: 0;
   border-radius: 999px;
   object-fit: cover;
+  object-position: center center;
   box-shadow: var(--shadow-md);
+  border: 2px solid color-mix(in srgb, var(--blue) 40%, transparent);
+}
+/* Landscape nick-coach.png has face on the right — bias crop for circle use */
+.nick-coach-avatar-wide {
+  object-position: 82% 28%;
+}
+.nick-coach-about {
+  aspect-ratio: 1 / 1;
   border: 2px solid color-mix(in srgb, var(--blue) 40%, transparent);
 }
 .card-icon {

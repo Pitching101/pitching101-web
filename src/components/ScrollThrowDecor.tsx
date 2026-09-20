@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Glove + ball float only between hero and Ages/peanuts (#who).
- * Fade in ~500ms after hero; fade + drift off when ages section reaches view.
+ * Glove + ball float from the home/hero section through to Ages/peanuts (#who).
+ * Visible on hero load; fade + drift off when the who section reaches view.
  */
 export default function ScrollThrowDecor() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -25,26 +25,22 @@ export default function ScrollThrowDecor() {
       document.querySelector<HTMLElement>("#who") ??
       document.querySelector<HTMLElement>(".ages-band");
 
+    /** Home only: visible from hero load until peanuts/#who enters mid-viewport. */
     const inThrowZone = () => {
       const hero = heroEl();
       const ages = agesEl();
-      const pastHero = hero
-        ? hero.getBoundingClientRect().bottom <= 8
-        : window.scrollY > window.innerHeight * 0.75;
-      if (!pastHero) return false;
-      if (!ages) return true;
-      return ages.getBoundingClientRect().top > window.innerHeight * 0.55;
+      // Not the homepage long-scroll — keep overlays off.
+      if (!hero && !ages) return false;
+      if (ages && ages.getBoundingClientRect().top <= window.innerHeight * 0.55) {
+        return false;
+      }
+      return true;
     };
 
     const applyVisibility = () => {
       const visible = !mq.matches && inThrowZone();
       root.dataset.pastHero = visible ? "true" : "false";
-      const hero = heroEl();
-      const pastHero = hero
-        ? hero.getBoundingClientRect().bottom <= 8
-        : window.scrollY > window.innerHeight * 0.75;
-      if (!pastHero) root.dataset.wasVisible = "false";
-      else if (visible) root.dataset.wasVisible = "true";
+      if (visible) root.dataset.wasVisible = "true";
       return visible;
     };
 

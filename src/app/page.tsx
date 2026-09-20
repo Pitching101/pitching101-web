@@ -167,7 +167,7 @@ export default function HomePage() {
         <div className="home-stadium-inner">
           <div className="mx-auto flex max-w-xl flex-col items-center gap-6 px-5 py-16 text-center sm:px-8 sm:py-20">
             <Image
-              src="/assets/photos/nick-coach.png"
+              src="/assets/nick-coach-circle.png"
               alt="Coach Nick — Pitching101 Naples FL"
               width={120}
               height={120}

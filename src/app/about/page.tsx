@@ -24,11 +24,11 @@ export default function AboutPage() {
 
         <div className="grid items-start gap-8 sm:grid-cols-[minmax(0,14rem)_1fr]">
           <Image
-            src="/assets/photos/nick-coach.png"
+            src="/assets/nick-coach-circle.png"
             alt="Coach Nick — youth pitching coach in Naples, FL"
             width={448}
-            height={298}
-            className="w-full rounded-2xl object-cover shadow-md"
+            height={448}
+            className="nick-coach-about mx-auto w-full max-w-[14rem] rounded-full object-cover object-center shadow-md sm:mx-0"
             priority
           />
           <div className="space-y-4 text-base leading-relaxed text-ink-soft">
