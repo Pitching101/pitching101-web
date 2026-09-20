@@ -3,6 +3,7 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
+import SkyFadeAnchor from "@/components/SkyFadeAnchor";
 
 const guyBullets = [
   "Ages 8–14 — young pitchers learning the game.",
@@ -72,6 +73,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+        <SkyFadeAnchor />
 
         {/* 2. From Trustpilot */}
         <section className="text-band" id="reviews" aria-label="From Trustpilot">
@@ -116,7 +118,7 @@ export default function HomePage() {
                 Can Actually Use Between Practices. I Work With Naples, FL Families —
                 In Person When It Fits, Plus PDF And Virtual Options When Life Is Busy.
               </p>
-              <h3 className="ui-title ui-title-sm">
+              <h3 id="your-guy" className="ui-title ui-title-sm">
                 I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
                 Foundation, Train Healthy Patterns, And Get Affordable Lessons.
               </h3>

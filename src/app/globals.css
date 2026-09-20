@@ -137,6 +137,8 @@ body {
 .home-sky-scene {
   position: relative;
   isolation: isolate;
+  /* Fallback until SkyFadeAnchor measures #your-guy */
+  --sky-stop: 42%;
 }
 .home-sky-layers {
   position: absolute;
@@ -148,23 +150,37 @@ body {
 .home-sky-wash {
   position: absolute;
   inset: 0;
-  /* White on top, then a long brand-blue fade — #3295fb / #BBD6F1 only */
+  /* Solid white above --sky-stop (I'm Your Guy), then brand-blue + clouds */
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #ffffff 36%,
-    #f7faff 44%,
-    #eef4fa 50%,
-    #dce8f5 56%,
-    #BBD6F1 64%,
-    color-mix(in srgb, #3295fb 18%, #BBD6F1) 74%,
-    color-mix(in srgb, #3295fb 30%, #BBD6F1) 84%,
-    color-mix(in srgb, #3295fb 40%, #BBD6F1) 92%,
+    #ffffff var(--sky-stop),
+    #f7faff calc(var(--sky-stop) + 4%),
+    #e8f1fa calc(var(--sky-stop) + 9%),
+    #BBD6F1 calc(var(--sky-stop) + 16%),
+    color-mix(in srgb, #3295fb 22%, #BBD6F1) calc(var(--sky-stop) + 28%),
+    color-mix(in srgb, #3295fb 36%, #BBD6F1) calc(var(--sky-stop) + 42%),
     color-mix(in srgb, #3295fb 45%, #BBD6F1) 100%
   );
 }
 .home-sky-clouds {
   z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent var(--sky-stop),
+    rgba(0, 0, 0, 0.35) calc(var(--sky-stop) + 6%),
+    #000 calc(var(--sky-stop) + 14%),
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent var(--sky-stop),
+    rgba(0, 0, 0, 0.35) calc(var(--sky-stop) + 6%),
+    #000 calc(var(--sky-stop) + 14%),
+    #000 100%
+  );
 }
 .home-sky-scene > section {
   position: relative;
@@ -177,6 +193,9 @@ body {
 .home-sky-scene .ages-band,
 .home-sky-scene .home-stadium-band {
   background: transparent;
+}
+.home-sky-scene #reviews {
+  background: #ffffff;
 }
 
 /* How It Works: content only — sky/clouds come from .home-sky-scene */
