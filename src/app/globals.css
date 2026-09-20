@@ -1122,9 +1122,10 @@ button:focus-visible {
   border: none;
 }
 .nick-coach-home {
-  width: 8.5rem;
-  height: 8.5rem;
+  width: 7.75rem;
+  height: 7.75rem;
   margin: 0 auto;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #ffffff 70%, #BBD6F1);
 }
 /* Landscape nick-coach.png has face on the right — bias crop for circle use */
 .nick-coach-avatar-wide {
