@@ -60,7 +60,9 @@ export default function HomePage() {
               Real notes from families after we worked together. I didn&apos;t write
               these.
             </p>
-            <ReviewsCarousel />
+            <div id="sky-start">
+              <ReviewsCarousel />
+            </div>
           </Reveal>
         </div>
       </section>

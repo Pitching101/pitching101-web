@@ -4,19 +4,22 @@ import { useEffect } from "react";
 
 /**
  * Pins where the homepage wash leaves solid white and fades into blue.
- * Everything above #your-guy stays white; clouds and sky start there.
+ * Hero + Trustpilot heading stay white; sky and clouds start at #sky-start
+ * (the review card, right under that heading).
  */
 export default function SkyFadeAnchor() {
   useEffect(() => {
     const scene = document.querySelector<HTMLElement>(".home-sky-scene");
-    const mark = document.getElementById("your-guy");
+    const mark =
+      document.getElementById("sky-start") ??
+      document.getElementById("reviews");
     if (!scene || !mark) return;
 
     const sync = () => {
       const sceneBox = scene.getBoundingClientRect();
       const markBox = mark.getBoundingClientRect();
       const height = Math.max(1, sceneBox.height);
-      const pct = Math.min(82, Math.max(22, ((markBox.top - sceneBox.top) / height) * 100));
+      const pct = Math.min(82, Math.max(8, ((markBox.top - sceneBox.top) / height) * 100));
       scene.style.setProperty("--sky-stop", `${pct.toFixed(2)}%`);
     };
 
