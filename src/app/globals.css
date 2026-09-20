@@ -121,6 +121,85 @@ body {
   color: var(--ink);
 }
 
+/* Peanut stand: a light, playful scatter reserved for the ages 8–14 band. */
+.ages-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.ages-band .content-row {
+  position: relative;
+  z-index: 1;
+}
+.peanut-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.peanut {
+  position: absolute;
+  display: block;
+  width: var(--peanut-size, clamp(2.2rem, 5vw, 4rem));
+  height: auto;
+  opacity: 0.58;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  user-select: none;
+  transform: translate3d(0, 0, 0) rotate(var(--peanut-rotation, 0deg));
+  animation: peanut-float var(--peanut-duration, 7s) ease-in-out infinite alternate;
+  animation-delay: var(--peanut-delay, 0s);
+}
+.peanut-1 { left: 2%; top: 8%; --peanut-size: 3.2rem; --peanut-rotation: -18deg; --peanut-duration: 7.5s; }
+.peanut-2 { left: 14%; top: 25%; --peanut-size: 2.4rem; --peanut-rotation: 24deg; --peanut-duration: 8.5s; --peanut-delay: -2s; }
+.peanut-3 { left: 7%; bottom: 11%; --peanut-size: 3.4rem; --peanut-rotation: 12deg; --peanut-duration: 6.5s; --peanut-delay: -4s; }
+.peanut-4 { left: 30%; top: 5%; --peanut-size: 2rem; --peanut-rotation: -30deg; --peanut-duration: 8s; --peanut-delay: -1s; }
+.peanut-5 { right: 4%; top: 8%; --peanut-size: 3.7rem; --peanut-rotation: 20deg; --peanut-duration: 7s; --peanut-delay: -3s; }
+.peanut-6 { right: 15%; top: 27%; --peanut-size: 2.5rem; --peanut-rotation: -14deg; --peanut-duration: 9s; --peanut-delay: -5s; }
+.peanut-7 { right: 8%; bottom: 10%; --peanut-size: 3.3rem; --peanut-rotation: -22deg; --peanut-duration: 6.8s; --peanut-delay: -2.5s; }
+.peanut-8 { right: 29%; bottom: 5%; --peanut-size: 2.1rem; --peanut-rotation: 34deg; --peanut-duration: 8.2s; --peanut-delay: -4.5s; }
+.peanut-9 { left: 44%; bottom: 10%; --peanut-size: 2.5rem; --peanut-rotation: 8deg; --peanut-duration: 7.8s; --peanut-delay: -1.5s; }
+.peanut-10 { right: 44%; top: 6%; --peanut-size: 2rem; --peanut-rotation: -8deg; --peanut-duration: 9.2s; --peanut-delay: -6s; }
+.peanut-11 { left: 2%; bottom: 38%; --peanut-size: 2.5rem; --peanut-rotation: 28deg; --peanut-duration: 8.8s; --peanut-delay: -3.5s; }
+.peanut-12 { right: 2%; bottom: 35%; --peanut-size: 2.4rem; --peanut-rotation: -28deg; --peanut-duration: 7.2s; --peanut-delay: -5.5s; }
+.peanut-13 { left: 20%; bottom: 8%; --peanut-size: 1.9rem; --peanut-rotation: -12deg; --peanut-duration: 7.7s; --peanut-delay: -2.8s; }
+.peanut-14 { left: 23%; top: 43%; --peanut-size: 2.2rem; --peanut-rotation: 18deg; --peanut-duration: 8.6s; --peanut-delay: -4.2s; }
+.peanut-15 { left: 37%; top: 19%; --peanut-size: 1.8rem; --peanut-rotation: 30deg; --peanut-duration: 6.9s; --peanut-delay: -1.2s; }
+.peanut-16 { left: 39%; bottom: 29%; --peanut-size: 2.1rem; --peanut-rotation: -24deg; --peanut-duration: 8.9s; --peanut-delay: -5.2s; }
+.peanut-17 { left: 51%; top: 24%; --peanut-size: 2.3rem; --peanut-rotation: 14deg; --peanut-duration: 7.4s; --peanut-delay: -3.8s; }
+.peanut-18 { left: 55%; bottom: 19%; --peanut-size: 1.8rem; --peanut-rotation: -32deg; --peanut-duration: 9.1s; --peanut-delay: -6.3s; }
+.peanut-19 { left: 63%; top: 7%; --peanut-size: 2.2rem; --peanut-rotation: 26deg; --peanut-duration: 8.1s; --peanut-delay: -2.1s; }
+.peanut-20 { left: 67%; bottom: 8%; --peanut-size: 2.4rem; --peanut-rotation: -16deg; --peanut-duration: 6.7s; --peanut-delay: -4.7s; }
+.peanut-21 { right: 20%; top: 13%; --peanut-size: 1.9rem; --peanut-rotation: 10deg; --peanut-duration: 8.7s; --peanut-delay: -3.1s; }
+.peanut-22 { right: 22%; bottom: 31%; --peanut-size: 2.1rem; --peanut-rotation: -26deg; --peanut-duration: 7.3s; --peanut-delay: -5.7s; }
+.peanut-23 { right: 35%; top: 39%; --peanut-size: 1.8rem; --peanut-rotation: 32deg; --peanut-duration: 9.3s; --peanut-delay: -1.8s; }
+.peanut-24 { right: 38%; bottom: 23%; --peanut-size: 2.3rem; --peanut-rotation: -6deg; --peanut-duration: 8.4s; --peanut-delay: -4.1s; }
+.peanut-25 { right: 51%; top: 35%; --peanut-size: 1.9rem; --peanut-rotation: 22deg; --peanut-duration: 7.9s; --peanut-delay: -6.1s; }
+.peanut-26 { right: 58%; bottom: 6%; --peanut-size: 2rem; --peanut-rotation: -20deg; --peanut-duration: 6.6s; --peanut-delay: -2.4s; }
+.peanut-27 { right: 68%; top: 18%; --peanut-size: 2.2rem; --peanut-rotation: 16deg; --peanut-duration: 8.3s; --peanut-delay: -3.4s; }
+.peanut-28 { right: 73%; bottom: 15%; --peanut-size: 1.8rem; --peanut-rotation: -30deg; --peanut-duration: 9.4s; --peanut-delay: -5.1s; }
+.peanut-eli5 {
+  max-width: 32rem;
+  color: var(--blue-dark);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+@keyframes peanut-float {
+  0% { transform: translate3d(0, 0, 0) rotate(var(--peanut-rotation, 0deg)); }
+  50% { transform: translate3d(0.15rem, -0.55rem, 0) rotate(calc(var(--peanut-rotation, 0deg) + 8deg)); }
+  100% { transform: translate3d(-0.1rem, -0.2rem, 0) rotate(calc(var(--peanut-rotation, 0deg) - 4deg)); }
+}
+.ages-band-content {
+  position: relative;
+  z-index: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .peanut { animation: none; }
+  .scroll-throw { transition: none; }
+}
+
 /* Color-matched content rows (text left / GIF right) */
 .asset-band-yellow {
   background: #ffc600;
@@ -756,6 +835,14 @@ button:focus-visible {
   z-index: 25; /* under sticky header (z-40); over section chrome */
   pointer-events: none;
   overflow: hidden;
+  /* Hidden on hero; shown solid once scrolled past */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.scroll-throw[data-past-hero="true"] {
+  opacity: 1;
+  visibility: visible;
 }
 .scroll-throw-pair {
   position: absolute;
@@ -764,7 +851,7 @@ button:focus-visible {
   align-items: flex-end;
   gap: 0.15rem;
   will-change: transform;
-  opacity: 0.4;
+  opacity: 1; /* solid — no translucent/fade look */
 }
 .scroll-throw-pair-cw {
   left: 0.35rem;
@@ -791,13 +878,13 @@ button:focus-visible {
   translate: var(--ball-nudge, 0px) -0.35rem;
 }
 @media (max-width: 720px) {
-  .scroll-throw-pair { opacity: 0.26; }
+  .scroll-throw-pair { opacity: 1; }
   .scroll-throw-glove-img { width: clamp(36px, 10vw, 52px); }
   .scroll-throw-ball-img { width: clamp(24px, 7vw, 36px); }
 }
 /* Keep clear of dense center columns on mid widths */
 @media (min-width: 721px) and (max-width: 1024px) {
-  .scroll-throw-pair { opacity: 0.32; }
+  .scroll-throw-pair { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .scroll-throw { display: none !important; }

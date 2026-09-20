@@ -16,9 +16,6 @@ export default function Header() {
           <Link href="/guides/" className="nav-link">
             Free Guides
           </Link>
-          <a href="/#how-it-works" className="nav-link hidden sm:inline">
-            How It Works
-          </a>
           <Link href="/contact/" className="btn !min-h-9 !px-3.5 !py-1.5 !text-sm">
             Contact
           </Link>

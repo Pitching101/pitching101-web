@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Two floating throw pairs (glove + ball) over page sections.
- * Scroll-linked soft drift + CW/CCW spin. pointer-events: none.
- * Hidden when prefers-reduced-motion: reduce.
+ * Two floating throw pairs (glove + ball) over page sections after the hero.
+ * Full opacity (no fade). Scroll-linked soft drift + CW/CCW spin.
+ * pointer-events: none. Hidden when prefers-reduced-motion: reduce.
  */
 export default function ScrollThrowDecor() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -19,23 +19,27 @@ export default function ScrollThrowDecor() {
     if (!root || !cw || !ccw) return;
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const applyMotionPreference = () => {
-      if (mq.matches) {
-        root.hidden = true;
-        return false;
-      }
-      root.hidden = false;
-      return true;
+    const hero = () =>
+      document.querySelector<HTMLElement>(".hero-overlay") ??
+      document.querySelector<HTMLElement>('[aria-label*="Youth Pitching"]');
+    const isPastHero = () => {
+      const heroEl = hero();
+      return heroEl
+        ? heroEl.getBoundingClientRect().bottom <= 0
+        : window.scrollY > window.innerHeight * 0.75;
     };
-    if (!applyMotionPreference()) {
-      const onChange = () => applyMotionPreference();
-      mq.addEventListener("change", onChange);
-      return () => mq.removeEventListener("change", onChange);
-    }
+    const applyVisibility = () => {
+      const visible = !mq.matches && isPastHero();
+      root.hidden = !visible;
+      root.dataset.pastHero = visible ? "true" : "false";
+      return visible;
+    };
 
     let ticking = false;
     const update = () => {
       ticking = false;
+      if (!applyVisibility()) return;
+
       const max = Math.max(
         1,
         document.documentElement.scrollHeight - window.innerHeight,
@@ -64,21 +68,23 @@ export default function ScrollThrowDecor() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
-    const onChange = () => {
-      if (!applyMotionPreference()) return;
-      update();
-    };
-    mq.addEventListener("change", onChange);
+    mq.addEventListener("change", onScroll);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      mq.removeEventListener("change", onChange);
+      mq.removeEventListener("change", onScroll);
     };
   }, []);
 
   return (
-    <div ref={rootRef} className="scroll-throw" aria-hidden="true" hidden>
+    <div
+      ref={rootRef}
+      className="scroll-throw"
+      aria-hidden="true"
+      hidden
+      data-past-hero="false"
+    >
       {/* Instance 1 — left gutter, clockwise */}
       <div ref={cwRef} className="scroll-throw-pair scroll-throw-pair-cw">
         {/* eslint-disable-next-line @next/next/no-img-element */}

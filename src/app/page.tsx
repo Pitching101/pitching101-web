@@ -105,27 +105,52 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+            <p className="text-base text-ink-soft">
+              ELI5: parents ask this — here’s what they say on Trustpilot.
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* 3. WHITE — Client Reviews carousel (real Trustpilot) */}
-      <section className="text-band" id="reviews" aria-label="Client Reviews">
+      {/* 3. WHITE — From Trustpilot carousel */}
+      <section className="text-band" id="reviews" aria-label="From Trustpilot">
         <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
-            <h2 className="ui-title ui-title-md">Client Reviews</h2>
+            <h2 className="ui-title ui-title-md">From Trustpilot</h2>
+            <p className="text-base leading-relaxed text-ink-soft">
+              Parents ask those questions — here’s what they say after working together.
+            </p>
             <ReviewsCarousel />
           </Reveal>
         </div>
       </section>
 
       {/* 4. #BBD6F1 — ages 8–14 goals (+ runner, flush) */}
-      <section id="who" className="band-soft scroll-mt-24" aria-label="Ages 8 To 14">
-        <div className="content-row">
+      <section
+        id="who"
+        className="band-soft ages-band scroll-mt-24"
+        aria-label="Ages 8 To 14"
+      >
+        <div className="peanut-decor" aria-hidden="true">
+          {Array.from({ length: 28 }, (_, index) => (
+            <Image
+              key={index}
+              src="/assets/pixel-peanut.png"
+              alt=""
+              width={48}
+              height={48}
+              className={`peanut peanut-${index + 1}`}
+            />
+          ))}
+        </div>
+        <div className="content-row ages-band-content">
           <Reveal from="left" className="content-row-copy content-row-copy-wide">
             <h2 className="ui-title ui-title-md">
               To Help Young Pitchers Ages 8–14
             </h2>
+            <p className="peanut-eli5">
+              ELI5: peanuts = younger pitchers — ballpark fun.
+            </p>
             <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
               {ageGoals.map((item) => (
                 <li key={item}>{item}</li>
