@@ -15,9 +15,18 @@ function yOf(el: HTMLElement) {
   return window.scrollY + el.getBoundingClientRect().top;
 }
 
+type SoloFlight = {
+  start: number;
+  duration: number;
+  y: number;
+  fromLeft: boolean;
+  rise: number;
+  spin: number;
+};
+
 /**
  * Glove + ball stay glued to homepage scroll from the hero through About.
- * Pose is a continuous function of scroll progress — no CSS keyframes, no laggy catch-up.
+ * Occasional solo baseballs cross the sky underneath type.
  */
 export default function ScrollThrowDecor() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -27,6 +36,7 @@ export default function ScrollThrowDecor() {
   const ccwGloveRef = useRef<HTMLImageElement>(null);
   const cwBallRef = useRef<HTMLImageElement>(null);
   const ccwBallRef = useRef<HTMLImageElement>(null);
+  const soloRefs = [useRef<HTMLImageElement>(null), useRef<HTMLImageElement>(null)];
 
   useEffect(() => {
     const root = rootRef.current;
@@ -36,7 +46,8 @@ export default function ScrollThrowDecor() {
     const ccwGlove = ccwGloveRef.current;
     const cwBall = cwBallRef.current;
     const ccwBall = ccwBallRef.current;
-    if (!root || !cw || !ccw || !cwGlove || !ccwGlove || !cwBall || !ccwBall) {
+    const solos = soloRefs.map((item) => item.current).filter((el): el is HTMLImageElement => Boolean(el));
+    if (!root || !cw || !ccw || !cwGlove || !ccwGlove || !cwBall || !ccwBall || solos.length < 2) {
       return;
     }
 
@@ -71,7 +82,9 @@ export default function ScrollThrowDecor() {
       const edge = Math.max(8, Math.min(22, vw * 0.012));
 
       const fade = home ? 1 - smoothstep(0.88, 1, p) : 0;
-      root.style.opacity = fade.toFixed(3);
+      root.style.opacity = home ? "1" : "0";
+      cw.style.opacity = fade.toFixed(3);
+      ccw.style.opacity = fade.toFixed(3);
 
       const startTop = Math.max(80, vh * 0.2);
 
@@ -143,12 +156,71 @@ export default function ScrollThrowDecor() {
     apply(currentP, mq.matches);
     kick();
 
+    const flights: (SoloFlight | null)[] = [null, null];
+    let soloRaf = 0;
+    let nextSoloAt = performance.now() + 900;
+    let soloLane = 0;
+
+    const parkSolo = (el: HTMLImageElement) => {
+      el.style.opacity = "0";
+      el.style.transform = "translate3d(-80px, 0, 0)";
+    };
+    solos.forEach(parkSolo);
+
+    const spawnSolo = (now: number) => {
+      if (!heroEl() || mq.matches) return;
+      const slot = flights[0] ? 1 : 0;
+      if (flights[slot]) return;
+      const vh = window.innerHeight;
+      soloLane += 1;
+      flights[slot] = {
+        start: now,
+        duration: 1600 + Math.random() * 700,
+        y: Math.max(96, vh * 0.18) + ((soloLane * 97) % Math.max(80, vh * 0.52)),
+        fromLeft: soloLane % 2 === 0,
+        rise: 18 + Math.random() * 26,
+        spin: 280 + Math.random() * 220,
+      };
+    };
+
+    const paintSolo = (now: number) => {
+      const vw = window.innerWidth;
+      const travel = vw + 96;
+      flights.forEach((flight, i) => {
+        const el = solos[i];
+        if (!flight) {
+          parkSolo(el);
+          return;
+        }
+        const t = clamp((now - flight.start) / flight.duration, 0, 1);
+        const ease = t * t * (3 - 2 * t);
+        const x = flight.fromLeft ? -48 + ease * travel : vw - ease * travel;
+        const arc = Math.sin(t * Math.PI) * -flight.rise;
+        const fadeIn = smoothstep(0, 0.12, t);
+        const fadeOut = 1 - smoothstep(0.82, 1, t);
+        el.style.opacity = (fadeIn * fadeOut).toFixed(3);
+        el.style.transform = `translate3d(${x.toFixed(2)}px, ${(flight.y + arc).toFixed(2)}px, 0) rotate(${(flight.spin * t * (flight.fromLeft ? 1 : -1)).toFixed(2)}deg)`;
+        if (t >= 1) flights[i] = null;
+      });
+    };
+
+    const soloLoop = (now: number) => {
+      if (heroEl() && !mq.matches && now >= nextSoloAt) {
+        spawnSolo(now);
+        nextSoloAt = now + 3800 + Math.random() * 4200;
+      }
+      paintSolo(now);
+      soloRaf = window.requestAnimationFrame(soloLoop);
+    };
+    soloRaf = window.requestAnimationFrame(soloLoop);
+
     window.addEventListener("scroll", kick, { passive: true });
     window.addEventListener("resize", kick, { passive: true });
     mq.addEventListener("change", kick);
 
     return () => {
       if (raf) window.cancelAnimationFrame(raf);
+      if (soloRaf) window.cancelAnimationFrame(soloRaf);
       window.removeEventListener("scroll", kick);
       window.removeEventListener("resize", kick);
       mq.removeEventListener("change", kick);
@@ -202,6 +274,20 @@ export default function ScrollThrowDecor() {
           draggable={false}
         />
       </div>
+
+      {soloRefs.map((ref, index) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={index}
+          ref={ref}
+          src="/assets/pixel-baseball-transparent.png"
+          alt=""
+          width={40}
+          height={40}
+          className="scroll-throw-img scroll-throw-solo"
+          draggable={false}
+        />
+      ))}
     </div>
   );
 }
