@@ -1021,7 +1021,7 @@ button:focus-visible {
 
 
 
-/* Bottom homepage CTA: seamless stadium sky (no white fade mask). */
+/* Bottom homepage CTA: stadium sky with overlay clouds (no baked checkerboard). */
 .home-stadium-band {
   position: relative;
   isolation: isolate;
