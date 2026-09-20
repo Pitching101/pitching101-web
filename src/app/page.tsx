@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
+import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 
 const guyBullets = [
   "Ages 8–14 — young pitchers learning the game.",
@@ -167,7 +168,7 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <div className="mx-auto flex max-w-xl flex-col items-center gap-6 px-5 py-16 text-center sm:px-8 sm:py-20">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-5 py-16 text-center sm:px-8 sm:py-20">
             <Image
               src="/assets/nick-coach-circle.png"
               alt="Coach Nick — Pitching101 Naples FL"
@@ -186,6 +187,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </Reveal>
+            <TrainingClipsStrip />
           </div>
         </div>
       </section>

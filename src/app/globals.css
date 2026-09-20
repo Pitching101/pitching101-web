@@ -806,13 +806,27 @@ button:focus-visible {
   margin-right: auto;
 }
 
-/* Client Reviews carousel */
+/* Client Reviews carousel — Nick: #BBD6F1 card, dark readable text */
 .reviews-carousel {
-  background: var(--surface-raised);
-  border: 1px solid color-mix(in srgb, var(--blue) 18%, transparent);
+  background: #BBD6F1;
+  border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   padding: 1.5rem 1.35rem;
+  color: var(--ink);
+}
+.reviews-carousel blockquote,
+.reviews-carousel .text-ink,
+.reviews-carousel .text-lg {
+  color: var(--ink);
+}
+.reviews-carousel footer,
+.reviews-carousel .text-ink-soft {
+  color: var(--ink-soft);
+}
+.reviews-carousel .text-blue-dark,
+.reviews-carousel .reviews-tp-link {
+  color: var(--blue-dark);
 }
 @media (min-width: 640px) {
   .reviews-carousel { padding: 1.75rem 1.75rem; }
@@ -1123,3 +1137,112 @@ button:focus-visible {
     opacity: 1;
   }
 }
+
+
+/* Footer contact links — clear Call / Text / Email */
+.footer-link {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--blue-dark);
+  text-decoration: none;
+  transition: color 0.18s var(--ease-soft);
+}
+.footer-link:hover {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Stadium band — training clips strip (videos or Contact placeholders) */
+.training-clips {
+  width: 100%;
+  max-width: 42rem;
+  margin-top: 0.5rem;
+  padding: 1rem 1.15rem 1.15rem;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(2px);
+  text-align: center;
+}
+.training-clips-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+.training-clips-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 640px) {
+  .training-clips-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.training-clip-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 7.5rem;
+  padding: 0.85rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
+  background: #ffffff;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.18s var(--ease-soft), box-shadow 0.18s var(--ease-soft), transform 0.18s var(--ease-soft);
+}
+a.training-clip-card:hover {
+  border-color: var(--blue);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+.training-clip-video {
+  width: 100%;
+  height: 7.5rem;
+  object-fit: cover;
+  border-radius: calc(var(--radius-sm) - 2px);
+  background: #0f1a2e;
+}
+.training-clip-play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+  font-size: 0.7rem;
+}
+.training-clip-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.training-clip-note {
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  max-width: 11rem;
+}
+.training-clip-cta {
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blue-dark);
+}
+.home-stadium-inner > .mx-auto {
+  width: 100%;
+  max-width: 42rem;
+}
+

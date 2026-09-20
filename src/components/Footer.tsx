@@ -1,44 +1,41 @@
 import Link from "next/link";
 import Logo from "./Logo";
 
+/** Site footer — logo, Naples blurb, Call / Text / Email (Nick mock). */
 export default function Footer() {
   return (
     <footer className="site-footer mt-auto">
-      <div className="mx-auto flex max-w-5xl flex-col gap-8 px-5 py-12 sm:flex-row sm:items-start sm:justify-between sm:px-8">
-        <div className="space-y-4">
+      <div className="footer-inner mx-auto flex max-w-5xl flex-col gap-10 px-5 py-12 sm:flex-row sm:items-start sm:justify-between sm:px-8">
+        <div className="footer-brand space-y-4">
           <Logo height={48} />
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth pitching lessons for Naples, FL families. Clear coaching. No jargon.
           </p>
         </div>
-        <div className="space-y-2 text-sm">
+
+        <div className="footer-contact space-y-3 text-sm">
           <p className="text-sm font-semibold text-blue-dark">Contact</p>
-          <p>
-            <Link className="text-blue-dark hover:text-blue hover:underline" href="/contact/">
-              Contact page
-            </Link>
-          </p>
-          <p>
-            <a className="text-blue-dark hover:text-blue hover:underline" href="tel:8457682211">
-              Call 845-768-2211
-            </a>
-          </p>
-          <p>
-            <a className="text-blue-dark hover:text-blue hover:underline" href="sms:8457682211">
-              Text 845-768-2211
-            </a>
-          </p>
-          <p>
-            <a
-              className="text-blue-dark hover:text-blue hover:underline"
-              href="mailto:nickdeisng@gmail.com"
-            >
-              nickdeisng@gmail.com
-            </a>
-          </p>
-          <p className="text-base text-ink-soft">Naples, FL area</p>
+          <ul className="footer-contact-links space-y-2">
+            <li>
+              <a className="footer-link" href="tel:8457682211">
+                Call 845-768-2211
+              </a>
+            </li>
+            <li>
+              <a className="footer-link" href="sms:8457682211">
+                Text 845-768-2211
+              </a>
+            </li>
+            <li>
+              <a className="footer-link" href="mailto:nickdeisng@gmail.com">
+                Email nickdeisng@gmail.com
+              </a>
+            </li>
+          </ul>
+          <p className="text-sm text-ink-soft">Naples, FL area</p>
         </div>
-        <div className="space-y-2 text-sm">
+
+        <div className="footer-explore space-y-2 text-sm">
           <p className="text-sm font-semibold text-blue-dark">Explore</p>
           <p>
             <Link className="text-ink-soft hover:text-blue-dark" href="/">
