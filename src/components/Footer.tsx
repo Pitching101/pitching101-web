@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 
-/** Site footer — logo + Naples FL + Call / Text / Email. */
+/** Site footer — Ready To Talk + Call / Text / Email (contact lives here only). */
 export default function Footer() {
   return (
     <footer className="site-footer mt-auto">
@@ -18,7 +18,8 @@ export default function Footer() {
         </div>
 
         <div className="footer-contact space-y-3 text-sm">
-          <p className="text-sm font-semibold text-blue-dark">Contact</p>
+          <p className="text-base font-semibold text-blue-dark">Ready To Talk?</p>
+          <p className="text-sm text-ink-soft">Naples, FL Families Welcome.</p>
           <ul className="footer-contact-links space-y-2">
             <li>
               <a className="footer-link" href="tel:8457682211">

@@ -161,7 +161,7 @@ export default function ScrollThrowDecor() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={cwGloveRef}
-          src="/assets/pixel-glove.png"
+          src="/assets/pixel-glove-transparent.png"
           alt=""
           width={72}
           height={84}
@@ -171,7 +171,7 @@ export default function ScrollThrowDecor() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={cwBallRef}
-          src="/assets/pixel-baseball.png"
+          src="/assets/pixel-baseball-transparent.png"
           alt=""
           width={48}
           height={48}
@@ -184,7 +184,7 @@ export default function ScrollThrowDecor() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={ccwGloveRef}
-          src="/assets/pixel-glove.png"
+          src="/assets/pixel-glove-transparent.png"
           alt=""
           width={72}
           height={84}
@@ -194,7 +194,7 @@ export default function ScrollThrowDecor() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={ccwBallRef}
-          src="/assets/pixel-baseball.png"
+          src="/assets/pixel-baseball-transparent.png"
           alt=""
           width={48}
           height={48}

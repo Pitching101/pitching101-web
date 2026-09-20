@@ -17,6 +17,7 @@ export default function TrainingClipsStrip() {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [inView, setInView] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -42,6 +43,14 @@ export default function TrainingClipsStrip() {
     io.observe(root);
     return () => io.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (reduceMotion || paused || !inView || CLIPS.length < 2) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % CLIPS.length);
+    }, 6000);
+    return () => window.clearInterval(id);
+  }, [reduceMotion, paused, inView]);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -83,6 +92,14 @@ export default function TrainingClipsStrip() {
       role="region"
       aria-roledescription="carousel"
       aria-label="Real Training Clips"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          setPaused(false);
+        }
+      }}
     >
       <p className="training-clips-label">Real Training Clips</p>
       <button

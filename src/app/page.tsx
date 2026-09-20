@@ -30,6 +30,13 @@ const trainingOptions = [
   },
 ];
 
+const skyClouds = [
+  { src: "/assets/pixel-cloud-1-transparent.png", w: 279, h: 145 },
+  { src: "/assets/pixel-cloud-2-transparent.png", w: 210, h: 99 },
+  { src: "/assets/pixel-cloud-3-transparent.png", w: 200, h: 96 },
+  { src: "/assets/pixel-cloud-4-transparent.png", w: 223, h: 99 },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -61,16 +68,19 @@ export default function HomePage() {
         <div className="home-sky-layers" aria-hidden="true">
           <div className="home-sky-wash" />
           <div className="cloud-decor home-sky-clouds">
-            {Array.from({ length: 11 }, (_, index) => (
-              <Image
-                key={index}
-                src="/assets/pixel-cloud-transparent.png"
-                alt=""
-                width={150}
-                height={65}
-                className={`float-cloud float-cloud-${index + 1}`}
-              />
-            ))}
+            {Array.from({ length: 11 }, (_, index) => {
+              const cloud = skyClouds[index % skyClouds.length];
+              return (
+                <Image
+                  key={`${cloud.src}-${index}`}
+                  src={cloud.src}
+                  alt=""
+                  width={cloud.w}
+                  height={cloud.h}
+                  className={`float-cloud float-cloud-${index + 1}`}
+                />
+              );
+            })}
           </div>
         </div>
         <SkyFadeAnchor />
@@ -94,18 +104,6 @@ export default function HomePage() {
           className="text-band ages-band scroll-mt-24"
           aria-label="About Coach Nick — Ages 8 To 14"
         >
-          <div className="peanut-decor" aria-hidden="true">
-            {Array.from({ length: 28 }, (_, index) => (
-              <Image
-                key={index}
-                src="/assets/pixel-peanut.png"
-                alt=""
-                width={48}
-                height={48}
-                className={`peanut peanut-${index + 1}`}
-              />
-            ))}
-          </div>
           <div className="content-row ages-band-content">
             <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
               <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
@@ -122,9 +120,6 @@ export default function HomePage() {
                 I&apos;m Your Guy If You&apos;re Looking To Throw Strikes, Build A Strong
                 Foundation, Train Healthy Patterns, And Get Affordable Lessons.
               </h3>
-              <p className="peanut-eli5">
-                ELI5: peanuts = younger pitchers (ages 8–14) — ballpark fun.
-              </p>
               <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
                 {guyBullets.map((item) => (
                   <li key={item}>{item}</li>
@@ -174,7 +169,7 @@ export default function HomePage() {
         >
           <div className="home-stadium-media" aria-hidden="true">
             <Image
-              src="/assets/pixel-stadium-seamless.png"
+              src="/assets/pixel-stadium-bg-v2.png"
               alt=""
               fill
               className="home-stadium-bg"
