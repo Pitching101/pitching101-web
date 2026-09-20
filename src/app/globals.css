@@ -132,7 +132,7 @@ body {
   Homepage sky stack: CSS wash + transparent clouds + stadium art.
   Sections stay transparent so the blue fade and clouds continue
   from reviews through How It Works into the stadium.
-  Stadium sky match: #55BCFF
+  Brand sky: #BBD6F1 → #3295fb. Stadium cyan is punched/retinted.
 */
 .home-sky-scene {
   position: relative;
@@ -148,16 +148,19 @@ body {
 .home-sky-wash {
   position: absolute;
   inset: 0;
-  /* White on top; brand blues only after About, then a long soft fade */
+  /* White on top, then a long brand-blue fade — #3295fb / #BBD6F1 only */
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #ffffff 42%,
-    #f7fbff 50%,
-    #BBD6F1 62%,
-    color-mix(in srgb, #3295fb 22%, #BBD6F1) 74%,
-    color-mix(in srgb, #3295fb 38%, #BBD6F1) 86%,
-    color-mix(in srgb, #3295fb 32%, #8ec4f5) 100%
+    #ffffff 36%,
+    #f7faff 44%,
+    #eef4fa 50%,
+    #dce8f5 56%,
+    #BBD6F1 64%,
+    color-mix(in srgb, #3295fb 18%, #BBD6F1) 74%,
+    color-mix(in srgb, #3295fb 30%, #BBD6F1) 84%,
+    color-mix(in srgb, #3295fb 40%, #BBD6F1) 92%,
+    color-mix(in srgb, #3295fb 45%, #BBD6F1) 100%
   );
 }
 .home-sky-clouds {
@@ -1133,23 +1136,27 @@ button:focus-visible {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   opacity: 1;
-  /* Long soft fade so the field eases onto the brand-blue wash */
+  /* Keep the cyan stadium sky hidden so the brand wash shows through */
   -webkit-mask-image: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.12) 18%,
-    rgba(0, 0, 0, 0.45) 32%,
-    rgba(0, 0, 0, 0.82) 48%,
-    #000 64%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.08) 32%,
+    rgba(0, 0, 0, 0.22) 42%,
+    rgba(0, 0, 0, 0.48) 54%,
+    rgba(0, 0, 0, 0.78) 68%,
+    #000 82%,
     #000 100%
   );
   mask-image: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.12) 18%,
-    rgba(0, 0, 0, 0.45) 32%,
-    rgba(0, 0, 0, 0.82) 48%,
-    #000 64%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.08) 32%,
+    rgba(0, 0, 0, 0.22) 42%,
+    rgba(0, 0, 0, 0.48) 54%,
+    rgba(0, 0, 0, 0.78) 68%,
+    #000 82%,
     #000 100%
   );
 }
