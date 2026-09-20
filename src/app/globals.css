@@ -1453,8 +1453,9 @@ html.glove-cursor * {
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  min-height: 19rem;
-  padding: 0.6rem 0 0.4rem;
+  min-height: 20.5rem;
+  padding: 0.8rem 0 1.8rem;
+  overflow: visible;
 }
 .clip-card {
   width: min(8.6rem, 28vw);
@@ -1463,17 +1464,17 @@ html.glove-cursor * {
 .clip-card-main {
   z-index: 3;
   width: min(12.4rem, 42vw);
-  transform: rotate(2.4deg) translateY(-10px);
+  transform: rotate(2.4deg) translateY(-18px);
   cursor: default;
 }
 .clip-card-left {
   z-index: 1;
-  transform: rotate(-14deg) translate(1.35rem, 1.5rem);
+  transform: rotate(-14deg) translate(1.35rem, 0.55rem);
   filter: saturate(0.86);
 }
 .clip-card-right {
   z-index: 2;
-  transform: rotate(12deg) translate(-1.2rem, 1.65rem);
+  transform: rotate(12deg) translate(-1.2rem, 0.7rem);
   filter: saturate(0.86);
 }
 .clip-card-left:hover,
@@ -1537,7 +1538,7 @@ html.glove-cursor * {
   gap: 0.35rem;
 }
 @media (max-width: 560px) {
-  .clip-fan { min-height: 16.5rem; }
+  .clip-fan { min-height: 18rem; padding-bottom: 1.5rem; }
   .clip-card { width: 6.6rem; }
   .clip-card-main { width: 8.8rem; }
 }
