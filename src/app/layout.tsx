@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Pixelify_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ScrollBall from "@/components/ScrollBall";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -55,7 +54,6 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${pixelify.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <ScrollBall />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

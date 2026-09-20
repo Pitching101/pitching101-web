@@ -35,7 +35,7 @@ const programs = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero — light shell */}
+      {/* 1–2. H1 / offer + Text/Call CTAs — white shell */}
       <section className="text-band">
         <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
           <Reveal className="mx-auto max-w-3xl space-y-6 text-center sm:text-left">
@@ -63,8 +63,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust */}
-      <section className="text-band border-t-4 border-blue">
+      {/* 3. Trust */}
+      <section className="text-band border-t-4 border-blue bg-surface">
         <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-12">
           <Reveal>
             <TrustStrip />
@@ -72,48 +72,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Yellow runner — text left / GIF right */}
-      <section
-        className="asset-band-yellow"
-        aria-label="Clear next reps with pixel runner"
-      >
-        <div className="content-row">
-          <Reveal className="content-row-copy">
-            <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
-              Clear next reps
-            </p>
-            <h2 className="pixel-title pixel-title-md">
-              Run the bases with feedback parents understand
-            </h2>
-            <p className="text-base leading-relaxed">
-              No jargon — just plain-English notes your pitcher can use between
-              sessions. Parents stay in the loop the whole run.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a href="sms:8457682211" className="pixel-btn-on-light">
-                Text 845-768-2211
-              </a>
-              <a href="tel:8457682211" className="pixel-btn-ghost-on-light">
-                Call 845-768-2211
-              </a>
-            </div>
-          </Reveal>
-          <Reveal delayMs={90} className="content-row-media">
-            <div className="gift-frame-yellow overflow-hidden">
-              <Image
-                src="/assets/pixel-runner.gif"
-                alt="Pixel art baseball runner sprinting"
-                width={800}
-                height={600}
-                className="row-gif"
-                unoptimized
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Programs */}
+      {/* 4. Stan / PDF / virtual */}
       <section
         id="programs"
         className="text-band scroll-mt-24 border-t-4 border-blue"
@@ -149,50 +108,6 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Teal swing — text left / GIF right */}
-      <section
-        className="asset-band-teal"
-        aria-label="Mechanics with pixel swing"
-      >
-        <div className="content-row">
-          <Reveal className="content-row-copy">
-            <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
-              Mechanics that click
-            </p>
-            <h2 className="pixel-title pixel-title-md">
-              Age-right progress without the noise
-            </h2>
-            <p className="text-base leading-relaxed">
-              Youth and elite arms get coaching that talks like a human — not a
-              scouting-report printer. You leave knowing what to watch for.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a href="tel:8457682211" className="pixel-btn-on-light">
-                Call 845-768-2211
-              </a>
-              <a
-                href="mailto:nickdeisng@gmail.com"
-                className="pixel-btn-ghost-on-light"
-              >
-                Email nickdeisng@gmail.com
-              </a>
-            </div>
-          </Reveal>
-          <Reveal delayMs={90} className="content-row-media">
-            <div className="gift-frame-teal overflow-hidden">
-              <Image
-                src="/assets/pixel-swing-teal.gif"
-                alt="Pixel art batter swinging on teal"
-                width={800}
-                height={600}
-                className="row-gif"
-                unoptimized
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -239,13 +154,96 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* White batter — text left / still right */}
+      {/* 5. GIF support rows — text LEFT / GIF RIGHT; bg = asset color */}
+      <section
+        className="asset-band-yellow"
+        aria-label="Clear next reps with pixel runner"
+      >
+        <div className="content-row">
+          <Reveal from="left" className="content-row-copy">
+            <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
+              Clear next reps
+            </p>
+            <h2 className="pixel-title pixel-title-md">
+              Run the bases with feedback parents understand
+            </h2>
+            <p className="text-base leading-relaxed">
+              No jargon — just plain-English notes your pitcher can use between
+              sessions. Parents stay in the loop the whole run.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a href="sms:8457682211" className="pixel-btn-on-light">
+                Text 845-768-2211
+              </a>
+              <a href="tel:8457682211" className="pixel-btn-ghost-on-light">
+                Call 845-768-2211
+              </a>
+            </div>
+          </Reveal>
+          <Reveal from="right" delayMs={100} className="content-row-media">
+            <div className="gift-frame-yellow overflow-hidden">
+              <Image
+                src="/assets/pixel-runner.gif"
+                alt="Pixel art baseball runner sprinting"
+                width={800}
+                height={600}
+                className="row-gif"
+                unoptimized
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        className="asset-band-teal"
+        aria-label="Mechanics with pixel swing"
+      >
+        <div className="content-row">
+          <Reveal from="left" className="content-row-copy">
+            <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
+              Mechanics that click
+            </p>
+            <h2 className="pixel-title pixel-title-md">
+              Age-right progress without the noise
+            </h2>
+            <p className="text-base leading-relaxed">
+              Youth and elite arms get coaching that talks like a human — not a
+              scouting-report printer. You leave knowing what to watch for.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a href="tel:8457682211" className="pixel-btn-on-light">
+                Call 845-768-2211
+              </a>
+              <a
+                href="mailto:nickdeisng@gmail.com"
+                className="pixel-btn-ghost-on-light"
+              >
+                Email nickdeisng@gmail.com
+              </a>
+            </div>
+          </Reveal>
+          <Reveal from="right" delayMs={100} className="content-row-media">
+            <div className="gift-frame-teal overflow-hidden">
+              <Image
+                src="/assets/pixel-swing-teal.gif"
+                alt="Pixel art batter swinging on teal"
+                width={800}
+                height={600}
+                className="row-gif"
+                unoptimized
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section
         className="asset-band-white"
         aria-label="Naples focus with pixel batter"
       >
         <div className="content-row">
-          <Reveal className="content-row-copy">
+          <Reveal from="left" className="content-row-copy">
             <p className="font-pixel text-sm font-semibold uppercase tracking-wide">
               Naples · Collier County
             </p>
@@ -269,7 +267,7 @@ export default function HomePage() {
               </a>
             </div>
           </Reveal>
-          <Reveal delayMs={90} className="content-row-media">
+          <Reveal from="right" delayMs={100} className="content-row-media">
             <div className="gift-frame-white overflow-hidden">
               <Image
                 src="/assets/pixel-batter.jpg"

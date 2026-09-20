@@ -519,9 +519,15 @@ button:focus-visible {
     opacity 0.55s var(--ease-out) var(--reveal-delay, 0ms),
     transform 0.55s var(--ease-out) var(--reveal-delay, 0ms);
 }
+.reveal.reveal-from-left {
+  transform: translateX(-22px);
+}
+.reveal.reveal-from-right {
+  transform: translateX(22px);
+}
 .reveal.is-revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0, 0);
 }
 
 @keyframes pixel-bob {

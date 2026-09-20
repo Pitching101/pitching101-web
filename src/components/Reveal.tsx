@@ -2,15 +2,17 @@
 
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
-/** Subtle scroll reveal — respects prefers-reduced-motion. */
+/** Subtle scroll fade/slide — respects prefers-reduced-motion. */
 export default function Reveal({
   children,
   className = "",
   delayMs = 0,
+  from = "up",
 }: {
   children: ReactNode;
   className?: string;
   delayMs?: number;
+  from?: "up" | "left" | "right";
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -31,7 +33,7 @@ export default function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -41,8 +43,19 @@ export default function Reveal({
     ? ({ ["--reveal-delay" as string]: `${delayMs}ms` } as CSSProperties)
     : undefined;
 
+  const fromClass =
+    from === "left"
+      ? "reveal-from-left"
+      : from === "right"
+        ? "reveal-from-right"
+        : "";
+
   return (
-    <div ref={ref} className={`reveal ${className}`} style={style}>
+    <div
+      ref={ref}
+      className={`reveal ${fromClass} ${className}`.trim()}
+      style={style}
+    >
       {children}
     </div>
   );
