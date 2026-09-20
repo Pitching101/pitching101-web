@@ -121,6 +121,53 @@ body {
   color: var(--ink);
 }
 
+/* How It Works: soft-blue sky band with drifting pixel clouds */
+.how-clouds-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.how-clouds-content {
+  position: relative;
+  z-index: 2;
+}
+.cloud-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.float-cloud {
+  position: absolute;
+  display: block;
+  width: var(--cloud-size, clamp(4.5rem, 12vw, 9rem));
+  height: auto;
+  opacity: 0.92;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  user-select: none;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  animation: cloud-drift var(--cloud-duration, 14s) ease-in-out infinite alternate;
+  animation-delay: var(--cloud-delay, 0s);
+}
+.float-cloud-1 { left: 2%; top: 8%; --cloud-size: 7.5rem; --cloud-duration: 16s; --cloud-delay: 0s; }
+.float-cloud-2 { left: 18%; top: 42%; --cloud-size: 5.2rem; --cloud-duration: 13s; --cloud-delay: -3s; opacity: 0.75; }
+.float-cloud-3 { left: 38%; top: 6%; --cloud-size: 6.4rem; --cloud-duration: 18s; --cloud-delay: -6s; }
+.float-cloud-4 { right: 8%; top: 14%; --cloud-size: 8rem; --cloud-duration: 15s; --cloud-delay: -2s; }
+.float-cloud-5 { right: 22%; bottom: 12%; --cloud-size: 5.8rem; --cloud-duration: 12s; --cloud-delay: -5s; opacity: 0.8; }
+.float-cloud-6 { left: 55%; bottom: 8%; --cloud-size: 4.8rem; --cloud-duration: 17s; --cloud-delay: -8s; opacity: 0.7; }
+.float-cloud-7 { left: 72%; top: 36%; --cloud-size: 6.2rem; --cloud-duration: 14s; --cloud-delay: -4s; }
+@keyframes cloud-drift {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0.9rem, -0.45rem, 0); }
+  100% { transform: translate3d(-0.55rem, -0.2rem, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-cloud { animation: none; }
+}
+
 /* White ages 8–14 section with a solid, full-opacity peanut scatter behind content. */
 .ages-band {
   background: var(--background);
@@ -213,7 +260,6 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .peanut { animation: none; }
-  .scroll-throw { transition: none; }
 }
 
 /* Color-matched content rows (text left / GIF right) */
@@ -834,38 +880,70 @@ button:focus-visible {
 }
 
 
-/* Floating baseball + glove from hero through the path, then off before #who. */
+/* Mid-flight hero overlays: empty first paint, then gloves slide in + balls cross. */
 .scroll-throw {
   position: fixed;
   inset: 0;
   z-index: 25; /* under sticky header (z-40); over section chrome */
   pointer-events: none;
   overflow: hidden;
-  /* Visible on hero; fade out before the ages/peanuts section. */
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 .scroll-throw[data-past-hero="true"] {
   opacity: 1;
   visibility: visible;
 }
-.scroll-throw-pair {
-  position: absolute;
-  top: 0;
-  display: flex;
-  align-items: flex-end;
-  gap: 0.15rem;
-  will-change: transform;
+.scroll-throw[data-past-hero="true"][data-entered="true"] .scroll-throw-glove,
+.scroll-throw[data-past-hero="true"][data-entered="true"] .scroll-throw-ball {
   opacity: 1;
   transition: transform 0.55s ease;
 }
-.scroll-throw-pair-cw {
-  left: 0.35rem;
+.scroll-throw-glove,
+.scroll-throw-ball {
+  position: absolute;
+  top: 0;
+  will-change: transform, opacity;
+  opacity: 0;
 }
-.scroll-throw-pair-ccw {
-  right: 0.35rem;
+.scroll-throw-glove-left { left: 0.5rem; }
+.scroll-throw-glove-right { right: 0.5rem; }
+.scroll-throw-ball-a { left: 0; }
+.scroll-throw-ball-b { right: 0; }
+
+/* Entrance: gloves slide/fade from sides; baseballs throw across */
+.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-glove-left {
+  animation: glove-in-left 0.55s var(--ease-out) both;
 }
+.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-glove-right {
+  animation: glove-in-right 0.55s var(--ease-out) 0.08s both;
+}
+.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-ball-a {
+  animation: ball-cross-ltr 0.7s var(--ease-out) 0.05s both;
+}
+.scroll-throw[data-entered="true"][data-past-hero="true"] .scroll-throw-ball-b {
+  animation: ball-cross-rtl 0.7s var(--ease-out) 0.12s both;
+}
+@keyframes glove-in-left {
+  0% { opacity: 0; transform: translate3d(-28vw, 14vh, 0); }
+  100% { opacity: 1; transform: translate3d(-2vw, 12vh, 0); }
+}
+@keyframes glove-in-right {
+  0% { opacity: 0; transform: translate3d(28vw, 22vh, 0); }
+  100% { opacity: 1; transform: translate3d(2vw, 20vh, 0); }
+}
+@keyframes ball-cross-ltr {
+  0% { opacity: 0; transform: translate3d(-40vw, 24vh, 0) rotate(-40deg); }
+  35% { opacity: 1; }
+  100% { opacity: 1; transform: translate3d(-8vw, 18vh, 0) rotate(20deg); }
+}
+@keyframes ball-cross-rtl {
+  0% { opacity: 0; transform: translate3d(40vw, 30vh, 0) rotate(40deg); }
+  35% { opacity: 1; }
+  100% { opacity: 1; transform: translate3d(8vw, 28vh, 0) rotate(-20deg); }
+}
+
 .scroll-throw-img {
   display: block;
   height: auto;
@@ -881,17 +959,10 @@ button:focus-visible {
 }
 .scroll-throw-ball-img {
   width: clamp(32px, 4.2vw, 48px);
-  /* Ball leads the throw slightly along the spin axis */
-  translate: var(--ball-nudge, 0px) -0.35rem;
 }
 @media (max-width: 720px) {
-  .scroll-throw-pair { opacity: 1; }
   .scroll-throw-glove-img { width: clamp(36px, 10vw, 52px); }
   .scroll-throw-ball-img { width: clamp(24px, 7vw, 36px); }
-}
-/* Keep clear of dense center columns on mid widths */
-@media (min-width: 721px) and (max-width: 1024px) {
-  .scroll-throw-pair { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .scroll-throw { display: none !important; }
@@ -926,13 +997,14 @@ button:focus-visible {
 
 
 
-/* Bottom homepage CTA: a soft white-to-stadium transition. */
+/* Bottom homepage CTA: seamless stadium sky (no white fade mask). */
 .home-stadium-band {
   position: relative;
   isolation: isolate;
   min-height: 22rem;
   overflow: hidden;
-  background: #ffffff;
+  /* Match soft-blue band so hard seam reads as continuous sky */
+  background: var(--blue-soft);
 }
 .home-stadium-media {
   position: absolute;
@@ -942,18 +1014,10 @@ button:focus-visible {
 }
 .home-stadium-bg {
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center top;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  opacity: 0.78;
-}
-.home-stadium-band::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.96) 18%, rgba(255,255,255,0.56) 44%, rgba(255,255,255,0.12) 74%, rgba(255,255,255,0) 100%);
+  opacity: 1;
 }
 .home-stadium-inner {
   position: relative;
@@ -1019,4 +1083,43 @@ button:focus-visible {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
+}
+
+/* Hero throw entrance: start empty, then let the balls play across the sky softly. */
+.scroll-throw[data-past-hero="true"][data-intro="true"] .scroll-throw-pair {
+  opacity: 0;
+}
+.scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair {
+  opacity: 1;
+  transition: opacity 0.35s var(--ease-soft), transform 0.7s var(--ease-out);
+}
+.scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair-cw .scroll-throw-ball-img {
+  animation: ball-cross-cw 5.8s var(--ease-soft) 0.65s infinite alternate;
+}
+.scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair-ccw .scroll-throw-ball-img {
+  animation: ball-cross-ccw 6.4s var(--ease-soft) 0.85s infinite alternate;
+}
+@keyframes ball-cross-cw {
+  0%, 18% { translate: 0 -0.35rem; }
+  72%, 100% { translate: min(38vw, 30rem) -0.35rem; }
+}
+@keyframes ball-cross-ccw {
+  0%, 18% { translate: 0 -0.35rem; }
+  72%, 100% { translate: max(-38vw, -30rem) -0.35rem; }
+}
+
+/* Reduced motion keeps the hero decor present, but fully still. */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-throw {
+    display: block !important;
+    transition: none !important;
+  }
+  .scroll-throw-pair,
+  .scroll-throw[data-past-hero="true"][data-intro="false"] .scroll-throw-pair {
+    transition: none !important;
+    animation: none !important;
+  }
+  .scroll-throw[data-past-hero="true"] .scroll-throw-pair {
+    opacity: 1;
+  }
 }

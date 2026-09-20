@@ -2,8 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 /**
- * Transparent header wordmark — brand primary #3295fb on clear PNG.
- * Intrinsic: logo-header-3295fb.png = 1040×220
+ * Transparent header wordmark — dark navy (~#181850) on clear PNG.
+ * Intrinsic: logo-header-navy.png = 1040×220
+ * Buttons / accents stay brand blue #3295fb.
  */
 export default function Logo({
   className = "",
@@ -20,7 +21,7 @@ export default function Logo({
   width?: number;
 }) {
   void _variant;
-  const src = "/assets/logo-header-3295fb.png";
+  const src = "/assets/logo-header-navy.png";
   const aspect = 1040 / 220;
   const displayWidth = width ?? Math.round((height ?? 44) * aspect);
   const displayHeight = width

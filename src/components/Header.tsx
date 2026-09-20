@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="site-header sticky top-0 z-40">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        {/* Transparent #3295fb header mark */}
+        {/* Transparent dark navy (~#181850) header mark; accents stay #3295fb */}
         <Logo variant="primary" width={160} />
         <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-medium text-ink-soft sm:gap-x-5">
           <Link href="/" className="nav-link">

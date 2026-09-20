@@ -106,13 +106,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. How It Works — Private / DIY / Hybrid only */}
+      {/* 4. How It Works — soft-blue band + floating clouds into stadium sky */}
       <section
         id="how-it-works"
-        className="band-soft scroll-mt-24"
+        className="band-soft how-clouds-band scroll-mt-24"
         aria-label="How It Works"
       >
-        <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
+        <div className="cloud-decor" aria-hidden="true">
+          {Array.from({ length: 7 }, (_, index) => (
+            <Image
+              key={index}
+              src="/assets/pixel-cloud.png"
+              alt=""
+              width={160}
+              height={90}
+              className={`float-cloud float-cloud-${index + 1}`}
+            />
+          ))}
+        </div>
+        <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">How It Works</h2>
             <p className="text-base text-ink-soft">Pick What Fits. Easy To Start Today.</p>
@@ -138,7 +150,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Bottom — seamless white→stadium blend + Ready To Talk */}
+      {/* 5. Bottom — seamless stadium sky (no white fade) + Ready To Talk */}
       <section
         id="contact"
         className="home-stadium-band scroll-mt-24"
@@ -146,7 +158,7 @@ export default function HomePage() {
       >
         <div className="home-stadium-media" aria-hidden="true">
           <Image
-            src="/assets/pixel-stadium-bg-v2.png"
+            src="/assets/pixel-stadium-seamless.png"
             alt=""
             fill
             className="home-stadium-bg"

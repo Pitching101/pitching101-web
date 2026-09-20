@@ -53,7 +53,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     if (reduceMotion || paused || reviews.length === 0) return;
     const id = window.setInterval(() => {
       setIndex((i) => (i + 1) % reviews.length);
-    }, 6500);
+    }, 5000);
     return () => window.clearInterval(id);
   }, [reduceMotion, paused, reviews.length]);
 
