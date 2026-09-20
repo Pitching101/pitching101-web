@@ -6,7 +6,7 @@ export default function TrustStrip({ className = "" }: { className?: string }) {
       body: "Healthy mechanics before velocity talk.",
     },
     {
-      label: "Plain feedback",
+      label: "Clear next reps",
       body: "You always know what to practice next.",
     },
     {
@@ -26,7 +26,7 @@ export default function TrustStrip({ className = "" }: { className?: string }) {
             key={item.label}
             className="trust-strip-item border-b-4 border-blue px-5 py-5 last:border-b-0 sm:border-b-0 sm:px-6 sm:py-6"
           >
-            <p className="font-pixel text-[0.55rem] leading-snug text-accent">
+            <p className="font-pixel text-sm font-semibold leading-snug text-accent">
               {item.label}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">

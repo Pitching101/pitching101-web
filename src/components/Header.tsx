@@ -15,8 +15,8 @@ export default function Header() {
           <a href="/naples-fl-pitching-lessons/" className="hover:text-accent">
             Naples FL
           </a>
-          <a href="tel:8457682211" className="pixel-btn !px-3 !py-1.5 !text-[0.45rem]">
-            Call
+          <a href="tel:8457682211" className="pixel-btn !px-3 !py-1.5 !text-xs">
+            Call coach
           </a>
         </nav>
       </div>

@@ -12,10 +12,10 @@ export default function Logo({ className = "" }: { className?: string }) {
         <PixelBall size={32} />
       </span>
       <span className="flex flex-col leading-none">
-        <span className="font-pixel text-[9px] text-blue-light sm:text-[10px]">
+        <span className="font-pixel text-sm font-semibold text-blue-light sm:text-base">
           Pitching<span className="text-accent">101</span>
         </span>
-        <span className="mt-1.5 font-pixel text-[7px] tracking-wide text-ink-soft">
+        <span className="mt-1 font-pixel text-[0.65rem] tracking-wide text-ink-soft">
           Naples, FL
         </span>
       </span>

@@ -8,11 +8,12 @@ export default function Footer() {
           <Logo />
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
             Youth &amp; elite pitching instruction for families in the Naples,
-            Florida area — clear coaching, confident arms.
+            Florida area — clear coaching, confident arms, a little fun on the
+            side.
           </p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-[0.55rem] text-accent">Contact</p>
+          <p className="font-pixel text-sm font-semibold text-accent">Contact</p>
           <p>
             <a className="text-blue-light hover:text-accent hover:underline" href="tel:8457682211">
               845-768-2211
@@ -29,7 +30,7 @@ export default function Footer() {
           <p className="text-ink-soft">Naples, FL area</p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="font-pixel text-[0.55rem] text-accent">Explore</p>
+          <p className="font-pixel text-sm font-semibold text-accent">Explore</p>
           <p>
             <a className="text-ink-soft hover:text-accent" href="/">
               Home
