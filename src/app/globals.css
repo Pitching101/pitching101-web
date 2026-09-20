@@ -8,10 +8,10 @@
   --ink-soft: #3d5674;
   --foreground: #0f1a2e;
 
-  --blue: #5093F4;
-  --blue-dark: #2B6FD6;
-  --blue-light: #7EB0F7;
-  --blue-mid: #5093F4;
+  --blue: #3295fb;
+  --blue-dark: #1a78e8;
+  --blue-light: #6bb3fc;
+  --blue-mid: #3295fb;
   --blue-soft: #BBD6F1;
 
   --yellow: #ffc600;
@@ -182,6 +182,8 @@ body {
 .peanut-28 { right: 73%; bottom: 15%; --peanut-size: 1.8rem; --peanut-rotation: -30deg; --peanut-duration: 9.4s; --peanut-delay: -5.1s; }
 .peanut-eli5 {
   max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
   color: var(--blue-dark);
   font-size: 0.95rem;
   font-weight: 600;
@@ -244,28 +246,27 @@ body {
 }
 
 .content-row {
-  display: grid;
-  gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  max-width: 64rem;
+  gap: 2rem;
+  max-width: 44rem;
   margin: 0 auto;
   padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
+  text-align: center;
 }
 @media (min-width: 640px) {
   .content-row { padding-left: 2rem; padding-right: 2rem; }
-}
-@media (min-width: 1024px) {
-  .content-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
 }
 
 .content-row-copy {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  max-width: 28rem;
+  max-width: 40rem;
+  width: 100%;
+  text-align: center;
 }
 
 .content-row-media {
@@ -273,9 +274,7 @@ body {
   align-items: center;
   justify-content: center;
   line-height: 0;
-}
-@media (min-width: 1024px) {
-  .content-row-media { justify-content: flex-end; }
+  width: 100%;
 }
 
 /* Alternate media side: flip puts GIF LEFT / text RIGHT on desktop */
@@ -649,7 +648,7 @@ button:focus-visible {
 .ui-card-alt { background: var(--blue-soft); border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent); box-shadow: var(--shadow-sm); border-radius: var(--radius); transition: transform 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft); }
 .ui-card-alt:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .ui-step { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; background: var(--blue); color: #ffffff; font-family: var(--font-body), system-ui, sans-serif; font-size: 1rem; font-weight: 700; line-height: 1; border-radius: 999px; box-shadow: var(--shadow-sm); }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: none; background: var(--blue); color: #ffffff; font-family: var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.75rem 1.25rem; box-shadow: 0 4px 14px -4px rgba(42, 125, 225, 0.45); transition: transform 0.2s var(--ease-soft), box-shadow 0.2s var(--ease-soft), background 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: none; background: var(--blue); color: #ffffff; font-family: var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.75rem 1.25rem; box-shadow: 0 4px 14px -4px rgba(50, 149, 251, 0.45); transition: transform 0.2s var(--ease-soft), box-shadow 0.2s var(--ease-soft), background 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
 .btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 .btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: 1.5px solid var(--blue-dark); background: var(--background); color: var(--blue-dark); font-family: var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.7rem 1.15rem; transition: transform 0.2s var(--ease-soft), background 0.2s var(--ease-soft), color 0.2s var(--ease-soft), border-color 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
@@ -682,7 +681,7 @@ button:focus-visible {
   padding-bottom: clamp(3rem, 8vw, 5.5rem);
 }
 .content-row-copy-wide {
-  max-width: 34rem;
+  max-width: 40rem;
 }
 
 /* —— Hero: solid white; dark navy copy —— */
@@ -703,9 +702,10 @@ button:focus-visible {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 64rem;
+  max-width: 48rem;
   margin: 0 auto;
   padding: clamp(3rem, 8vw, 5rem) 1.25rem;
+  text-align: center;
 }
 @media (min-width: 640px) {
   .hero-overlay-inner { padding-left: 2rem; padding-right: 2rem; }
@@ -714,8 +714,12 @@ button:focus-visible {
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  max-width: 36rem;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   text-shadow: none;
 }
 .hero-overlay-copy::before { content: none; display: none; }
@@ -739,6 +743,8 @@ button:focus-visible {
   border-color: color-mix(in srgb, var(--blue) 28%, transparent);
   color: var(--blue-dark);
   width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Client Reviews carousel */
@@ -969,4 +975,26 @@ button:focus-visible {
   border-radius: var(--radius);
   background: rgba(255,255,255,0.78);
   backdrop-filter: blur(2px);
+}
+
+
+/* Homepage: one centered long-scroll column */
+.home-stack {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.home-stack .ui-title,
+.home-stack h2 {
+  text-align: center;
+}
+.home-stack ul {
+  text-align: left;
+}
+.home-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
 }

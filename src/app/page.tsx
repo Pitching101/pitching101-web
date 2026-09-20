@@ -28,34 +28,10 @@ const trainingOptions = [
   },
 ];
 
-const freeGuides = [
-  {
-    title: "Arm-Care Checklist",
-    note: "Simple warm-up and cool-down steps so young arms stay healthy.",
-    href: "mailto:nickdeisng@gmail.com?subject=Arm-Care%20Checklist",
-    cta: "Get The Checklist",
-    icon: "/assets/icons/icon-arm-care-v2.png",
-  },
-  {
-    title: "Strike % Tips",
-    note: "Parent-friendly cues that help kids throw more strikes.",
-    href: "mailto:nickdeisng@gmail.com?subject=Strike%20Percent%20Tips",
-    cta: "Get The Tips",
-    icon: "/assets/icons/icon-strikes.png",
-  },
-  {
-    title: "Pre-Catch Warmup",
-    note: "A short routine before catch so practice starts right.",
-    href: "mailto:nickdeisng@gmail.com?subject=Pre-Catch%20Warmup",
-    cta: "Get The Warmup",
-    icon: "/assets/icons/icon-plan-checklist.png",
-  },
-];
-
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — solid white, dark navy copy */}
+      {/* 1. Hero — solid white, dark navy copy, centered */}
       <section className="hero-overlay" aria-label="Youth Pitching Lessons In Naples, FL">
         <div className="hero-overlay-inner">
           <Reveal from="left" className="hero-overlay-copy">
@@ -66,7 +42,7 @@ export default function HomePage() {
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
               Clear Coaching For Kids And Parents. No Jargon.
             </p>
-            <div className="flex flex-wrap gap-3 pt-1">
+            <div className="home-cta-row pt-1">
               <Link href="/contact/" className="btn">
                 Contact
               </Link>
@@ -81,9 +57,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. WHITE — From Trustpilot (keeps ball/glove scroll window before #who) */}
+      {/* 2. From Trustpilot (ball/glove scroll window before #who) */}
       <section className="text-band" id="reviews" aria-label="From Trustpilot">
-        <div className="mx-auto max-w-3xl space-y-6 px-5 py-14 sm:px-8 sm:py-16">
+        <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">From Trustpilot</h2>
             <p className="text-base leading-relaxed text-ink-soft">
@@ -94,7 +70,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. WHITE — I'm Your Guy + Ages 8–14 merged, bouncing peanuts @ 100% */}
+      {/* 3. I'm Your Guy + Ages 8–14, bouncing peanuts */}
       <section
         id="who"
         className="text-band ages-band scroll-mt-24"
@@ -121,7 +97,7 @@ export default function HomePage() {
             <p className="peanut-eli5">
               ELI5: peanuts = younger pitchers (ages 8–14) — ballpark fun.
             </p>
-            <ul className="space-y-3 text-lg leading-relaxed text-ink-soft">
+            <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
               {guyBullets.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -146,16 +122,16 @@ export default function HomePage() {
         className="band-soft scroll-mt-24"
         aria-label="How It Works"
       >
-        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
+        <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">How It Works</h2>
             <p className="text-base text-ink-soft">Pick What Fits. Easy To Start Today.</p>
           </Reveal>
 
           <Reveal delayMs={40}>
-            <ul className="grid gap-5 sm:grid-cols-3">
+            <ul className="grid gap-5 text-left sm:grid-cols-3">
               {trainingOptions.map((opt) => (
-                <li key={opt.label} className="card flex flex-col gap-3 p-6">
+                <li key={opt.label} className="card flex flex-col items-center gap-3 p-6 text-center">
                   <Image
                     src={opt.icon}
                     alt=""
@@ -172,44 +148,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Free Guides — just above stadium bottom band */}
-      <section id="guides" className="text-band scroll-mt-24" aria-label="Free Guides">
-        <div className="mx-auto max-w-3xl space-y-8 px-5 py-14 sm:px-8 sm:py-16">
-          <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">Free Guides</h2>
-            <p className="text-base text-ink-soft">
-              Quick Parent-Friendly PDFs. Stan Store Capture Links Coming — Email Works Now.
-            </p>
-          </Reveal>
-          <Reveal delayMs={40}>
-            <ul className="grid gap-4 sm:grid-cols-3">
-              {freeGuides.map((g) => (
-                <li key={g.title} className="card flex flex-col gap-3 p-5">
-                  <Image
-                    src={g.icon}
-                    alt=""
-                    width={64}
-                    height={64}
-                    className="h-16 w-16 object-contain"
-                  />
-                  <p className="font-semibold text-blue-dark">{g.title}</p>
-                  <p className="flex-1 text-sm leading-relaxed text-ink-soft">{g.note}</p>
-                  <a href={g.href} className="btn-ghost !min-h-9 !px-3 !py-1.5 !text-sm">
-                    {g.cta}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal delayMs={60}>
-            <Link href="/guides/" className="nav-link font-semibold text-blue-dark underline underline-offset-4">
-              See All Free Guides
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 6. Bottom — seamless white→stadium blend + Ready To Talk */}
+      {/* 5. Bottom — seamless white→stadium blend + Ready To Talk */}
       <section
         id="contact"
         className="home-stadium-band scroll-mt-24"
@@ -226,7 +165,7 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-5 py-16 text-center sm:flex-row sm:items-center sm:px-8 sm:py-20 sm:text-left">
+          <div className="mx-auto flex max-w-xl flex-col items-center gap-6 px-5 py-16 text-center sm:px-8 sm:py-20">
             <Image
               src="/assets/photos/nick-coach.png"
               alt="Coach Nick — Pitching101 Naples FL"
@@ -239,7 +178,7 @@ export default function HomePage() {
               <p className="text-lg text-ink-soft">
                 Text, Call, Or Email — Naples, FL Families Welcome.
               </p>
-              <div className="flex justify-center sm:justify-start">
+              <div className="flex justify-center">
                 <Link href="/contact/" className="btn">
                   Contact
                 </Link>

@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 /**
- * Full Pitching101 wordmark for the white site header.
- * Intrinsic: logo-proper-blue-on-white.png = 1458×392
+ * Transparent header wordmark — brand primary #3295fb on clear PNG.
+ * Intrinsic: logo-header-3295fb.png = 1040×220
  */
 export default function Logo({
   className = "",
@@ -20,12 +20,12 @@ export default function Logo({
   width?: number;
 }) {
   void _variant;
-  const src = "/assets/logo-proper-blue-on-white.png";
-  const aspect = 1458 / 392;
-  const displayWidth = width ?? Math.round((height ?? 56) * aspect);
+  const src = "/assets/logo-header-3295fb.png";
+  const aspect = 1040 / 220;
+  const displayWidth = width ?? Math.round((height ?? 44) * aspect);
   const displayHeight = width
     ? Math.round(width / aspect)
-    : (height ?? 56);
+    : (height ?? 44);
 
   return (
     <Link
