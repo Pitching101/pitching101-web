@@ -293,6 +293,7 @@ export const leadMagnets: LeadMagnet[] = [
           { href: "/contact/", label: ENROLL_LABEL },
           { href: "/guides/arm-care-checklist/", label: "Arm-care checklist" },
           { href: "/guides/pre-catch-warmup/", label: "Pre-catch warmup" },
+          { href: "/guides/pre-throwing-routine/", label: "Pre-throwing routine" },
           { href: "/guides/", label: "Free guides" },
         ],
       },
@@ -359,6 +360,114 @@ export const leadMagnets: LeadMagnet[] = [
       {
         label: "Then stretch it out",
         note: "Move back when it feels easy. That's when catch can get competitive.",
+      },
+    ],
+  },
+  {
+    slug: "pre-throwing-routine",
+    title: "Pre-throwing routine",
+    metaTitle: "Pre-Throwing Routine for Young Pitchers",
+    metaDescription:
+      "Coach Deising's 15–20 minute pre-throwing routine: stretch, bands, heart-rate work, then throw. The same plan used in youth pitching lessons in Naples, FL for players ages 8–16.",
+    kicker: "Free guide",
+    note: "The 15–20 minute plan I use before we throw. Stretch, bands, get the heart going — then keep the throwing simple and loose.",
+    topic: "Warmup",
+    icon: "/assets/icons/icon-plan-checklist.png",
+    ogImage: "/assets/icons/icon-plan-checklist.png",
+    emailSubject: "Pre-Throwing Routine Guide",
+    cta: ENROLL_LABEL,
+    ctaHref: "/contact/",
+    routines: [
+      {
+        heading: "Pre-throwing · 15–20 min",
+        note: "This is the body work. Don't skip the heart-rate piece — that's the most important one.",
+        steps: [
+          {
+            label: "Static stretch",
+            note: "5–10 minutes. Easy holds. Get loose before you do anything else.",
+          },
+          {
+            label: "Band routine",
+            note: "5 minutes. Same band list as the arm-care checklist.",
+          },
+          {
+            label: "Dynamic — heart-rate elevation",
+            note: "Most important. Sprint, skip, and jump variations until you're actually warm.",
+          },
+        ],
+      },
+      {
+        heading: "Muscle activation · 7–10 min",
+        steps: [
+          { label: "Push-up with twist", note: "2×10 each." },
+          { label: "Bear crawl forward + backward", note: "2×10." },
+          { label: "Push-up opposite direction", note: "Same idea, other way." },
+        ],
+      },
+      {
+        heading: "Plyo routine · optional",
+        note: "60–80% effort. You're trying to feel mechanics, rhythm, flow, timing — and nothing else.",
+        steps: [
+          {
+            label: "Feel it, don't max it",
+            note: "If you use a weighted med ball or water bag, this is where you slot it in.",
+          },
+          {
+            label: "Save your bullets",
+            note: "Don't spend the best stuff here. Save it for later.",
+          },
+        ],
+      },
+      {
+        heading: "Throwing progression · majority of your time",
+        note: "Keep it simple and loose. Don't try and do too much or think about too much.",
+        steps: [
+          {
+            label: "Long toss with a changeup",
+            note: "One thing I recommend is long tossing with a changeup to get a feel.",
+          },
+          {
+            label: "90 feet, then walk it in",
+            note: "Start working on your pitches at 90 feet and slowly bring it in to 60.",
+          },
+          {
+            label: "About 80% until the mound",
+            note: "All at about 80% effort until you get off a mound.",
+          },
+        ],
+      },
+      {
+        heading: "Off the mound · 10 min",
+        note: "15–25 pitches max, but go by your feel.",
+        steps: [
+          {
+            label: "Sequences and locations",
+            note: "Work on sequences, locations, envisioning situations.",
+          },
+          {
+            label: "Talk to yourself like you mean it",
+            note: "Speak with nothing but confidence and positive things to yourself.",
+          },
+          {
+            label: "Breath control",
+            note: "That's the reset between pitches.",
+          },
+        ],
+      },
+    ],
+    sections: [
+      {
+        heading: "Easy next step",
+        paragraphs: [
+          "Want help running this in a lesson? Share age, goals, and schedule on the short form.",
+        ],
+        links: [
+          { href: "/contact/", label: ENROLL_LABEL },
+          { href: "/guides/arm-care-checklist/", label: "Arm-care checklist" },
+          { href: "/guides/band-routine-checklist/", label: "Band routine checklist" },
+          { href: "/guides/pre-catch-warmup/", label: "Pre-catch warmup" },
+          { href: "/guides/", label: "Free guides" },
+        ],
       },
     ],
   },
