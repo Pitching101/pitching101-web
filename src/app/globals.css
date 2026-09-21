@@ -2384,13 +2384,8 @@ html.glove-cursor * {
 }
 .start-train {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
-}
-@media (min-width: 560px) {
-  .start-train {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 .start-train-option {
   display: flex;
@@ -2416,7 +2411,10 @@ html.glove-cursor * {
   flex-shrink: 0;
   accent-color: #3295fb;
 }
-.start-form .btn,
+.start-form .btn {
+  width: 100%;
+  margin-top: 0.35rem;
+}
 .start-thanks-actions .btn {
   justify-self: center;
   margin-top: 0.35rem;

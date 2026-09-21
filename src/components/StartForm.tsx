@@ -2,12 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE, trainingOptions, workWithRoles } from "@/data/siteCopy";
+import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE, workWithRoles } from "@/data/siteCopy";
 import { leadFromForm, writeStartLead } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
 
-/** Collects a start note, texts Coach Deising, then goes to the thank-you page. */
+/** Short start form — name, phone, age. Texts Coach Deising, then thank-you. */
 export default function StartForm() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
@@ -23,7 +23,7 @@ export default function StartForm() {
   return (
     <form className="start-form" onSubmit={onSubmit}>
       <fieldset className="start-field">
-        <legend>Role</legend>
+        <legend>I am a</legend>
         <div className="start-train">
           {workWithRoles.map((role) => (
             <label key={role} className="start-train-option">
@@ -41,16 +41,43 @@ export default function StartForm() {
       </fieldset>
       <label className="start-field">
         <span>Your name</span>
-        <input name="name" type="text" autoComplete="name" required />
+        <input
+          name="name"
+          type="text"
+          autoComplete="name"
+          autoCapitalize="words"
+          enterKeyHint="next"
+          required
+        />
+      </label>
+      <label className="start-field">
+        <span>Phone</span>
+        <input
+          name="phone"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          enterKeyHint="next"
+          required
+        />
       </label>
       <div className="start-field-row">
         <label className="start-field">
-          <span>Player or team</span>
-          <input name="player" type="text" autoComplete="off" required />
+          <span>
+            Player or team <em>optional</em>
+          </span>
+          <input
+            name="player"
+            type="text"
+            autoComplete="off"
+            autoCapitalize="words"
+            enterKeyHint="next"
+            placeholder="Name or team"
+          />
         </label>
         <label className="start-field">
           <span>Age</span>
-          <select name="age" required defaultValue="">
+          <select name="age" required defaultValue="" enterKeyHint="go">
             <option value="" disabled>
               8–16
             </option>
@@ -62,39 +89,6 @@ export default function StartForm() {
           </select>
         </label>
       </div>
-      <label className="start-field">
-        <span>Phone</span>
-        <input name="phone" type="tel" autoComplete="tel" required />
-      </label>
-      <label className="start-field">
-        <span>
-          Email <em>optional</em>
-        </span>
-        <input name="email" type="email" autoComplete="email" />
-      </label>
-      <fieldset className="start-field">
-        <legend>How do you want to train?</legend>
-        <div className="start-train">
-          {trainingOptions.map((option) => (
-            <label key={option.label} className="start-train-option">
-              <input
-                type="radio"
-                name="train"
-                value={option.label}
-                required
-                defaultChecked={option.label === "In person"}
-              />
-              <span>{option.label}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <label className="start-field">
-        <span>
-          Additional details <em>optional</em>
-        </span>
-        <textarea name="note" rows={3} />
-      </label>
       <button type="submit" className="btn" disabled={sending}>
         {sending ? "Sending…" : "Get started"}
       </button>

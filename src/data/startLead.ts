@@ -30,11 +30,11 @@ export function leadFromForm(data: FormData): StartLead {
     "",
     `Who: ${role}`,
     `Name: ${name}`,
-    `Player or team: ${player}`,
+    player ? `Player or team: ${player}` : "",
     `Age: ${age}`,
     `Phone: ${phone}`,
     email ? `Email: ${email}` : "",
-    `Train: ${train}`,
+    train ? `Train: ${train}` : "",
     note ? `Note: ${note}` : "",
   ]
     .filter((line) => line !== "")
