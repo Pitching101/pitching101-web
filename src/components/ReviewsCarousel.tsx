@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type TransitionEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type PointerEvent, type TransitionEvent } from "react";
 import {
   TRUSTPILOT_URL,
   trustpilotReviews,
@@ -24,7 +24,7 @@ function ReviewCard({ r }: { r: TrustpilotReview }) {
     <div className="reviews-card-inner">
       <Stars n={r.stars} />
       {r.title ? <p className="reviews-card-title">{r.title}</p> : null}
-      <blockquote className="text-lg leading-relaxed text-ink sm:text-xl">
+      <blockquote className="reviews-quote">
         “{r.quote}”
       </blockquote>
       <footer className="text-sm font-semibold text-ink-soft">— {r.name}</footer>
@@ -51,6 +51,8 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
   const nextKey = useRef(1);
   const enterTimer = useRef(0);
   const safetyTimer = useRef(0);
+  const startX = useRef<number | null>(null);
+  const startY = useRef(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -182,6 +184,22 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
   const sizerReview =
     reviews[layers.find((layer) => layer.state === "out")?.reviewIndex ?? index];
 
+  function onPointerDown(event: PointerEvent<HTMLDivElement>) {
+    startX.current = event.clientX;
+    startY.current = event.clientY;
+    setPaused(true);
+  }
+
+  function onPointerUp(event: PointerEvent<HTMLDivElement>) {
+    if (startX.current == null) return;
+    const dx = event.clientX - startX.current;
+    const dy = event.clientY - startY.current;
+    startX.current = null;
+    setPaused(false);
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.1) return;
+    goTo(dx < 0 ? index + 1 : index - 1);
+  }
+
   return (
     <div
       className={`reviews-wrap ${className}`.trim()}
@@ -199,7 +217,15 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     >
       <p className="reviews-verified">Verified on Trustpilot</p>
 
-      <div className="reviews-stage">
+      <div
+        className="reviews-stage"
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={() => {
+          startX.current = null;
+          setPaused(false);
+        }}
+      >
         <article className="reviews-carousel reviews-card reviews-card-sizer" aria-hidden="true">
           <ReviewCard r={sizerReview} />
         </article>
@@ -259,6 +285,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
       >
         See all on Trustpilot
       </a>
+      <p className="reviews-swipe-hint">Swipe to read the next one</p>
     </div>
   );
 }

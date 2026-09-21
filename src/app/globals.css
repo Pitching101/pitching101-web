@@ -1016,6 +1016,7 @@ html.glove-cursor * {
 .reviews-stage {
   position: relative;
   width: 100%;
+  touch-action: pan-y;
 }
 .reviews-carousel {
   position: relative;
@@ -1074,9 +1075,17 @@ html.glove-cursor * {
   display: block;
   width: 100%;
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--blue-dark);
+  text-align: center;
+}
+.reviews-quote {
+  width: 100%;
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #0f1a2e;
   text-align: center;
 }
 .reviews-carousel blockquote,
@@ -1104,9 +1113,16 @@ html.glove-cursor * {
   width: 100%;
 }
 .reviews-carousel blockquote,
-.reviews-carousel .text-ink,
-.reviews-carousel .text-lg {
+.reviews-carousel .reviews-quote,
+.reviews-carousel .text-ink {
   color: #0f1a2e;
+}
+.reviews-swipe-hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
 }
 .reviews-carousel footer,
 .reviews-carousel .text-ink-soft {
@@ -1120,7 +1136,8 @@ html.glove-cursor * {
   color: var(--blue-dark);
 }
 @media (min-width: 640px) {
-  .reviews-carousel { padding: 1.75rem 1.75rem; }
+  .reviews-carousel { padding: 1.5rem 1.55rem; }
+  .reviews-quote { font-size: 1rem; }
 }
 .reviews-dot {
   position: relative;
@@ -2106,11 +2123,11 @@ html.glove-cursor * {
     padding-right: 1.1rem;
   }
   .reviews-carousel {
-    padding: 1.2rem 1rem;
+    padding: 1.05rem 0.9rem;
   }
-  .reviews-carousel blockquote,
-  .reviews-carousel .text-lg {
-    font-size: 1.05rem;
+  .reviews-quote {
+    font-size: 0.86rem;
+    line-height: 1.45;
   }
   .pixel-board {
     width: 100%;
