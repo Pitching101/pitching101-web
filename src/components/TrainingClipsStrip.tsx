@@ -227,8 +227,12 @@ export default function TrainingClipsStrip() {
                     loop
                     playsInline
                     autoPlay
-                    preload="metadata"
+                    controls={false}
+                    disablePictureInPicture
+                    disableRemotePlayback
+                    preload="none"
                     aria-hidden="true"
+                    onCanPlay={(event) => playMuted(event.currentTarget)}
                   />
                 </div>
                 <p className="bb-card-name">{item.name}</p>
