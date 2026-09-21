@@ -5,7 +5,8 @@ import { useEffect, useRef } from "react";
 const SIZE = 36;
 
 /**
- * Phone only: two baseballs ride a rainbow over the hero title as you scroll.
+ * Phone only: two baseballs start off-page and get thrown across
+ * the hero on scroll. Paths are offset so they do not meet in a straight X.
  */
 export default function HeroArcBalls() {
   const layerRef = useRef<HTMLDivElement>(null);
@@ -27,21 +28,34 @@ export default function HeroArcBalls() {
       const width = layer.clientWidth;
       const height = layer.clientHeight;
       if (width < 8 || height < 8) return;
-      const travel = Math.max(0, width - SIZE);
-      const rise = Math.max(20, height - SIZE - 4);
+      const off = SIZE + 12;
+      const span = width + off * 2;
       const progress = Math.min(
         1,
-        Math.max(0, window.scrollY / (window.innerHeight * 0.42)),
+        Math.max(0, window.scrollY / (window.innerHeight * 0.55)),
       );
 
-      const place = (el: HTMLImageElement, t: number, spin: number) => {
-        const x = t * travel;
-        const y = rise * (1 - 4 * t * (1 - t));
+      const bump = (t: number, peak: number) => {
+        const denom = Math.max(0.12, peak * (1 - peak));
+        return (t * (1 - t)) / denom;
+      };
+
+      const place = (
+        el: HTMLImageElement,
+        t: number,
+        peak: number,
+        rise: number,
+        spin: number,
+      ) => {
+        const x = -off + t * span;
+        const y = rise * (1 - bump(t, peak));
         el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${(spin * t).toFixed(1)}deg)`;
       };
 
-      place(left, progress, 360);
-      place(right, 1 - progress, -360);
+      const high = Math.max(22, height - SIZE - 2);
+      const low = Math.max(16, high * 0.58);
+      place(left, progress, 0.34, high, 420);
+      place(right, 1 - progress, 0.68, low, -300);
     };
 
     const onScroll = () => {

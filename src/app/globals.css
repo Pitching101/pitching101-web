@@ -2228,7 +2228,7 @@ html.glove-cursor * {
     display: block;
     position: relative;
     width: 100vw;
-    height: 5.6rem;
+    height: 6.4rem;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     z-index: 3;
