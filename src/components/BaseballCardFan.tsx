@@ -1,7 +1,36 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 /** A few baseball cards, not lined up like a SaaS row. */
 export default function BaseballCardFan() {
+  const nickRef = useRef<HTMLLIElement>(null);
+  const [glow, setGlow] = useState(false);
+
+  useEffect(() => {
+    const el = nickRef.current;
+    if (!el) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setGlow(true);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setGlow(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.45, rootMargin: "0px 0px -8% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <ul className="bb-fan" aria-label="Coach Nick baseball cards">
       <li className="bb-card bb-card-art bb-card-left" aria-hidden="true">
@@ -14,7 +43,10 @@ export default function BaseballCardFan() {
           className="bb-card-art-img"
         />
       </li>
-      <li className="bb-card bb-card-main">
+      <li
+        ref={nickRef}
+        className={`bb-card bb-card-main bb-card-nick${glow ? " is-glow" : ""}`}
+      >
         <div className="bb-card-photo">
           <Image
             src="/assets/nick-coach-card.png"
