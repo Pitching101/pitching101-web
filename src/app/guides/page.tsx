@@ -35,7 +35,7 @@ export default function GuidesPage() {
         <Reveal delayMs={60} className="mt-12 space-y-4">
           <p className="text-base text-ink-soft">Want lessons with the guide?</p>
           <Link href="/contact/" className="btn">
-            Get started
+            Book a First Look
           </Link>
         </Reveal>
       </article>

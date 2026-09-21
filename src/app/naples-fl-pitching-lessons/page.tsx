@@ -4,12 +4,12 @@ import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
 import JsonLd, { faqJsonLd } from "@/components/JsonLd";
-import { faqs, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import { faqs, RESPONSE_PROMISE, ENROLL_HREF, ENROLL_LABEL, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Pitching coach for kids in Naples, FL",
   description:
-    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Deising — lessons for ages 8-16, arm care first. Text 845-768-2211.",
+    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Deising — book a First Look, then a simple pack. Ages 8-16, arm care first.",
   keywords: [
     "youth pitching lessons in Naples FL",
     "Naples FL pitching lessons",
@@ -52,8 +52,8 @@ export default function NaplesPitchingLessonsPage() {
             varsity head coach at Gulfshore High School, and works with
             parents, other coaches, travel teams, and schools.
           </p>
-          <Link href="/contact/" className="btn">
-            Get started
+          <Link href={ENROLL_HREF} className="btn">
+            {ENROLL_LABEL}
           </Link>
         </Reveal>
 
@@ -87,8 +87,8 @@ export default function NaplesPitchingLessonsPage() {
 
         <Reveal className="mt-12 space-y-4">
           <p className="text-ink-soft">{RESPONSE_PROMISE}</p>
-          <Link href="/contact/" className="btn">
-            Get started
+          <Link href={ENROLL_HREF} className="btn">
+            {ENROLL_LABEL}
           </Link>
         </Reveal>
 

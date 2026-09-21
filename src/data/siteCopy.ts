@@ -8,8 +8,10 @@ export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/pitching101.com
 export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
+export const ENROLL_LABEL = "Book a First Look";
+export const ENROLL_HREF = "/contact/";
 export const META_DESCRIPTION =
-  "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.";
+  "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Book a First Look, then a simple pack. Parents, other coaches, travel teams, and schools.";
 
 export type FaqItem = { q: string; a: string };
 
@@ -32,15 +34,23 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
-    a: "Naples and Southwest Florida. There is no walk-up address — text 845-768-2211 and we will share the meeting location.",
+    a: "Naples and Southwest Florida. There is no walk-up address — we'll share the meeting location after you book a First Look.",
   },
   {
     q: "Do you only do in-person lessons?",
     a: "No. Lessons can be in person, at home, or both.",
   },
   {
-    q: "How do I get started?",
-    a: "Send the short form. We'll respond within 24 business hours. Or text 845-768-2211.",
+    q: "How do I book a First Look?",
+    a: "Send the short form — age, goals, and schedule. We'll respond within 24 business hours. We meet once, talk plain English, then recommend a pack.",
+  },
+  {
+    q: "What is a First Look?",
+    a: "One visit. We talk in plain English about your kid, then recommend the Monthly Strikes Pack or a Busy-Week Check-In. No price menu first.",
+  },
+  {
+    q: "What packs come after the First Look?",
+    a: "Monthly Strikes Pack is the main plan. Busy-Week Check-In is an add-on when the week is packed. We'll recommend after we meet.",
   },
   {
     q: "Do you teach arm care with pitching?",
@@ -50,19 +60,19 @@ export const faqs: FaqItem[] = [
 
 export const trainingOptions = [
   {
-    label: "In person",
-    note: "Lessons around Naples. We will confirm the field.",
+    label: "First Look",
+    note: "Meet once. Talk plain English. Then we recommend Monthly or Check-In.",
+    icon: "/assets/icons/icon-plan-checklist.png",
+  },
+  {
+    label: "Monthly Strikes Pack",
+    note: "The main plan after the First Look. Regular work and a clear next practice.",
     icon: "/assets/icons/icon-strikes.png",
   },
   {
-    label: "At home",
-    note: "A plan for between practices.",
+    label: "Busy-Week Check-In",
+    note: "An add-on when the week is packed. A short look, then back to the plan.",
     icon: "/assets/icons/icon-free-guide-v2.png",
-  },
-  {
-    label: "A mix",
-    note: "At-home work plus live check-ins.",
-    icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
 
@@ -83,20 +93,20 @@ export const workWithRoles = [
 
 export const startSteps = [
   {
-    label: "Tell us who",
-    note: "Ages 8–16. Parent, coach, travel team, or school — and how you want to train.",
+    label: "Book a First Look",
+    note: "Age, goals, and schedule. Parent, coach, travel team, or school.",
   },
   {
     label: "We'll respond within 24 business hours",
     note: "We'll use the number you left.",
   },
   {
-    label: "First session",
-    note: "Warm-up, a few cues, and work for the next practice.",
+    label: "We meet once",
+    note: "Plain English. Then a pack that fits — not a giant menu first.",
   },
   {
-    label: "Keep the plan",
-    note: "In person, at home, or both — choose what fits.",
+    label: "Monthly or Check-In",
+    note: "Monthly Strikes Pack is the main plan. Busy-Week Check-In is the add-on.",
   },
 ];
 
@@ -110,7 +120,7 @@ export const sessionBeats = [
     note: "One or two cues they can keep.",
   },
   {
-    label: "Something to try",
-    note: "They leave with work for the next practice.",
+    label: "Then a pack",
+    note: "Monthly Strikes Pack, or a Busy-Week Check-In if the week is packed.",
   },
 ];

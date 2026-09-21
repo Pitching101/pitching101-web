@@ -9,7 +9,7 @@ import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyChips, INSTAGRAM_URL, META_DESCRIPTION, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import { faqs, guyChips, INSTAGRAM_URL, META_DESCRIPTION, ENROLL_HREF, ENROLL_LABEL, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -45,8 +45,8 @@ export default function HomePage() {
               More strikes. A healthy arm. A clear plan.
             </p>
             <div className="home-cta-row pt-1">
-              <Link href="/contact/" className="btn">
-                Get started
+              <Link href={ENROLL_HREF} className="btn">
+                {ENROLL_LABEL}
               </Link>
             </div>
             <p className="text-sm text-ink-soft">
@@ -113,7 +113,9 @@ export default function HomePage() {
         <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">How we train</h2>
-            <p className="text-base text-ink-soft">Choose how you want to train.</p>
+            <p className="text-base text-ink-soft">
+              Book a First Look. Then a simple pack — no price menu first.
+            </p>
           </Reveal>
 
           <Reveal delayMs={40}>
@@ -133,6 +135,11 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+          <Reveal delayMs={80} className="home-cta-row">
+            <Link href={ENROLL_HREF} className="btn">
+              {ENROLL_LABEL}
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -172,8 +179,8 @@ export default function HomePage() {
           <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-24 text-center sm:px-8 sm:pt-28 sm:pb-44">
             <p className="ui-title ui-title-sm">See how we train</p>
             <TrainingClipsStrip />
-            <Link href="/contact/" className="btn">
-              Get started
+            <Link href={ENROLL_HREF} className="btn">
+              {ENROLL_LABEL}
             </Link>
           </Reveal>
         </div>

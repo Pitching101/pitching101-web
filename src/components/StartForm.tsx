@@ -2,12 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE, workWithRoles } from "@/data/siteCopy";
+import { RESPONSE_PROMISE, ENROLL_LABEL, workWithRoles } from "@/data/siteCopy";
 import { leadFromForm, writeStartLead } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
 
-/** Short start form — name, phone, age. Texts Coach Deising, then thank-you. */
+/** First Look form — age, goals, schedule. No price menu. */
 export default function StartForm() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
@@ -89,16 +89,30 @@ export default function StartForm() {
           </select>
         </label>
       </div>
+      <label className="start-field">
+        <span>Goals</span>
+        <textarea
+          name="goals"
+          required
+          rows={3}
+          enterKeyHint="next"
+          placeholder="More strikes, a healthier arm, travel ball…"
+        />
+      </label>
+      <label className="start-field">
+        <span>Schedule</span>
+        <textarea
+          name="schedule"
+          required
+          rows={2}
+          enterKeyHint="go"
+          placeholder="Days or times that usually work"
+        />
+      </label>
       <button type="submit" className="btn" disabled={sending}>
-        {sending ? "Sending…" : "Get started"}
+        {sending ? "Sending…" : ENROLL_LABEL}
       </button>
-      <p className="start-form-or">
-        {RESPONSE_PROMISE} Or{" "}
-        <a className="footer-link" href={`sms:${PHONE_TEL}`}>
-          text {PHONE_DISPLAY}
-        </a>
-        .
-      </p>
+      <p className="start-form-or">{RESPONSE_PROMISE}</p>
     </form>
   );
 }

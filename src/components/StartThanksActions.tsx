@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE } from "@/data/siteCopy";
+import { RESPONSE_PROMISE } from "@/data/siteCopy";
 import {
   START_LEAD_SMS_KEY,
   readStartLead,
@@ -10,7 +10,7 @@ import {
   type StartLead,
 } from "@/data/startLead";
 
-/** After Get started — send the note to Coach Deising's phone, or email more info. */
+/** After First Look — send the note so Coach Deising gets it. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 
@@ -26,12 +26,7 @@ export default function StartThanksActions() {
   if (!lead) {
     return (
       <div className="start-thanks-actions">
-        <a href={`sms:${PHONE_TEL}`} className="btn">
-          Text {PHONE_DISPLAY}
-        </a>
-        <p className="start-form-or">
-          {RESPONSE_PROMISE}
-        </p>
+        <p className="start-form-or">{RESPONSE_PROMISE}</p>
       </div>
     );
   }
@@ -39,17 +34,11 @@ export default function StartThanksActions() {
   return (
     <div className="start-thanks-actions">
       <a href={smsHref(lead.body)} className="btn">
-        Send this to Coach Deising&apos;s phone
+        Send this to Coach Deising
       </a>
-      {lead.email ? (
-        <a href={thanksEmailHref(lead)} className="footer-link">
-          Email what happens next
-        </a>
-      ) : (
-        <a href={thanksEmailHref(lead)} className="footer-link">
-          Email more information
-        </a>
-      )}
+      <a href={thanksEmailHref(lead)} className="footer-link">
+        {lead.email ? "Email what happens next" : "Email more information"}
+      </a>
       <p className="start-form-or">
         {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Kids 8–16.
       </p>

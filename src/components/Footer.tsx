@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import { INSTAGRAM_URL } from "@/data/siteCopy";
+import { ENROLL_HREF, ENROLL_LABEL, INSTAGRAM_URL } from "@/data/siteCopy";
 
 /** Original three-column footer — brand, contact, explore. */
 export default function Footer() {
@@ -14,8 +14,8 @@ export default function Footer() {
             Youth pitching lessons in Naples, FL for ages 8–16. Families,
             travel teams, other coaches, and schools.
           </p>
-          <Link href="/contact/" className="btn">
-            Get started
+          <Link href={ENROLL_HREF} className="btn">
+            {ENROLL_LABEL}
           </Link>
         </div>
 
@@ -76,8 +76,13 @@ export default function Footer() {
             </a>
           </p>
           <p>
+            <Link className="text-ink-soft hover:text-blue-dark" href="/packages/">
+              Packages
+            </Link>
+          </p>
+          <p>
             <Link className="text-ink-soft hover:text-blue-dark" href="/contact/">
-              Contact
+              Book a First Look
             </Link>
           </p>
         </div>

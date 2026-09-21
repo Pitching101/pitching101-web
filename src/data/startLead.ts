@@ -10,6 +10,8 @@ export type StartLead = {
   age: string;
   phone: string;
   email: string;
+  goals: string;
+  schedule: string;
   train: string;
   note: string;
   body: string;
@@ -22,11 +24,13 @@ export function leadFromForm(data: FormData): StartLead {
   const age = String(data.get("age") || "").trim();
   const phone = String(data.get("phone") || "").trim();
   const email = String(data.get("email") || "").trim();
+  const goals = String(data.get("goals") || "").trim();
+  const schedule = String(data.get("schedule") || "").trim();
   const train = String(data.get("train") || "").trim();
   const note = String(data.get("note") || "").trim();
 
   const body = [
-    "Pitching101 inquiry",
+    "Pitching101 First Look",
     "",
     `Who: ${role}`,
     `Name: ${name}`,
@@ -34,13 +38,27 @@ export function leadFromForm(data: FormData): StartLead {
     `Age: ${age}`,
     `Phone: ${phone}`,
     email ? `Email: ${email}` : "",
+    goals ? `Goals: ${goals}` : "",
+    schedule ? `Schedule: ${schedule}` : "",
     train ? `Train: ${train}` : "",
     note ? `Note: ${note}` : "",
   ]
     .filter((line) => line !== "")
     .join("\n");
 
-  return { role, name, player, age, phone, email, train, note, body };
+  return {
+    role,
+    name,
+    player,
+    age,
+    phone,
+    email,
+    goals,
+    schedule,
+    train,
+    note,
+    body,
+  };
 }
 
 export function smsHref(body: string) {
@@ -56,19 +74,17 @@ export function thanksEmailHref(lead: StartLead) {
   const more = [
     `Hi ${lead.name || "there"},`,
     "",
-    "Thank you for getting started with Pitching101. We'll respond within 24 business hours at",
+    "Thanks for booking a First Look with Pitching101. We'll respond within 24 business hours at",
     lead.phone || "the number you left",
-    "and confirm where to meet.",
+    "and pick a time to meet.",
     "",
     "Kids 8–16. Parent, other coach, travel team, or school.",
-    "In person, at home, or a mix.",
+    "We meet once, talk plain English, then recommend Monthly Strikes Pack or Busy-Week Check-In.",
     "",
     "What happens:",
-    "1. We receive your form.",
+    "1. We receive your First Look form.",
     "2. We'll respond within 24 business hours.",
-    "3. First session — warm-up, a few cues, and work for the next practice.",
-    "",
-    "Text or call 845-768-2211 if you would like to reach us sooner.",
+    "3. We meet once — then a pack that fits.",
   ].join("\n");
 
   return `mailto:${to}?subject=${encodeURIComponent(
