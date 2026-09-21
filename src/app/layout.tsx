@@ -13,7 +13,7 @@ const oswald = Oswald({
   weight: ["500", "600", "700"],
 });
 
-/** Script accent for a retro Athletics lockup — not running copy. */
+/** Script accent for a Youth lockup — not running copy. */
 const yesteryear = Yesteryear({
   variable: "--font-script",
   subsets: ["latin"],
