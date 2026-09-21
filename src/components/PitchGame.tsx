@@ -11,24 +11,66 @@ import {
 
 const ZONES = [7, 8, 9, 4, 5, 6, 1, 2, 3] as const;
 const MIN_SPEED = 280;
-const GRAVITY = 980;
 const BALL = 30;
+const KICK_LO = 520;
+const KICK_HI = 1180;
 
-type Pitch = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
+function nowMs() {
+  return performance.now();
+}
+
+type CellBox = {
+  zone: number;
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
 };
 
-type Call = "strike" | "ball";
 type MissKind = "high" | "dirt" | "left" | "right" | "miss";
 
+type Landing = {
+  x: number;
+  y: number;
+  zone: number | null;
+  miss: MissKind | null;
+};
+
+type Flight = {
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+  t0: number;
+  dur: number;
+  landing: Landing;
+};
+
+type Card = "" | "looking" | "walk";
+
+type Book = {
+  balls: number;
+  strikes: number;
+  looking: number;
+  walks: number;
+  card: Card;
+};
+
+type Call = "strike" | "ball" | "looking" | "walk" | "";
+
 type Result = {
-  call: Call | "";
+  call: Call;
   zone: number | null;
   kicker: string;
   text: string;
+};
+
+const EMPTY_BOOK: Book = {
+  balls: 0,
+  strikes: 0,
+  looking: 0,
+  walks: 0,
+  card: "",
 };
 
 const IDLE: Result = {
@@ -123,34 +165,69 @@ function pickLine(pool: string[], last: { current: string }) {
   return line;
 }
 
-function strikeResult(zone: number, last: { current: string }): Result {
-  return {
-    call: "strike",
-    zone,
-    kicker: zone === 5 ? "Strike · Zone 5" : `Strike · Zone ${zone}`,
-    text: pickLine(ZONE_CUES[zone], last),
-  };
+/** Harder flick flies farther up the nine-box — not through 1-2-3 on the way. */
+function throwReach(speed: number) {
+  const t = Math.min(1, Math.max(0, (speed - KICK_LO) / (KICK_HI - KICK_LO)));
+  return 300 + t * 220;
 }
 
-function missKindFromPoint(
-  cx: number,
-  cy: number,
-  cells: Array<HTMLButtonElement | null>,
-): MissKind {
-  const first = cells[0];
-  const last = cells[8];
-  if (!first || !last) return "miss";
-  const a = first.getBoundingClientRect();
-  const b = last.getBoundingClientRect();
-  const left = Math.min(a.left, b.left);
-  const right = Math.max(a.right, b.right);
-  const top = Math.min(a.top, b.top);
-  const bottom = Math.max(a.bottom, b.bottom);
-  if (cy < top) return "high";
-  if (cy > bottom) return "dirt";
-  if (cx < left) return "left";
-  if (cx > right) return "right";
-  return "miss";
+function landingForThrow(
+  startX: number,
+  startY: number,
+  vx: number,
+  vy: number,
+  cells: CellBox[],
+): Landing {
+  const speed = Math.hypot(vx, vy) || 1;
+  const reach = throwReach(speed);
+  const lx = startX + (vx / speed) * reach;
+  const ly = startY + (vy / speed) * reach;
+  if (!cells.length) {
+    return { x: lx, y: ly, zone: null, miss: "miss" };
+  }
+  const hit = cells.find(
+    (cell) => lx >= cell.left && lx <= cell.right && ly >= cell.top && ly <= cell.bottom,
+  );
+  if (hit) {
+    return {
+      x: (hit.left + hit.right) / 2,
+      y: (hit.top + hit.bottom) / 2,
+      zone: hit.zone,
+      miss: null,
+    };
+  }
+
+  const left = Math.min(...cells.map((c) => c.left));
+  const right = Math.max(...cells.map((c) => c.right));
+  const top = Math.min(...cells.map((c) => c.top));
+  const bottom = Math.max(...cells.map((c) => c.bottom));
+  let miss: MissKind = "miss";
+  if (ly < top) miss = "high";
+  else if (ly > bottom) miss = "dirt";
+  else if (lx < left) miss = "left";
+  else if (lx > right) miss = "right";
+  return { x: lx, y: ly, zone: null, miss };
+}
+
+function cellsFromField(
+  field: HTMLElement,
+  nodes: Array<HTMLButtonElement | null>,
+): CellBox[] {
+  const box = field.getBoundingClientRect();
+  return ZONES.map((zone, i) => {
+    const cell = nodes[i];
+    if (!cell) {
+      return { zone, left: 0, top: 0, right: 0, bottom: 0 };
+    }
+    const r = cell.getBoundingClientRect();
+    return {
+      zone,
+      left: r.left - box.left,
+      top: r.top - box.top,
+      right: r.right - box.left,
+      bottom: r.bottom - box.top,
+    };
+  });
 }
 
 /**
@@ -176,7 +253,7 @@ function PitchGameField() {
   const fieldRef = useRef<HTMLDivElement>(null);
   const ballRef = useRef<HTMLImageElement>(null);
   const cellRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const pitchRef = useRef<Pitch | null>(null);
+  const flightRef = useRef<Flight | null>(null);
   const dragRef = useRef<{
     x: number;
     y: number;
@@ -188,9 +265,9 @@ function PitchGameField() {
   } | null>(null);
   const rafRef = useRef(0);
   const lastCue = useRef("");
+  const bookRef = useRef<Book>(EMPTY_BOOK);
   const [result, setResult] = useState<Result>(IDLE);
-  const [strikes, setStrikes] = useState(0);
-  const [zoneFives, setZoneFives] = useState(0);
+  const [book, setBook] = useState<Book>(EMPTY_BOOK);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [armed, setArmed] = useState(false);
 
@@ -201,21 +278,83 @@ function PitchGameField() {
     ball.style.transform = "translate3d(-80px, -80px, 0)";
   }, []);
 
+  const paintBall = useCallback((x: number, y: number, angle = 0) => {
+    const ball = ballRef.current;
+    if (!ball) return;
+    ball.style.opacity = "1";
+    ball.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${angle.toFixed(0)}deg)`;
+  }, []);
+
   const finish = useCallback(
-    (next: Result) => {
-      pitchRef.current = null;
-      parkBall();
-      setResult(next);
-      if (next.zone) {
-        setStrikes((n) => n + 1);
-        if (next.zone === 5) setZoneFives((n) => n + 1);
+    (landing: Landing) => {
+      flightRef.current = null;
+      paintBall(landing.x - BALL / 2, landing.y - BALL / 2, 0);
+
+      const prev = bookRef.current;
+      let next: Book;
+      let nextResult: Result;
+      if (landing.zone) {
+        const strikes = prev.strikes + 1;
+        if (strikes >= 3) {
+          next = {
+            balls: 0,
+            strikes: 0,
+            looking: prev.looking + 1,
+            walks: prev.walks,
+            card: "looking",
+          };
+          nextResult = {
+            call: "looking",
+            zone: landing.zone,
+            kicker: "Looking",
+            text: "That's three looking.",
+          };
+        } else {
+          next = { ...prev, strikes, card: "" };
+          nextResult = {
+            call: "strike",
+            zone: landing.zone,
+            kicker: landing.zone === 5 ? "Strike · Zone 5" : `Strike · Zone ${landing.zone}`,
+            text: pickLine(ZONE_CUES[landing.zone], lastCue),
+          };
+        }
+      } else {
+        const balls = prev.balls + 1;
+        if (balls >= 4) {
+          next = {
+            balls: 0,
+            strikes: 0,
+            looking: prev.looking,
+            walks: prev.walks + 1,
+            card: "walk",
+          };
+          nextResult = {
+            call: "walk",
+            zone: null,
+            kicker: "Walk",
+            text: "That's a walk. Next hitter.",
+          };
+        } else {
+          next = { ...prev, balls, card: "" };
+          const kind = landing.miss ?? "miss";
+          nextResult = {
+            call: "ball",
+            zone: null,
+            kicker: "Ball",
+            text: pickLine(MISS_CUES[kind], lastCue),
+          };
+        }
       }
+      bookRef.current = next;
+      setBook(next);
+      setResult(nextResult);
+
       cellRefs.current.forEach((cell, i) => {
         if (!cell) return;
-        cell.classList.toggle("is-hit", ZONES[i] === next.zone);
+        cell.classList.toggle("is-hit", ZONES[i] === landing.zone);
       });
     },
-    [parkBall],
+    [paintBall],
   );
 
   useEffect(() => {
@@ -228,42 +367,17 @@ function PitchGameField() {
 
   useEffect(() => {
     const tick = (now: number) => {
-      const pitch = pitchRef.current;
-      const ball = ballRef.current;
-      const field = fieldRef.current;
-      if (pitch && ball && field) {
-        const last = ball.dataset.t ? Number(ball.dataset.t) : now;
-        const dt = Math.min(0.032, Math.max(0.008, (now - last) / 1000));
-        ball.dataset.t = String(now);
-        pitch.vy += GRAVITY * dt;
-        pitch.x += pitch.vx * dt;
-        pitch.y += pitch.vy * dt;
-        ball.style.opacity = "1";
-        ball.style.transform = `translate3d(${pitch.x.toFixed(1)}px, ${pitch.y.toFixed(1)}px, 0) rotate(${((now / 4) % 360).toFixed(0)}deg)`;
-
-        const fieldBox = field.getBoundingClientRect();
-        const cx = fieldBox.left + pitch.x + BALL / 2;
-        const cy = fieldBox.top + pitch.y + BALL / 2;
-        const hit = cellRefs.current.findIndex((cell) => {
-          if (!cell) return false;
-          const box = cell.getBoundingClientRect();
-          return cx >= box.left && cx <= box.right && cy >= box.top && cy <= box.bottom;
-        });
-        if (hit >= 0) {
-          finish(strikeResult(ZONES[hit], lastCue));
-        } else if (
-          pitch.y > fieldBox.height - 8 ||
-          pitch.x < -40 ||
-          pitch.x > fieldBox.width + 8 ||
-          pitch.y < -60
-        ) {
-          const kind = missKindFromPoint(cx, cy, cellRefs.current);
-          finish({
-            call: "ball",
-            zone: null,
-            kicker: "Ball",
-            text: pickLine(MISS_CUES[kind], lastCue),
-          });
+      const flight = flightRef.current;
+      if (flight) {
+        const t = Math.min(1, (now - flight.t0) / flight.dur);
+        const eased = 1 - (1 - t) ** 3;
+        const arc = Math.sin(Math.PI * t) * 36;
+        const x = flight.x0 + (flight.x1 - flight.x0) * eased;
+        const y = flight.y0 + (flight.y1 - flight.y0) * eased - arc;
+        paintBall(x, y, (now / 4) % 360);
+        if (t >= 1) {
+          flightRef.current = null;
+          finish(flight.landing);
         }
       }
       rafRef.current = window.requestAnimationFrame(tick);
@@ -274,7 +388,7 @@ function PitchGameField() {
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
       document.documentElement.classList.remove("pitch-playing");
     };
-  }, [finish, parkBall]);
+  }, [finish, paintBall, parkBall]);
 
   function fieldPoint(event: PointerEvent<HTMLDivElement>) {
     const field = fieldRef.current;
@@ -283,52 +397,88 @@ function PitchGameField() {
     return { x: event.clientX - box.left, y: event.clientY - box.top };
   }
 
-  function throwFrom(x: number, y: number, vx: number, vy: number) {
+  function throwFrom(
+    originX: number,
+    originY: number,
+    x: number,
+    y: number,
+    vx: number,
+    vy: number,
+  ) {
     const ball = ballRef.current;
-    if (!ball) return;
+    const field = fieldRef.current;
+    if (!ball || !field) return;
     const speed = Math.hypot(vx, vy);
     if (speed < MIN_SPEED && vy > -120) return;
-    const kick = Math.min(1180, Math.max(520, speed));
+    const kick = Math.min(KICK_HI, Math.max(KICK_LO, speed));
     const nx = vx / (speed || 1);
     const ny = vy / (speed || 1);
-    pitchRef.current = {
-      x: x - BALL / 2,
-      y: y - BALL / 2,
-      vx: nx * kick,
-      vy: Math.min(-220, ny * kick),
+    const cells = cellsFromField(field, cellRefs.current);
+    const releaseHit = cells.find(
+      (cell) => x >= cell.left && x <= cell.right && y >= cell.top && y <= cell.bottom,
+    );
+    const landing = releaseHit
+      ? {
+          x: (releaseHit.left + releaseHit.right) / 2,
+          y: (releaseHit.top + releaseHit.bottom) / 2,
+          zone: releaseHit.zone,
+          miss: null,
+        }
+      : landingForThrow(originX, originY, nx * kick, ny * kick, cells);
+    if (!landing.zone) {
+      landing.x = Math.min(field.clientWidth - 18, Math.max(18, landing.x));
+      landing.y = Math.min(field.clientHeight - 18, Math.max(18, landing.y));
+    }
+    const t = Math.min(1, Math.max(0, (kick - KICK_LO) / (KICK_HI - KICK_LO)));
+    flightRef.current = {
+      x0: x - BALL / 2,
+      y0: y - BALL / 2,
+      x1: landing.x - BALL / 2,
+      y1: landing.y - BALL / 2,
+      t0: nowMs(),
+      dur: 520 - t * 160,
+      landing,
     };
-    ball.dataset.t = String(performance.now());
     cellRefs.current.forEach((cell) => cell?.classList.remove("is-hit"));
+    if (bookRef.current.card) {
+      const cleared = { ...bookRef.current, card: "" as Card };
+      bookRef.current = cleared;
+      setBook(cleared);
+    }
   }
 
   function onPointerDown(event: PointerEvent<HTMLDivElement>) {
     if (event.pointerType === "touch") return;
     if (reduceMotion) return;
-    event.currentTarget.setPointerCapture(event.pointerId);
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      /* synthetic events and some browsers skip capture */
+    }
     document.documentElement.classList.add("pitch-playing");
-    pitchRef.current = null;
+    flightRef.current = null;
     const point = fieldPoint(event);
     dragRef.current = {
       ...point,
       vx: 0,
       vy: 0,
-      t: performance.now(),
+      t: nowMs(),
       startX: point.x,
       startY: point.y,
     };
     setArmed(true);
-    const ball = ballRef.current;
-    if (ball) {
-      ball.style.opacity = "1";
-      ball.style.transform = `translate3d(${point.x - BALL / 2}px, ${point.y - BALL / 2}px, 0)`;
+    if (bookRef.current.card) {
+      const cleared = { ...bookRef.current, card: "" as Card };
+      bookRef.current = cleared;
+      setBook(cleared);
     }
+    paintBall(point.x - BALL / 2, point.y - BALL / 2);
   }
 
   function onPointerMove(event: PointerEvent<HTMLDivElement>) {
     const drag = dragRef.current;
-    const ball = ballRef.current;
-    if (!drag || !ball) return;
-    const now = performance.now();
+    if (!drag) return;
+    const now = nowMs();
     const point = fieldPoint(event);
     const dt = Math.max(0.008, (now - drag.t) / 1000);
     drag.vx = (point.x - drag.x) / dt;
@@ -336,7 +486,7 @@ function PitchGameField() {
     drag.x = point.x;
     drag.y = point.y;
     drag.t = now;
-    ball.style.transform = `translate3d(${point.x - BALL / 2}px, ${point.y - BALL / 2}px, 0)`;
+    paintBall(point.x - BALL / 2, point.y - BALL / 2);
   }
 
   function onPointerUp() {
@@ -350,7 +500,7 @@ function PitchGameField() {
       vx = (x - drag.startX) * 8;
       vy = (y - drag.startY) * 8;
     }
-    throwFrom(x, y, vx, vy);
+    throwFrom(drag.startX, drag.startY, x, y, vx, vy);
   }
 
   function onPointerLeave() {
@@ -359,7 +509,20 @@ function PitchGameField() {
   }
 
   function placeZone(zone: number) {
-    finish(strikeResult(zone, lastCue));
+    const field = fieldRef.current;
+    const cell = cellRefs.current[ZONES.indexOf(zone as (typeof ZONES)[number])];
+    if (!field || !cell) {
+      finish({ x: 0, y: 0, zone, miss: null });
+      return;
+    }
+    const box = field.getBoundingClientRect();
+    const r = cell.getBoundingClientRect();
+    finish({
+      x: r.left - box.left + r.width / 2,
+      y: r.top - box.top + r.height / 2,
+      zone,
+      miss: null,
+    });
   }
 
   function onKey(event: KeyboardEvent<HTMLDivElement>) {
@@ -371,7 +534,9 @@ function PitchGameField() {
     }
     const field = fieldRef.current;
     if (!field) return;
-    throwFrom(field.clientWidth * 0.5, field.clientHeight * 0.82, 40, -820);
+    const x = field.clientWidth * 0.5;
+    const y = field.clientHeight * 0.82;
+    throwFrom(x, y, x, y, 0, -560);
   }
 
   return (
@@ -381,14 +546,17 @@ function PitchGameField() {
       <p className="pitch-game-copy">
         {reduceMotion
           ? "Click a zone. I'll talk like we would in a lesson."
-          : "The mouse is the glove. Flick toward the zone — I'll talk like a lesson."}
+          : "The mouse is the glove. Flick at the box you want — 1 through 9."}
       </p>
       <div
         ref={fieldRef}
-        className={`pitch-field${armed ? " is-armed" : ""}`}
+        className={`pitch-field${armed ? " is-armed" : ""}${book.card ? ` is-${book.card}` : ""}`}
         role="application"
         aria-label="Throw a pitch at the strike zone with the mouse"
         tabIndex={0}
+        data-pitch-zone={result.zone ?? ""}
+        data-pitch-card={book.card}
+        data-pitch-note={result.text}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -437,6 +605,20 @@ function PitchGameField() {
           height={BALL}
           draggable={false}
         />
+        {book.card === "looking" ? (
+          <p className="pitch-k-mark" role="img" aria-label="Strikeout looking">
+            <span className="pitch-k-flip">
+              <span className="pitch-k-glyph">K</span>
+            </span>
+            <span className="pitch-k-caption">Looking</span>
+          </p>
+        ) : null}
+        {book.card === "walk" ? (
+          <p className="pitch-k-mark is-walk" role="img" aria-label="Walk">
+            <span className="pitch-k-walk">BB</span>
+            <span className="pitch-k-caption">Take your base</span>
+          </p>
+        ) : null}
         <p className="pitch-rubber" aria-hidden="true">
           Flick from here
         </p>
@@ -445,10 +627,48 @@ function PitchGameField() {
         <span className="pitch-call-kicker">{result.kicker}</span>
         <span className="pitch-call-line">{result.text}</span>
       </p>
-      <p className="pitch-game-score" aria-live="polite">
-        Strikes {strikes}
-        {zoneFives > 0 ? ` · Zone 5 × ${zoneFives}` : ""}
+      <div
+        className="pitch-count"
+        aria-live="polite"
+        aria-label={`Balls ${book.balls}, strikes ${book.strikes}`}
+      >
+        <CountRow label="B" filled={book.balls} total={4} />
+        <CountRow label="S" filled={book.strikes} total={3} strike />
+      </div>
+      <p
+        className="pitch-game-score"
+        aria-label={`Strikeouts looking ${book.looking}${book.walks > 0 ? `, walks ${book.walks}` : ""}`}
+      >
+        <span className="pitch-k-flip pitch-k-inline" aria-hidden="true">
+          K
+        </span>
+        {` ${book.looking}`}
+        {book.walks > 0 ? ` · BB ${book.walks}` : ""}
       </p>
     </div>
+  );
+}
+
+function CountRow({
+  label,
+  filled,
+  total,
+  strike = false,
+}: {
+  label: string;
+  filled: number;
+  total: number;
+  strike?: boolean;
+}) {
+  return (
+    <span className="pitch-count-row">
+      <span className="pitch-count-label">{label}</span>
+      {Array.from({ length: total }, (_, i) => (
+        <span
+          key={`${label}-${i}`}
+          className={`pitch-dot${strike ? " is-strike" : ""}${i < filled ? " is-on" : ""}`}
+        />
+      ))}
+    </span>
   );
 }

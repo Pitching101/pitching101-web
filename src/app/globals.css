@@ -366,6 +366,11 @@ body {
   color: var(--blue-dark);
 }
 .pitch-call.is-strike .pitch-call-kicker { color: #0b7a52; }
+.pitch-call.is-looking {
+  border-color: color-mix(in srgb, #0f1a2e 40%, var(--blue));
+}
+.pitch-call.is-looking .pitch-call-kicker { color: #0f1a2e; }
+.pitch-call.is-walk .pitch-call-kicker { color: var(--blue-dark); }
 .pitch-call-line {
   margin: 0;
   max-width: 28rem;
@@ -381,6 +386,55 @@ body {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.pitch-k-inline {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+.pitch-k-flip {
+  display: inline-block;
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+.pitch-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  min-height: 1.6rem;
+}
+.pitch-count-row {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+.pitch-count-label {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #0f1a2e;
+}
+.pitch-dot {
+  display: block;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 0.95rem;
+  box-sizing: border-box;
+  border-radius: 999px;
+  border: 2.5px solid #0f1a2e;
+  background: #fff8e6;
+}
+.pitch-dot.is-on {
+  background: #0f1a2e;
+}
+.pitch-dot.is-strike.is-on {
+  background: #ffc600;
+  border-color: #0f1a2e;
 }
 .pitch-field {
   position: relative;
@@ -398,6 +452,47 @@ body {
 }
 .pitch-field.is-armed {
   border-color: color-mix(in srgb, #0f1a2e 40%, #3295fb);
+}
+.pitch-k-mark {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 1.7rem;
+  margin: 0;
+  pointer-events: none;
+  background: color-mix(in srgb, #3295fb 28%, transparent);
+}
+.pitch-k-glyph {
+  display: block;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: clamp(6.2rem, 18vw, 9.2rem);
+  font-weight: 700;
+  line-height: 0.8;
+  color: #0f1a2e;
+  text-shadow: -5px 6px 0 rgba(255, 255, 255, 0.55);
+}
+.pitch-k-walk {
+  display: block;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: clamp(4.2rem, 12vw, 6rem);
+  font-weight: 700;
+  line-height: 0.85;
+  color: #0f1a2e;
+  letter-spacing: 0.04em;
+  text-shadow: 5px 6px 0 rgba(255, 255, 255, 0.55);
+}
+.pitch-k-caption {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f1a2e;
 }
 .pitch-field:focus-visible {
   outline: 2px solid #fff;
