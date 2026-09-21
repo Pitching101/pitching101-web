@@ -1706,6 +1706,80 @@ html.glove-cursor * {
   gap: 0.75rem;
 }
 
+/* Stadium ticker between hero and reviews — real program marks, not fake press. */
+.park-belt {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0.7rem 0 0.85rem;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+}
+.park-belt-track {
+  display: flex;
+  width: max-content;
+  animation: park-belt-scroll 38s linear infinite;
+}
+.park-belt-row {
+  display: flex;
+  align-items: center;
+  gap: 1.85rem;
+  margin: 0;
+  padding: 0 0.95rem;
+  list-style: none;
+  white-space: nowrap;
+}
+.park-belt-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 78%, #1a78e8);
+}
+.park-belt-art {
+  display: block;
+  width: 1.55rem;
+  height: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.park-belt-art.is-logo {
+  width: 6.4rem;
+  image-rendering: auto;
+}
+@keyframes park-belt-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .park-belt-track {
+    animation: none;
+    width: 100%;
+    justify-content: center;
+  }
+  .park-belt-track .park-belt-row:last-child {
+    display: none;
+  }
+}
+
 
 
 /* Footer contact links — clear Call / Text / Email */

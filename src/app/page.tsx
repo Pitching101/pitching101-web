@@ -8,6 +8,7 @@ import ParkSky from "@/components/ParkSky";
 import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
+import ParkBelt from "@/components/ParkBelt";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
 import { faqs, guyChips, INSTAGRAM_URL, META_DESCRIPTION, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
@@ -57,8 +58,10 @@ export default function HomePage() {
         <div id="sky-start" aria-hidden="true" />
       </section>
 
+      <ParkBelt />
+
       <section className="text-band scroll-mt-24" id="reviews" aria-label="What people say">
-        <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
+        <div className="home-stack space-y-6 px-5 pt-8 pb-14 sm:px-8 sm:pt-10 sm:pb-16">
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">What people say</h2>
             <ReviewsCarousel />
