@@ -282,7 +282,7 @@ export default function CoachDesk({
                 </label>
                 <label className="start-field">
                   <span>
-                    Your clip <em>optional — they can rewatch it</em>
+                    Your clip <em>optional. They can rewatch it</em>
                   </span>
                   <input name="clip" type="file" accept="video/mp4,video/quicktime,video/webm" />
                 </label>
@@ -413,7 +413,7 @@ export default function CoachDesk({
             </div>
             <label className="start-field">
               <span>
-                Kid email <em>optional — if they have their own login</em>
+                Kid email <em>optional, if they have their own login</em>
               </span>
               <input name="player_email" type="email" />
             </label>

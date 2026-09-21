@@ -91,7 +91,7 @@ export default function FamilyDesk({
           <h2 className="ui-title ui-title-sm">Nothing on the card yet</h2>
           <p className="portal-lead">
             Use the same email Coach has on file. If this is your first login, hang
-            tight — I&apos;ll add you to the roster after we start lessons.
+            tight. I&apos;ll add you to the roster after we start lessons.
           </p>
         </div>
       </div>
