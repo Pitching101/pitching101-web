@@ -21,7 +21,6 @@ import {
   faqs,
   guyChips,
   HERO_LINE,
-  HOME_TITLE,
   HOW_WE_TRAIN_LINE,
   META_DESCRIPTION,
   OG_DESCRIPTION,
@@ -32,7 +31,9 @@ import {
 } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: HOME_TITLE,
+  title: {
+    absolute: OG_TITLE,
+  },
   description: META_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
