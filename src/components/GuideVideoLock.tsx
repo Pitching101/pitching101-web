@@ -24,7 +24,9 @@ function RoutineBlock({
     : routine.steps;
   const body = (
     <>
-      <h2 className="ui-title ui-title-sm">{routine.heading}</h2>
+      <h2 id={routine.id} className="ui-title ui-title-sm guide-toc-target">
+        {routine.heading}
+      </h2>
       {routine.note ? <p className="guide-copy">{routine.note}</p> : null}
       <GuideSteps steps={steps} titleTag="h3" />
     </>

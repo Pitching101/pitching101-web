@@ -201,7 +201,7 @@ export default function HomePage() {
         </div>
         <div className="home-stadium-inner">
           <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 text-center">
-            <p className="ui-title ui-title-sm">See how we train</p>
+            <h2 className="ui-title ui-title-sm">See how we train</h2>
             <TrainingClipsStrip />
             <Link href={ENROLL_HREF} className="btn stadium-cta">
               {ENROLL_LABEL}

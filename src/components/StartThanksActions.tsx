@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { INFO_PACKET_FILENAME, INFO_PACKET_HREF, RESPONSE_PROMISE } from "@/data/siteCopy";
+import { INFO_PACKET_FILENAME, INFO_PACKET_HREF } from "@/data/siteCopy";
 import {
-  START_LEAD_MAIL_KEY,
+  START_LEAD_SMS_KEY,
   inquiryEmailHref,
   readStartLead,
-  thanksEmailHref,
+  smsHref,
   type StartLead,
 } from "@/data/startLead";
 
-/** After the evaluation — send the note so Coach Deising gets it, and keep the packet. */
+/** After the evaluation — text and email Coach Deising, and keep the packet. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 
@@ -19,9 +19,9 @@ export default function StartThanksActions() {
     const next = readStartLead();
     // eslint-disable-next-line react-hooks/set-state-in-effect -- lead lives in sessionStorage
     setLead(next);
-    if (!next || sessionStorage.getItem(START_LEAD_MAIL_KEY)) return;
-    sessionStorage.setItem(START_LEAD_MAIL_KEY, "1");
-    window.location.href = inquiryEmailHref(next);
+    if (!next || sessionStorage.getItem(START_LEAD_SMS_KEY)) return;
+    sessionStorage.setItem(START_LEAD_SMS_KEY, "1");
+    window.location.href = smsHref(next.body);
   }, []);
 
   const afterForm = (
@@ -48,7 +48,6 @@ export default function StartThanksActions() {
     return (
       <div className="start-thanks-actions">
         {packet}
-        <p className="start-form-or">{RESPONSE_PROMISE}</p>
         {afterForm}
       </div>
     );
@@ -57,14 +56,14 @@ export default function StartThanksActions() {
   return (
     <div className="start-thanks-actions">
       {packet}
+      <a href={smsHref(lead.body)} className="btn">
+        Text this to Coach Deising
+      </a>
       <a href={inquiryEmailHref(lead)} className="btn-ghost">
         Email this to Coach Deising
       </a>
-      <a href={thanksEmailHref(lead)} className="footer-link">
-        {lead.email ? "Email what happens next" : "Email more information"}
-      </a>
       <p className="start-form-or">
-        {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Players 8–16.
+        We&apos;ll use {lead.phone}. Players 8–16.
       </p>
       {afterForm}
     </div>

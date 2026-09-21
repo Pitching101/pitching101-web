@@ -85,7 +85,7 @@ export default function StartForm() {
           <span>Age</span>
           <select name="age" required defaultValue="" enterKeyHint="go">
             <option value="" disabled>
-              8–16
+              Choose an age
             </option>
             {AGES.map((age) => (
               <option key={age} value={age}>

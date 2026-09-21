@@ -27,6 +27,8 @@ export type LeadMagnetStep = {
 
 export type LeadMagnetRoutine = {
   heading: string;
+  /** Anchor for the on-page contents list. Set when the page is built. */
+  id?: string;
   note?: string;
   steps: LeadMagnetStep[];
 };
@@ -1118,10 +1120,104 @@ export function getLeadMagnet(slug: string) {
   return leadMagnets.find((magnet) => magnet.slug === slug);
 }
 
+/** Topics that sit next to each other when a guide has no siblings. */
+const RELATED_TOPICS: Record<string, string[]> = {
+  "Arm care": ["Warmup", "Strength"],
+  Warmup: ["Arm care", "Strength"],
+  Strength: ["Warmup", "Arm care"],
+  Strikes: ["Games", "Long toss", "Lessons"],
+  Games: ["Strikes", "Long toss"],
+  "Long toss": ["Strikes", "Lessons", "Warmup"],
+  Lessons: ["Long toss", "Strikes", "Choosing a coach"],
+  "Choosing a coach": ["Lessons", "Arm care", "Strikes"],
+};
+
+/** Other guides to show at the bottom of a post. Same topic first. */
+export function relatedGuides(slug: string, limit = 3): LeadMagnet[] {
+  const current = getLeadMagnet(slug);
+  if (!current) return [];
+
+  const others = leadMagnets.filter((magnet) => magnet.slug !== slug);
+  const order = [current.topic, ...(RELATED_TOPICS[current.topic] ?? [])];
+  const picked: LeadMagnet[] = [];
+
+  for (const topic of order) {
+    for (const magnet of others) {
+      if (picked.length >= limit) return picked;
+      if (magnet.topic === topic && !picked.includes(magnet)) picked.push(magnet);
+    }
+  }
+
+  for (const magnet of others) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(magnet)) picked.push(magnet);
+  }
+
+  return picked;
+}
+
 export function leadMagnetMailto(magnet: LeadMagnet) {
   return `mailto:${EMAIL}?subject=${encodeURIComponent(magnet.emailSubject)}`;
 }
 
 export function leadMagnetCtaHref(magnet: LeadMagnet) {
   return magnet.ctaHref ?? leadMagnetMailto(magnet);
+}
+
+export type GuideTocItem = { id: string; label: string };
+
+const TOC_MIN = 4;
+
+function headingSlug(label: string) {
+  const base = label
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 72);
+  return base || "section";
+}
+
+function uniqueHeadingIds(labels: string[]) {
+  const used = new Set<string>();
+  return labels.map((label) => {
+    const base = headingSlug(label);
+    let id = base;
+    let n = 2;
+    while (used.has(id)) {
+      id = `${base}-${n}`;
+      n += 1;
+    }
+    used.add(id);
+    return id;
+  });
+}
+
+/** Section and routine headings, in the order they appear. Short posts stay out. */
+export function guideOutline(magnet: LeadMagnet) {
+  const routineLabels = magnet.routines?.map((routine) => routine.heading) ?? [];
+  const sectionLabels = magnet.sections?.map((section) => section.heading) ?? [];
+  const ids = uniqueHeadingIds([...routineLabels, ...sectionLabels]);
+  const routineIds = ids.slice(0, routineLabels.length);
+  const sectionIds = ids.slice(routineLabels.length);
+
+  const routines = (magnet.routines ?? []).map((routine, index) => ({
+    ...routine,
+    id: routineIds[index],
+  }));
+  const sections = (magnet.sections ?? []).map((section, index) => ({
+    ...section,
+    id: sectionIds[index],
+  }));
+  const toc: GuideTocItem[] = [
+    ...routines.map((routine) => ({ id: routine.id, label: routine.heading })),
+    ...sections.map((section) => ({ id: section.id, label: section.heading })),
+  ];
+
+  return {
+    routines,
+    sections,
+    toc: toc.length >= TOC_MIN ? toc : [],
+  };
 }

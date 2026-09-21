@@ -18,6 +18,7 @@ function TrustpilotMark() {
       rel="noopener noreferrer"
     >
       Verified on Trustpilot
+      <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );
 }
@@ -55,6 +56,7 @@ type Layer = {
 export default function ReviewsCarousel({ className = "" }: { className?: string }) {
   const reviews = trustpilotReviews;
   const [paused, setPaused] = useState(false);
+  const [held, setHeld] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [busy, setBusy] = useState(false);
   const [index, setIndex] = useState(0);
@@ -146,12 +148,12 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
   );
 
   useEffect(() => {
-    if (reduceMotion || paused || reviews.length === 0 || busy) return;
+    if (reduceMotion || paused || held || reviews.length === 0 || busy) return;
     const id = window.setInterval(() => {
       goTo(index + 1);
     }, 6200);
     return () => window.clearInterval(id);
-  }, [reduceMotion, paused, reviews.length, busy, goTo, index]);
+  }, [reduceMotion, paused, held, reviews.length, busy, goTo, index]);
 
   if (reviews.length === 0) {
     return (
@@ -256,6 +258,14 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
           ))}
         </div>
         <div className="reviews-arrows">
+          <button
+            type="button"
+            className="motion-pause"
+            aria-pressed={held}
+            onClick={() => setHeld((current) => !current)}
+          >
+            {held ? "Play reviews" : "Pause reviews"}
+          </button>
           <button
             type="button"
             className="reviews-nav"

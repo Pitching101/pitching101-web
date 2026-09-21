@@ -107,10 +107,13 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col font-sans text-foreground">
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
         <Header />
         <MouseGlove />
         <NaplesSkyClock />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <Footer />
         <Analytics />
       </body>

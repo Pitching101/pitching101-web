@@ -48,6 +48,7 @@ function MouseGloveField() {
     if (!glove || balls.length < BALLS) return;
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) return;
     const flights: Array<Flight | null> = Array.from({ length: BALLS }, () => null);
     let shown = false;
     let lastX = 0;

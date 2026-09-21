@@ -1,7 +1,7 @@
-import { EMAIL, INFO_PACKET_FILENAME, INFO_PACKET_HREF, SITE_URL } from "@/data/siteCopy";
+import { EMAIL, INFO_PACKET_FILENAME, INFO_PACKET_HREF, PHONE_TEL } from "@/data/siteCopy";
 
 export const START_LEAD_KEY = "p101-start-lead";
-export const START_LEAD_MAIL_KEY = "p101-start-lead-mail";
+export const START_LEAD_SMS_KEY = "p101-start-lead-sms";
 
 export type StartLead = {
   role: string;
@@ -65,36 +65,20 @@ export function leadFromForm(data: FormData): StartLead {
   };
 }
 
+/** Text the evaluation to Coach Deising's phone. iOS wants &body; everyone else wants ?body. */
+export function smsHref(body: string) {
+  const encoded = encodeURIComponent(body);
+  if (typeof navigator !== "undefined" && /iPad|iPhone|iPod/i.test(navigator.userAgent)) {
+    return `sms:${PHONE_TEL}&body=${encoded}`;
+  }
+  return `sms:${PHONE_TEL}?body=${encoded}`;
+}
+
+/** Email the same note to Coach Deising. Never the phone or email the parent typed. */
 export function inquiryEmailHref(lead: StartLead) {
   return `mailto:${EMAIL}?subject=${encodeURIComponent(
     "Pitching101 inquiry",
   )}&body=${encodeURIComponent(lead.body)}`;
-}
-
-export function thanksEmailHref(lead: StartLead) {
-  const to = lead.email || EMAIL;
-  const more = [
-    `Hi ${lead.name || "there"},`,
-    "",
-    "Thanks for booking an evaluation with Pitching101. We'll respond within 24 business hours at",
-    lead.phone || "the number you left",
-    "and pick a time to meet.",
-    "",
-    "Players 8–16. Parent, coach, travel team, or school.",
-    "We meet once, talk about your player, then I'll recommend Monthly Strikes Pack or Busy-Week Check-In.",
-    "",
-    "Keep this short packet about how I work:",
-    `${SITE_URL}${INFO_PACKET_HREF}`,
-    "",
-    "What happens:",
-    "1. We receive your evaluation form.",
-    "2. We'll respond within 24 business hours.",
-    "3. We meet once — then a pack that fits.",
-  ].join("\n");
-
-  return `mailto:${to}?subject=${encodeURIComponent(
-    "Pitching101 — what happens next",
-  )}&body=${encodeURIComponent(more)}`;
 }
 
 export function readStartLead(): StartLead | null {
@@ -109,7 +93,7 @@ export function readStartLead(): StartLead | null {
 
 export function writeStartLead(lead: StartLead) {
   sessionStorage.setItem(START_LEAD_KEY, JSON.stringify(lead));
-  sessionStorage.removeItem(START_LEAD_MAIL_KEY);
+  sessionStorage.removeItem(START_LEAD_SMS_KEY);
 }
 
 export function downloadInfoPacket() {
