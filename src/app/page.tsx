@@ -9,7 +9,17 @@ import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyChips, INSTAGRAM_URL, META_DESCRIPTION, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import {
+  faqs,
+  guyChips,
+  INSTAGRAM_URL,
+  META_DESCRIPTION,
+  OG_DESCRIPTION,
+  OG_TITLE,
+  RESPONSE_PROMISE,
+  shareImage,
+  trainingOptions,
+} from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -18,9 +28,16 @@ export const metadata: Metadata = {
   description: META_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Youth pitching lessons in Naples, FL | Pitching101",
-    description:
-      "Coach Deising helps kids ages 8-16 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    url: "/",
+    images: shareImage(),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    images: shareImage()[0].url,
   },
 };
 

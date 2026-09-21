@@ -42,6 +42,8 @@ export function businessJsonLd() {
       { "@type": "AdministrativeArea", name: "Collier County" },
       { "@type": "AdministrativeArea", name: "Southwest Florida" },
     ],
+    image: `${SITE_URL}/og/home.png`,
+    logo: `${SITE_URL}/assets/logo-header-navy.png`,
     founder: {
       "@type": "Person",
       name: "Nick Deising",

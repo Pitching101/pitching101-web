@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
 import JsonLd, { faqJsonLd } from "@/components/JsonLd";
-import { faqs, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import { faqs, OG_DESCRIPTION, OG_TITLE, RESPONSE_PROMISE, shareImage, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Pitching coach for kids in Naples, FL",
@@ -19,10 +19,17 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/naples-fl-pitching-lessons/" },
   openGraph: {
-    title: "Youth pitching lessons in Naples, FL | Pitching101",
-    description:
-      "Coach Deising helps kids ages 8-16 throw more strikes in Naples and SWFL. Parents, other coaches, travel teams, and schools.",
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    url: "/naples-fl-pitching-lessons/",
     type: "website",
+    images: shareImage(),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    images: shareImage()[0].url,
   },
 };
 

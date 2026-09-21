@@ -3,12 +3,25 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import LeadMagnetShelf from "@/components/LeadMagnetShelf";
+import { shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
   description:
     "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup. From Coach Deising at Pitching101.",
   alternates: { canonical: "/guides/" },
+  openGraph: {
+    title: "Free youth pitching guides | Pitching101",
+    description:
+      "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup.",
+    url: "/guides/",
+    images: shareImage("/og/guides.png", "Free Pitching101 youth pitching guides"),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free youth pitching guides | Pitching101",
+    images: ["/og/guides.png"],
+  },
 };
 
 export default function GuidesPage() {

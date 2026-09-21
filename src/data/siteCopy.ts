@@ -10,6 +10,15 @@ export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const META_DESCRIPTION =
   "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.";
+export const OG_TITLE = "Youth pitching lessons in Naples, FL | Pitching101";
+export const OG_DESCRIPTION =
+  "Coach Deising helps kids ages 8-16 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.";
+export const OG_IMAGE = "/og/home.png";
+export const OG_IMAGE_ALT = "Pitching101 — youth pitching lessons in Naples, FL";
+
+export function shareImage(path = OG_IMAGE, alt = OG_IMAGE_ALT) {
+  return [{ url: path, width: 1200, height: 630, alt }];
+}
 
 export type FaqItem = { q: string; a: string };
 
