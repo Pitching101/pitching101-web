@@ -3,7 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import StartForm from "@/components/StartForm";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL, RESPONSE_PROMISE } from "@/data/siteCopy";
+import { GOOGLE_REVIEW_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL, RESPONSE_PROMISE } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Get started with youth pitching lessons",
@@ -37,6 +37,16 @@ export default function ContactPage() {
             <li>
               <a className="footer-link" href="mailto:nickdeisng@gmail.com">
                 Email nickdeisng@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-link"
+                href={GOOGLE_REVIEW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Leave a Google review
               </a>
             </li>
             <li>

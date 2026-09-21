@@ -1,4 +1,4 @@
-import { EMAIL, INSTAGRAM_URL, SITE_URL, TRUSTPILOT_URL } from "@/data/siteCopy";
+import { EMAIL, GOOGLE_MAPS_URL, INSTAGRAM_URL, SITE_URL, TRUSTPILOT_URL } from "@/data/siteCopy";
 
 /** JSON-LD for search + answer engines. Values are static site copy. */
 export default function JsonLd({ data }: { data: Record<string, unknown> }) {
@@ -47,7 +47,7 @@ export function businessJsonLd() {
       alternateName: "Coach Deising",
       jobTitle: "Junior varsity head coach at Gulfshore High School",
     },
-    sameAs: [TRUSTPILOT_URL, INSTAGRAM_URL],
+    sameAs: [GOOGLE_MAPS_URL, INSTAGRAM_URL, TRUSTPILOT_URL],
     knowsAbout: [
       "youth pitching lessons",
       "youth baseball pitching",

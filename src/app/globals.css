@@ -1192,14 +1192,6 @@ html.glove-cursor * {
   text-align: center;
   width: 100%;
 }
-.reviews-verified {
-  margin: 0;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  color: var(--blue-dark);
-}
 .reviews-stage {
   position: relative;
   width: 100%;
@@ -1309,10 +1301,10 @@ html.glove-cursor * {
   color: #1a2a44;
 }
 .reviews-carousel .text-blue-dark,
-.reviews-carousel .reviews-tp-link {
+.reviews-carousel .reviews-more-link {
   color: #0f1a2e;
 }
-.reviews-carousel .reviews-tp-link:hover {
+.reviews-carousel .reviews-more-link:hover {
   color: var(--blue-dark);
 }
 @media (min-width: 640px) {
@@ -1374,8 +1366,8 @@ html.glove-cursor * {
 }
 
 
-/* Trustpilot link under reviews */
-.reviews-tp-link {
+/* Review destination under the carousel */
+.reviews-more-link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -1387,13 +1379,13 @@ html.glove-cursor * {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.reviews-tp-link:hover { color: var(--blue); }
+.reviews-more-link:hover { color: var(--blue); }
 
 .reviews-stars {
   display: block;
   width: 100%;
   margin: 0;
-  color: #00b67a; /* Trustpilot green for stars */
+  color: #c9a227;
   letter-spacing: 0.12em;
   font-size: 1.35rem;
   font-weight: 700;

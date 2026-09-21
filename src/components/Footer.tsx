@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import { INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL } from "@/data/siteCopy";
+import { GOOGLE_REVIEW_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL } from "@/data/siteCopy";
 
 /** Original three-column footer — brand, contact, explore. */
 export default function Footer() {
@@ -35,6 +35,16 @@ export default function Footer() {
             <li>
               <a className="footer-link" href="mailto:nickdeisng@gmail.com">
                 Email nickdeisng@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-link"
+                href={GOOGLE_REVIEW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Leave a Google review
               </a>
             </li>
             <li>
