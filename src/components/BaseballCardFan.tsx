@@ -35,7 +35,7 @@ export default function BaseballCardFan() {
     <ul className="bb-fan" aria-label="Coach Deising baseball cards">
       <li className="bb-card bb-card-left">
         <p className="bb-card-kicker">Roster</p>
-        <p className="bb-card-stat">8–14</p>
+        <p className="bb-card-stat">8–16</p>
         <p className="bb-card-label">Ages</p>
         <p className="bb-card-note">Still learning the mound.</p>
       </li>

@@ -60,7 +60,7 @@ export function thanksEmailHref(lead: StartLead) {
     lead.phone || "the number you left",
     "and we'll pick a field.",
     "",
-    "Kids 8–14. Parent, other coach, travel team, or school.",
+    "Kids 8–16. Parent, other coach, travel team, or school.",
     "In person, at home, or a mix.",
     "",
     "What happens:",

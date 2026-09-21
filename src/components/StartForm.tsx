@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { PHONE_DISPLAY, PHONE_TEL, trainingOptions, workWithRoles } from "@/data/siteCopy";
 import { leadFromForm, writeStartLead } from "@/data/startLead";
 
-const AGES = ["8", "9", "10", "11", "12", "13", "14", "Mixed 8–14"] as const;
+const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
 
 /** Collects a start note, texts Coach Deising, then goes to the thank-you page. */
 export default function StartForm() {
@@ -52,7 +52,7 @@ export default function StartForm() {
           <span>Age</span>
           <select name="age" required defaultValue="">
             <option value="" disabled>
-              8–14
+              8–16
             </option>
             {AGES.map((age) => (
               <option key={age} value={age}>

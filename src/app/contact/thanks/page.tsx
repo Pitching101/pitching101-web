@@ -10,7 +10,7 @@ import { trainingOptions } from "@/data/siteCopy";
 export const metadata: Metadata = {
   title: "Thanks — I'll call or text you",
   description:
-    "Your Pitching101 note is ready to text Coach Deising. He'll call or text you back. Ages 8-14 in Naples, FL.",
+    "Your Pitching101 note is ready to text Coach Deising. He'll call or text you back. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/thanks/" },
   robots: { index: false, follow: false },
 };

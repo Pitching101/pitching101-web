@@ -50,7 +50,7 @@ export default function StartThanksActions() {
         </a>
       )}
       <p className="start-form-or">
-        I&apos;ll call or text {lead.phone}. Kids 8–14. Parent, coach, travel
+        I&apos;ll call or text {lead.phone}. Kids 8–16. Parent, coach, travel
         team, or school.
       </p>
     </div>

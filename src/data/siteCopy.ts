@@ -12,12 +12,12 @@ export const business = {
   name: "Pitching101",
   coach: "Coach Deising",
   area: "Naples, FL",
-  ages: "8–14",
+  ages: "8–16",
   phoneDisplay: PHONE_DISPLAY,
   phoneTel: PHONE_TEL,
   email: EMAIL,
   description:
-    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-14. He is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
+    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. He is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
 };
 
 export type FaqItem = { q: string; a: string };
@@ -25,15 +25,15 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Coach Deising. Kids 8–14 in Naples, FL. He's the JV head coach at Gulfshore High School. Arm care and a plan you can use Tuesday.",
+    a: "Coach Deising. Kids 8–16 in Naples, FL. He's the JV head coach at Gulfshore High School. Arm care and a plan you can use Tuesday.",
   },
   {
     q: "What ages do you coach?",
-    a: "8–14. That's when simple cues actually stick.",
+    a: "8–16. That's when simple cues actually stick.",
   },
   {
     q: "Who do you work with?",
-    a: "Kids 8–14. Sometimes a parent. Sometimes another coach, a travel team, or a school. Same work.",
+    a: "Kids 8–16. Sometimes a parent. Sometimes another coach, a travel team, or a school. Same work.",
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
@@ -72,7 +72,7 @@ export const trainingOptions = [
 ];
 
 export const guyChips = [
-  "Ages 8–14",
+  "Ages 8–16",
   "Parents",
   "Other coaches",
   "Travel teams",
@@ -83,7 +83,7 @@ export const workWith = [
   { label: "Parents", note: "A parent or guardian texts. We pick a field." },
   { label: "Other coaches", note: "I can work next to your plan." },
   { label: "Travel teams", note: "A coach or team mom. Same ages." },
-  { label: "Schools", note: "Kids 8–14. I'll say where." },
+  { label: "Schools", note: "Kids 8–16. I'll say where." },
 ];
 
 export const workWithRoles = [
@@ -96,7 +96,7 @@ export const workWithRoles = [
 export const startSteps = [
   {
     label: "Tell me who",
-    note: "Ages 8–14. Parent, coach, travel team, or school — and how you want to train.",
+    note: "Ages 8–16. Parent, coach, travel team, or school — and how you want to train.",
   },
   {
     label: "I call or text you back",

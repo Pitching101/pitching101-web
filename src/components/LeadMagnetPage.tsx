@@ -37,7 +37,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
           <p className="text-lg leading-relaxed text-ink-soft">{magnet.note}</p>
           <ul className="bb-chip-row">
             <li className="bb-chip">{magnet.topic}</li>
-            <li className="bb-chip">Ages 8–14</li>
+            <li className="bb-chip">Ages 8–16</li>
             <li className="bb-chip">Free</li>
           </ul>
           <div className="home-cta-row pt-2">

@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     absolute: "Youth pitching lessons in Naples, FL | Pitching101",
   },
   description:
-    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-14. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
+    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Coach Deising helps kids ages 8-14 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
+      "Coach Deising helps kids ages 8-16 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
   },
 };
 
@@ -34,7 +34,7 @@ export default function HomePage() {
       <section className="hero-overlay" aria-label="Youth pitching lessons in Naples, FL">
         <div className="hero-overlay-inner">
           <Reveal className="hero-overlay-copy">
-            <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–14</p>
+            <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–16</p>
             <HeroArcBalls />
             <h1 className="ui-title ui-title-hero hero-overlay-title">
               Youth pitching lessons in Naples, FL
@@ -67,14 +67,14 @@ export default function HomePage() {
       <section
         id="about"
         className="text-band ages-band scroll-mt-24"
-        aria-label="About Coach Deising — ages 8 to 14"
+        aria-label="About Coach Deising — ages 8 to 16"
       >
         <div className="content-row ages-band-content">
           <div className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <Reveal className="space-y-4">
               <h2 className="ui-title ui-title-md">About Coach Deising</h2>
               <p className="text-lg leading-relaxed text-ink">
-                I coach kids 8–14 in Naples. I&apos;m the junior varsity
+                I coach kids 8–16 in Naples. I&apos;m the junior varsity
                 head coach at Gulfshore High School. Sometimes I work
                 with a parent. Sometimes another coach, a travel team,
                 or a school.

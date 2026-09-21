@@ -11,7 +11,7 @@ import { INSTAGRAM_HANDLE, INSTAGRAM_URL, trainingOptions } from "@/data/siteCop
 export const metadata: Metadata = {
   title: "Get started with youth pitching lessons",
   description:
-    "Tell Coach Deising who you are. Your note texts his phone. He calls or texts back. Ages 8-14 in Naples, FL.",
+    "Tell Coach Deising who you are. Your note texts his phone. He calls or texts back. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/" },
 };
 
@@ -27,11 +27,11 @@ export default function ContactPage() {
           </p>
           <h1 className="ui-title ui-title-lg">Get started</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Kids 8–14. Fill this in. It texts my phone. I call or text you
+            Kids 8–16. Fill this in. It texts my phone. I call or text you
             back.
           </p>
           <ul className="bb-chip-row">
-            <li className="bb-chip">Ages 8–14</li>
+            <li className="bb-chip">Ages 8–16</li>
             <li className="bb-chip">Parents</li>
             <li className="bb-chip">Other coaches</li>
             <li className="bb-chip">Travel teams</li>

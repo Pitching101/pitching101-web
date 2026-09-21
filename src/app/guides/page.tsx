@@ -7,7 +7,7 @@ import LeadMagnetShelf from "@/components/LeadMagnetShelf";
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
   description:
-    "Free pitching guides for ages 8–14 in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup. From Coach Deising at Pitching101.",
+    "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup. From Coach Deising at Pitching101.",
   alternates: { canonical: "/guides/" },
 };
 
@@ -21,7 +21,7 @@ export default function GuidesPage() {
               ← Home
             </Link>
           </p>
-          <p className="ui-chip px-3.5 py-1.5">Free · ages 8–14</p>
+          <p className="ui-chip px-3.5 py-1.5">Free · ages 8–16</p>
           <h1 className="ui-title ui-title-lg">Free guides you can use tonight</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
             Same cues I use on the field. Pick a card.
