@@ -856,6 +856,20 @@ html.glove-cursor * {
     transition: none;
   }
   .soft-bob { animation: none !important; }
+  .dugout-sign,
+  .reveal:not(.is-revealed) .dugout-sign,
+  .reveal.is-revealed .dugout-sign,
+  .reveal.is-revealed .dugout-sign .card-icon {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .dugout-sign::before,
+  .reveal.is-revealed .dugout-sign::before {
+    animation: none !important;
+    transform: translateX(-50%);
+  }
   .btn-primary,
   .btn-secondary,
   .btn-on-color,
@@ -1688,7 +1702,7 @@ html.glove-cursor * {
   grid-template-columns: 1fr;
   gap: 1.15rem;
   width: 100%;
-  padding: 0.7rem 0 0;
+  padding: 1rem 0 0;
   margin: 0;
   list-style: none;
 }
@@ -1699,6 +1713,10 @@ html.glove-cursor * {
   }
 }
 .dugout-sign {
+  --dugout-tilt: -2.4deg;
+  --dugout-delay: 40ms;
+  --hook-delay: 0.72s;
+  --icon-delay: 0.82s;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1718,6 +1736,35 @@ html.glove-cursor * {
     inset 0 0 0 2px color-mix(in srgb, #ffffff 36%, transparent),
     5px 5px 0 color-mix(in srgb, #0f1a2e 20%, transparent);
   image-rendering: pixelated;
+  transform-origin: top center;
+  transition:
+    transform 0.25s var(--ease-soft),
+    box-shadow 0.25s var(--ease-soft);
+}
+.dugout-sign:nth-child(1) {
+  --dugout-tilt: -2.8deg;
+  --dugout-delay: 40ms;
+  --hook-delay: 0.78s;
+  --icon-delay: 0.86s;
+}
+.dugout-sign:nth-child(2) {
+  --dugout-tilt: 2.1deg;
+  --dugout-delay: 150ms;
+  --hook-delay: 0.96s;
+  --icon-delay: 1.12s;
+}
+.dugout-sign:nth-child(3) {
+  --dugout-tilt: -1.5deg;
+  --dugout-delay: 260ms;
+  --hook-delay: 1.14s;
+  --icon-delay: 1.36s;
+}
+.reveal:not(.is-revealed) .dugout-sign {
+  opacity: 0;
+  transform: translateY(-22px) rotate(var(--dugout-tilt));
+}
+.reveal.is-revealed .dugout-sign {
+  animation: dugout-hang-in 0.78s var(--ease-out) var(--dugout-delay) backwards;
 }
 .dugout-sign::before {
   content: "";
@@ -1727,10 +1774,50 @@ html.glove-cursor * {
   width: 2.1rem;
   height: 0.7rem;
   transform: translateX(-50%);
+  transform-origin: 50% 0;
   background: color-mix(in srgb, #1a2438 70%, #3295fb);
   border: 2px solid color-mix(in srgb, #0f1a2e 50%, #1a78e8);
   border-radius: 1px 1px 0 0;
   box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 28%, transparent);
+}
+.reveal.is-revealed .dugout-sign::before {
+  animation: dugout-hook-sway 2.8s ease-in-out var(--hook-delay) infinite;
+}
+.reveal.is-revealed .dugout-sign .card-icon {
+  animation: dugout-icon-bob 2.6s ease-in-out var(--icon-delay) infinite;
+}
+@media (hover: hover) and (pointer: fine) {
+  .reveal.is-revealed .dugout-sign:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      inset 0 0 0 2px color-mix(in srgb, #ffffff 42%, transparent),
+      7px 9px 0 color-mix(in srgb, #0f1a2e 16%, transparent);
+  }
+}
+@keyframes dugout-hang-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px) rotate(var(--dugout-tilt));
+  }
+  58% {
+    opacity: 1;
+    transform: translateY(4px) rotate(calc(var(--dugout-tilt) * -0.55));
+  }
+  78% {
+    transform: translateY(-2px) rotate(calc(var(--dugout-tilt) * 0.28));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+@keyframes dugout-hook-sway {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  50% { transform: translateX(-50%) rotate(6deg); }
+}
+@keyframes dugout-icon-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(7deg); }
 }
 .dugout-sign-title {
   margin: 0;
