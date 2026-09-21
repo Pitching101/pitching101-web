@@ -30,7 +30,7 @@ export type LeadMagnet = {
   note: string;
   topic: string;
   icon: string;
-  /** Optional full-bleed card art (nine-box, etc). Falls back to icon. */
+  /** Optional 3:4 baseball-card thumbnail. Falls back to the icon in a 3:4 well. */
   art?: string;
   artAlt?: string;
   emailSubject: string;
@@ -58,7 +58,7 @@ export const leadMagnets: LeadMagnet[] = [
     note: "A short parent checklist so you can pick a coach without the jargon — or the guesswork.",
     topic: "Choosing a coach",
     icon: "/assets/icons/icon-free-guide-v2.png",
-    art: "/assets/og-green-red-flags.png",
+    art: "/assets/thumbs/choose-coach-3x4.png",
     artAlt: "Green flags and red flags for choosing youth pitching lessons",
     ogImage: "/assets/og-green-red-flags.png",
     emailSubject: "How to Choose Pitching Lessons in Naples FL",
@@ -174,7 +174,7 @@ export const leadMagnets: LeadMagnet[] = [
     note: "Simple cues so they can hunt more strikes.",
     topic: "Strikes",
     icon: "/assets/icons/icon-strikes.png",
-    art: "/assets/pixel-strike-zone.png",
+    art: "/assets/thumbs/strike-zone-3x4.png",
     artAlt: "Nine-box strike zone with zone 5, the middle, highlighted",
     ogImage: "/assets/pixel-strike-zone.png",
     metaDescription:

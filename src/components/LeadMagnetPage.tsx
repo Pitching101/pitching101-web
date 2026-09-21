@@ -110,31 +110,18 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
               ← Free guides
             </Link>
           </p>
-          {magnet.art ? (
-            <figure
-              className={`magnet-zone${
-                magnet.art === "/assets/og-green-red-flags.png"
-                  ? " magnet-zone-wide"
-                  : ""
-              }`}
-            >
+          <div className="magnet-page-card">
+            <div className={`magnet-card-art${magnet.art ? " is-photo" : ""}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={magnet.art}
+                src={magnet.art ?? magnet.icon}
                 alt={magnet.artAlt ?? ""}
-                width={magnet.art === "/assets/og-green-red-flags.png" ? 1280 : 900}
-                height={magnet.art === "/assets/og-green-red-flags.png" ? 720 : 670}
+                width={magnet.art ? 900 : 88}
+                height={magnet.art ? 1200 : 88}
               />
-            </figure>
-          ) : (
-            <div className="magnet-page-card" aria-hidden="true">
-              <div className="magnet-card-art">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={magnet.icon} alt="" width={88} height={88} />
-              </div>
-              <p className="magnet-card-kicker">{magnet.kicker}</p>
             </div>
-          )}
+            <p className="magnet-card-kicker">{magnet.kicker}</p>
+          </div>
           <h1 className="ui-title ui-title-lg">{magnet.title}</h1>
           <p className="text-lg leading-relaxed text-ink-soft">{magnet.note}</p>
           <ul className="bb-chip-row">

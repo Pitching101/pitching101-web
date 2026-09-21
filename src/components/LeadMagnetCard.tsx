@@ -1,23 +1,22 @@
 import Link from "next/link";
 import type { LeadMagnet } from "@/data/leadMagnets";
 
-/** Baseball-card face for every free lead magnet. */
+const THUMB_W = 900;
+const THUMB_H = 1200;
+
+/** Baseball-card face for every free lead magnet. Thumbnail is 3:4. */
 export default function LeadMagnetCard({ magnet }: { magnet: LeadMagnet }) {
-  const isWideArt = magnet.art === "/assets/og-green-red-flags.png";
+  const src = magnet.art ?? magnet.icon;
 
   return (
     <Link href={`/guides/${magnet.slug}/`} className="magnet-card">
-      <div
-        className={`magnet-card-art${magnet.art ? " magnet-card-art-zone" : ""}${
-          isWideArt ? " magnet-card-art-wide" : ""
-        }`}
-      >
+      <div className={`magnet-card-art${magnet.art ? " is-photo" : ""}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={magnet.art ?? magnet.icon}
+          src={src}
           alt={magnet.artAlt ?? ""}
-          width={isWideArt ? 1280 : magnet.art ? 900 : 72}
-          height={isWideArt ? 720 : magnet.art ? 670 : 72}
+          width={magnet.art ? THUMB_W : 72}
+          height={magnet.art ? THUMB_H : 72}
         />
       </div>
       <p className="magnet-card-kicker">{magnet.kicker}</p>
