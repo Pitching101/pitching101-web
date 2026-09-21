@@ -2962,6 +2962,20 @@ a.reviews-verified:focus-visible {
   padding-top: calc(var(--header-bar) + 2.4rem);
   padding-bottom: 8rem;
 }
+.guide-related {
+  margin-top: 4.25rem;
+  text-align: center;
+}
+.guide-related .ui-title {
+  margin: 0;
+  text-align: center;
+}
+.guide-related .magnet-shelf {
+  margin-top: 1.35rem;
+}
+.guide-related-more {
+  margin: 0.35rem 0 0;
+}
 .guide-hero {
   display: flex;
   flex-direction: column;
@@ -3264,7 +3278,8 @@ a.reviews-verified:focus-visible {
   .guide-section .ui-title,
   .guide-flag .ui-title,
   .guide-routine .ui-title,
-  .guide-gate-lock .ui-title {
+  .guide-gate-lock .ui-title,
+  .guide-related .ui-title {
     font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
     letter-spacing: 0;
     word-spacing: 0.04em;
