@@ -233,9 +233,13 @@ body {
     color-mix(in srgb, #3295fb 50%, #BBD6F1) 100%
   );
 }
-.home-sky-clouds {
+.home-sky-weather {
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  /* Clouds come in with the blue, right under the hero title */
+  overflow: hidden;
+  pointer-events: none;
+  /* Stars, rain, and clouds stay off the cream hero */
   -webkit-mask-image: linear-gradient(
     180deg,
     transparent 0%,
@@ -252,6 +256,54 @@ body {
     #000 calc(var(--sky-stop) + 8%),
     #000 100%
   );
+}
+.home-sky-clouds {
+  z-index: 3;
+}
+.home-sky-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background-image: url("/assets/pixel-stars.png");
+  background-repeat: repeat;
+  background-size: 11rem 11rem;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.home-sky-sun {
+  position: absolute;
+  z-index: 1;
+  width: min(24rem, 58vw);
+  height: min(24rem, 58vw);
+  right: 5%;
+  /* Sit in the blue, not the cream hero the weather mask hides */
+  top: calc(var(--sky-stop) + 2%);
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    #ffe566 0%,
+    rgba(255, 210, 90, 0.5) 26%,
+    rgba(255, 196, 70, 0.18) 48%,
+    transparent 70%
+  );
+}
+.home-sky-rain {
+  position: absolute;
+  inset: -40% 0 0;
+  z-index: 2;
+  opacity: 0;
+  background-image: url("/assets/pixel-rain.png");
+  background-repeat: repeat;
+  background-size: 6rem 8rem;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  animation: sky-rain 0.7s linear infinite;
+}
+@keyframes sky-rain {
+  from { background-position: 0 0; }
+  to { background-position: 1.1rem 8rem; }
 }
 .home-sky-scene > section,
 .park-page {
@@ -274,10 +326,164 @@ body {
     color-mix(in srgb, #3295fb 48%, #BBD6F1) 100%
   );
 }
-.park-sky-park .home-sky-clouds {
+.park-sky-park .home-sky-weather {
   -webkit-mask-image: none;
   mask-image: none;
 }
+
+/*
+  Naples sky clock — retints the wash only.
+  Header, buttons, cards, and forms stay as-is. Night lightens sky-sitting
+  type without flipping global --ink, then restores dark ink on cream stock.
+*/
+html[data-tod="morning"] body {
+  background-color: color-mix(in srgb, #3295fb 42%, #ffd89a);
+}
+html[data-tod="evening"] body {
+  background-color: #4a72b8;
+}
+html[data-tod="night"] body {
+  background-color: #122448;
+}
+
+html[data-tod="morning"] .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    var(--paper) 0%,
+    var(--paper) var(--sky-stop),
+    #fff4d4 calc(var(--sky-stop) + 2%),
+    #ffe9b0 calc(var(--sky-stop) + 6%),
+    #c8e8ff calc(var(--sky-stop) + 12%),
+    #9fd4ff calc(var(--sky-stop) + 20%),
+    #6bb3fc 100%
+  );
+}
+html[data-tod="morning"] .park-sky-park .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    #fff1c4 0%,
+    #ffe7a0 12%,
+    #d4eeff 32%,
+    #a8d8ff 58%,
+    #6bb3fc 82%,
+    #3295fb 100%
+  );
+}
+html[data-tod="morning"] .home-sky-sun {
+  opacity: 0.9;
+}
+
+html[data-tod="evening"] .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    var(--paper) 0%,
+    var(--paper) var(--sky-stop),
+    #ffdcc0 calc(var(--sky-stop) + 2%),
+    #f5b888 calc(var(--sky-stop) + 8%),
+    #8eb0e0 calc(var(--sky-stop) + 16%),
+    #5a86c8 calc(var(--sky-stop) + 28%),
+    #3d62a8 100%
+  );
+}
+html[data-tod="evening"] .park-sky-park .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    #ffd4a8 0%,
+    #f0b080 18%,
+    #7a9ed0 48%,
+    #4a72b8 78%,
+    #2c4e8c 100%
+  );
+}
+html[data-tod="evening"] .home-sky-stars {
+  opacity: 0.28;
+}
+
+html[data-tod="night"] .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    var(--paper) 0%,
+    var(--paper) var(--sky-stop),
+    #c5d4ea calc(var(--sky-stop) + 3%),
+    #6a82b0 calc(var(--sky-stop) + 9%),
+    #2a3d68 calc(var(--sky-stop) + 16%),
+    #152448 calc(var(--sky-stop) + 28%),
+    #0e1a34 100%
+  );
+}
+html[data-tod="night"] .park-sky-park .home-sky-wash {
+  background: linear-gradient(
+    180deg,
+    #1a2a4a 0%,
+    #152448 24%,
+    #101c38 58%,
+    #0c1730 100%
+  );
+}
+html[data-tod="night"] .home-sky-stars {
+  opacity: 0.88;
+}
+html[data-tod="night"] .home-sky-clouds {
+  opacity: 0.42;
+  filter: brightness(0.72) saturate(0.55);
+}
+html[data-tod="night"] .home-sky-scene.is-sky-in .home-sky-clouds-fixed {
+  opacity: 0.32;
+}
+
+html[data-wx="rain"] .home-sky-rain {
+  opacity: 0.78;
+}
+html[data-tod="night"][data-wx="rain"] .home-sky-rain {
+  opacity: 0.9;
+}
+
+html[data-tod="night"] .home-sky-scene {
+  --ink: #f2f6ff;
+  --ink-soft: #c5d4ea;
+  --blue-dark: #b7d6ff;
+  --foreground: #f2f6ff;
+}
+html[data-tod="night"] .home-stack::before,
+html[data-tod="night"] .content-row-copy::before,
+html[data-tod="night"] .park-page::before {
+  background: radial-gradient(
+    ellipse 82% 70% at 50% 42%,
+    color-mix(in srgb, #152448 52%, transparent) 0%,
+    color-mix(in srgb, #1a3360 22%, transparent) 48%,
+    transparent 78%
+  );
+}
+html[data-tod="night"] :is(
+  .hero-overlay,
+  .bb-card,
+  .magnet-card,
+  .magnet-page-card,
+  .magnet-step,
+  .dugout-sign,
+  .reviews-carousel,
+  .start-train-option,
+  .start-field input,
+  .start-field select,
+  .start-field textarea,
+  .guide-list-cards li,
+  .guide-list-numbered li,
+  .guide-flag,
+  .pitch-call,
+  .bb-chip
+) {
+  --ink: #0f1a2e;
+  --ink-soft: #3d5674;
+  --blue-dark: #1a78e8;
+  --foreground: #0f1a2e;
+  color: #0f1a2e;
+}
+html[data-tod="night"] .ui-chip {
+  --ink: #0f1a2e;
+  --ink-soft: #3d5674;
+  --blue-dark: #1a78e8;
+}
+
 .home-sky-clouds-fixed {
   position: fixed;
   inset: 0;
@@ -617,6 +823,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .float-cloud { animation: none; }
   .home-sky-clouds-fixed { transition: none; }
+  .home-sky-rain { animation: none; }
 }
 
 /* About / I'm Your Guy — clean copy on the shared sky, no peanut scatter */

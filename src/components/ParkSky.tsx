@@ -28,21 +28,26 @@ export default function ParkSky({
     <div className={`home-sky-scene park-sky park-sky-${tone}`}>
       <div className="home-sky-layers" aria-hidden="true">
         <div className="home-sky-wash" />
-        <div className="cloud-decor home-sky-clouds">
-          {Array.from({ length: count }, (_, index) => {
-            const cloud = skyClouds[index % skyClouds.length];
-            return (
-              <Image
-                key={`${cloud.src}-${index}`}
-                src={cloud.src}
-                alt=""
-                width={cloud.w}
-                height={cloud.h}
-                className={`float-cloud float-cloud-${index + 1}`}
-                loading={index < 4 ? "eager" : "lazy"}
-              />
-            );
-          })}
+        <div className="home-sky-weather">
+          <div className="home-sky-stars" />
+          <div className="home-sky-sun" />
+          <div className="home-sky-rain" />
+          <div className="cloud-decor home-sky-clouds">
+            {Array.from({ length: count }, (_, index) => {
+              const cloud = skyClouds[index % skyClouds.length];
+              return (
+                <Image
+                  key={`${cloud.src}-${index}`}
+                  src={cloud.src}
+                  alt=""
+                  width={cloud.w}
+                  height={cloud.h}
+                  className={`float-cloud float-cloud-${index + 1}`}
+                  loading={index < 4 ? "eager" : "lazy"}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="home-sky-clouds-fixed" aria-hidden="true">

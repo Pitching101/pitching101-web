@@ -4,6 +4,8 @@ import { DM_Sans, Oswald, Yesteryear } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MouseGlove from "@/components/MouseGlove";
+import NaplesSkyClock from "@/components/NaplesSkyClock";
+import { NAPLES_SKY_BOOT } from "@/lib/naplesSky";
 import {
   META_DESCRIPTION,
   OG_DESCRIPTION,
@@ -93,11 +95,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${oswald.variable} ${yesteryear.variable} ${dmSans.variable} h-full antialiased`}
     >
+      <head>
+        {/* Blocking: next/script beforeInteractive is queued after first paint. */}
+        <script
+          id="naples-sky-boot"
+          dangerouslySetInnerHTML={{ __html: NAPLES_SKY_BOOT }}
+        />
+      </head>
       <body className="flex min-h-full flex-col font-sans text-foreground">
         <Header />
         <MouseGlove />
+        <NaplesSkyClock />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
