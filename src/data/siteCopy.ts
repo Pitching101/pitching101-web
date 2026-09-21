@@ -43,6 +43,8 @@ export const INSTAGRAM_POSTS = [
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const ENROLL_LABEL = "Book an Evaluation";
 export const ENROLL_HREF = "/contact/";
+export const PORTAL_HREF = "/portal/";
+export const PORTAL_LABEL = "Portal";
 export const BRAND_NAME = "Pitching101";
 export const HOME_TITLE = "Youth pitching lessons in Naples, FL";
 export function pageTitle(page: string) {

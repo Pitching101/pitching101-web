@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import { ENROLL_HREF, ENROLL_LABEL, GOOGLE_REVIEW_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL } from "@/data/siteCopy";
+import { ENROLL_HREF, ENROLL_LABEL, GOOGLE_REVIEW_URL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL, PORTAL_HREF, PORTAL_LABEL } from "@/data/siteCopy";
 
 /** Original three-column footer — brand, contact, explore. */
 export default function Footer() {
@@ -88,6 +88,11 @@ export default function Footer() {
           <p>
             <Link className="text-ink-soft hover:text-blue-dark" href="/packages/">
               Packages
+            </Link>
+          </p>
+          <p>
+            <Link className="text-ink-soft hover:text-blue-dark" href={PORTAL_HREF}>
+              {PORTAL_LABEL}
             </Link>
           </p>
           <p>
