@@ -9,6 +9,19 @@ import {
 
 const FADE_MS = 560;
 
+function TrustpilotMark() {
+  return (
+    <a
+      href={TRUSTPILOT_URL}
+      className="reviews-verified"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Verified on Trustpilot
+    </a>
+  );
+}
+
 function Stars({ n }: { n: number }) {
   const filled = Math.max(0, Math.min(5, Math.round(n)));
   return (
@@ -146,14 +159,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         <p className="text-base text-ink-soft">
           Loading From Trustpilot… Reviews Will Appear Here When Available.
         </p>
-        <a
-          href={TRUSTPILOT_URL}
-          className="reviews-tp-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          See more on Trustpilot
-        </a>
+        <TrustpilotMark />
       </div>
     );
   }
@@ -161,7 +167,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
   if (reduceMotion) {
     return (
       <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="Client reviews from Trustpilot">
-        <p className="reviews-verified">Verified on Trustpilot</p>
+        <TrustpilotMark />
         <ul className="space-y-4">
           {reviews.map((r) => (
             <li key={`${r.name}-${r.title}`} className="reviews-carousel">
@@ -169,14 +175,6 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
             </li>
           ))}
         </ul>
-        <a
-          href={TRUSTPILOT_URL}
-          className="reviews-tp-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          See more on Trustpilot
-        </a>
       </div>
     );
   }
@@ -215,7 +213,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         }
       }}
     >
-      <p className="reviews-verified">Verified on Trustpilot</p>
+      <TrustpilotMark />
 
       <div
         className="reviews-stage"
@@ -277,14 +275,6 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         </div>
       </div>
 
-      <a
-        href={TRUSTPILOT_URL}
-        className="reviews-tp-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        See more on Trustpilot
-      </a>
       <p className="reviews-swipe-hint">Swipe to read the next one</p>
     </div>
   );
