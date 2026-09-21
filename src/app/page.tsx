@@ -65,11 +65,11 @@ export default function HomePage() {
       <section
         id="about"
         className="text-band ages-band scroll-mt-24"
-        aria-label="About Coach Nick — ages 8 to 14"
+        aria-label="About Coach Deising — ages 8 to 14"
       >
         <div className="content-row ages-band-content">
           <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
-            <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
+            <h2 className="ui-title ui-title-md">About Coach Deising</h2>
             <p className="text-lg leading-relaxed text-ink">
               I coach kids 8–14 in Naples. I&apos;m the junior varsity
               head coach at Gulfshore High School. Sometimes I work

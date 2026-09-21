@@ -6,7 +6,7 @@ import Logo from "./Logo";
 
 const homeAnchors = [
   { href: "/#reviews", full: "What people say", short: "Reviews" },
-  { href: "/#about", full: "Hey, I'm Nick", short: "Nick" },
+  { href: "/#about", full: "About Coach Deising", short: "About" },
   { href: "/#how-it-works", full: "How we train", short: "Train" },
   { href: "/#faq", full: "Questions", short: "Questions" },
 ] as const;
