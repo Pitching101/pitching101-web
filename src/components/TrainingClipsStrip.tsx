@@ -28,7 +28,6 @@ export default function TrainingClipsStrip() {
   const startY = useRef(0);
   const swiped = useRef(false);
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [inView, setInView] = useState(false);
 
@@ -122,14 +121,6 @@ export default function TrainingClipsStrip() {
       role="region"
       aria-roledescription="carousel"
       aria-label="A look at training"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-          setPaused(false);
-        }
-      }}
     >
       <p className="training-clips-label">A look at training</p>
       <div
