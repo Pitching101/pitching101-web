@@ -3,6 +3,7 @@ import GuideClip from "@/components/GuideClip";
 import GuideSteps from "@/components/GuideSteps";
 import GuideToc from "@/components/GuideToc";
 import GuideVideoLock from "@/components/GuideVideoLock";
+import RelatedGuides from "@/components/RelatedGuides";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import {
@@ -208,6 +209,10 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
             </Link>
           </Reveal>
         )}
+
+        <Reveal delayMs={60}>
+          <RelatedGuides slug={magnet.slug} />
+        </Reveal>
         </div>
       </article>
     </ParkSky>

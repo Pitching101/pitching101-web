@@ -16,36 +16,37 @@ export default function GuideToc({ items }: { items: GuideTocItem[] }) {
 
     const desktop = window.matchMedia("(min-width: 1100px)");
 
-    function place() {
+    function place(railEl: HTMLDivElement, navEl: HTMLElement) {
       if (!desktop.matches) {
-        nav.style.position = "";
-        nav.style.top = "";
-        nav.style.left = "";
-        nav.style.width = "";
+        navEl.style.position = "";
+        navEl.style.top = "";
+        navEl.style.left = "";
+        navEl.style.width = "";
         return;
       }
       const header = document.querySelector(".site-header");
       const stickTop = (header?.getBoundingClientRect().height ?? 64) + 14;
-      const railRect = rail.getBoundingClientRect();
-      const navHeight = Math.min(nav.offsetHeight, window.innerHeight - stickTop - 16);
+      const railRect = railEl.getBoundingClientRect();
+      const navHeight = Math.min(navEl.offsetHeight, window.innerHeight - stickTop - 16);
       let top = stickTop;
       if (railRect.top > stickTop) top = railRect.top;
       const maxTop = railRect.bottom - navHeight;
       if (top > maxTop) top = maxTop;
-      nav.style.position = "fixed";
-      nav.style.top = `${top}px`;
-      nav.style.left = `${railRect.left}px`;
-      nav.style.width = `${railRect.width}px`;
+      navEl.style.position = "fixed";
+      navEl.style.top = `${top}px`;
+      navEl.style.left = `${railRect.left}px`;
+      navEl.style.width = `${railRect.width}px`;
     }
 
-    place();
-    window.addEventListener("scroll", place, { passive: true });
-    window.addEventListener("resize", place);
-    desktop.addEventListener("change", place);
+    place(rail, nav);
+    const onPlace = () => place(rail, nav);
+    window.addEventListener("scroll", onPlace, { passive: true });
+    window.addEventListener("resize", onPlace);
+    desktop.addEventListener("change", onPlace);
     return () => {
-      window.removeEventListener("scroll", place);
-      window.removeEventListener("resize", place);
-      desktop.removeEventListener("change", place);
+      window.removeEventListener("scroll", onPlace);
+      window.removeEventListener("resize", onPlace);
+      desktop.removeEventListener("change", onPlace);
     };
   }, []);
 

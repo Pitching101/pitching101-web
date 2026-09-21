@@ -20,7 +20,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-contact space-y-3 text-sm">
-          <p className="text-sm font-semibold text-blue-dark">Contact</p>
+          <h2 className="text-sm font-semibold text-blue-dark">Contact</h2>
           <ul className="footer-contact-links space-y-2">
             <li>
               <a className="footer-link" href={`tel:${PHONE_TEL}`}>
@@ -45,6 +45,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 Leave a Google review
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </li>
             <li>
@@ -55,13 +56,14 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 Instagram
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </li>
           </ul>
         </div>
 
         <div className="footer-explore space-y-2 text-sm">
-          <p className="text-sm font-semibold text-blue-dark">Explore</p>
+          <h2 className="text-sm font-semibold text-blue-dark">Explore</h2>
           <p>
             <Link className="text-ink-soft hover:text-blue-dark" href="/">
               Home
