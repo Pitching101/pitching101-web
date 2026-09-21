@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 const whoFor = [
   "Youth pitchers ages 8–16",
-  "Parents, other coaches, travel teams, and schools",
+  "Parents, coaches, travel teams, and schools",
   "Naples, Collier County, and SWFL",
 ];
 

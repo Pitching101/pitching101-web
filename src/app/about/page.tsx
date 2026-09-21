@@ -5,7 +5,7 @@ import { pageTitle, shareImage } from "@/data/siteCopy";
 export const metadata: Metadata = {
   title: "About Coach Deising",
   description:
-    "Coach Deising runs Pitching101 — youth pitching lessons in Naples, FL for kids 8-16. Parents, travel teams, other coaches, and schools.",
+    "Coach Deising runs Pitching101 — youth pitching lessons in Naples, FL for kids 8-16. Parents, travel teams, coaches, and schools.",
   alternates: { canonical: "/about/" },
   openGraph: {
     title: pageTitle("About Coach Deising"),

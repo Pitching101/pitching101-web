@@ -61,7 +61,7 @@ export const HERO_LINE =
 export const ABOUT_INTRO =
   "I'm Coach Deising. I work with kids 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.";
 export const ABOUT_MORE =
-  "Parents, travel teams, other coaches, schools — if you're in a kid's corner, come on. Let's get them throwing strikes and taking care of that arm.";
+  "Parents, travel teams, coaches, schools — if you're in a kid's corner, come on. Let's get them throwing strikes and taking care of that arm.";
 export const HOW_WE_TRAIN_LINE =
   "Book an evaluation. Then I'll tell you which pack I'd actually use.";
 export const FAQ_INTRO = "Stuff parents and coaches ask before we get going.";
@@ -83,7 +83,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Who do you work with?",
-    a: "Parents, other coaches, travel teams, schools — if you're helping a kid throw, I'm in.",
+    a: "Parents, coaches, travel teams, schools — if you're helping a kid throw, I'm in.",
   },
   {
     q: "Do you coach travel teams?",
@@ -136,7 +136,7 @@ export const trainingOptions = [
 export const guyChips = [
   "Ages 8–16",
   "Parents",
-  "Other coaches",
+  "Coaches",
   "Travel teams",
   "Schools",
 ];
