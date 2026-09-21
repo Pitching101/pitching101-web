@@ -1,11 +1,24 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent, type TransitionEvent } from "react";
+import { GOOGLE_REVIEW_URL } from "@/data/siteCopy";
 import {
-  TRUSTPILOT_URL,
   trustpilotReviews,
   type TrustpilotReview,
 } from "@/data/trustpilotReviews";
+
+function GoogleReviewLink() {
+  return (
+    <a
+      href={GOOGLE_REVIEW_URL}
+      className="reviews-more-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Leave a Google review
+    </a>
+  );
+}
 
 const FADE_MS = 560;
 
@@ -144,24 +157,16 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     return (
       <div className={`reviews-wrap ${className}`.trim()}>
         <p className="text-base text-ink-soft">
-          Loading From Trustpilot… Reviews Will Appear Here When Available.
+          Google reviews will show here once families leave them.
         </p>
-        <a
-          href={TRUSTPILOT_URL}
-          className="reviews-tp-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          See more on Trustpilot
-        </a>
+        <GoogleReviewLink />
       </div>
     );
   }
 
   if (reduceMotion) {
     return (
-      <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="Client reviews from Trustpilot">
-        <p className="reviews-verified">Verified on Trustpilot</p>
+      <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="What people say">
         <ul className="space-y-4">
           {reviews.map((r) => (
             <li key={`${r.name}-${r.title}`} className="reviews-carousel">
@@ -169,14 +174,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
             </li>
           ))}
         </ul>
-        <a
-          href={TRUSTPILOT_URL}
-          className="reviews-tp-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          See more on Trustpilot
-        </a>
+        <GoogleReviewLink />
       </div>
     );
   }
@@ -205,7 +203,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
       className={`reviews-wrap ${className}`.trim()}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Client reviews from Trustpilot"
+      aria-label="What people say"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -215,8 +213,6 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         }
       }}
     >
-      <p className="reviews-verified">Verified on Trustpilot</p>
-
       <div
         className="reviews-stage"
         onPointerDown={onPointerDown}
@@ -277,14 +273,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         </div>
       </div>
 
-      <a
-        href={TRUSTPILOT_URL}
-        className="reviews-tp-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        See more on Trustpilot
-      </a>
+      <GoogleReviewLink />
       <p className="reviews-swipe-hint">Swipe to read the next one</p>
     </div>
   );

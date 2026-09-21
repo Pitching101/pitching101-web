@@ -58,7 +58,7 @@ export default function BaseballCardFan() {
         <p className="bb-card-quote">
           “He takes the time to teach the kids proper warm up.”
         </p>
-        <p className="bb-card-attr">Eric · Trustpilot</p>
+        <p className="bb-card-attr">Eric</p>
       </li>
     </ul>
   );
