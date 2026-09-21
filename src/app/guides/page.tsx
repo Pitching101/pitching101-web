@@ -8,12 +8,12 @@ import { ENROLL_HREF, ENROLL_LABEL, pageTitle, shareImage } from "@/data/siteCop
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
   description:
-    "Free pitching guides for players 8–16 in Naples: how to choose lessons, arm care, strike tips, a pre-catch warmup, and a pre-throwing routine. Same stuff I use in lessons.",
+    "Free pitching guides for players 8–16 in Naples. Same stuff I use in lessons — arm care, command, warmup, and how to pick a coach.",
   alternates: { canonical: "/guides/" },
   openGraph: {
     title: pageTitle("Free youth pitching guides"),
     description:
-      "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, a pre-catch warmup, and a pre-throwing routine.",
+      "Free pitching guides for ages 8–16 in Naples, FL. Arm care, command, warmup, and how to pick a coach.",
     url: "/guides/",
     images: shareImage("/og/guides.png", "Free Pitching101 youth pitching guides"),
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: pageTitle("Free youth pitching guides"),
     description:
-      "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, a pre-catch warmup, and a pre-throwing routine.",
+      "Free pitching guides for ages 8–16 in Naples, FL. Arm care, command, warmup, and how to pick a coach.",
     images: ["/og/guides.png"],
   },
 };
