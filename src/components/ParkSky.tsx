@@ -9,6 +9,15 @@ const skyClouds = [
   { src: "/assets/pixel-cloud-4-transparent.png", w: 223, h: 99 },
 ];
 
+/** A few clouds hang in the viewport so they stay put as you walk the park. */
+const pinnedClouds = [
+  { src: skyClouds[0], className: "float-cloud-pin-1" },
+  { src: skyClouds[2], className: "float-cloud-pin-2" },
+  { src: skyClouds[1], className: "float-cloud-pin-3" },
+  { src: skyClouds[3], className: "float-cloud-pin-4" },
+  { src: skyClouds[0], className: "float-cloud-pin-5" },
+];
+
 /** Continuous park sky + drifting clouds. Home measures the fade at #your-guy. */
 export default function ParkSky({
   children,
@@ -37,6 +46,18 @@ export default function ParkSky({
             );
           })}
         </div>
+      </div>
+      <div className="home-sky-clouds-fixed" aria-hidden="true">
+        {pinnedClouds.map((pin) => (
+          <Image
+            key={pin.className}
+            src={pin.src.src}
+            alt=""
+            width={pin.src.w}
+            height={pin.src.h}
+            className={`float-cloud ${pin.className}`}
+          />
+        ))}
       </div>
       {tone === "home" ? <SkyFadeAnchor /> : null}
       {children}
