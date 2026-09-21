@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
+import FaqList from "@/components/FaqList";
+import JsonLd, { faqJsonLd } from "@/components/JsonLd";
+import { faqs, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Youth pitching lessons in Naples, FL",
+  title: "Pitching coach for kids in Naples, FL",
   description:
-    "Youth pitching lessons in Naples, FL for ages 8–14 and SWFL parents. Text or call 845-768-2211 or email nickdeisng@gmail.com.",
+    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Nick — lessons for ages 8-14, arm care first. Text 845-768-2211.",
   keywords: [
     "youth pitching lessons in Naples FL",
     "Naples FL pitching lessons",
@@ -14,38 +17,25 @@ export const metadata: Metadata = {
     "youth baseball pitching Collier County",
     "Pitching101 Naples",
   ],
+  alternates: { canonical: "/naples-fl-pitching-lessons/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Youth pitching lessons in Naples, FL — I help kids throw more strikes.",
+      "Coach Nick helps kids ages 8-14 throw more strikes in Naples and SWFL. Clear coaching. No jargon.",
     type: "website",
   },
 };
 
 const whoFor = [
-  "Parents who want plain-English coaching",
-  "Youth pitchers (ages 8–14)",
-  "Naples & SWFL families",
-];
-
-const offers = [
-  {
-    label: "In-person Naples lessons",
-    note: "Local sessions. Reach out first.",
-  },
-  {
-    label: "Pitching PDF",
-    note: "Simple plan at home.",
-  },
-  {
-    label: "Virtual lessons",
-    note: "Live coaching online.",
-  },
+  "Parents who want plain-English pitching help",
+  "Youth pitchers ages 8–14",
+  "Naples, Collier County, and SWFL families",
 ];
 
 export default function NaplesPitchingLessonsPage() {
   return (
     <ParkSky tone="park">
+      <JsonLd data={faqJsonLd(faqs)} />
       <article className="park-page">
         <Reveal className="space-y-5">
           <p className="text-base font-semibold text-blue-dark">
@@ -53,12 +43,12 @@ export default function NaplesPitchingLessonsPage() {
               ← Home
             </Link>
           </p>
-          <p className="ui-chip px-3.5 py-1.5">Naples · SWFL</p>
+          <p className="ui-chip px-3.5 py-1.5">Naples · SWFL · ages 8–14</p>
           <h1 className="ui-title ui-title-lg">
             Youth pitching lessons in Naples, FL
           </h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            I help kids throw more strikes. Parents get a plan they can actually use.
+            Coach Nick. Kids 8–14. More strikes — in person or at home.
           </p>
           <Link href="/contact/" className="btn">
             Get your child started
@@ -66,18 +56,20 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">Who this is for</h2>
-          <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
+          <h2 className="ui-title ui-title-sm">Who it&apos;s for</h2>
+          <ul className="bb-chip-row">
             {whoFor.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item} className="bb-chip">
+                {item}
+              </li>
             ))}
           </ul>
         </Reveal>
 
         <Reveal className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">Ways to start</h2>
+          <h2 className="ui-title ui-title-sm">How we train</h2>
           <ul className="dugout-row">
-            {offers.map((item) => (
+            {trainingOptions.map((item) => (
               <li key={item.label} className="dugout-sign">
                 <h3 className="dugout-sign-title">{item.label}</h3>
                 <p className="dugout-sign-note">{item.note}</p>
@@ -86,10 +78,13 @@ export default function NaplesPitchingLessonsPage() {
           </ul>
         </Reveal>
 
+        <Reveal className="mt-12 space-y-5">
+          <h2 className="ui-title ui-title-sm">Parents ask</h2>
+          <FaqList items={faqs} />
+        </Reveal>
+
         <Reveal className="mt-12 space-y-4">
-          <p className="text-ink-soft">
-            No street address listed. Text, call, or email first.
-          </p>
+          <p className="text-ink-soft">Text first. I&apos;ll point you to the field.</p>
           <Link href="/contact/" className="btn">
             Get your child started
           </Link>

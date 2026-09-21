@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Outfit } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollThrowDecor from "@/components/ScrollThrowDecor";
+import MouseGlove from "@/components/MouseGlove";
 import "./globals.css";
 
 /** Friendly big-headline display — conversion feel, not pixel fonts. */
@@ -19,24 +20,31 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#3295fb",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pitching101.com"),
   title: {
-    default: "Pitching101 | Youth pitching lessons in Naples, FL",
+    default: "Youth pitching lessons in Naples, FL | Pitching101",
     template: "%s | Pitching101",
   },
   description:
-    "Youth pitching lessons in Naples, FL. I help kids throw more strikes — in person, PDF, or virtual. Text or call 845-768-2211.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
   keywords: [
-    "Naples FL pitching lessons",
-    "youth pitching coach Naples",
-    "baseball pitching Naples Florida",
-    "elite pitching instruction Naples",
+    "youth pitching lessons Naples FL",
+    "pitching coach Naples Florida",
+    "youth baseball pitching Collier County",
     "Pitching101",
   ],
   openGraph: {
-    title: "Pitching101 | Youth pitching lessons in Naples, FL",
+    title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Youth pitching lessons in Naples, FL — I help kids throw more strikes.",
+      "Coach Nick helps kids ages 8-14 throw more strikes in Naples, FL. Clear cues. Arm care first.",
     locale: "en_US",
     type: "website",
   },
@@ -55,6 +63,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col font-sans text-foreground">
         <Header />
         <ScrollThrowDecor />
+        <MouseGlove />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

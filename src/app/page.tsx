@@ -1,68 +1,63 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 import ParkSky from "@/components/ParkSky";
+import FaqList from "@/components/FaqList";
+import BaseballCardFan from "@/components/BaseballCardFan";
+import PixelScoreboard from "@/components/PixelScoreboard";
+import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
+import { faqs, guyChips, INSTAGRAM_URL, trainingOptions } from "@/data/siteCopy";
 
-const guyBullets = [
-  "Ages 8–14 — young pitchers learning the game.",
-  "More strikes, strong basics, healthy arm habits.",
-  "Simple routines kids can do anywhere — no fancy gear.",
-  "Clear coaching parents get. Affordable. No jargon.",
-];
-
-const trainingOptions = [
-  {
-    label: "Private",
-    note: "In-person, Naples-area focus.",
-    icon: "/assets/icons/icon-strikes.png",
+export const metadata: Metadata = {
+  title: {
+    absolute: "Youth pitching lessons in Naples, FL | Pitching101",
   },
-  {
-    label: "DIY",
-    note: "Guide + video — train at home with a clear plan.",
-    icon: "/assets/icons/icon-free-guide-v2.png",
+  description:
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Youth pitching lessons in Naples, FL | Pitching101",
+    description:
+      "Coach Nick helps kids ages 8-14 throw more strikes. Clear cues. Arm care first. Naples, FL.",
   },
-  {
-    label: "Hybrid",
-    note: "Mix DIY with live check-ins.",
-    icon: "/assets/icons/icon-plan-checklist.png",
-  },
-];
+};
 
 export default function HomePage() {
   return (
     <ParkSky>
+      <JsonLd data={businessJsonLd()} />
+      <JsonLd data={faqJsonLd(faqs)} />
+
       <section className="hero-overlay" aria-label="Youth pitching lessons in Naples, FL">
         <div className="hero-overlay-inner">
           <Reveal from="left" className="hero-overlay-copy">
-            <p className="ui-chip px-3.5 py-1.5">Naples, FL</p>
+            <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–14</p>
             <h1 className="ui-title ui-title-hero hero-overlay-title">
               Youth pitching lessons in Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
-              I help kids throw more strikes. Parents get a plan they can actually use.
+              More strikes. A healthy arm. A plan you can say in the car.
             </p>
             <div className="home-cta-row pt-1">
               <Link href="#contact" className="btn">
                 Get your child started
               </Link>
             </div>
-            <p className="text-sm text-ink-soft">
-              Arm care first. Reach out before you drive.
-            </p>
+            <p className="text-sm text-ink-soft">Text first. Then we pick a field.</p>
           </Reveal>
         </div>
       </section>
 
-      <section className="text-band" id="reviews" aria-label="From Trustpilot">
+      <section className="text-band" id="reviews" aria-label="What parents say">
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
-            <h2 className="ui-title ui-title-md">From Trustpilot</h2>
-            <p className="text-base leading-relaxed text-ink-soft">
-              Here&apos;s what parents say after we work together.
-            </p>
-            <ReviewsCarousel />
+            <h2 className="ui-title ui-title-md">What parents say</h2>
+            <div id="sky-start">
+              <ReviewsCarousel />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -73,26 +68,28 @@ export default function HomePage() {
         aria-label="About Coach Nick — ages 8 to 14"
       >
         <div className="content-row ages-band-content">
-          <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-5">
+          <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              I help young pitchers — and their parents — throw more strikes without
-              the jargon or the crazy price tag.
+              I coach kids 8–14 in Naples.
             </p>
-            <p className="text-base leading-relaxed text-ink-soft">
-              Kids ages 8–14 need clear cues, healthy arm habits, and a plan they
-              can actually use between practices. I work with Naples, FL families —
-              in person when it fits, plus PDF and virtual options when life is busy.
-            </p>
-            <h3 id="your-guy" className="ui-title ui-title-sm">
-              I&apos;m your guy if you want more strikes, a strong foundation,
-              healthy patterns, and lessons that don&apos;t cost a fortune.
-            </h3>
-            <ul className="mx-auto max-w-md space-y-3 text-left text-lg leading-relaxed text-ink-soft">
-              {guyBullets.map((item) => (
-                <li key={item}>{item}</li>
+            <BaseballCardFan />
+            <ul id="your-guy" className="bb-chip-row">
+              {guyChips.map((chip) => (
+                <li key={chip} className="bb-chip">
+                  {chip}
+                </li>
               ))}
             </ul>
+            <a
+              className="footer-link"
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              See the work on Instagram
+            </a>
+            <PixelScoreboard />
           </Reveal>
         </div>
       </section>
@@ -100,21 +97,20 @@ export default function HomePage() {
       <section
         id="how-it-works"
         className="band-soft how-clouds-band scroll-mt-24"
-        aria-label="How it works"
+        aria-label="How pitching lessons work"
       >
         <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">How it works</h2>
-            <p className="text-base text-ink-soft">
-              Private, at home, or a mix. Pick what fits your kid.
-            </p>
+            <h2 className="ui-title ui-title-md">How we train</h2>
+            <p className="text-base text-ink-soft">Pick what fits this week.</p>
           </Reveal>
 
           <Reveal delayMs={40}>
             <ul className="dugout-row">
               {trainingOptions.map((opt) => (
                 <li key={opt.label} className="dugout-sign">
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={opt.icon}
                     alt=""
                     width={64}
@@ -131,9 +127,25 @@ export default function HomePage() {
       </section>
 
       <section
+        id="faq"
+        className="text-band scroll-mt-24"
+        aria-label="Questions about youth pitching lessons in Naples, FL"
+      >
+        <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal className="space-y-3">
+            <h2 className="ui-title ui-title-md">Parents ask</h2>
+            <p className="text-base text-ink-soft">Tap a question.</p>
+          </Reveal>
+          <Reveal delayMs={40}>
+            <FaqList items={faqs} />
+          </Reveal>
+        </div>
+      </section>
+
+      <section
         id="contact"
         className="home-stadium-band scroll-mt-24"
-        aria-label="Real training clips and contact"
+        aria-label="Training clips and how to start pitching lessons"
       >
         <div className="home-stadium-media" aria-hidden="true">
           <Image
@@ -146,7 +158,8 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-5 py-20 text-center sm:px-8 sm:py-28">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-24 text-center sm:px-8 sm:pt-28 sm:pb-44">
+            <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
               Get your child started
