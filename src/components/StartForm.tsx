@@ -23,7 +23,7 @@ export default function StartForm() {
   return (
     <form className="start-form" onSubmit={onSubmit}>
       <fieldset className="start-field">
-        <legend>I am a</legend>
+        <legend>I&apos;m a</legend>
         <div className="start-train">
           {workWithRoles.map((role) => (
             <label key={role} className="start-train-option">

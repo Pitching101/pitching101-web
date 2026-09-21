@@ -10,7 +10,7 @@ import { RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 export const metadata: Metadata = {
   title: "Thanks — we'll respond within 24 business hours",
   description:
-    "Thanks for getting started with Pitching101. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    "Thanks for writing. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/thanks/" },
   robots: { index: false, follow: false },
 };

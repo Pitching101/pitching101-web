@@ -9,59 +9,70 @@ export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const META_DESCRIPTION =
-  "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.";
+  "I'm Coach Deising. Youth pitching lessons in Naples, FL for kids 8-16 — parents, travel teams, other coaches, and schools. Text 845-768-2211.";
+export const OG_DESCRIPTION =
+  "I'm Coach Deising. I help kids 8-16 throw more strikes in Naples, FL. Parents, travel teams, other coaches, and schools.";
+export const HERO_LINE =
+  "Let's get 'em throwing strikes — and taking care of that arm.";
+export const ABOUT_INTRO =
+  "I'm Coach Deising. I work with kids 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.";
+export const ABOUT_MORE =
+  "Parents, travel teams, other coaches, schools — if you're in a kid's corner, come on. Let's get them throwing strikes and taking care of that arm.";
+export const HOW_WE_TRAIN_LINE =
+  "In person, at home, or both. We'll figure out what fits.";
+export const FAQ_INTRO = "Stuff parents and coaches ask before we get going.";
 
 export type FaqItem = { q: string; a: string };
 
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Coach Deising works with kids ages 8–16 in Naples, FL. He is the junior varsity head coach at Gulfshore High School, and also coaches travel teams. Lessons include arm care and a plan they can use at the next practice.",
+    a: "I work with kids 8–16 here in Naples. I'm the JV head coach at Gulfshore High School, and I help travel teams too. We do arm care, throw some strikes, and they leave with something they can try at the next practice.",
   },
   {
     q: "What ages do you coach?",
-    a: "Ages 8–16.",
+    a: "Eight through sixteen. That's my group.",
   },
   {
     q: "Who do you work with?",
-    a: "Kids ages 8–16. Parents, other coaches, travel teams, and schools. Same work either way.",
+    a: "Parents, other coaches, travel teams, schools — if you're helping a kid throw, I'm in.",
   },
   {
     q: "Do you coach travel teams?",
-    a: "Yes. Coach Deising works as a pitching coach for travel teams — with a coach, a team contact, or next to your existing plan. Ages 8–16.",
+    a: "Yep. I'll jump in with a coach, a team contact, or next to the plan you've already got. Ages 8–16.",
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
-    a: "Naples and Southwest Florida. There is no walk-up address — text 845-768-2211 and we will share the meeting location.",
+    a: "Around Naples and Southwest Florida. There's no walk-up shop — text 845-768-2211 and I'll tell you where we're meeting.",
   },
   {
     q: "Do you only do in-person lessons?",
-    a: "No. Lessons can be in person, at home, or both.",
+    a: "Nope. We can do it in person, at home, or both. Whatever fits the week.",
   },
   {
     q: "How do I get started?",
-    a: "Send the short form. We'll respond within 24 business hours. Or text 845-768-2211.",
+    a: "Send the short form. We'll get back within 24 business hours. Or just text 845-768-2211.",
   },
   {
     q: "Do you teach arm care with pitching?",
-    a: "Yes. Warm-up and cool-down are part of every lesson.",
+    a: "Yes. Warm-up and cool-down are part of every lesson. I don't skip that stuff.",
   },
 ];
 
 export const trainingOptions = [
   {
     label: "In person",
-    note: "Lessons around Naples. We will confirm the field.",
+    note: "We'll pick a field around Naples.",
     icon: "/assets/icons/icon-strikes.png",
   },
   {
     label: "At home",
-    note: "A plan for between practices.",
+    note: "Work they can actually do between practices.",
     icon: "/assets/icons/icon-free-guide-v2.png",
   },
   {
     label: "A mix",
-    note: "At-home work plus live check-ins.",
+    note: "Homework plus live check-ins, so they're not guessing.",
     icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
@@ -84,33 +95,33 @@ export const workWithRoles = [
 export const startSteps = [
   {
     label: "Tell us who",
-    note: "Ages 8–16. Parent, coach, travel team, or school — and how you want to train.",
+    note: "Your kid's age (8–16), who you are, and how you want to train.",
   },
   {
     label: "We'll respond within 24 business hours",
-    note: "We'll use the number you left.",
+    note: "We'll hit the number you left.",
   },
   {
     label: "First session",
-    note: "Warm-up, a few cues, and work for the next practice.",
+    note: "Warm-up, a couple cues, and something to try at the next practice.",
   },
   {
     label: "Keep the plan",
-    note: "In person, at home, or both — choose what fits.",
+    note: "In person, at home, or both — whatever fits the week.",
   },
 ];
 
 export const sessionBeats = [
   {
     label: "Warmup",
-    note: "Arm care first. The same routine they can use at practice.",
+    note: "Arm care first. Same routine they can use at practice, not just with me.",
   },
   {
     label: "A few cues",
-    note: "One or two cues they can keep.",
+    note: "One or two things they can actually remember.",
   },
   {
     label: "Something to try",
-    note: "They leave with work for the next practice.",
+    note: "They leave with work for the next practice, not a speech.",
   },
 ];

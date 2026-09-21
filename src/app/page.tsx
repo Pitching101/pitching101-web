@@ -9,7 +9,20 @@ import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyChips, INSTAGRAM_URL, META_DESCRIPTION, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import {
+  ABOUT_INTRO,
+  ABOUT_MORE,
+  FAQ_INTRO,
+  faqs,
+  guyChips,
+  HERO_LINE,
+  HOW_WE_TRAIN_LINE,
+  INSTAGRAM_URL,
+  META_DESCRIPTION,
+  OG_DESCRIPTION,
+  RESPONSE_PROMISE,
+  trainingOptions,
+} from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -19,8 +32,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
-    description:
-      "Coach Deising helps kids ages 8-16 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
+    description: OG_DESCRIPTION,
   },
 };
 
@@ -42,7 +54,7 @@ export default function HomePage() {
               Youth pitching lessons in Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
-              More strikes. A healthy arm. A clear plan.
+              {HERO_LINE}
             </p>
             <div className="home-cta-row pt-1">
               <Link href="/contact/" className="btn">
@@ -76,9 +88,10 @@ export default function HomePage() {
             <Reveal className="space-y-4">
               <h2 className="ui-title ui-title-md">About Coach Deising</h2>
               <p className="text-lg leading-relaxed text-ink">
-                I coach kids ages 8–16 in Naples. I am the junior
-                varsity head coach at Gulfshore High School. I work
-                with parents, other coaches, travel teams, and schools.
+                {ABOUT_INTRO}
+              </p>
+              <p className="text-lg leading-relaxed text-ink">
+                {ABOUT_MORE}
               </p>
             </Reveal>
             <Reveal delayMs={40}>
@@ -113,7 +126,7 @@ export default function HomePage() {
         <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">How we train</h2>
-            <p className="text-base text-ink-soft">Choose how you want to train.</p>
+            <p className="text-base text-ink-soft">{HOW_WE_TRAIN_LINE}</p>
           </Reveal>
 
           <Reveal delayMs={40}>
@@ -145,7 +158,7 @@ export default function HomePage() {
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">Questions</h2>
-            <p className="text-base text-ink-soft">Common questions about lessons.</p>
+            <p className="text-base text-ink-soft">{FAQ_INTRO}</p>
           </Reveal>
           <Reveal delayMs={40}>
             <FaqList items={faqs} />
