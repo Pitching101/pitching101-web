@@ -9,8 +9,10 @@ export const GOOGLE_PLACE_ID = "ChIJWyzPmvrYw4ARCv_THm3I2kQ";
 export const GOOGLE_REVIEW_URL = "https://g.page/r/CQr_0x5tyNpEEAI/review";
 export const GOOGLE_MAPS_URL =
   `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}`;
-export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
+export const INSTAGRAM_HANDLE = "pitchinglesson";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
+/** Public @pitchinglesson count as of 2026-09-21. Update when it moves. */
+export const INSTAGRAM_FOLLOWERS = 4102;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const META_DESCRIPTION =
   "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Use the contact form to get started.";

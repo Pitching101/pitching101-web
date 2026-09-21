@@ -369,6 +369,7 @@ body {
 .ages-band-content {
   position: relative;
   z-index: 2;
+  padding-bottom: clamp(1.5rem, 3.5vw, 2.35rem);
 }
 .who-copy {
   position: relative;
@@ -1410,8 +1411,8 @@ html.glove-cursor * {
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  margin: 0.4rem 0 0.2rem;
-  padding: 1.1rem 0 1.6rem;
+  margin: 0.4rem 0 0;
+  padding: 1.1rem 0 3.15rem;
   list-style: none;
   min-height: 21rem;
 }
@@ -1550,7 +1551,7 @@ html.glove-cursor * {
   margin-top: 0.45rem;
 }
 @media (max-width: 560px) {
-  .bb-fan { min-height: 16.25rem; padding: 0.7rem 0 1rem; }
+  .bb-fan { min-height: 16.25rem; padding: 0.7rem 0 2.35rem; }
   .bb-card { width: 6.55rem; padding: 0.28rem 0.28rem 0.5rem; }
   .bb-card-main { width: 8.15rem; transform: rotate(1.6deg) translateY(-8px); }
   .bb-card-left { transform: rotate(-8deg) translate(0.45rem, 0.95rem); }
@@ -1559,6 +1560,57 @@ html.glove-cursor * {
   .bb-card-note,
   .bb-card-quote { font-size: 0.68rem; }
   .bb-card-name { font-size: 0.78rem; }
+}
+.who-follow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  margin-top: 0.15rem;
+}
+.ig-follow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.15rem 0.5rem 0.35rem;
+  text-decoration: none;
+  color: var(--blue-dark);
+  transition: color 0.18s var(--ease-soft);
+}
+.ig-follow:hover {
+  color: var(--blue);
+}
+.ig-follow:hover .ig-follow-label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ig-follow-count {
+  position: relative;
+  display: inline-grid;
+  justify-items: center;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: clamp(2.15rem, 5.4vw, 2.85rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.ig-follow-count-ghost {
+  visibility: hidden;
+}
+.ig-follow-count-live {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ig-follow-label {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
 }
 .bb-chip-row {
   display: flex;
