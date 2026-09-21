@@ -3822,6 +3822,9 @@ a.reviews-verified:focus-visible {
 .portal-tracker-row {
   grid-template-columns: 1fr 8rem;
 }
+.portal-progress-row {
+  grid-template-columns: 1fr 1fr 1fr;
+}
 .start-form-or button {
   background: none;
   border: 0;

@@ -82,3 +82,34 @@ export function formatMoney(amount: number) {
     maximumFractionDigits: 2,
   });
 }
+
+export type ProgressPlayer = {
+  id: string;
+  name: string;
+  sort_order: number;
+};
+
+export type ProgressMark = {
+  id: string;
+  player_id: string;
+  sort_order: number;
+  label: string;
+  made: number | null;
+  attempted: number | null;
+  yards: number | null;
+};
+
+export function formatStrikePercent(made: number, attempted: number) {
+  if (!attempted) return "";
+  return `${Math.round((made / attempted) * 100)}%`;
+}
+
+export function formatProgressMark(mark: Pick<ProgressMark, "made" | "attempted" | "yards">) {
+  if (mark.made != null && mark.attempted != null) {
+    return `${mark.made}/${mark.attempted} \u00b7 ${formatStrikePercent(mark.made, mark.attempted)}`;
+  }
+  if (mark.yards != null) {
+    return `${mark.yards} yards`;
+  }
+  return "";
+}

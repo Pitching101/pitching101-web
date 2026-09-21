@@ -12,12 +12,13 @@ import {
 } from "@/lib/portal";
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
 import CoachClips from "./CoachClips";
+import CoachProgress from "./CoachProgress";
 import CoachTracker from "./CoachTracker";
 import PortalLessonClip from "./PortalLessonClip";
 import PortalHomeLink from "./PortalHomeLink";
 
-type Tab = "tracker" | "lessons" | "clips" | "roster";
-const COACH_TABS = ["tracker", "lessons", "clips", "roster"] as const;
+type Tab = "tracker" | "progress" | "lessons" | "clips" | "roster";
+const COACH_TABS = ["tracker", "progress", "lessons", "clips", "roster"] as const;
 
 export default function CoachDesk({
   supabase,
@@ -221,8 +222,9 @@ export default function CoachDesk({
         </button>
       </div>
       <p className="portal-lead">
-        Your working desk. Tracker is the money book. Lessons, roster, and
-        clips stay over here. Families only see what you post.
+        Your working desk. Tracker is the money book. Progress is strikes
+        and long toss. Lessons, roster, and clips stay over here. Families
+        only see what you post.
       </p>
 
       <ul className="portal-stats">
@@ -252,6 +254,7 @@ export default function CoachDesk({
       >
         {([
           ["tracker", "Tracker"],
+          ["progress", "Progress"],
           ["lessons", "Lessons"],
           ["clips", "My videos"],
           ["roster", "Roster"],
@@ -273,6 +276,7 @@ export default function CoachDesk({
       </div>
 
       {tab === "tracker" ? <CoachTracker supabase={supabase} profile={profile} /> : null}
+      {tab === "progress" ? <CoachProgress supabase={supabase} profile={profile} /> : null}
 
       {tab === "lessons" ? (
         <div
