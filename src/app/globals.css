@@ -83,6 +83,7 @@
 
 html {
   overflow-x: clip;
+  scroll-behavior: smooth;
 }
 body {
   background-color: color-mix(in srgb, #3295fb 48%, #BBD6F1);
@@ -231,6 +232,12 @@ body {
 .park-sky-park .home-sky-clouds {
   -webkit-mask-image: none;
   mask-image: none;
+}
+.park-sky-park .hero-overlay {
+  background: transparent;
+}
+.park-sky-park > section {
+  background: transparent;
 }
 .home-sky-scene .text-band,
 .home-sky-scene .band-soft,
@@ -794,6 +801,7 @@ html.glove-cursor * {
 .soft-bob { animation: soft-bob 2.4s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .reveal {
     opacity: 1;
     transform: none;

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <ParkSky>
+    <ParkSky tone="park">
       <JsonLd data={businessJsonLd()} />
       <JsonLd data={faqJsonLd(faqs)} />
 
