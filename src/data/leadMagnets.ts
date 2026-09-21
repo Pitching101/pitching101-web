@@ -1,4 +1,4 @@
-import { EMAIL } from "@/data/siteCopy";
+import { EMAIL, ENROLL_LABEL } from "@/data/siteCopy";
 
 export type LeadMagnetLink = {
   href: string;
@@ -62,7 +62,7 @@ export const leadMagnets: LeadMagnet[] = [
     artAlt: "Green flags and red flags for choosing youth pitching lessons",
     ogImage: "/assets/og-green-red-flags.png",
     emailSubject: "How to Choose Pitching Lessons in Naples FL",
-    cta: "Book a First Look",
+    cta: ENROLL_LABEL,
     ctaHref: "/contact/",
     sections: [
       {
@@ -104,7 +104,7 @@ export const leadMagnets: LeadMagnet[] = [
         heading: "Red flags",
         tone: "red",
         bullets: [
-          "Big package pressure before a first look",
+          "Big package pressure before an evaluation",
           "No warm-up talk",
           "Only velocity talk for a young arm",
           "You leave more confused than you arrived",
@@ -124,7 +124,7 @@ export const leadMagnets: LeadMagnet[] = [
           "Share age, goals, and schedule on the short form. If a week is too busy to meet in person, video check-ins are an option.",
         ],
         links: [
-          { href: "/contact/", label: "Book a First Look" },
+          { href: "/contact/", label: ENROLL_LABEL },
           { href: "/naples-fl-pitching-lessons/", label: "Naples pitching lessons" },
           { href: "/guides/", label: "Free guides" },
           { href: "/about/", label: "About Coach Deising" },

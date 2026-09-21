@@ -10,9 +10,9 @@ import {
 } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Packages after a First Look",
+  title: "Packages after an evaluation",
   description:
-    "After a First Look, Pitching101 uses a Monthly Strikes Pack or a Busy-Week Check-In. Book a First Look first — no price menu on this page.",
+    "After an evaluation, Pitching101 uses a Monthly Strikes Pack or a Busy-Week Check-In. Book an evaluation first — no price menu on this page.",
   alternates: { canonical: "/packages/" },
 };
 
@@ -26,10 +26,10 @@ export default function PackagesPage() {
               ← Home
             </Link>
           </p>
-          <p className="ui-chip px-3.5 py-1.5">After the First Look</p>
+          <p className="ui-chip px-3.5 py-1.5">After the evaluation</p>
           <h1 className="ui-title ui-title-lg">Packages</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            We don&apos;t hang a giant menu on the door. Book a First Look.
+            We don&apos;t hang a giant menu on the door. Book an evaluation.
             We meet once, talk plain English, then pick a pack that fits.
           </p>
           <Link href={ENROLL_HREF} className="btn">

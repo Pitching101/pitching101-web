@@ -92,7 +92,7 @@ export default function Footer() {
           </p>
           <p>
             <Link className="text-ink-soft hover:text-blue-dark" href="/contact/">
-              Book a First Look
+              {ENROLL_LABEL}
             </Link>
           </p>
         </div>
