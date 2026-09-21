@@ -103,7 +103,16 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-blue/15 py-4 text-center text-sm text-ink-soft">
-        © {new Date().getFullYear()} Pitching101 · Naples, FL
+        <p>© {new Date().getFullYear()} Pitching101 · Naples, FL</p>
+        <p className="mt-2">
+          <Link className="hover:text-blue-dark" href="/privacy/">
+            Privacy policy
+          </Link>
+          <span aria-hidden="true"> · </span>
+          <Link className="hover:text-blue-dark" href="/terms/">
+            Terms of service
+          </Link>
+        </p>
       </div>
     </footer>
   );
