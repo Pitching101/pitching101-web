@@ -87,7 +87,7 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">Questions</h2>
+          <h2 className="ui-title ui-title-sm">FAQs</h2>
           <FaqList items={faqs} />
         </Reveal>
 

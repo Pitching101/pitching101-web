@@ -9,7 +9,7 @@ const homeAnchors = [
   { href: "/#reviews", full: "What people say", short: "Reviews" },
   { href: "/#about", full: "About Coach Deising", short: "About" },
   { href: "/#how-it-works", full: "How we train", short: "Train" },
-  { href: "/#faq", full: "Questions", short: "Questions" },
+  { href: "/#faq", full: "FAQs", short: "FAQs" },
 ] as const;
 
 export default function Header() {
