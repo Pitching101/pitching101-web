@@ -274,37 +274,36 @@ body {
 .home-sky-sun {
   position: absolute;
   z-index: 1;
-  width: min(28rem, 70vw);
-  height: min(28rem, 70vw);
-  right: 4%;
-  top: 2%;
+  width: min(24rem, 58vw);
+  height: min(24rem, 58vw);
+  right: 5%;
+  /* Sit in the blue, not the cream hero the weather mask hides */
+  top: calc(var(--sky-stop) + 2%);
   border-radius: 50%;
   opacity: 0;
   background: radial-gradient(
     circle,
     #ffe566 0%,
-    rgba(255, 210, 90, 0.42) 28%,
-    transparent 68%
+    rgba(255, 210, 90, 0.5) 26%,
+    rgba(255, 196, 70, 0.18) 48%,
+    transparent 70%
   );
 }
 .home-sky-rain {
   position: absolute;
-  inset: -50% 0 0;
+  inset: -40% 0 0;
   z-index: 2;
   opacity: 0;
-  background-image: repeating-linear-gradient(
-    165deg,
-    transparent 0 20px,
-    rgba(230, 242, 255, 0.55) 21px,
-    rgba(230, 242, 255, 0.15) 23px,
-    transparent 28px
-  );
-  background-size: 52px 78px;
-  animation: sky-rain 0.62s linear infinite;
+  background-image: url("/assets/pixel-rain.png");
+  background-repeat: repeat;
+  background-size: 6rem 8rem;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  animation: sky-rain 0.7s linear infinite;
 }
 @keyframes sky-rain {
-  from { transform: translate3d(0, -78px, 0); }
-  to { transform: translate3d(0, 0, 0); }
+  from { background-position: 0 0; }
+  to { background-position: 1.1rem 8rem; }
 }
 .home-sky-scene > section,
 .park-page {
@@ -433,10 +432,10 @@ html[data-tod="night"] .home-sky-scene.is-sky-in .home-sky-clouds-fixed {
 }
 
 html[data-wx="rain"] .home-sky-rain {
-  opacity: 0.45;
+  opacity: 0.78;
 }
 html[data-tod="night"][data-wx="rain"] .home-sky-rain {
-  opacity: 0.58;
+  opacity: 0.9;
 }
 
 html[data-tod="night"] .home-sky-scene {
