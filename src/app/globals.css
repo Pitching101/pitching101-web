@@ -290,6 +290,7 @@ body {
 .home-sky-scene .band-soft,
 .home-sky-scene .how-clouds-band,
 .home-sky-scene .ages-band,
+.home-sky-scene .pitch-game-band,
 .home-sky-scene .home-stadium-band {
   background: transparent;
 }
@@ -307,6 +308,136 @@ body {
 .how-clouds-content {
   position: relative;
   z-index: 2;
+}
+
+/* Desktop pitch game — uses the mouse glove on the nine-box */
+.pitch-game-band {
+  display: none;
+  position: relative;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pitch-game-band { display: block; }
+}
+.pitch-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  text-align: center;
+}
+.pitch-game-copy,
+.pitch-game-note,
+.pitch-game-score {
+  margin: 0;
+  max-width: 32rem;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.pitch-game-note {
+  min-height: 1.5em;
+  color: var(--ink);
+  font-weight: 600;
+}
+.pitch-game-score {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.pitch-field {
+  position: relative;
+  width: min(36rem, 100%);
+  height: 32.5rem;
+  margin: 0.35rem auto 0;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  background:
+    radial-gradient(120% 70% at 50% 118%, color-mix(in srgb, #c9a227 34%, transparent) 0%, transparent 58%),
+    linear-gradient(180deg, transparent 42%, color-mix(in srgb, #0f1a2e 10%, transparent) 100%);
+  border: 3px solid color-mix(in srgb, #0f1a2e 22%, #3295fb);
+  box-shadow: 7px 9px 0 rgba(15, 26, 46, 0.12);
+}
+.pitch-field.is-armed {
+  border-color: color-mix(in srgb, #0f1a2e 40%, #3295fb);
+}
+.pitch-field:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+.pitch-zone {
+  position: absolute;
+  left: 50%;
+  top: 0.55rem;
+  width: min(22.5rem, 78%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.pitch-zone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.pitch-grid {
+  position: absolute;
+  left: 3.4%;
+  right: 3.4%;
+  top: 3.2%;
+  height: 73%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  pointer-events: auto;
+}
+.pitch-cell {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: inherit;
+}
+.pitch-cell.is-hit {
+  background: color-mix(in srgb, #ffc600 42%, transparent);
+}
+.pitch-ball {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 30px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 3px 6px rgba(15, 26, 46, 0.2));
+  will-change: transform, opacity;
+}
+.pitch-rubber {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  z-index: 2;
+  margin: 0;
+  padding: 0.35rem 0.75rem;
+  transform: translateX(-50%);
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f1a2e;
+  background: color-mix(in srgb, #fff8e6 86%, #BBD6F1);
+  border: 2px solid color-mix(in srgb, #0f1a2e 22%, #3295fb);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pitch-ball { transition: none; }
 }
 .cloud-decor {
   position: absolute;

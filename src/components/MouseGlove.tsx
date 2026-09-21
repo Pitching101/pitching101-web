@@ -122,6 +122,7 @@ function MouseGloveField() {
         shown &&
         now - lastThrow > MIN_GAP_MS &&
         speed > MIN_SPEED &&
+        !document.documentElement.classList.contains("pitch-playing") &&
         (Math.abs(clientX - lastX) > 16 || Math.abs(clientY - lastY) > 16)
       ) {
         throwBall(clientX, clientY, vx, vy, now);
