@@ -3,10 +3,9 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 
 const CLIPS = [
-  { src: "/videos/IMG_1238.mp4", name: "Rep 1" },
-  { src: "/videos/IMG_2676.mp4", name: "Rep 2" },
-  { src: "/videos/IMG_1247.mp4", name: "Rep 3" },
-  { src: "/videos/IMG_2698.mp4", name: "Rep 4" },
+  { src: "/videos/IMG_2676.mp4", name: "Rep 1" },
+  { src: "/videos/IMG_1247.mp4", name: "Rep 2" },
+  { src: "/videos/IMG_2698.mp4", name: "Rep 3" },
 ] as const;
 
 const SHUFFLE_MS = 620;
