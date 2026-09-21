@@ -71,8 +71,8 @@ function GuideSection({ section }: { section: LeadMagnetSection }) {
       ))}
       {section.bullets ? (
         <ul className={listClass}>
-          {section.bullets.map((item) => (
-            <li key={item}>{item}</li>
+          {section.bullets.map((item, index) => (
+            <li key={`${item}-${index}`}>{item}</li>
           ))}
         </ul>
       ) : null}
