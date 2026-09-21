@@ -76,7 +76,7 @@ export function thanksEmailHref(lead: StartLead) {
     lead.phone || "the number you left",
     "and pick a time to meet.",
     "",
-    "Kids 8–16. Parent, other coach, travel team, or school.",
+    "Kids 8–16. Parent, coach, travel team, or school.",
     "We meet once, talk plain English, then recommend Monthly Strikes Pack or Busy-Week Check-In.",
     "",
     "What happens:",
