@@ -509,7 +509,9 @@ function PitchGameField() {
         />
         {book.card === "looking" ? (
           <p className="pitch-k-mark" role="img" aria-label="Strikeout looking">
-            <span className="pitch-k-glyph">K</span>
+            <span className="pitch-k-flip">
+              <span className="pitch-k-glyph">K</span>
+            </span>
             <span className="pitch-k-caption">Looking</span>
           </p>
         ) : null}
@@ -535,7 +537,7 @@ function PitchGameField() {
         className="pitch-game-score"
         aria-label={`Strikeouts looking ${book.looking}${book.walks > 0 ? `, walks ${book.walks}` : ""}`}
       >
-        <span className="pitch-k-inline" aria-hidden="true">
+        <span className="pitch-k-flip pitch-k-inline" aria-hidden="true">
           K
         </span>
         {` ${book.looking}`}
