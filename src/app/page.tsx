@@ -7,7 +7,6 @@ import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
-import PixelScoreboard from "@/components/PixelScoreboard";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
 import { faqs, guyChips, INSTAGRAM_URL, trainingOptions } from "@/data/siteCopy";
 
@@ -92,7 +91,6 @@ export default function HomePage() {
             >
               See the work on Instagram
             </a>
-            <PixelScoreboard />
           </Reveal>
         </div>
       </section>
