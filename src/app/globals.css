@@ -2487,7 +2487,17 @@ a.reviews-verified:focus-visible {
     opacity 0.4s var(--ease-soft);
 }
 .clip-card-inner {
+  overflow: hidden;
+  isolation: isolate;
+  transform: translateZ(0);
   transform-origin: 50% 80%;
+  border-radius: 6px;
+}
+.clip-card .bb-card-photo {
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(0);
+  transform: translateZ(0);
 }
 .clip-card-main {
   z-index: 3;
@@ -2570,36 +2580,26 @@ a.reviews-verified:focus-visible {
 }
 .training-clip-poster,
 .training-clip-video {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   pointer-events: none;
-}
-.training-clip-poster {
-  position: absolute;
-  inset: 0;
+  transform: translateZ(0);
 }
 .training-clip-video {
-  position: relative;
   background: transparent;
 }
+.clip-card video::-webkit-media-controls,
+.clip-card video::-webkit-media-controls-start-playback-button,
+.clip-card video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+}
 .training-clip-play {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.15rem;
-  height: 2.15rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--blue) 92%, #fff);
-  color: #fff;
-  font-size: 0.7rem;
-  box-shadow: 0 2px 8px rgba(15, 26, 46, 0.35);
-  pointer-events: none;
+  display: none !important;
 }
 .training-clips-nav {
   display: flex;
