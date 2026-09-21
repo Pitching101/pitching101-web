@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import JsonLd, { articleJsonLd } from "@/components/JsonLd";
 import LeadMagnetPage from "@/components/LeadMagnetPage";
 import { getLeadMagnet, leadMagnets } from "@/data/leadMagnets";
 import { shareImage } from "@/data/siteCopy";
@@ -32,7 +33,10 @@ export async function generateMetadata({
       title,
       description,
       url: `/guides/${magnet.slug}/`,
+      siteName: "Pitching101",
+      locale: "en_US",
       images: shareImage(image, magnet.title),
+      authors: ["Coach Deising"],
     },
     twitter: {
       card: "summary_large_image",
@@ -40,6 +44,8 @@ export async function generateMetadata({
       description,
       images: [image],
     },
+    authors: [{ name: "Coach Deising" }],
+    category: magnet.topic,
   };
 }
 
@@ -52,5 +58,10 @@ export default async function GuideSlugPage({
   const magnet = getLeadMagnet(slug);
   if (!magnet) notFound();
 
-  return <LeadMagnetPage magnet={magnet} />;
+  return (
+    <>
+      <JsonLd data={articleJsonLd(magnet)} />
+      <LeadMagnetPage magnet={magnet} />
+    </>
+  );
 }

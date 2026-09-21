@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Free youth pitching guides | Pitching101",
+    description:
+      "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup.",
     images: ["/og/guides.png"],
   },
 };

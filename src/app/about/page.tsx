@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     url: "/about/",
     images: shareImage(),
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Coach Deising | Pitching101",
+    description:
+      "Coach Deising runs Pitching101 — youth pitching lessons in Naples, FL for kids ages 8-16.",
+    images: shareImage()[0].url,
+  },
 };
 
 export default function AboutPage() {

@@ -1,3 +1,4 @@
+import type { LeadMagnet } from "@/data/leadMagnets";
 import { EMAIL, INSTAGRAM_URL, SITE_URL, TRUSTPILOT_URL } from "@/data/siteCopy";
 
 /** JSON-LD for search + answer engines. Values are static site copy. */
@@ -56,5 +57,35 @@ export function businessJsonLd() {
       "youth baseball pitching",
       "arm care for young pitchers",
     ],
+  };
+}
+
+/** Guide pages share as articles, not a generic website card. */
+export function articleJsonLd(magnet: LeadMagnet) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: magnet.title,
+    description: `${magnet.note} Free from Coach Deising at Pitching101.`,
+    image: `${SITE_URL}/og/${magnet.slug}.png`,
+    url: `${SITE_URL}/guides/${magnet.slug}/`,
+    mainEntityOfPage: `${SITE_URL}/guides/${magnet.slug}/`,
+    author: {
+      "@type": "Person",
+      name: "Nick Deising",
+      alternateName: "Coach Deising",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Pitching101",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/assets/logo-header-navy.png`,
+      },
+    },
+    about: magnet.topic,
+    isAccessibleForFree: true,
+    inLanguage: "en-US",
   };
 }

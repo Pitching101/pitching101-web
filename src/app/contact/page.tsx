@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Get started with youth pitching lessons | Pitching101",
+    description:
+      "Tell Coach Deising who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
     images: ["/og/contact.png"],
   },
 };
