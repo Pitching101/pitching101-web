@@ -244,8 +244,7 @@ body {
   opacity: 0;
   transition: opacity 0.5s var(--ease-soft);
 }
-.home-sky-scene.is-sky-in .home-sky-clouds-fixed,
-.park-sky-park .home-sky-clouds-fixed {
+.home-sky-scene.is-sky-in .home-sky-clouds-fixed {
   opacity: 1;
 }
 .home-sky-scene .text-band,
@@ -307,11 +306,8 @@ body {
 .float-cloud-12 { right: 3%; top: 74%; --cloud-size: 10.4rem; --cloud-duration: 20s; --cloud-delay: -7s; }
 .float-cloud-13 { left: 26%; top: 81%; --cloud-size: 8.8rem; --cloud-duration: 14s; --cloud-delay: -2.5s; opacity: 0.88; }
 .float-cloud-14 { right: 20%; top: 87%; --cloud-size: 11.2rem; --cloud-duration: 19s; --cloud-delay: -5.5s; }
-.float-cloud-pin-1 { left: 3%; top: 16%; --cloud-size: 6.4rem; --cloud-duration: 22s; --cloud-delay: 0s; opacity: 0.62; }
-.float-cloud-pin-2 { right: 5%; top: 22%; --cloud-size: 5.2rem; --cloud-duration: 19s; --cloud-delay: -6s; opacity: 0.55; }
-.float-cloud-pin-3 { left: 38%; top: 10%; --cloud-size: 4.8rem; --cloud-duration: 24s; --cloud-delay: -3s; opacity: 0.5; }
-.float-cloud-pin-4 { right: 14%; top: 58%; --cloud-size: 7.6rem; --cloud-duration: 20s; --cloud-delay: -8s; opacity: 0.64; }
-.float-cloud-pin-5 { left: 8%; top: 68%; --cloud-size: 8.4rem; --cloud-duration: 26s; --cloud-delay: -4s; opacity: 0.58; }
+.float-cloud-pin-1 { left: 4%; top: 8%; --cloud-size: 5.2rem; --cloud-duration: 22s; --cloud-delay: 0s; opacity: 0.48; }
+.float-cloud-pin-2 { right: 5%; top: 11%; --cloud-size: 4.4rem; --cloud-duration: 19s; --cloud-delay: -6s; opacity: 0.4; }
 @keyframes cloud-drift {
   0% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0.9rem, -0.45rem, 0); }
