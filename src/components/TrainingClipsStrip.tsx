@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 
 const CLIPS = [
   { src: "/videos/IMG_1238.mp4", name: "Rep 1" },
@@ -9,18 +9,28 @@ const CLIPS = [
   { src: "/videos/IMG_2698.mp4", name: "Rep 4" },
 ] as const;
 
+function playMuted(el: HTMLVideoElement | null) {
+  if (!el) return;
+  el.muted = true;
+  el.playsInline = true;
+  const play = el.play();
+  if (play) play.catch(() => undefined);
+}
+
 /**
- * A few baseball cards on the field — not one straight rectangle.
- * Center card plays. Side cards tilt and swap in on tap.
+ * A few baseball cards on the field. Swipe or tap to shuffle.
+ * Every visible card plays its clip automatically.
  */
 export default function TrainingClipsStrip() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+  const startX = useRef<number | null>(null);
+  const startY = useRef(0);
+  const swiped = useRef(false);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [inView, setInView] = useState(false);
-  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -38,7 +48,7 @@ export default function TrainingClipsStrip() {
       (entries) => {
         setInView(entries.some((e) => e.isIntersecting));
       },
-      { threshold: 0.25 },
+      { threshold: 0.2 },
     );
     io.observe(root);
     return () => io.disconnect();
@@ -53,35 +63,53 @@ export default function TrainingClipsStrip() {
   }, [reduceMotion, paused, inView]);
 
   useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.pause();
-    v.currentTime = 0;
-    setPlaying(false);
-
-    if (!reduceMotion && inView) {
-      v.play()
-        .then(() => setPlaying(true))
-        .catch(() => setPlaying(false));
-    }
+    const videos = videoRefs.current;
+    videos.forEach((video) => {
+      if (!video) return;
+      if (reduceMotion || !inView) {
+        video.pause();
+        return;
+      }
+      video.currentTime = 0;
+      playMuted(video);
+    });
   }, [index, inView, reduceMotion]);
 
   const goTo = useCallback((next: number) => {
     setIndex(((next % CLIPS.length) + CLIPS.length) % CLIPS.length);
   }, []);
 
-  const toggle = useCallback(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) {
-      v.play()
-        .then(() => setPlaying(true))
-        .catch(() => setPlaying(false));
-    } else {
-      v.pause();
-      setPlaying(false);
+  function onPointerDown(event: PointerEvent<HTMLDivElement>) {
+    startX.current = event.clientX;
+    startY.current = event.clientY;
+    swiped.current = false;
+  }
+
+  function onPointerMove(event: PointerEvent<HTMLDivElement>) {
+    if (startX.current == null) return;
+    const dx = event.clientX - startX.current;
+    const dy = event.clientY - startY.current;
+    if (Math.abs(dx) > 28 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+      swiped.current = true;
     }
-  }, []);
+  }
+
+  function onPointerUp(event: PointerEvent<HTMLDivElement>) {
+    if (startX.current == null) return;
+    const dx = event.clientX - startX.current;
+    startX.current = null;
+    if (Math.abs(dx) < 40) return;
+    swiped.current = true;
+    goTo(dx < 0 ? index + 1 : index - 1);
+  }
+
+  function onCardClick(next: number) {
+    if (swiped.current) {
+      swiped.current = false;
+      return;
+    }
+    goTo(next);
+  }
 
   const prev = (index - 1 + CLIPS.length) % CLIPS.length;
   const next = (index + 1) % CLIPS.length;
@@ -104,20 +132,33 @@ export default function TrainingClipsStrip() {
       }}
     >
       <p className="training-clips-label">A look at training</p>
-      <div className="clip-fan">
+      <div
+        className="clip-fan"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={() => {
+          startX.current = null;
+        }}
+      >
         <button
           type="button"
           className="bb-card clip-card clip-card-left"
           aria-label={`Show ${CLIPS[prev].name}`}
-          onClick={() => goTo(prev)}
+          onClick={() => onCardClick(prev)}
         >
           <div className="bb-card-photo">
             <video
+              ref={(node) => {
+                videoRefs.current[0] = node;
+              }}
               className="training-clip-video"
               src={CLIPS[prev].src}
               muted
+              loop
               playsInline
-              preload="metadata"
+              autoPlay
+              preload="auto"
               aria-hidden="true"
             />
           </div>
@@ -125,31 +166,22 @@ export default function TrainingClipsStrip() {
         </button>
 
         <div className="bb-card clip-card clip-card-main">
-          <button
-            type="button"
-            className="clip-card-hit"
-            aria-label={`${clip.name} — ${playing ? "pause" : "play"}`}
-            onClick={toggle}
-          >
-            <div className="bb-card-photo">
-              <video
-                key={clip.src}
-                ref={videoRef}
-                className="training-clip-video"
-                src={clip.src}
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-hidden="true"
-              />
-              {!playing ? (
-                <span className="training-clip-play" aria-hidden="true">
-                  ▶
-                </span>
-              ) : null}
-            </div>
-          </button>
+          <div className="bb-card-photo">
+            <video
+              key={clip.src}
+              ref={(node) => {
+                videoRefs.current[1] = node;
+              }}
+              className="training-clip-video"
+              src={clip.src}
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="auto"
+              aria-hidden="true"
+            />
+          </div>
           <p className="bb-card-name">{clip.name}</p>
           <p className="bb-card-role">Pitching101</p>
         </div>
@@ -158,15 +190,20 @@ export default function TrainingClipsStrip() {
           type="button"
           className="bb-card clip-card clip-card-right"
           aria-label={`Show ${CLIPS[next].name}`}
-          onClick={() => goTo(next)}
+          onClick={() => onCardClick(next)}
         >
           <div className="bb-card-photo">
             <video
+              ref={(node) => {
+                videoRefs.current[2] = node;
+              }}
               className="training-clip-video"
               src={CLIPS[next].src}
               muted
+              loop
               playsInline
-              preload="metadata"
+              autoPlay
+              preload="auto"
               aria-hidden="true"
             />
           </div>
@@ -188,6 +225,7 @@ export default function TrainingClipsStrip() {
           ))}
         </div>
       </div>
+      <p className="training-clips-hint">Swipe to shuffle</p>
     </div>
   );
 }

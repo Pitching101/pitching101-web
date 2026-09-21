@@ -1594,19 +1594,22 @@ html.glove-cursor * {
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  min-height: 20.5rem;
+  min-height: 28rem;
   padding: 0.8rem 0 1.8rem;
   overflow: visible;
+  touch-action: pan-y;
+  user-select: none;
 }
 .clip-card {
-  width: min(8.6rem, 28vw);
+  width: min(12.6rem, 34vw);
   cursor: pointer;
 }
 .clip-card-main {
   z-index: 3;
-  width: min(12.4rem, 42vw);
+  width: min(18.4rem, 56vw);
   transform: rotate(2.4deg) translateY(-18px);
   cursor: default;
+  pointer-events: none;
 }
 .clip-card-left {
   z-index: 1;
@@ -1678,12 +1681,21 @@ html.glove-cursor * {
   display: flex;
   gap: 0.35rem;
 }
+.training-clips-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(15, 26, 46, 0.35);
+}
 @media (max-width: 560px) {
-  .clip-fan { min-height: 16.5rem; padding: 0.5rem 0 1.2rem; }
-  .clip-card { width: 5.7rem; }
-  .clip-card-main { width: 7.6rem; transform: rotate(1.8deg) translateY(-10px); }
-  .clip-card-left { transform: rotate(-10deg) translate(0.45rem, 0.4rem); }
-  .clip-card-right { transform: rotate(9deg) translate(-0.4rem, 0.5rem); }
+  .clip-fan { min-height: 24.5rem; padding: 0.5rem 0 1.4rem; }
+  .clip-card { width: 9.6rem; }
+  .clip-card-main { width: 14.2rem; transform: rotate(1.8deg) translateY(-10px); }
+  .clip-card-left { transform: rotate(-10deg) translate(0.55rem, 0.55rem); }
+  .clip-card-right { transform: rotate(9deg) translate(-0.5rem, 0.65rem); }
 }
 .home-stadium-inner > .mx-auto {
   width: 100%;
@@ -2310,9 +2322,9 @@ html.glove-cursor * {
   .bb-fan { min-height: 14.5rem; }
   .bb-card { width: 5.7rem; }
   .bb-card-main { width: 7.15rem; }
-  .clip-fan { min-height: 15rem; }
-  .clip-card { width: 5.05rem; }
-  .clip-card-main { width: 6.7rem; }
+  .clip-fan { min-height: 22.5rem; }
+  .clip-card { width: 8.6rem; }
+  .clip-card-main { width: 12.8rem; }
   .bb-card-name { font-size: 0.88rem; }
   .btn {
     width: 100%;
