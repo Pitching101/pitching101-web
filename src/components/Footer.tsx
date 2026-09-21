@@ -11,8 +11,8 @@ export default function Footer() {
           <Logo height={48} />
           <p className="text-sm font-semibold text-blue-dark">Naples, FL</p>
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
-            Kids 8–16 in Naples. If you're a parent, a coach, or running a
-            team, you're in the right place.
+            Kids 8–16 in Naples. If you&apos;re a parent, a coach, or running a
+            team, you&apos;re in the right place.
           </p>
           <Link href={ENROLL_HREF} className="btn">
             {ENROLL_LABEL}

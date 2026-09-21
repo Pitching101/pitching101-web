@@ -220,7 +220,8 @@ function PitchGameField() {
     dragRef.current = null;
     setArmed(false);
     if (!drag) return;
-    let { vx, vy, x, y } = drag;
+    let { vx, vy } = drag;
+    const { x, y } = drag;
     if (Math.hypot(vx, vy) < MIN_SPEED) {
       vx = (x - drag.startX) * 8;
       vy = (y - drag.startY) * 8;
