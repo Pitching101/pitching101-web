@@ -167,10 +167,10 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-24 text-center sm:px-8 sm:pt-28 sm:pb-44">
+          <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-32 text-center sm:px-8 sm:pt-28 sm:pb-48">
             <p className="ui-title ui-title-sm">See how we train</p>
             <TrainingClipsStrip />
-            <Link href="/contact/" className="btn">
+            <Link href="/contact/" className="btn stadium-cta">
               Get started
             </Link>
           </Reveal>
