@@ -365,8 +365,8 @@ h1 {{
           <h1>Pitching lessons<br/>in Naples, FL</h1>
           <p class="lede">Let's get 'em throwing strikes and keep that arm healthy.</p>
           <div class="about">
-            <p>I'm Coach Deising. I work with kids 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.</p>
-            <p>Parents, travel teams, coaches, schools. If you're in a kid's corner, come on.</p>
+            <p>I'm Coach Deising. I work with players 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.</p>
+            <p>Parents, travel teams, coaches, schools. If you're in a player's corner, come on.</p>
           </div>
           <ul class="chips">
             <li>Ages 8–16</li>
@@ -404,7 +404,7 @@ h1 {{
             <span class="num">3</span>
             <div>
               <h3>We meet once</h3>
-              <p>We talk about your kid, then I recommend a pack that fits.</p>
+              <p>We talk about your player, then I recommend a pack that fits.</p>
             </div>
           </div>
           <div class="step">
@@ -466,7 +466,7 @@ h1 {{
           <article class="pack">
             <img src="{icon_eval}" alt="" />
             <h3>Evaluation</h3>
-            <p>Meet once. We talk about your kid, then I recommend Monthly or Check-In.</p>
+            <p>Meet once. We talk about your player, then I recommend Monthly or Check-In.</p>
           </article>
           <article class="pack">
             <img src="{icon_strikes}" alt="" />

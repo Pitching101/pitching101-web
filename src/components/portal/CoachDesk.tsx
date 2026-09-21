@@ -45,7 +45,7 @@ export default function CoachDesk({
     [lessons, selectedId],
   );
   const playerName = useCallback(
-    (id: string) => players.find((player) => player.id === id)?.first_name || "Kid",
+    (id: string) => players.find((player) => player.id === id)?.first_name || "Player",
     [players],
   );
 
@@ -123,9 +123,9 @@ export default function CoachDesk({
     const form = event.currentTarget;
     const data = new FormData(form);
     const playerId = String(data.get("player_id") || selectedId || "");
-    const kid = players.find((player) => player.id === playerId);
-    if (!kid) {
-      setStatus("Pick a kid first.");
+    const picked = players.find((player) => player.id === playerId);
+    if (!picked) {
+      setStatus("Pick a player first.");
       return;
     }
     const heldOn = String(data.get("held_on") || todayInNaples());
@@ -137,7 +137,7 @@ export default function CoachDesk({
     const { data: inserted, error } = await supabase
       .from("lessons")
       .insert({
-        player_id: kid.id,
+        player_id: picked.id,
         held_on: heldOn,
         title: title || null,
         notes: notes || null,
@@ -158,7 +158,7 @@ export default function CoachDesk({
         return;
       }
       const safeName = file.name.replace(/[^\w.\-]+/g, "-");
-      const path = `${kid.id}/${inserted.id}/${safeName}`;
+      const path = `${picked.id}/${inserted.id}/${safeName}`;
       const { error: uploadError } = await supabase.storage
         .from(LESSON_VIDEO_BUCKET)
         .upload(path, file, { contentType: file.type, upsert: true });
@@ -227,7 +227,7 @@ export default function CoachDesk({
       <ul className="portal-stats">
         <li>
           <strong>{players.length}</strong>
-          <span>{players.length === 1 ? "kid" : "kids"}</span>
+          <span>{players.length === 1 ? "player" : "players"}</span>
         </li>
         <li>
           <strong>{lessons.length}</strong>
@@ -286,10 +286,10 @@ export default function CoachDesk({
                 onSubmit={(event) => void addLesson(event)}
               >
                 <label className="start-field">
-                  <span>Kid</span>
+                  <span>Player</span>
                   <select name="player_id" defaultValue={selectedId ?? players[0]?.id ?? ""} required>
                     <option value="" disabled>
-                      Pick a kid
+                      Pick a player
                     </option>
                     {players.map((player) => (
                       <option key={player.id} value={player.id}>
@@ -325,7 +325,7 @@ export default function CoachDesk({
                 </button>
               </form>
             ) : (
-              <p className="portal-lead">Add a kid on the roster tab, then we can start logging work.</p>
+              <p className="portal-lead">Add a player on the roster tab, then we can start logging work.</p>
             )}
           </section>
 
@@ -422,8 +422,8 @@ export default function CoachDesk({
           <h2 className="ui-title ui-title-sm">Roster</h2>
           <p className="portal-lead">
             {players.length
-              ? `${players.length} kid${players.length === 1 ? "" : "s"} on the card.`
-              : "Add a kid and I'll keep the lesson count here."}
+              ? `${players.length} player${players.length === 1 ? "" : "s"} on the card.`
+              : "Add a player and I'll keep the lesson count here."}
           </p>
           <ul className="portal-roster">
             {players.map((player) => {
@@ -450,7 +450,7 @@ export default function CoachDesk({
           </ul>
           <form className="start-form portal-mini-form" onSubmit={(event) => void addPlayer(event)}>
             <label className="start-field">
-              <span>Kid&apos;s first name</span>
+              <span>Player&apos;s first name</span>
               <input name="first_name" required autoCapitalize="words" />
             </label>
             <div className="start-field-row">
@@ -467,7 +467,7 @@ export default function CoachDesk({
             </div>
             <label className="start-field">
               <span>
-                Kid email <em>optional, if they have their own login</em>
+                Player email <em>optional, if they have their own login</em>
               </span>
               <input name="player_email" type="email" />
             </label>

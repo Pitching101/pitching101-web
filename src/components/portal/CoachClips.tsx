@@ -113,7 +113,7 @@ export default function CoachClips({
     <section className="portal-card">
       <h2 className="ui-title ui-title-sm">My videos</h2>
       <p className="portal-lead">
-        Your clips stay on this desk. Drop one on a kid&apos;s lesson when you
+        Your clips stay on this desk. Drop one on a player&apos;s lesson when you
         want them to rewatch it.
       </p>
       <form className="start-form portal-mini-form" onSubmit={(event) => void addClip(event)}>

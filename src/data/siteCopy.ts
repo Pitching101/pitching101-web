@@ -54,19 +54,19 @@ export function pageTitle(page: string) {
   return `${BRAND_NAME} | ${page}`;
 }
 export const META_DESCRIPTION =
-  "I'm Coach Deising. Youth pitching lessons in Naples, FL for kids 8-16. Book an evaluation, then a simple pack.";
+  "I'm Coach Deising. Youth pitching lessons in Naples, FL for players 8-16. Book an evaluation, then a simple pack.";
 /** Tab and share title — brand first so a short tab still says Pitching101. */
 export const OG_TITLE = pageTitle(HOME_TITLE);
 export const OG_DESCRIPTION =
-  "I'm Coach Deising. I help kids 8-16 throw more strikes in Naples, FL. Book an evaluation, then a simple pack.";
+  "I'm Coach Deising. I help players 8-16 throw more strikes in Naples, FL. Book an evaluation, then a simple pack.";
 export const OG_IMAGE = "/og/home.png";
 export const OG_IMAGE_ALT = "Pitching101 — youth pitching lessons in Naples, FL";
 export const HERO_LINE =
   "Let's get 'em throwing strikes and keep that arm healthy.";
 export const ABOUT_INTRO =
-  "I'm Coach Deising. I work with kids 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.";
+  "I'm Coach Deising. I work with players 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.";
 export const ABOUT_MORE =
-  "Parents, travel teams, coaches, schools — if you're in a kid's corner, come on. Let's get them throwing strikes and taking care of that arm.";
+  "Parents, travel teams, coaches, schools — if you're in a player's corner, come on. Let's get them throwing strikes and taking care of that arm.";
 export const HOW_WE_TRAIN_LINE =
   "Book an evaluation. Then I'll tell you which pack I'd actually use.";
 export const FAQ_INTRO = "Stuff parents and coaches ask before we get going.";
@@ -80,7 +80,7 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "I work with kids 8–16 here in Naples. I'm the JV head coach at Gulfshore High School, and I help travel teams too. We do arm care, throw some strikes, and they leave with something they can try at the next practice.",
+    a: "I work with players 8–16 here in Naples. I'm the JV head coach at Gulfshore High School, and I help travel teams too. We do arm care, throw some strikes, and they leave with something they can try at the next practice.",
   },
   {
     q: "What ages do you coach?",
@@ -88,7 +88,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Who do you work with?",
-    a: "Parents, coaches, travel teams, schools — if you're helping a kid throw, I'm in.",
+    a: "Parents, coaches, travel teams, schools — if you're helping a player throw, I'm in.",
   },
   {
     q: "Do you coach travel teams?",
@@ -104,11 +104,11 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "How do I book an evaluation?",
-    a: "Send the short form — age, goals, and schedule. We'll get back within 24 business hours. We meet once, talk about your kid, then I'll tell you what I'd do next.",
+    a: "Send the short form — age, goals, and schedule. We'll get back within 24 business hours. We meet once, talk about your player, then I'll tell you what I'd do next.",
   },
   {
     q: "What is an evaluation?",
-    a: "One visit. We talk about your kid, then I'll recommend the Monthly Strikes Pack or a Busy-Week Check-In.",
+    a: "One visit. We talk about your player, then I'll recommend the Monthly Strikes Pack or a Busy-Week Check-In.",
   },
   {
     q: "What packs come after the evaluation?",
@@ -123,7 +123,7 @@ export const faqs: FaqItem[] = [
 export const trainingOptions = [
   {
     label: "Evaluation",
-    note: "Meet once. We talk about your kid, then I recommend Monthly or Check-In.",
+    note: "Meet once. We talk about your player, then I recommend Monthly or Check-In.",
   },
   {
     label: "Monthly Strikes Pack",
@@ -169,7 +169,7 @@ export const startSteps = [
   },
   {
     label: "We meet once",
-    note: "We talk about your kid, then I recommend a pack that fits.",
+    note: "We talk about your player, then I recommend a pack that fits.",
   },
   {
     label: "Monthly or Check-In",
