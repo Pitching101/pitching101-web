@@ -2709,31 +2709,27 @@ a.reviews-verified:focus-visible {
   transform: rotate(var(--magnet-tilt)) translateY(-7px);
   outline: none;
 }
+/* Guide thumbnails are 3:4 baseball-card photos. OG share images stay 1200×630. */
 .magnet-card-art {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
   background: #3295fb;
   border: 2px solid #0f1a2e;
 }
 .magnet-card-art img {
-  width: 4.6rem;
+  width: 6.1rem;
   height: auto;
   image-rendering: pixelated;
 }
-.magnet-card-art-zone {
-  aspect-ratio: 900 / 670;
-  background: var(--card-stock);
-}
-.magnet-card-art-zone img {
-  width: 92%;
-  max-height: 100%;
-  object-fit: contain;
-}
-.magnet-card-art-wide {
-  aspect-ratio: 16 / 9;
+.magnet-card-art.is-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: auto;
 }
 .magnet-card-kicker {
   margin: 0.55rem 0 0;
@@ -2901,22 +2897,8 @@ a.reviews-verified:focus-visible {
   padding: 0;
   list-style: none;
 }
-.magnet-zone {
-  width: min(16rem, 100%);
-  margin: 0.15rem auto 0;
-}
-.magnet-zone-wide {
-  width: min(42rem, 100%);
-  margin: 0.2rem auto 0.4rem;
-}
-.magnet-zone img {
-  display: block;
-  width: 100%;
-  height: auto;
-  image-rendering: pixelated;
-}
 .magnet-page-card {
-  width: min(9.25rem, 42vw);
+  width: min(14rem, 52vw);
   margin: 0.15rem auto 0;
   padding: 0.42rem 0.42rem 0.7rem;
   background: linear-gradient(180deg, var(--card-stock) 0%, var(--card-stock-deep) 100%);
