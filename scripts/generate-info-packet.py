@@ -365,7 +365,7 @@ h1 {{
           <h1>Pitching lessons<br/>in Naples, FL</h1>
           <p class="lede">Let's get 'em throwing strikes and keep that arm healthy.</p>
           <div class="about">
-            <p>I'm Coach Deising. I work with players 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.</p>
+            <p>I'm Coach Deising. I work with players 8–16 here in Naples, and I'm the head coach.</p>
             <p>Parents, travel teams, coaches, schools. If you're in a player's corner, come on.</p>
           </div>
           <ul class="chips">

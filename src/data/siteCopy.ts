@@ -64,7 +64,7 @@ export const OG_IMAGE_ALT = "Pitching101 — youth pitching lessons in Naples, F
 export const HERO_LINE =
   "Let's get 'em throwing strikes and keep that arm healthy.";
 export const ABOUT_INTRO =
-  "I'm Coach Deising. I work with players 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.";
+  "I'm Coach Deising. I work with players 8–16 here in Naples, and I'm the head coach.";
 export const ABOUT_MORE =
   "Parents, travel teams, coaches, schools — if you're in a player's corner, come on. Let's get them throwing strikes and taking care of that arm.";
 export const HOW_WE_TRAIN_LINE =
@@ -80,7 +80,7 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "I work with players 8–16 here in Naples. I'm the JV head coach at Gulfshore High School, and I help travel teams too. We do arm care, throw some strikes, and they leave with something they can try at the next practice.",
+    a: "I work with players 8–16 here in Naples. I'm the head coach, and I help travel teams too. We do arm care, throw some strikes, and they leave with something they can try at the next practice.",
   },
   {
     q: "What ages do you coach?",
