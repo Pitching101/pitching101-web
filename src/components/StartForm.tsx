@@ -7,7 +7,7 @@ import { leadFromForm, writeStartLead } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
 
-/** Evaluation form — age, goals, schedule. No price menu. */
+/** Evaluation form — age, goals, schedule. */
 export default function StartForm() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
