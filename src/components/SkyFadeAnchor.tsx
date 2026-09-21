@@ -15,32 +15,46 @@ export default function SkyFadeAnchor() {
       document.getElementById("reviews");
     if (!scene || !mark) return;
 
-    const sync = () => {
+    let lastStop = "";
+    let lastSkyIn: boolean | null = null;
+    let raf = 0;
+
+    const paint = () => {
+      raf = 0;
       const sceneBox = scene.getBoundingClientRect();
       const markBox = mark.getBoundingClientRect();
       const height = Math.max(1, sceneBox.height);
       const pct = Math.min(82, Math.max(8, ((markBox.top - sceneBox.top) / height) * 100));
-      scene.style.setProperty("--sky-stop", `${pct.toFixed(2)}%`);
+      const stop = `${pct.toFixed(1)}%`;
+      if (stop !== lastStop) {
+        lastStop = stop;
+        scene.style.setProperty("--sky-stop", stop);
+      }
       const footer = document.querySelector<HTMLElement>(".site-footer");
       const footerBox = footer?.getBoundingClientRect();
       const footerIn = footerBox != null && footerBox.top < window.innerHeight * 0.78;
-      scene.classList.toggle(
-        "is-sky-in",
-        markBox.top < window.innerHeight * 0.62 && !footerIn,
-      );
+      const skyIn = markBox.top < window.innerHeight * 0.62 && !footerIn;
+      if (skyIn !== lastSkyIn) {
+        lastSkyIn = skyIn;
+        scene.classList.toggle("is-sky-in", skyIn);
+      }
     };
 
-    sync();
-    const raf = window.requestAnimationFrame(sync);
-    window.addEventListener("resize", sync, { passive: true });
-    window.addEventListener("scroll", sync, { passive: true });
-    const ro = new ResizeObserver(sync);
+    const requestPaint = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(paint);
+    };
+
+    paint();
+    window.addEventListener("resize", requestPaint, { passive: true });
+    window.addEventListener("scroll", requestPaint, { passive: true });
+    const ro = new ResizeObserver(requestPaint);
     ro.observe(scene);
     ro.observe(mark);
     return () => {
       window.cancelAnimationFrame(raf);
-      window.removeEventListener("resize", sync);
-      window.removeEventListener("scroll", sync);
+      window.removeEventListener("resize", requestPaint);
+      window.removeEventListener("scroll", requestPaint);
       ro.disconnect();
     };
   }, []);

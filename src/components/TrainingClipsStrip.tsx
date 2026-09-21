@@ -135,8 +135,9 @@ export default function TrainingClipsStrip() {
   function onPointerUp(event: PointerEvent<HTMLDivElement>) {
     if (startX.current == null) return;
     const dx = event.clientX - startX.current;
+    const dy = event.clientY - startY.current;
     startX.current = null;
-    if (Math.abs(dx) < 40) return;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.15) return;
     swiped.current = true;
     goTo(dx < 0 ? index + 1 : index - 1);
   }

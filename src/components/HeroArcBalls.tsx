@@ -3,10 +3,13 @@
 import { useEffect, useRef } from "react";
 
 const SIZE = 36;
+/** One throw across the hero. Slow enough that it does not fight the page. */
+const CYCLE_MS = 5600;
 
 /**
- * Phone only: two baseballs start off-page and get thrown across
- * the hero on scroll. Paths are offset so they do not meet in a straight X.
+ * Phone only: two baseballs throw themselves across the hero.
+ * Paths stay offset so they do not meet in a straight X.
+ * Reduced motion hides the layer in CSS.
  */
 export default function HeroArcBalls() {
   const layerRef = useRef<HTMLDivElement>(null);
@@ -22,18 +25,15 @@ export default function HeroArcBalls() {
     const mobile = window.matchMedia("(max-width: 639px)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
-    let listening = false;
+    let origin = 0;
+    let running = false;
 
-    const paint = () => {
+    const paint = (progress: number) => {
       const width = layer.clientWidth;
       const height = layer.clientHeight;
       if (width < 8 || height < 8) return;
       const off = SIZE + 12;
       const span = width + off * 2;
-      const progress = Math.min(
-        1,
-        Math.max(0, window.scrollY / (window.innerHeight * 0.55)),
-      );
 
       const bump = (t: number, peak: number) => {
         const denom = Math.max(0.12, peak * (1 - peak));
@@ -58,26 +58,24 @@ export default function HeroArcBalls() {
       place(right, 1 - progress, 0.68, low, -300);
     };
 
-    const onScroll = () => {
-      if (raf) return;
-      raf = window.requestAnimationFrame(() => {
-        raf = 0;
-        paint();
-      });
+    const tick = (now: number) => {
+      if (!origin) origin = now;
+      paint(((now - origin) % CYCLE_MS) / CYCLE_MS);
+      raf = window.requestAnimationFrame(tick);
     };
 
     const bind = () => {
       const on = mobile.matches && !reduce.matches;
-      if (on && !listening) {
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onScroll);
-        listening = true;
-        paint();
+      if (on && !running) {
+        origin = 0;
+        running = true;
+        raf = window.requestAnimationFrame(tick);
       }
-      if (!on && listening) {
-        window.removeEventListener("scroll", onScroll);
-        window.removeEventListener("resize", onScroll);
-        listening = false;
+      if (!on && running) {
+        window.cancelAnimationFrame(raf);
+        raf = 0;
+        origin = 0;
+        running = false;
       }
     };
 
@@ -86,8 +84,6 @@ export default function HeroArcBalls() {
     reduce.addEventListener("change", bind);
     return () => {
       window.cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
       mobile.removeEventListener("change", bind);
       reduce.removeEventListener("change", bind);
     };
