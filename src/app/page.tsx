@@ -52,7 +52,7 @@ export default function HomePage() {
         <div id="sky-start" aria-hidden="true" />
       </section>
 
-      <section className="text-band" id="reviews" aria-label="What people say">
+      <section className="text-band scroll-mt-24" id="reviews" aria-label="What people say">
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">What people say</h2>
