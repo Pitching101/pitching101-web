@@ -2132,6 +2132,9 @@ html.glove-cursor * {
 }
 .magnet-slot {
   min-width: 0;
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
 }
 .magnet-card {
   --magnet-tilt: -1.6deg;
@@ -2154,9 +2157,19 @@ html.glove-cursor * {
 }
 .magnet-slot:nth-child(3n + 2) .magnet-card { --magnet-tilt: 2.1deg; }
 .magnet-slot:nth-child(3n + 3) .magnet-card { --magnet-tilt: -2.3deg; }
-.magnet-card:hover,
+@media (hover: hover) and (pointer: fine) {
+  .magnet-slot:hover {
+    z-index: 2;
+  }
+  .magnet-slot:hover .magnet-card {
+    transform: rotate(var(--magnet-tilt)) translateY(-7px);
+  }
+}
+.magnet-slot:focus-within {
+  z-index: 2;
+}
 .magnet-card:focus-visible {
-  transform: rotate(0deg) translateY(-5px);
+  transform: rotate(var(--magnet-tilt)) translateY(-7px);
   outline: none;
 }
 .magnet-card-art {
@@ -2248,7 +2261,8 @@ html.glove-cursor * {
 }
 @media (prefers-reduced-motion: reduce) {
   .magnet-card,
-  .magnet-card:hover,
+  .magnet-slot:hover .magnet-card,
+  .magnet-slot:focus-within .magnet-card,
   .magnet-card:focus-visible,
   .magnet-page-card {
     transform: none;
