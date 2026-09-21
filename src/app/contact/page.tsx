@@ -3,10 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import StartForm from "@/components/StartForm";
-import StartSteps from "@/components/StartSteps";
-import SessionBeats from "@/components/SessionBeats";
-import WorkWith from "@/components/WorkWith";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL, trainingOptions } from "@/data/siteCopy";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Get started with youth pitching lessons",
@@ -30,50 +27,13 @@ export default function ContactPage() {
             Kids 8–16. Fill this in. It texts my phone. I call or text you
             back.
           </p>
-          <ul className="bb-chip-row">
-            <li className="bb-chip">Ages 8–16</li>
-            <li className="bb-chip">Parents</li>
-            <li className="bb-chip">Other coaches</li>
-            <li className="bb-chip">Travel teams</li>
-            <li className="bb-chip">Schools</li>
-          </ul>
         </Reveal>
 
-        <Reveal delayMs={20} className="mt-10 space-y-5">
-          <h2 className="ui-title ui-title-sm">Who I work with</h2>
-          <WorkWith />
-        </Reveal>
-
-        <Reveal delayMs={30} className="mt-10 space-y-5">
-          <h2 className="ui-title ui-title-sm">How we train</h2>
-          <ul className="dugout-row">
-            {trainingOptions.map((item) => (
-              <li key={item.label} className="dugout-sign">
-                <h3 className="dugout-sign-title">{item.label}</h3>
-                <p className="dugout-sign-note">{item.note}</p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal delayMs={40} className="mt-10 space-y-5">
-          <h2 className="ui-title ui-title-sm">What happens</h2>
-          <StartSteps />
-        </Reveal>
-
-        <Reveal delayMs={50} className="mt-10 space-y-5">
-          <h2 className="ui-title ui-title-sm">First session</h2>
-          <SessionBeats />
-        </Reveal>
-
-        <Reveal delayMs={60} className="mt-10 space-y-5">
-          <h2 className="ui-title ui-title-sm" id="start-form">
-            Send a note to my phone
-          </h2>
+        <Reveal delayMs={20} className="mt-8">
           <StartForm />
         </Reveal>
 
-        <Reveal delayMs={80} className="mt-10">
+        <Reveal delayMs={40} className="mt-10">
           <ul className="fence-links">
             <li>
               <a className="footer-link" href="tel:8457682211">
