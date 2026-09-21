@@ -1091,7 +1091,54 @@ html.glove-cursor * {
   text-align: center;
   text-shadow: none;
 }
-.hero-overlay-copy::before { content: none; display: none; }
+
+/*
+  Soft sky veil behind copy. Matches the wash so it reads as empty sky
+  until a cloud slides through, then the letters stay even.
+*/
+.hero-overlay-copy,
+.home-stack,
+.content-row-copy,
+.park-page {
+  isolation: isolate;
+}
+.home-stack,
+.content-row-copy,
+.park-page {
+  position: relative;
+}
+.hero-overlay-copy::before,
+.home-stack::before,
+.content-row-copy::before,
+.park-page::before {
+  content: "";
+  position: absolute;
+  inset: -1.6rem -2.4rem;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 82% 70% at 50% 42%,
+    color-mix(in srgb, #ffffff 36%, transparent) 0%,
+    color-mix(in srgb, #e8f3fc 20%, transparent) 44%,
+    color-mix(in srgb, #BBD6F1 8%, transparent) 64%,
+    transparent 78%
+  );
+}
+.park-page::before {
+  inset: -1rem -2.5rem 2rem;
+  background: radial-gradient(
+    ellipse 88% 42% at 50% 16%,
+    color-mix(in srgb, #ffffff 32%, transparent) 0%,
+    color-mix(in srgb, #e8f3fc 16%, transparent) 48%,
+    transparent 76%
+  ),
+  radial-gradient(
+    ellipse 80% 36% at 50% 52%,
+    color-mix(in srgb, #ffffff 22%, transparent) 0%,
+    color-mix(in srgb, #e8f3fc 12%, transparent) 50%,
+    transparent 74%
+  );
+}
 .hero-overlay-title {
   color: var(--ink) !important;
   text-shadow: none;
