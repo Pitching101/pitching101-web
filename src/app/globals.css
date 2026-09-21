@@ -330,7 +330,6 @@ body {
   text-align: center;
 }
 .pitch-game-copy,
-.pitch-game-note,
 .pitch-game-score {
   margin: 0;
   max-width: 32rem;
@@ -338,10 +337,43 @@ body {
   line-height: 1.45;
   color: var(--ink-soft);
 }
-.pitch-game-note {
-  min-height: 1.5em;
-  color: var(--ink);
+.pitch-call {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.28rem;
+  width: min(32rem, 100%);
+  min-height: 4.4rem;
+  margin: 0;
+  padding: 0.7rem 1rem 0.8rem;
+  background: color-mix(in srgb, var(--card-stock, #f7fbff) 88%, #fff);
+  border: 1.5px solid color-mix(in srgb, var(--blue) 26%, transparent);
+  border-radius: 0.85rem;
+  box-shadow: 0 8px 22px -16px rgba(15, 26, 46, 0.2);
+}
+.pitch-call.is-strike {
+  border-color: color-mix(in srgb, #00b67a 42%, var(--blue));
+}
+.pitch-call.is-ball {
+  border-color: color-mix(in srgb, #0f1a2e 22%, var(--blue));
+}
+.pitch-call-kicker {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+.pitch-call.is-strike .pitch-call-kicker { color: #0b7a52; }
+.pitch-call-line {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 1.08rem;
   font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  text-wrap: balance;
 }
 .pitch-game-score {
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
