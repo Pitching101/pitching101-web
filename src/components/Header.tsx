@@ -6,7 +6,6 @@ import Logo from "./Logo";
 import { ENROLL_HREF, ENROLL_LABEL, PORTAL_HREF, PORTAL_LABEL } from "@/data/siteCopy";
 
 const homeAnchors = [
-  { href: "/#reviews", full: "What people say", short: "Reviews" },
   { href: "/#about", full: "About Coach Deising", short: "About" },
   { href: "/#how-it-works", full: "How we train", short: "Train" },
   { href: "/#faq", full: "FAQs", short: "FAQs" },
