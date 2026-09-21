@@ -51,7 +51,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
                 aria-controls={panelId}
                 onClick={() => toggle(index)}
               >
-                {item.q}
+                <span className="faq-q-text">{item.q}</span>
               </button>
             </h3>
             <div
