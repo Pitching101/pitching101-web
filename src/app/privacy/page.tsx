@@ -53,7 +53,8 @@ export default function PrivacyPage() {
               </p>
               <p>
                 Coach Deising uses what you send to reply within 24 business
-                hours and to plan the visit.
+                hours and to plan the visit. The booking form does not go
+                into the client portal.
               </p>
             </>
           ),

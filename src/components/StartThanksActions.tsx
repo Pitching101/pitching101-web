@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { INFO_PACKET_FILENAME, INFO_PACKET_HREF, RESPONSE_PROMISE } from "@/data/siteCopy";
 import {
   START_LEAD_MAIL_KEY,
@@ -23,6 +24,16 @@ export default function StartThanksActions() {
     window.location.href = inquiryEmailHref(next);
   }, []);
 
+  const afterForm = (
+    <p className="start-form-or">
+      This booking note is not saved in the client portal. It opens a message
+      to Coach Deising, and you tap send.{" "}
+      <Link href="/privacy/">Privacy policy</Link>
+      {" · "}
+      <Link href="/terms/">Terms of service</Link>
+    </p>
+  );
+
   const packet = (
     <a
       href={INFO_PACKET_HREF}
@@ -38,6 +49,7 @@ export default function StartThanksActions() {
       <div className="start-thanks-actions">
         {packet}
         <p className="start-form-or">{RESPONSE_PROMISE}</p>
+        {afterForm}
       </div>
     );
   }
@@ -54,6 +66,7 @@ export default function StartThanksActions() {
       <p className="start-form-or">
         {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Players 8–16.
       </p>
+      {afterForm}
     </div>
   );
 }

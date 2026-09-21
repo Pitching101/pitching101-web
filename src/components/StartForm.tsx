@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ENROLL_LABEL,
@@ -133,11 +132,6 @@ export default function StartForm() {
       <p className="start-form-or">
         {RESPONSE_PROMISE} You&apos;ll get a short packet about how I work so
         you&apos;ve got it after you send this.
-      </p>
-      <p className="start-form-or">
-        <Link href="/privacy/">Privacy policy</Link>
-        {" · "}
-        <Link href="/terms/">Terms of service</Link>
       </p>
     </form>
   );
