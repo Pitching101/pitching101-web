@@ -1304,6 +1304,11 @@ html.glove-cursor * {
   letter-spacing: 0.03em;
   color: var(--ink-soft);
 }
+@media (min-width: 640px) {
+  .reviews-swipe-hint {
+    display: none;
+  }
+}
 .reviews-carousel footer,
 .reviews-carousel .text-ink-soft {
   color: #1a2a44;
@@ -1850,6 +1855,11 @@ html.glove-cursor * {
   text-transform: uppercase;
   color: #fff;
   text-shadow: 0 1px 0 rgba(15, 26, 46, 0.35);
+}
+@media (min-width: 640px) {
+  .training-clips-hint {
+    display: none;
+  }
 }
 @media (max-width: 560px) {
   .clip-fan { min-height: 24.5rem; padding: 0.5rem 0 1.4rem; }
