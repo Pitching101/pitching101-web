@@ -2110,10 +2110,14 @@ html.glove-cursor * {
 /* Phone: keep the park on the field, no sideways scroll */
 @media (max-width: 639px) {
   .hero-overlay {
-    min-height: 0;
+    min-height: calc(100svh - 6.75rem);
+    min-height: calc(100dvh - 6.75rem);
   }
   .hero-overlay-inner {
-    padding: 2rem 1.1rem 2.15rem;
+    padding: 3.25rem 1.25rem 4.75rem;
+  }
+  .hero-overlay-copy {
+    gap: 1.35rem;
   }
   .ui-title-hero {
     font-size: clamp(1.7rem, 8.6vw, 2.25rem);
