@@ -112,13 +112,34 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  border-bottom: 1px solid color-mix(in srgb, var(--blue) 14%, transparent);
-  background: color-mix(in srgb, #ffffff 88%, transparent);
+  border-bottom: none;
+  background: #3295fb;
   box-shadow: none;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   padding-top: env(safe-area-inset-top);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+.site-header .site-logo img {
+  filter: brightness(0) invert(1);
+}
+.site-header .nav-link {
+  color: #ffffff;
+}
+.site-header .nav-link:hover,
+.site-header .nav-link:focus-visible {
+  color: #ffffff;
+  opacity: 0.82;
+}
+.site-header .btn-nav {
+  background: #ffffff;
+  color: #3295fb;
+  box-shadow: none;
+}
+.site-header .btn-nav:hover,
+.site-header .btn-nav:focus-visible {
+  background: #f4f9ff;
+  color: #1a78e8;
 }
 .site-header-inner {
   position: relative;
@@ -792,12 +813,12 @@ html.glove-cursor * {
     border: none;
     border-radius: 0.6rem;
     background: transparent;
-    color: var(--ink);
+    color: #ffffff;
     cursor: pointer;
   }
   .nav-toggle:hover,
   .nav-toggle:focus-visible {
-    background: color-mix(in srgb, var(--blue) 10%, transparent);
+    background: rgba(255, 255, 255, 0.16);
   }
   .nav-toggle-bars {
     position: relative;
@@ -840,13 +861,7 @@ html.glove-cursor * {
     max-height: 100dvh;
     overflow: auto;
     backdrop-filter: none;
-    background:
-      linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #f4f9ff 42%,
-        #e8f3fc 100%
-      );
+    background: #3295fb;
   }
   .site-header.is-menu-open .site-header-inner {
     width: 100%;
@@ -856,6 +871,13 @@ html.glove-cursor * {
     display: none;
     flex: 1;
     padding: 1.25rem 1.5rem calc(2rem + env(safe-area-inset-bottom));
+    background:
+      linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f4f9ff 42%,
+        #e8f3fc 100%
+      );
   }
   .is-menu-open .site-menu {
     display: flex;
