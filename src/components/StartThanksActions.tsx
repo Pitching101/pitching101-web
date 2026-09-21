@@ -16,6 +16,7 @@ export default function StartThanksActions() {
 
   useEffect(() => {
     const next = readStartLead();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- lead lives in sessionStorage
     setLead(next);
     if (!next || sessionStorage.getItem(START_LEAD_SMS_KEY)) return;
     sessionStorage.setItem(START_LEAD_SMS_KEY, "1");

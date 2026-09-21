@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 
 /** /about is collapsed onto the homepage #about section. */
 export default function AboutHomeRedirect() {
@@ -10,9 +11,9 @@ export default function AboutHomeRedirect() {
 
   return (
     <p className="px-5 py-16 text-center text-ink-soft">
-      <a href="/#about" className="text-blue-dark underline underline-offset-3">
+      <Link href="/#about" className="text-blue-dark underline underline-offset-3">
         Continue to About
-      </a>
+      </Link>
     </p>
   );
 }

@@ -23,8 +23,7 @@ export default function SkyFadeAnchor() {
       scene.style.setProperty("--sky-stop", `${pct.toFixed(2)}%`);
       const footer = document.querySelector<HTMLElement>(".site-footer");
       const footerBox = footer?.getBoundingClientRect();
-      const footerIn =
-        Boolean(footerBox) && footerBox.top < window.innerHeight * 0.78;
+      const footerIn = footerBox != null && footerBox.top < window.innerHeight * 0.78;
       scene.classList.toggle(
         "is-sky-in",
         markBox.top < window.innerHeight * 0.62 && !footerIn,

@@ -12,12 +12,6 @@ export default function BaseballCardFan() {
     const el = nickRef.current;
     if (!el) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setGlow(true);
-      return;
-    }
-
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
