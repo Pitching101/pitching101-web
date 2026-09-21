@@ -2216,11 +2216,17 @@ html.glove-cursor * {
   color: #1a78e8;
 }
 .magnet-page {
-  max-width: 36rem;
+  max-width: 40rem;
+  padding-bottom: 3.25rem;
+}
+.magnet-page-intro {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
 }
 .magnet-zone {
-  width: min(22rem, 100%);
-  margin: 0.35rem auto 0.15rem;
+  width: min(16rem, 100%);
+  margin: 0.15rem auto 0;
 }
 .magnet-zone img {
   display: block;
@@ -2229,8 +2235,8 @@ html.glove-cursor * {
   image-rendering: pixelated;
 }
 .magnet-page-card {
-  width: min(12.5rem, 58vw);
-  margin: 0.4rem auto 0.2rem;
+  width: min(9.25rem, 42vw);
+  margin: 0.15rem auto 0;
   padding: 0.42rem 0.42rem 0.7rem;
   background: linear-gradient(180deg, #fff8e6 0%, #f3e2b4 100%);
   border: 5px solid #e6d08a;
@@ -2239,6 +2245,60 @@ html.glove-cursor * {
     0 0 0 2px #0f1a2e,
     7px 9px 0 rgba(15, 26, 46, 0.14);
   transform: rotate(-1.4deg);
+}
+.magnet-template {
+  display: grid;
+  gap: 1.15rem;
+  width: 100%;
+  max-width: 32rem;
+  margin: 1.85rem auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.magnet-step {
+  display: grid;
+  grid-template-columns: 2.35rem 1fr;
+  gap: 0.85rem 1rem;
+  align-items: start;
+  padding: 1.15rem 1.15rem 1.2rem;
+  background: color-mix(in srgb, #f6f0e4 70%, #BBD6F1);
+  border: 2px dashed color-mix(in srgb, #1a78e8 28%, transparent);
+}
+.magnet-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 3px solid color-mix(in srgb, #1a2438 62%, #3295fb);
+  background: color-mix(in srgb, #BBD6F1 55%, #ffffff);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, #ffffff 36%, transparent);
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.magnet-step-title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.magnet-step-note {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.magnet-page-cta {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
 }
 @media (max-width: 639px) {
   .magnet-shelf { padding-left: 0.15rem; padding-right: 0.15rem; }

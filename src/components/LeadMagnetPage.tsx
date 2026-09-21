@@ -8,7 +8,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
   return (
     <ParkSky tone="park">
       <article className="park-page magnet-page">
-        <Reveal className="space-y-5">
+        <Reveal className="magnet-page-intro">
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/guides/" className="hover:underline">
               ← Free guides
@@ -40,14 +40,28 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
             <li className="bb-chip">Ages 8–16</li>
             <li className="bb-chip">Free</li>
           </ul>
-          <div className="home-cta-row pt-2">
-            <a href={leadMagnetMailto(magnet)} className="btn">
-              {magnet.cta}
-            </a>
-          </div>
         </Reveal>
 
-        <Reveal delayMs={40} className="mt-12 space-y-4">
+        <Reveal delayMs={30}>
+          <ol className="magnet-template">
+            {magnet.steps.map((step, index) => (
+              <li key={step.label} className="magnet-step">
+                <span className="magnet-step-num" aria-hidden="true">
+                  {index + 1}
+                </span>
+                <div>
+                  <h2 className="magnet-step-title">{step.label}</h2>
+                  <p className="magnet-step-note">{step.note}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+
+        <Reveal delayMs={50} className="magnet-page-cta">
+          <a href={leadMagnetMailto(magnet)} className="btn">
+            {magnet.cta}
+          </a>
           <p className="text-base text-ink-soft">Want lessons with the guide?</p>
           <Link href="/contact/" className="btn">
             Get started
