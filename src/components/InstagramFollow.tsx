@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import {
   INSTAGRAM_FOLLOWERS,
   INSTAGRAM_HANDLE,
+  INSTAGRAM_POSTS,
   INSTAGRAM_URL,
 } from "@/data/siteCopy";
 
 const FOLLOWERS_LABEL = INSTAGRAM_FOLLOWERS.toLocaleString("en-US");
 
-/** Scoreboard count-up to the live Instagram follower snapshot. */
+/** Scoreboard count-up, plus a few real reels from @pitchinglesson. */
 export default function InstagramFollow() {
   const ref = useRef<HTMLAnchorElement>(null);
   const [count, setCount] = useState(0);
@@ -52,23 +53,41 @@ export default function InstagramFollow() {
   }, [started]);
 
   return (
-    <a
-      ref={ref}
-      className="ig-follow"
-      href={INSTAGRAM_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Follow @${INSTAGRAM_HANDLE} on Instagram, ${FOLLOWERS_LABEL} followers`}
-    >
-      <span className="ig-follow-count">
-        <span className="ig-follow-count-ghost" aria-hidden="true">
-          {FOLLOWERS_LABEL}
+    <div className="ig-block">
+      <a
+        ref={ref}
+        className="ig-follow"
+        href={INSTAGRAM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Follow @${INSTAGRAM_HANDLE} on Instagram, ${FOLLOWERS_LABEL} followers`}
+      >
+        <span className="ig-follow-count">
+          <span className="ig-follow-count-ghost" aria-hidden="true">
+            {FOLLOWERS_LABEL}
+          </span>
+          <span className="ig-follow-count-live" aria-hidden="true">
+            {count.toLocaleString("en-US")}
+          </span>
         </span>
-        <span className="ig-follow-count-live" aria-hidden="true">
-          {count.toLocaleString("en-US")}
-        </span>
-      </span>
-      <span className="ig-follow-label">Followers on Instagram</span>
-    </a>
+        <span className="ig-follow-label">Followers on Instagram</span>
+      </a>
+      <ul className="ig-grid">
+        {INSTAGRAM_POSTS.map((post) => (
+          <li key={post.id}>
+            <a
+              className="ig-post"
+              href={post.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={post.src} alt={post.alt} width={560} height={560} />
+              <span className="ig-post-play" aria-hidden="true" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

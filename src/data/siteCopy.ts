@@ -13,6 +13,33 @@ export const INSTAGRAM_HANDLE = "pitchinglesson";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 /** Public @pitchinglesson count as of 2026-09-21. Update when it moves. */
 export const INSTAGRAM_FOLLOWERS = 4102;
+/** Four newest public reels from @pitchinglesson, snapshotted 2026-09-21. */
+export const INSTAGRAM_POSTS = [
+  {
+    id: "DdgzLp6owYP",
+    href: "https://www.instagram.com/p/DdgzLp6owYP/",
+    src: "/assets/ig/ddgzlp6owyp.jpg",
+    alt: "Instagram reel: keep the same arm slot so pitches start on one line",
+  },
+  {
+    id: "DdPzrjEAerg",
+    href: "https://www.instagram.com/p/DdPzrjEAerg/",
+    src: "/assets/ig/ddpzrjeaerg.jpg",
+    alt: "Instagram reel: don't get ahead early just to lose the hitter later",
+  },
+  {
+    id: "DdCqjb5pq_s",
+    href: "https://www.instagram.com/p/DdCqjb5pq_s/",
+    src: "/assets/ig/ddcqjb5pq_s.jpg",
+    alt: "Instagram reel: the little things at the plate can pay off",
+  },
+  {
+    id: "Dc_TtnUo01K",
+    href: "https://www.instagram.com/p/Dc_TtnUo01K/",
+    src: "/assets/ig/dc_ttnuo01k.jpg",
+    alt: "Instagram reel: pitching ahead versus pitching behind",
+  },
+] as const;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const ENROLL_LABEL = "Book an Evaluation";
 export const ENROLL_HREF = "/contact/";
