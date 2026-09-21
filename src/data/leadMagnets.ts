@@ -168,6 +168,93 @@ export const leadMagnets: LeadMagnet[] = [
     ],
   },
   {
+    slug: "band-routine-checklist",
+    title: "Band routine checklist",
+    metaTitle: "Band Routine Checklist for Young Pitchers",
+    metaDescription:
+      "Parent-friendly: band warm-up checklist to use before throwing — J-Bands and singular-band moves for youth pitchers in Naples, FL / SWFL pitching lessons.",
+    kicker: "Free guide",
+    note: "J-Bands + band warm-up before you throw — same checklist we use in lessons.",
+    topic: "Arm care",
+    icon: "/assets/icons/icon-arm-care-v2.png",
+    ogImage: "/assets/icons/icon-arm-care-v2.png",
+    emailSubject: "Band Routine Checklist",
+    cta: ENROLL_LABEL,
+    ctaHref: "/contact/",
+    sections: [
+      {
+        heading: "Why we do this before we throw",
+        paragraphs: [
+          "This band routine warms up the arm, wakes up the small muscles that help control the shoulder, and keeps the shoulder stable and mobile so the arm feels good during the throwing program.",
+          "A light burn is what you want. If 10 reps feel too hard, move closer to the band. If they don't feel anything, step farther away.",
+        ],
+      },
+      {
+        heading: "Printable checklist",
+        paragraphs: [
+          "Want the same sheet we use in lessons? Download the printable checklist and keep it in the bag.",
+        ],
+        links: [
+          {
+            href: "/guides/band-routine-checklist.pdf",
+            label: "Download the printable checklist",
+          },
+        ],
+      },
+      {
+        heading: "J-Bands (10–15 reps each)",
+        paragraphs: [
+          "If you've got J-Bands, run this list. Ten to fifteen quality reps of each move.",
+        ],
+        bullets: [
+          "External/internal shoulder extensions",
+          "Wall facing I's extension",
+          "Wall facing T's extension",
+          "90's internal rotation",
+          "Wall facing Y extensions",
+          "I's extension Away",
+          "T's extension Away",
+          "90's external rotation",
+          "Tricep Extension Away",
+        ],
+      },
+      {
+        heading: "Singular band (10–15 reps each)",
+        paragraphs: [
+          "Same idea with a regular band. Ten to fifteen quality reps of each.",
+        ],
+        bullets: [
+          "Palms up pull apart",
+          "Palms down pull apart",
+          "Diagonal pull apart",
+          "Behind the head shoulder blade pinch",
+          "Around the worlds",
+          "Bicep curls",
+          "Tricep extension",
+          "Shoulder press",
+        ],
+      },
+      {
+        heading: "Before you throw",
+        paragraphs: [
+          "One set of each movement, 10–15 quality reps, before you throw. If it hurts, stop. Tell a parent or coach. We don't throw through that.",
+        ],
+      },
+      {
+        heading: "Easy next step",
+        paragraphs: [
+          "Share age, goals, and schedule on the short form. We'll get this routine into lessons if that's what they need.",
+        ],
+        links: [
+          { href: "/contact/", label: ENROLL_LABEL },
+          { href: "/guides/arm-care-checklist/", label: "Arm-care checklist" },
+          { href: "/guides/pre-catch-warmup/", label: "Pre-catch warmup" },
+          { href: "/guides/", label: "Free guides" },
+        ],
+      },
+    ],
+  },
+  {
     slug: "strike-tips",
     title: "Strike tips",
     kicker: "Free guide",
