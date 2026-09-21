@@ -4,6 +4,7 @@ import ParkSky from "@/components/ParkSky";
 import {
   leadMagnetCtaHref,
   type LeadMagnet,
+  type LeadMagnetLink,
   type LeadMagnetSection,
 } from "@/data/leadMagnets";
 import { ENROLL_HREF, ENROLL_LABEL } from "@/data/siteCopy";
@@ -26,6 +27,25 @@ function groupSections(sections: LeadMagnetSection[]) {
   }
 
   return groups;
+}
+
+function GuideLink({ link }: { link: LeadMagnetLink }) {
+  const className = link.href === "/contact/" ? "btn" : "footer-link";
+  const isFile = /\.pdf$/i.test(link.href);
+
+  if (isFile) {
+    return (
+      <a href={link.href} className={className} download>
+        {link.label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={link.href} className={className}>
+      {link.label}
+    </Link>
+  );
 }
 
 function GuideSection({ section }: { section: LeadMagnetSection }) {
@@ -63,15 +83,7 @@ function GuideSection({ section }: { section: LeadMagnetSection }) {
         <ul className="guide-links">
           {section.links.map((link) => (
             <li key={link.href}>
-              {link.href === "/contact/" ? (
-                <Link href={link.href} className="btn">
-                  {link.label}
-                </Link>
-              ) : (
-                <Link href={link.href} className="footer-link">
-                  {link.label}
-                </Link>
-              )}
+              <GuideLink link={link} />
             </li>
           ))}
         </ul>
