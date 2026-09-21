@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { DM_Sans, Oswald, Yesteryear } from "next/font/google";
+import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MouseGlove from "@/components/MouseGlove";
+import NaplesSkyClock from "@/components/NaplesSkyClock";
+import { NAPLES_SKY_BOOT } from "@/lib/naplesSky";
 import {
   META_DESCRIPTION,
   OG_DESCRIPTION,
@@ -92,11 +95,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${oswald.variable} ${yesteryear.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans text-foreground">
+        <Script id="naples-sky-boot" strategy="beforeInteractive">
+          {NAPLES_SKY_BOOT}
+        </Script>
         <Header />
         <MouseGlove />
+        <NaplesSkyClock />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
