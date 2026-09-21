@@ -152,7 +152,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
           target="_blank"
           rel="noopener noreferrer"
         >
-          See all on Trustpilot
+          See more on Trustpilot
         </a>
       </div>
     );
@@ -175,7 +175,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
           target="_blank"
           rel="noopener noreferrer"
         >
-          See all on Trustpilot
+          See more on Trustpilot
         </a>
       </div>
     );
@@ -283,7 +283,7 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         target="_blank"
         rel="noopener noreferrer"
       >
-        See all on Trustpilot
+        See more on Trustpilot
       </a>
       <p className="reviews-swipe-hint">Swipe to read the next one</p>
     </div>
