@@ -1,10 +1,12 @@
 import Link from "next/link";
 import GuideClip from "@/components/GuideClip";
 import GuideSteps from "@/components/GuideSteps";
+import GuideToc from "@/components/GuideToc";
 import GuideVideoLock from "@/components/GuideVideoLock";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import {
+  guideOutline,
   leadMagnetCtaHref,
   type LeadMagnet,
   type LeadMagnetLink,
@@ -13,10 +15,10 @@ import {
 import { stripGuideVideos } from "@/data/guideVideoMap";
 import { ENROLL_HREF, ENROLL_LABEL } from "@/data/siteCopy";
 
-function groupSections(sections: LeadMagnetSection[]) {
+function groupSections<T extends LeadMagnetSection>(sections: T[]) {
   const groups: Array<
-    | { type: "section"; item: LeadMagnetSection }
-    | { type: "flags"; items: LeadMagnetSection[] }
+    | { type: "section"; item: T }
+    | { type: "flags"; items: T[] }
   > = [];
 
   for (let i = 0; i < sections.length; i += 1) {
@@ -52,7 +54,7 @@ function GuideLink({ link }: { link: LeadMagnetLink }) {
   );
 }
 
-function GuideSection({ section }: { section: LeadMagnetSection }) {
+function GuideSection({ section }: { section: LeadMagnetSection & { id?: string } }) {
   const listClass = section.tone
     ? "guide-list guide-flag-list"
     : section.bullets
@@ -63,7 +65,9 @@ function GuideSection({ section }: { section: LeadMagnetSection }) {
     <section
       className={`guide-section${section.tone ? ` guide-flag guide-flag-${section.tone}` : ""}`}
     >
-      <h2 className="ui-title ui-title-sm">{section.heading}</h2>
+      <h2 id={section.id} className="ui-title ui-title-sm guide-toc-target">
+        {section.heading}
+      </h2>
       {section.paragraphs?.map((paragraph) => (
         <p key={paragraph} className="guide-copy">
           {paragraph}
@@ -115,11 +119,13 @@ function MagnetCta({ magnet }: { magnet: LeadMagnet }) {
 /** One landing page shape for every free lead magnet. */
 export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
   const isLongForm = Boolean(magnet.sections?.length);
-  const groups = magnet.sections ? groupSections(magnet.sections) : [];
+  const outline = guideOutline(magnet);
+  const groups = groupSections(outline.sections);
+  const showToc = outline.toc.length > 0;
 
   return (
     <ParkSky tone="park">
-      <article className="park-page magnet-page">
+      <article className={`park-page magnet-page${showToc ? " has-toc" : ""}`}>
         <Reveal className="guide-hero">
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/guides/" className="hover:underline">
@@ -153,6 +159,9 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
           </div>
         </Reveal>
 
+        {showToc ? <GuideToc items={outline.toc} /> : null}
+
+        <div className="guide-body">
         {magnet.steps?.length ? (
           <Reveal delayMs={30}>
             <GuideSteps steps={magnet.steps} />
@@ -161,11 +170,13 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
 
         {magnet.routines?.length ? (
           magnet.videoGate ? (
-            <GuideVideoLock slug={magnet.slug} routines={stripGuideVideos(magnet.routines)} />
+            <GuideVideoLock slug={magnet.slug} routines={stripGuideVideos(outline.routines)} />
           ) : (
-            magnet.routines.map((routine, index) => (
+            outline.routines.map((routine, index) => (
               <Reveal key={routine.heading} delayMs={40 + index * 20} className="guide-routine">
-                <h2 className="ui-title ui-title-sm">{routine.heading}</h2>
+                <h2 id={routine.id} className="ui-title ui-title-sm guide-toc-target">
+                  {routine.heading}
+                </h2>
                 {routine.note ? <p className="guide-copy">{routine.note}</p> : null}
                 <GuideSteps steps={routine.steps} titleTag="h3" />
               </Reveal>
@@ -197,6 +208,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
             </Link>
           </Reveal>
         )}
+        </div>
       </article>
     </ParkSky>
   );
