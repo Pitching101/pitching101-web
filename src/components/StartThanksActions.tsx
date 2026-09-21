@@ -42,7 +42,7 @@ export default function StartThanksActions() {
       </a>
       {lead.email ? (
         <a href={thanksEmailHref(lead)} className="footer-link">
-          Email me what happens next
+          Email what happens next
         </a>
       ) : (
         <a href={thanksEmailHref(lead)} className="footer-link">

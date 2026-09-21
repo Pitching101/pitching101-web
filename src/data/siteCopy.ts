@@ -26,23 +26,23 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Coach Deising. Kids 8–16 in Naples, FL. He's the JV head coach at Gulfshore High School. Arm care and a plan you can use Tuesday.",
+    a: "Coach Deising works with kids ages 8–16 in Naples, FL. He is the junior varsity head coach at Gulfshore High School. Lessons include arm care and a plan they can use at the next practice.",
   },
   {
     q: "What ages do you coach?",
-    a: "8–16. That's when simple cues actually stick.",
+    a: "Ages 8–16.",
   },
   {
     q: "Who do you work with?",
-    a: "Kids 8–16. Sometimes a parent. Sometimes another coach, a travel team, or a school. Same work.",
+    a: "Kids ages 8–16. We work with parents, other coaches, travel teams, and schools.",
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
-    a: "Naples and SWFL. No walk-up address — text 845-768-2211 and I'll tell you where to meet.",
+    a: "Naples and Southwest Florida. There is no walk-up address — text 845-768-2211 and we will share the meeting location.",
   },
   {
     q: "Do you only do in-person lessons?",
-    a: "Nope. In person, at home, or both. Pick what fits the week.",
+    a: "No. Lessons can be in person, at home, or both.",
   },
   {
     q: "How do I get started?",
@@ -50,14 +50,14 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Do you teach arm care with pitching?",
-    a: "Yes. Warm-up and cool-down come with the work.",
+    a: "Yes. Warm-up and cool-down are part of every lesson.",
   },
 ];
 
 export const trainingOptions = [
   {
     label: "In person",
-    note: "Around Naples. I'll say where.",
+    note: "Lessons around Naples. We will confirm the field.",
     icon: "/assets/icons/icon-strikes.png",
   },
   {
@@ -67,7 +67,7 @@ export const trainingOptions = [
   },
   {
     label: "A mix",
-    note: "Home work plus live check-ins.",
+    note: "At-home work plus live check-ins.",
     icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
@@ -81,10 +81,10 @@ export const guyChips = [
 ];
 
 export const workWith = [
-  { label: "Parents", note: "A parent or guardian texts. We pick a field." },
-  { label: "Other coaches", note: "I can work next to your plan." },
-  { label: "Travel teams", note: "A coach or team mom. Same ages." },
-  { label: "Schools", note: "Kids 8–16. I'll say where." },
+  { label: "Parents", note: "A parent or guardian reaches out. We confirm a field." },
+  { label: "Other coaches", note: "We can work alongside your existing plan." },
+  { label: "Travel teams", note: "A coach or team contact. Same ages." },
+  { label: "Schools", note: "Kids 8–16. We will confirm the location." },
 ];
 
 export const workWithRoles = [
@@ -96,7 +96,7 @@ export const workWithRoles = [
 
 export const startSteps = [
   {
-    label: "Tell me who",
+    label: "Tell us who",
     note: "Ages 8–16. Parent, coach, travel team, or school — and how you want to train.",
   },
   {
@@ -105,25 +105,25 @@ export const startSteps = [
   },
   {
     label: "First session",
-    note: "Warmup, a few cues, something to try next practice.",
+    note: "Warm-up, a few cues, and work for the next practice.",
   },
   {
     label: "Keep the plan",
-    note: "In person, at home, or both — pick what fits.",
+    note: "In person, at home, or both — choose what fits.",
   },
 ];
 
 export const sessionBeats = [
   {
     label: "Warmup",
-    note: "Arm care first. Same stuff they can do next practice.",
+    note: "Arm care first. The same routine they can use at practice.",
   },
   {
     label: "A few cues",
-    note: "One or two things they can actually keep.",
+    note: "One or two cues they can keep.",
   },
   {
     label: "Something to try",
-    note: "They leave with work for Tuesday.",
+    note: "They leave with work for the next practice.",
   },
 ];

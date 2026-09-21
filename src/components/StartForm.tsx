@@ -23,7 +23,7 @@ export default function StartForm() {
   return (
     <form className="start-form" onSubmit={onSubmit}>
       <fieldset className="start-field">
-        <legend>I am a</legend>
+        <legend>Role</legend>
         <div className="start-train">
           {workWithRoles.map((role) => (
             <label key={role} className="start-train-option">
@@ -63,12 +63,12 @@ export default function StartForm() {
         </label>
       </div>
       <label className="start-field">
-        <span>Phone so I can call you</span>
+        <span>Phone</span>
         <input name="phone" type="tel" autoComplete="tel" required />
       </label>
       <label className="start-field">
         <span>
-          Email <em>optional — I can send more info</em>
+          Email <em>optional</em>
         </span>
         <input name="email" type="email" autoComplete="email" />
       </label>
@@ -91,19 +91,19 @@ export default function StartForm() {
       </fieldset>
       <label className="start-field">
         <span>
-          Anything I should know <em>optional</em>
+          Additional details <em>optional</em>
         </span>
         <textarea name="note" rows={3} />
       </label>
       <button type="submit" className="btn" disabled={sending}>
-        {sending ? "Opening a text…" : "Text Coach Deising and get started"}
+        {sending ? "Sending…" : "Get started"}
       </button>
       <p className="start-form-or">
         {RESPONSE_PROMISE} Or{" "}
         <a className="footer-link" href={`sms:${PHONE_TEL}`}>
           text {PHONE_DISPLAY}
-        </a>{" "}
-        yourself.
+        </a>
+        .
       </p>
     </form>
   );

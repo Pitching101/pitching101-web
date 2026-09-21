@@ -22,9 +22,9 @@ export default function GuidesPage() {
             </Link>
           </p>
           <p className="ui-chip px-3.5 py-1.5">Free · ages 8–16</p>
-          <h1 className="ui-title ui-title-lg">Free guides you can use tonight</h1>
+          <h1 className="ui-title ui-title-lg">Free youth pitching guides</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Same cues I use on the field. Pick a card.
+            The same cues used in lessons.
           </p>
         </Reveal>
 
@@ -33,7 +33,7 @@ export default function GuidesPage() {
         </Reveal>
 
         <Reveal delayMs={60} className="mt-12 space-y-4">
-          <p className="text-base text-ink-soft">Want a coach with the PDF?</p>
+          <p className="text-base text-ink-soft">Want lessons with the guide?</p>
           <Link href="/contact/" className="btn">
             Get started
           </Link>

@@ -40,7 +40,7 @@ export default function HomePage() {
               Youth pitching lessons in Naples, FL
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
-              More strikes. A healthy arm. A plan you can say in the car.
+              More strikes. A healthy arm. A clear plan.
             </p>
             <div className="home-cta-row pt-1">
               <Link href="/contact/" className="btn">
@@ -74,10 +74,9 @@ export default function HomePage() {
             <Reveal className="space-y-4">
               <h2 className="ui-title ui-title-md">About Coach Deising</h2>
               <p className="text-lg leading-relaxed text-ink">
-                I coach kids 8–16 in Naples. I&apos;m the junior varsity
-                head coach at Gulfshore High School. Sometimes I work
-                with a parent. Sometimes another coach, a travel team,
-                or a school.
+                I coach kids ages 8–16 in Naples. I am the junior
+                varsity head coach at Gulfshore High School. I work
+                with parents, other coaches, travel teams, and schools.
               </p>
             </Reveal>
             <Reveal delayMs={40}>
@@ -97,7 +96,7 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                See the work on Instagram
+                Follow on Instagram
               </a>
             </Reveal>
           </div>
@@ -112,7 +111,7 @@ export default function HomePage() {
         <div className="home-stack how-clouds-content space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">How we train</h2>
-            <p className="text-base text-ink-soft">Pick what fits this week.</p>
+            <p className="text-base text-ink-soft">Choose how you want to train.</p>
           </Reveal>
 
           <Reveal delayMs={40}>
@@ -144,7 +143,7 @@ export default function HomePage() {
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">Questions</h2>
-            <p className="text-base text-ink-soft">Tap a question.</p>
+            <p className="text-base text-ink-soft">Common questions about lessons.</p>
           </Reveal>
           <Reveal delayMs={40}>
             <FaqList items={faqs} />
@@ -169,7 +168,7 @@ export default function HomePage() {
         </div>
         <div className="home-stadium-inner">
           <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-24 text-center sm:px-8 sm:pt-28 sm:pb-44">
-            <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
+            <p className="ui-title ui-title-sm">See how we train</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
               Get started

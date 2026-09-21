@@ -37,7 +37,7 @@ export default function BaseballCardFan() {
         <p className="bb-card-kicker">Roster</p>
         <p className="bb-card-stat">8–16</p>
         <p className="bb-card-label">Ages</p>
-        <p className="bb-card-note">Still learning the mound.</p>
+        <p className="bb-card-note">Youth pitchers on the mound.</p>
       </li>
       <li
         ref={nickRef}

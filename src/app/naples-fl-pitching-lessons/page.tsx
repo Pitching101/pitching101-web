@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
 import JsonLd, { faqJsonLd } from "@/components/JsonLd";
-import { faqs, trainingOptions } from "@/data/siteCopy";
+import { faqs, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Pitching coach for kids in Naples, FL",
@@ -48,9 +48,9 @@ export default function NaplesPitchingLessonsPage() {
             Youth pitching lessons in Naples, FL
           </h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Coach Deising. Kids 8–16. JV head coach at Gulfshore High
-            School. Sometimes a parent. Sometimes another coach, a
-            travel team, or a school.
+            Coach Deising works with kids ages 8–16. He is the junior
+            varsity head coach at Gulfshore High School, and works with
+            parents, other coaches, travel teams, and schools.
           </p>
           <Link href="/contact/" className="btn">
             Get started
@@ -86,7 +86,7 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-4">
-          <p className="text-ink-soft">Text first. I&apos;ll point you to the field.</p>
+          <p className="text-ink-soft">{RESPONSE_PROMISE}</p>
           <Link href="/contact/" className="btn">
             Get started
           </Link>
