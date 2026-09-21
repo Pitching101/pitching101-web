@@ -3,7 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import StartForm from "@/components/StartForm";
-import { ENROLL_LABEL, RESPONSE_PROMISE, shareImage } from "@/data/siteCopy";
+import { ENROLL_LABEL, RESPONSE_PROMISE, pageTitle, shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: ENROLL_LABEL,
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Book an evaluation with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/" },
   openGraph: {
-    title: `${ENROLL_LABEL} | Pitching101`,
+    title: pageTitle(ENROLL_LABEL),
     description:
       "Book an evaluation with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
     url: "/contact/",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${ENROLL_LABEL} | Pitching101`,
+    title: pageTitle(ENROLL_LABEL),
     description:
       "Book an evaluation with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
     images: ["/og/contact.png"],

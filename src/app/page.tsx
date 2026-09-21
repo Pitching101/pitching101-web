@@ -21,6 +21,7 @@ import {
   faqs,
   guyChips,
   HERO_LINE,
+  HOME_TITLE,
   HOW_WE_TRAIN_LINE,
   META_DESCRIPTION,
   OG_DESCRIPTION,
@@ -31,9 +32,7 @@ import {
 } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: {
-    absolute: "Youth pitching lessons in Naples, FL | Pitching101",
-  },
+  title: HOME_TITLE,
   description: META_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import LeadMagnetShelf from "@/components/LeadMagnetShelf";
-import { ENROLL_HREF, ENROLL_LABEL, shareImage } from "@/data/siteCopy";
+import { ENROLL_HREF, ENROLL_LABEL, pageTitle, shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Free pitching guides for kids 8–16 in Naples: how to choose lessons, arm care, strike tips, and a pre-catch warmup. Same stuff I use in lessons.",
   alternates: { canonical: "/guides/" },
   openGraph: {
-    title: "Free youth pitching guides | Pitching101",
+    title: pageTitle("Free youth pitching guides"),
     description:
       "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup.",
     url: "/guides/",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free youth pitching guides | Pitching101",
+    title: pageTitle("Free youth pitching guides"),
     description:
       "Free pitching guides for ages 8–16 in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup.",
     images: ["/og/guides.png"],

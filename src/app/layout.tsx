@@ -9,6 +9,7 @@ import {
   OG_DESCRIPTION,
   OG_IMAGE,
   OG_TITLE,
+  BRAND_NAME,
   shareImage,
   SITE_URL,
 } from "@/data/siteCopy";
@@ -44,10 +45,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  applicationName: "Pitching101",
+  applicationName: BRAND_NAME,
   title: {
     default: OG_TITLE,
-    template: "%s | Pitching101",
+    template: `${BRAND_NAME} | %s`,
   },
   description: META_DESCRIPTION,
   keywords: [
