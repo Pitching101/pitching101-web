@@ -1118,6 +1118,42 @@ export function getLeadMagnet(slug: string) {
   return leadMagnets.find((magnet) => magnet.slug === slug);
 }
 
+/** Topics that sit next to each other when a guide has no siblings. */
+const RELATED_TOPICS: Record<string, string[]> = {
+  "Arm care": ["Warmup", "Strength"],
+  Warmup: ["Arm care", "Strength"],
+  Strength: ["Warmup", "Arm care"],
+  Strikes: ["Games", "Long toss", "Lessons"],
+  Games: ["Strikes", "Long toss"],
+  "Long toss": ["Strikes", "Lessons", "Warmup"],
+  Lessons: ["Long toss", "Strikes", "Choosing a coach"],
+  "Choosing a coach": ["Lessons", "Arm care", "Strikes"],
+};
+
+/** Other guides to show at the bottom of a post. Same topic first. */
+export function relatedGuides(slug: string, limit = 3): LeadMagnet[] {
+  const current = getLeadMagnet(slug);
+  if (!current) return [];
+
+  const others = leadMagnets.filter((magnet) => magnet.slug !== slug);
+  const order = [current.topic, ...(RELATED_TOPICS[current.topic] ?? [])];
+  const picked: LeadMagnet[] = [];
+
+  for (const topic of order) {
+    for (const magnet of others) {
+      if (picked.length >= limit) return picked;
+      if (magnet.topic === topic && !picked.includes(magnet)) picked.push(magnet);
+    }
+  }
+
+  for (const magnet of others) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(magnet)) picked.push(magnet);
+  }
+
+  return picked;
+}
+
 export function leadMagnetMailto(magnet: LeadMagnet) {
   return `mailto:${EMAIL}?subject=${encodeURIComponent(magnet.emailSubject)}`;
 }
