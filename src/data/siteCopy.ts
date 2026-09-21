@@ -25,7 +25,7 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Coach Nick. Kids 8–14 in Naples, FL. Clear cues, arm care, and a plan you can use Tuesday.",
+    a: "Coach Nick. Kids 8–14 in Naples, FL. Arm care and a plan you can use Tuesday.",
   },
   {
     q: "What ages do you coach?",
