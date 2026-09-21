@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { DM_Sans, Oswald, Yesteryear } from "next/font/google";
-import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MouseGlove from "@/components/MouseGlove";
@@ -98,10 +97,14 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${oswald.variable} ${yesteryear.variable} ${dmSans.variable} h-full antialiased`}
     >
+      <head>
+        {/* Blocking: next/script beforeInteractive is queued after first paint. */}
+        <script
+          id="naples-sky-boot"
+          dangerouslySetInnerHTML={{ __html: NAPLES_SKY_BOOT }}
+        />
+      </head>
       <body className="flex min-h-full flex-col font-sans text-foreground">
-        <Script id="naples-sky-boot" strategy="beforeInteractive">
-          {NAPLES_SKY_BOOT}
-        </Script>
         <Header />
         <MouseGlove />
         <NaplesSkyClock />
