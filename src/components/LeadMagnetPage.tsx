@@ -1,45 +1,16 @@
 import Link from "next/link";
 import GuideClip from "@/components/GuideClip";
+import GuideSteps from "@/components/GuideSteps";
+import GuideVideoLock from "@/components/GuideVideoLock";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import {
   leadMagnetCtaHref,
   type LeadMagnet,
   type LeadMagnetSection,
-  type LeadMagnetStep,
 } from "@/data/leadMagnets";
+import { stripGuideVideos } from "@/data/guideVideoMap";
 import { ENROLL_HREF, ENROLL_LABEL } from "@/data/siteCopy";
-
-function StepList({
-  steps,
-  numbered = true,
-  titleTag = "h2",
-}: {
-  steps: LeadMagnetStep[];
-  numbered?: boolean;
-  titleTag?: "h2" | "h3";
-}) {
-  const List = numbered ? "ol" : "ul";
-  const Title = titleTag;
-  return (
-    <List className="magnet-template">
-      {steps.map((step, index) => (
-        <li key={step.label} className="magnet-step">
-          {numbered ? (
-            <span className="magnet-step-num" aria-hidden="true">
-              {index + 1}
-            </span>
-          ) : null}
-          <div>
-            <Title className="magnet-step-title">{step.label}</Title>
-            <p className="magnet-step-note">{step.note}</p>
-            {step.video ? <GuideClip src={step.video} label={step.label} /> : null}
-          </div>
-        </li>
-      ))}
-    </List>
-  );
-}
 
 function groupSections(sections: LeadMagnetSection[]) {
   const groups: Array<
@@ -163,7 +134,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
           <ul className="bb-chip-row">
             <li className="bb-chip">{magnet.topic}</li>
             <li className="bb-chip">Ages 8–16</li>
-            <li className="bb-chip">Free</li>
+            <li className="bb-chip">{magnet.videoGate ? "Sign in for clips" : "Free"}</li>
           </ul>
           <div className="home-cta-row">
             <MagnetCta magnet={magnet} />
@@ -172,17 +143,23 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
 
         {magnet.steps?.length ? (
           <Reveal delayMs={30}>
-            <StepList steps={magnet.steps} />
+            <GuideSteps steps={magnet.steps} />
           </Reveal>
         ) : null}
 
-        {magnet.routines?.map((routine, index) => (
-          <Reveal key={routine.heading} delayMs={40 + index * 20} className="guide-routine">
-            <h2 className="ui-title ui-title-sm">{routine.heading}</h2>
-            {routine.note ? <p className="guide-copy">{routine.note}</p> : null}
-            <StepList steps={routine.steps} titleTag="h3" />
-          </Reveal>
-        ))}
+        {magnet.routines?.length ? (
+          magnet.videoGate ? (
+            <GuideVideoLock slug={magnet.slug} routines={stripGuideVideos(magnet.routines)} />
+          ) : (
+            magnet.routines.map((routine, index) => (
+              <Reveal key={routine.heading} delayMs={40 + index * 20} className="guide-routine">
+                <h2 className="ui-title ui-title-sm">{routine.heading}</h2>
+                {routine.note ? <p className="guide-copy">{routine.note}</p> : null}
+                <GuideSteps steps={routine.steps} titleTag="h3" />
+              </Reveal>
+            ))
+          )
+        ) : null}
 
         {groups.map((group, index) =>
           group.type === "flags" ? (

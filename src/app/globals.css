@@ -3150,6 +3150,70 @@ a.reviews-verified:focus-visible {
   max-width: 22rem;
   margin-top: 0.15rem;
 }
+.guide-gate {
+  position: relative;
+  margin-top: 2.25rem;
+}
+.guide-gate-wait,
+.guide-gate-in {
+  margin: 2rem auto 0;
+  max-width: 40rem;
+  text-align: left;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+}
+.guide-gate-peek {
+  max-height: 34rem;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mask-image: linear-gradient(180deg, #000 36%, transparent 92%);
+}
+.guide-gate-ghost {
+  filter: blur(1.5px);
+  opacity: 0.55;
+}
+.guide-gate-lock {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 26rem;
+  margin: -8.5rem auto 0;
+  padding: 1.25rem 1.2rem 1.35rem;
+  background: linear-gradient(180deg, var(--card-stock) 0%, var(--card-stock-deep) 100%);
+  border: 4px solid var(--card-rim);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 2px #0f1a2e,
+    8px 10px 0 rgba(15, 26, 46, 0.14);
+  text-align: left;
+}
+.guide-gate-lock .ui-title {
+  text-align: left;
+  margin-top: 0.25rem;
+}
+.guide-gate-lock .guide-copy {
+  margin-top: 0.55rem;
+}
+.guide-gate-lock .start-form {
+  margin-top: 1rem;
+  max-width: none;
+}
+.guide-gate-lock .btn,
+.guide-gate-lock .btn-ghost {
+  width: 100%;
+}
+.guide-gate-warn,
+.guide-gate-ok {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+}
+.guide-gate-warn {
+  color: var(--red-deep);
+}
+.guide-gate-ok {
+  color: var(--green-dark);
+}
 .magnet-step {
   display: grid;
   grid-template-columns: 2.35rem 1fr;

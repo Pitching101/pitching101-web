@@ -57,6 +57,8 @@ export type LeadMagnet = {
   introVideo?: string;
   /** Named checklists with clips, like the band routine. */
   routines?: LeadMagnetRoutine[];
+  /** Hide routine clips until they sign in (same login as the dugout). */
+  videoGate?: boolean;
 };
 
 export const leadMagnets: LeadMagnet[] = [
@@ -148,15 +150,16 @@ export const leadMagnets: LeadMagnet[] = [
     slug: "arm-care-checklist",
     title: "Arm-care checklist",
     kicker: "Free guide",
-    note: "This is the same band routine I run in lessons. Hit play and do it with me.",
+    note: "This is the same band routine I run in lessons. Hit play on the welcome. Sign in to run the rest with me.",
     topic: "Arm care",
     icon: "/assets/icons/icon-arm-care-v2.png",
     ogImage: "/assets/icons/icon-arm-care-v2.png",
     metaDescription:
-      "Coach Deising's band-routine videos for youth pitchers in Naples, FL. Watch the J-band and single-band checklist right on the page.",
+      "Coach Deising's band-routine videos for youth pitchers in Naples, FL. Watch the welcome, then sign in for the J-band and single-band checklist.",
     emailSubject: "Arm-Care Checklist Guide",
     cta: "Email the checklist",
     introVideo: "/videos/band/00-welcome.mp4",
+    videoGate: true,
     steps: [
       {
         label: "Get warm first",
