@@ -23,7 +23,7 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Pitching101 is Coach Nick's pitching lessons for kids ages 8-14 in Naples, FL. You get clear cues, healthy arm habits, and a plan you can use between practices — not a binder of jargon.",
+    a: "Pitching101 is Coach Nick's pitching lessons for kids ages 8-14 in Naples, FL. You get clear cues, healthy arm habits, and a plan you can use between practices.",
   },
   {
     q: "What ages do you coach?",
