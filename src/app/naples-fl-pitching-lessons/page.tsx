@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Coach Nick helps kids ages 8-14 throw more strikes in Naples and SWFL. Clear coaching. No jargon.",
+      "Coach Nick helps kids ages 8-14 throw more strikes in Naples and SWFL.",
     type: "website",
   },
 };
