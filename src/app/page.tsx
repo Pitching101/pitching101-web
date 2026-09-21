@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     absolute: "Youth pitching lessons in Naples, FL | Pitching101",
   },
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Coach Nick helps kids ages 8-14 throw more strikes. Clear cues. Arm care first. Naples, FL.",
+      "Coach Nick helps kids ages 8-14 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
   },
 };
 
@@ -42,22 +42,23 @@ export default function HomePage() {
               More strikes. A healthy arm. A plan you can say in the car.
             </p>
             <div className="home-cta-row pt-1">
-              <Link href="#contact" className="btn">
-                Get your child started
+              <Link href="/contact/" className="btn">
+                Get started
               </Link>
             </div>
-            <p className="text-sm text-ink-soft">Text first. Then we pick a field.</p>
+            <p className="text-sm text-ink-soft">
+              Fill in a note. I call or text you back.
+            </p>
           </Reveal>
         </div>
+        <div id="sky-start" aria-hidden="true" />
       </section>
 
-      <section className="text-band" id="reviews" aria-label="What parents say">
+      <section className="text-band scroll-mt-24" id="reviews" aria-label="What people say">
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
-            <h2 className="ui-title ui-title-md">What parents say</h2>
-            <div id="sky-start">
-              <ReviewsCarousel />
-            </div>
+            <h2 className="ui-title ui-title-md">What people say</h2>
+            <ReviewsCarousel />
           </Reveal>
         </div>
       </section>
@@ -71,7 +72,9 @@ export default function HomePage() {
           <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              I coach kids 8–14 in Naples.
+              I coach kids 8–14 in Naples. Sometimes I work with a
+              parent. Sometimes another coach, a travel team, or a
+              school.
             </p>
             <BaseballCardFan />
             <ul id="your-guy" className="bb-chip-row">
@@ -133,7 +136,7 @@ export default function HomePage() {
       >
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">Parents ask</h2>
+            <h2 className="ui-title ui-title-md">Questions</h2>
             <p className="text-base text-ink-soft">Tap a question.</p>
           </Reveal>
           <Reveal delayMs={40}>
@@ -162,7 +165,7 @@ export default function HomePage() {
             <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
-              Get your child started
+              Get started
             </Link>
           </div>
         </div>

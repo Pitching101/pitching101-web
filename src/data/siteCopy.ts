@@ -17,7 +17,7 @@ export const business = {
   phoneTel: PHONE_TEL,
   email: EMAIL,
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Clear cues, healthy arm habits, and a plan parents can actually use.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. He works with parents, other coaches, travel teams, and schools.",
 };
 
 export type FaqItem = { q: string; a: string };
@@ -25,11 +25,15 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Coach Nick. Kids 8–14 in Naples, FL. Clear cues, arm care, and a plan you can use Tuesday — not a binder of jargon.",
+    a: "Coach Nick. Kids 8–14 in Naples, FL. Arm care and a plan you can use Tuesday.",
   },
   {
     q: "What ages do you coach?",
     a: "8–14. That's when simple cues actually stick.",
+  },
+  {
+    q: "Who do you work with?",
+    a: "Kids 8–14. Sometimes a parent. Sometimes another coach, a travel team, or a school. Same work.",
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
@@ -40,8 +44,8 @@ export const faqs: FaqItem[] = [
     a: "Nope. In person, at home, or both. Pick what fits the week.",
   },
   {
-    q: "How do I get my child started?",
-    a: "Text or call 845-768-2211. One conversation.",
+    q: "How do I get started?",
+    a: "Fill in the short note. It texts my phone. I call or text you back. Or text 845-768-2211.",
   },
   {
     q: "Do you teach arm care with pitching?",
@@ -69,7 +73,56 @@ export const trainingOptions = [
 
 export const guyChips = [
   "Ages 8–14",
-  "Naples, FL",
-  "More strikes",
-  "Arm care first",
+  "Parents",
+  "Other coaches",
+  "Travel teams",
+  "Schools",
+];
+
+export const workWith = [
+  { label: "Parents", note: "A parent or guardian texts. We pick a field." },
+  { label: "Other coaches", note: "I can work next to your plan." },
+  { label: "Travel teams", note: "A coach or team mom. Same ages." },
+  { label: "Schools", note: "Kids 8–14. I'll say where." },
+];
+
+export const workWithRoles = [
+  "Parent",
+  "Coach",
+  "Travel team",
+  "School",
+] as const;
+
+export const startSteps = [
+  {
+    label: "Tell me who",
+    note: "Ages 8–14. Parent, coach, travel team, or school — and how you want to train.",
+  },
+  {
+    label: "I call or text you back",
+    note: "Your note hits my phone. I'll call the number you left.",
+  },
+  {
+    label: "First session",
+    note: "Warmup, a few cues, something to try next practice.",
+  },
+  {
+    label: "Keep the plan",
+    note: "In person, at home, or both — pick what fits.",
+  },
+];
+
+export const sessionBeats = [
+  {
+    label: "Warmup",
+    note: "Arm care first. Same stuff they can do next practice.",
+  },
+  {
+    label: "A few cues",
+    note: "One or two things they can actually keep.",
+  },
+  {
+    label: "Something to try",
+    note: "They leave with work for Tuesday.",
+  },
 ];
