@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 
-const CLIPS = [
-  { src: "/videos/IMG_2676.mp4", name: "Rep 1" },
-  { src: "/videos/IMG_1247.mp4", name: "Rep 2" },
+const CLIPS: readonly { src: string; poster?: string; name: string }[] = [
+  { src: "/videos/IMG_2676.mp4", poster: "/videos/IMG_2676.jpg", name: "Rep 1" },
+  { src: "/videos/IMG_1247.mp4", poster: "/videos/IMG_1247.jpg", name: "Rep 2" },
   { src: "/videos/IMG_2698.mp4", name: "Rep 3" },
-] as const;
+];
 
 const SHUFFLE_MS = 620;
 
@@ -206,17 +206,28 @@ export default function TrainingClipsStrip() {
             >
               <div className="clip-card-inner">
                 <div className="bb-card-photo">
+                  {item.poster ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      className="training-clip-poster"
+                      src={item.poster}
+                      alt=""
+                      width={480}
+                      height={854}
+                    />
+                  ) : null}
                   <video
                     ref={(node) => {
                       videoRefs.current[i] = node;
                     }}
                     className="training-clip-video"
                     src={inView ? item.src : undefined}
+                    poster={item.poster}
                     muted
                     loop
                     playsInline
                     autoPlay
-                    preload="none"
+                    preload="metadata"
                     aria-hidden="true"
                   />
                 </div>
