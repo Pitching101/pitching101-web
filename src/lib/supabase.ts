@@ -6,14 +6,18 @@ export const LESSON_VIDEO_BUCKET = "lesson-videos";
 
 let client: SupabaseClient | null = null;
 
-export function isPortalConfigured() {
+export function isSupabaseConfigured() {
   return Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   );
 }
 
-/** Browser client for the dugout. Session stays in local storage. */
+export function isPortalConfigured() {
+  return isSupabaseConfigured();
+}
+
+/** Same browser client as the dugout. Session stays in local storage. */
 export function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
