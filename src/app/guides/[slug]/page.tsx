@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import JsonLd, { articleJsonLd } from "@/components/JsonLd";
 import LeadMagnetPage from "@/components/LeadMagnetPage";
 import { getLeadMagnet, leadMagnets } from "@/data/leadMagnets";
-import { shareImage } from "@/data/siteCopy";
+import { pageTitle, shareImage } from "@/data/siteCopy";
 
 export const dynamicParams = false;
 
@@ -31,7 +31,7 @@ export async function generateMetadata({
     alternates: { canonical: url },
     openGraph: {
       type: "article",
-      title,
+      title: pageTitle(title),
       description,
       url,
       siteName: "Pitching101",
@@ -41,7 +41,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: pageTitle(title),
       description,
       images: [image],
     },

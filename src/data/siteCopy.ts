@@ -43,9 +43,15 @@ export const INSTAGRAM_POSTS = [
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const ENROLL_LABEL = "Book an Evaluation";
 export const ENROLL_HREF = "/contact/";
+export const BRAND_NAME = "Pitching101";
+export const HOME_TITLE = "Youth pitching lessons in Naples, FL";
+export function pageTitle(page: string) {
+  return `${BRAND_NAME} | ${page}`;
+}
 export const META_DESCRIPTION =
   "I'm Coach Deising. Youth pitching lessons in Naples, FL for kids 8-16. Book an evaluation, then a simple pack.";
-export const OG_TITLE = "Youth pitching lessons in Naples, FL | Pitching101";
+/** Tab and share title — brand first so a short tab still says Pitching101. */
+export const OG_TITLE = pageTitle(HOME_TITLE);
 export const OG_DESCRIPTION =
   "I'm Coach Deising. I help kids 8-16 throw more strikes in Naples, FL. Book an evaluation, then a simple pack.";
 export const OG_IMAGE = "/og/home.png";

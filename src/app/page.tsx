@@ -32,7 +32,7 @@ import {
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Youth pitching lessons in Naples, FL | Pitching101",
+    absolute: OG_TITLE,
   },
   description: META_DESCRIPTION,
   alternates: { canonical: "/" },
