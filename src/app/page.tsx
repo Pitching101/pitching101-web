@@ -35,11 +35,9 @@ export default function HomePage() {
           <Reveal className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–16</p>
             <HeroArcBalls />
-            <p className="ui-script hero-script" aria-hidden="true">
-              Athletics
-            </p>
-            <h1 className="ui-title ui-title-hero hero-overlay-title">
-              Youth pitching lessons in Naples, FL
+            <h1 className="hero-overlay-title">
+              <span className="ui-script hero-script">Youth</span>
+              <span className="ui-title ui-title-hero">Pitching lessons in Naples, FL</span>
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
               More strikes. A healthy arm. A clear plan.
