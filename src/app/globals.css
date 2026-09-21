@@ -3488,9 +3488,72 @@ a.reviews-verified:focus-visible {
 }
 .portal-desk-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
+}
+.portal-desk-bar .ui-title {
+  margin: 0.2rem 0 0;
+}
+.portal-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+@media (min-width: 700px) {
+  .portal-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.portal-stats li {
+  padding: 0.85rem 0.9rem;
+  background: color-mix(in srgb, var(--card-stock) 88%, #fff);
+  border: 3px solid color-mix(in srgb, #1a2438 42%, var(--card-rim));
+}
+.portal-stats strong {
+  display: block;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.55rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.portal-stats span {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.portal-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.portal-tab {
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 3px solid color-mix(in srgb, #1a2438 42%, #3295fb);
+  background: color-mix(in srgb, #BBD6F1 36%, #fff);
+  color: var(--ink);
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.portal-tab.is-on {
+  background: #3295fb;
+  color: #fff;
+  border-color: #1a2438;
+}
+.portal-grid-desk {
+  margin-top: 0.15rem;
 }
 .portal-grid {
   display: grid;

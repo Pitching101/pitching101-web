@@ -25,6 +25,14 @@ export type Lesson = {
   created_at: string;
 };
 
+export type CoachClip = {
+  id: string;
+  title: string;
+  notes: string | null;
+  video_path: string;
+  created_at: string;
+};
+
 export function todayInNaples() {
   return new Intl.DateTimeFormat("en-CA", {
     timeZone: "America/New_York",

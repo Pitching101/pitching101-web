@@ -11,6 +11,9 @@ import {
   type Profile,
 } from "@/lib/portal";
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
+import CoachClips from "./CoachClips";
+
+type Tab = "lessons" | "clips" | "roster";
 
 export default function CoachDesk({
   supabase,
@@ -21,42 +24,47 @@ export default function CoachDesk({
   profile: Profile;
   onSignOut: () => void;
 }) {
+  const [tab, setTab] = useState<Tab>("lessons");
   const [players, setPlayers] = useState<Player[]>([]);
   const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [clipCount, setClipCount] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [clips, setClips] = useState<Record<string, string>>({});
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
 
   const selected = players.find((player) => player.id === selectedId) ?? null;
-  const selectedLessons = useMemo(
-    () => lessons.filter((lesson) => lesson.player_id === selectedId),
+  const visibleLessons = useMemo(
+    () =>
+      selectedId
+        ? lessons.filter((lesson) => lesson.player_id === selectedId)
+        : lessons,
     [lessons, selectedId],
+  );
+  const playerName = useCallback(
+    (id: string) => players.find((player) => player.id === id)?.first_name || "Kid",
+    [players],
   );
 
   const reload = useCallback(async () => {
-    const [{ data: playerRows }, { data: lessonRows }] = await Promise.all([
+    const [{ data: playerRows }, { data: lessonRows }, { count }] = await Promise.all([
       supabase.from("players").select("id, first_name, age, guardian_email, player_email, notes").order("first_name"),
       supabase.from("lessons").select("id, player_id, held_on, title, notes, video_path, created_at").order("held_on", { ascending: false }),
+      supabase.from("coach_clips").select("id", { count: "exact", head: true }),
     ]);
-    const nextPlayers = (playerRows || []) as Player[];
-    const nextLessons = (lessonRows || []) as Lesson[];
-    setPlayers(nextPlayers);
-    setLessons(nextLessons);
-    setSelectedId((current) => {
-      if (current && nextPlayers.some((player) => player.id === current)) return current;
-      return nextPlayers[0]?.id ?? null;
-    });
+    setPlayers((playerRows || []) as Player[]);
+    setLessons((lessonRows || []) as Lesson[]);
+    setClipCount(count || 0);
   }, [supabase]);
 
   useEffect(() => {
     void reload();
-  }, [reload]);
+  }, [reload, tab]);
 
   useEffect(() => {
     let cancelled = false;
     async function signClips() {
-      const withVideo = selectedLessons.filter((lesson) => lesson.video_path);
+      const withVideo = visibleLessons.filter((lesson) => lesson.video_path);
       const signed = await Promise.all(
         withVideo.map(async (lesson) => {
           const { data } = await supabase.storage
@@ -76,7 +84,7 @@ export default function CoachDesk({
     return () => {
       cancelled = true;
     };
-  }, [selectedLessons, supabase]);
+  }, [visibleLessons, supabase]);
 
   async function addPlayer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -108,9 +116,14 @@ export default function CoachDesk({
 
   async function addLesson(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!selected) return;
     const form = event.currentTarget;
     const data = new FormData(form);
+    const playerId = String(data.get("player_id") || selectedId || "");
+    const kid = players.find((player) => player.id === playerId);
+    if (!kid) {
+      setStatus("Pick a kid first.");
+      return;
+    }
     const heldOn = String(data.get("held_on") || todayInNaples());
     const title = String(data.get("title") || "").trim();
     const notes = String(data.get("notes") || "").trim();
@@ -120,7 +133,7 @@ export default function CoachDesk({
     const { data: inserted, error } = await supabase
       .from("lessons")
       .insert({
-        player_id: selected.id,
+        player_id: kid.id,
         held_on: heldOn,
         title: title || null,
         notes: notes || null,
@@ -141,7 +154,7 @@ export default function CoachDesk({
         return;
       }
       const safeName = file.name.replace(/[^\w.\-]+/g, "-");
-      const path = `${selected.id}/${inserted.id}/${safeName}`;
+      const path = `${kid.id}/${inserted.id}/${safeName}`;
       const { error: uploadError } = await supabase.storage
         .from(LESSON_VIDEO_BUCKET)
         .upload(path, file, { contentType: file.type, upsert: true });
@@ -176,16 +189,181 @@ export default function CoachDesk({
     return map;
   }, [lessons]);
 
+  const videoLessons = lessons.filter((lesson) => lesson.video_path).length;
+
   return (
     <div className="portal-desk">
       <div className="portal-desk-bar">
-        <p className="portal-kicker">Coach desk</p>
+        <div>
+          <p className="portal-kicker">Your desk</p>
+          <h1 className="ui-title ui-title-md">Lessons and clips</h1>
+        </div>
         <button type="button" className="footer-link" onClick={onSignOut}>
           Sign out
         </button>
       </div>
 
-      <div className="portal-grid">
+      <ul className="portal-stats">
+        <li>
+          <strong>{players.length}</strong>
+          <span>{players.length === 1 ? "kid" : "kids"}</span>
+        </li>
+        <li>
+          <strong>{lessons.length}</strong>
+          <span>{lessons.length === 1 ? "lesson" : "lessons"}</span>
+        </li>
+        <li>
+          <strong>{videoLessons}</strong>
+          <span>with a clip</span>
+        </li>
+        <li>
+          <strong>{clipCount}</strong>
+          <span>{clipCount === 1 ? "desk video" : "desk videos"}</span>
+        </li>
+      </ul>
+
+      <div className="portal-tabs" role="tablist" aria-label="Coach desk">
+        {([
+          ["lessons", "Lessons"],
+          ["clips", "My videos"],
+          ["roster", "Roster"],
+        ] as const).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={tab === id}
+            className={`portal-tab${tab === id ? " is-on" : ""}`}
+            onClick={() => setTab(id)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {tab === "lessons" ? (
+        <div className="portal-grid portal-grid-desk">
+          <section className="portal-card">
+            <h2 className="ui-title ui-title-sm">Log a lesson</h2>
+            {players.length ? (
+              <form
+                key={selectedId || "all"}
+                className="start-form portal-mini-form"
+                onSubmit={(event) => void addLesson(event)}
+              >
+                <label className="start-field">
+                  <span>Kid</span>
+                  <select name="player_id" defaultValue={selectedId ?? players[0]?.id ?? ""} required>
+                    <option value="" disabled>
+                      Pick a kid
+                    </option>
+                    {players.map((player) => (
+                      <option key={player.id} value={player.id}>
+                        {player.first_name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="start-field">
+                  <span>Date</span>
+                  <input name="held_on" type="date" defaultValue={todayInNaples()} required />
+                </label>
+                <label className="start-field">
+                  <span>
+                    What we worked on <em>optional</em>
+                  </span>
+                  <input name="title" placeholder="Fastball command, glove side" />
+                </label>
+                <label className="start-field">
+                  <span>
+                    Notes for them <em>optional</em>
+                  </span>
+                  <textarea name="notes" placeholder="Keep the front side quiet. We'll pick this up next time." />
+                </label>
+                <label className="start-field">
+                  <span>
+                    Your clip <em>optional — they can rewatch it</em>
+                  </span>
+                  <input name="clip" type="file" accept="video/mp4,video/quicktime,video/webm" />
+                </label>
+                <button className="btn" type="submit" disabled={busy}>
+                  Log this lesson
+                </button>
+              </form>
+            ) : (
+              <p className="portal-lead">Add a kid on the roster tab, then we can start logging work.</p>
+            )}
+          </section>
+
+          <section className="portal-card">
+            <h2 className="ui-title ui-title-sm">
+              {selected ? `${selected.first_name}'s lessons` : "All lessons"}
+            </h2>
+            <p className="portal-lead">
+              {selected
+                ? lessonCountLabel(visibleLessons.length)
+                : `${lessonCountLabel(lessons.length)} across the roster.`}
+            </p>
+            {players.length > 1 ? (
+              <ul className="portal-roster portal-roster-row">
+                <li>
+                  <button
+                    type="button"
+                    className={`portal-roster-btn${!selectedId ? " is-on" : ""}`}
+                    onClick={() => setSelectedId(null)}
+                  >
+                    <span>All</span>
+                  </button>
+                </li>
+                {players.map((player) => (
+                  <li key={player.id}>
+                    <button
+                      type="button"
+                      className={`portal-roster-btn${player.id === selectedId ? " is-on" : ""}`}
+                      onClick={() => setSelectedId(player.id)}
+                    >
+                      <span>{player.first_name}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <ol className="portal-lessons">
+              {visibleLessons.map((lesson) => (
+                <li key={lesson.id} className="portal-lesson">
+                  <div className="portal-lesson-top">
+                    <strong>
+                      {formatLessonDay(lesson.held_on)}
+                      {selected ? "" : ` · ${playerName(lesson.player_id)}`}
+                    </strong>
+                    <button
+                      type="button"
+                      className="footer-link"
+                      onClick={() => void removeLesson(lesson.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  {lesson.title ? <p>{lesson.title}</p> : null}
+                  {lesson.notes ? <p className="portal-lesson-notes">{lesson.notes}</p> : null}
+                  {clips[lesson.id] ? (
+                    <video className="portal-clip" controls playsInline src={clips[lesson.id]} />
+                  ) : lesson.video_path ? (
+                    <p className="portal-note">Loading clip…</p>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+            {!visibleLessons.length ? (
+              <p className="portal-lead">Nothing logged yet. Drop the first one in.</p>
+            ) : null}
+          </section>
+        </div>
+      ) : null}
+
+      {tab === "clips" ? <CoachClips supabase={supabase} profile={profile} /> : null}
+
+      {tab === "roster" ? (
         <section className="portal-card">
           <h2 className="ui-title ui-title-sm">Roster</h2>
           <p className="portal-lead">
@@ -200,10 +378,16 @@ export default function CoachDesk({
                 <li key={player.id}>
                   <button
                     type="button"
-                    className={`portal-roster-btn${player.id === selectedId ? " is-on" : ""}`}
-                    onClick={() => setSelectedId(player.id)}
+                    className="portal-roster-btn"
+                    onClick={() => {
+                      setSelectedId(player.id);
+                      setTab("lessons");
+                    }}
                   >
-                    <span>{player.first_name}</span>
+                    <span>
+                      {player.first_name}
+                      {player.age ? ` · ${player.age}` : ""}
+                    </span>
                     <em>{lessonCountLabel(count)}</em>
                   </button>
                 </li>
@@ -238,72 +422,8 @@ export default function CoachDesk({
             </button>
           </form>
         </section>
+      ) : null}
 
-        <section className="portal-card">
-          {selected ? (
-            <>
-              <h2 className="ui-title ui-title-sm">{selected.first_name}</h2>
-              <p className="portal-lead">
-                {lessonCountLabel(counts.get(selected.id) || 0)}
-                {selected.age ? ` · age ${selected.age}` : ""}. Family login: {selected.guardian_email}
-                {selected.player_email ? `. Kid login: ${selected.player_email}` : ""}.
-              </p>
-              <form className="start-form portal-mini-form" onSubmit={(event) => void addLesson(event)}>
-                <label className="start-field">
-                  <span>Date</span>
-                  <input name="held_on" type="date" defaultValue={todayInNaples()} required />
-                </label>
-                <label className="start-field">
-                  <span>
-                    What we worked on <em>optional</em>
-                  </span>
-                  <input name="title" placeholder="Fastball command, glove side" />
-                </label>
-                <label className="start-field">
-                  <span>
-                    Notes for them <em>optional</em>
-                  </span>
-                  <textarea name="notes" placeholder="Keep the front side quiet. We'll pick this up next time." />
-                </label>
-                <label className="start-field">
-                  <span>
-                    Your clip <em>optional — they can rewatch it</em>
-                  </span>
-                  <input name="clip" type="file" accept="video/mp4,video/quicktime,video/webm" />
-                </label>
-                <button className="btn" type="submit" disabled={busy}>
-                  Log this lesson
-                </button>
-              </form>
-              <ol className="portal-lessons">
-                {selectedLessons.map((lesson) => (
-                  <li key={lesson.id} className="portal-lesson">
-                    <div className="portal-lesson-top">
-                      <strong>{formatLessonDay(lesson.held_on)}</strong>
-                      <button
-                        type="button"
-                        className="footer-link"
-                        onClick={() => void removeLesson(lesson.id)}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                    {lesson.title ? <p>{lesson.title}</p> : null}
-                    {lesson.notes ? <p className="portal-lesson-notes">{lesson.notes}</p> : null}
-                    {clips[lesson.id] ? (
-                      <video className="portal-clip" controls playsInline src={clips[lesson.id]} />
-                    ) : lesson.video_path ? (
-                      <p className="portal-note">Loading clip…</p>
-                    ) : null}
-                  </li>
-                ))}
-              </ol>
-            </>
-          ) : (
-            <p className="portal-lead">Add a kid on the left and we can start logging work.</p>
-          )}
-        </section>
-      </div>
       {status ? <p className="portal-note">{status}</p> : null}
     </div>
   );

@@ -94,8 +94,8 @@ export default function PortalApp() {
       <>
         <h1 className="ui-title ui-title-lg">The dugout</h1>
         <p className="portal-lead">
-          Families see lesson counts and clips. Coach sees the whole roster.
-          Use the email I have on file.
+          Families see lesson counts and clips. Coach gets the desk — lessons,
+          roster, and your videos. Use the email I have on file.
         </p>
         <DugoutGate supabase={supabase} onSession={setSession} />
       </>
