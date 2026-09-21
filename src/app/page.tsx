@@ -49,15 +49,14 @@ export default function HomePage() {
             <p className="text-sm text-ink-soft">Text first. Then we pick a field.</p>
           </Reveal>
         </div>
+        <div id="sky-start" aria-hidden="true" />
       </section>
 
       <section className="text-band" id="reviews" aria-label="What people say">
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
             <h2 className="ui-title ui-title-md">What people say</h2>
-            <div id="sky-start">
-              <ReviewsCarousel />
-            </div>
+            <ReviewsCarousel />
           </Reveal>
         </div>
       </section>
