@@ -919,9 +919,9 @@ html.glove-cursor * {
     scroll-padding-top: 4.5rem;
   }
   .site-header .site-logo img {
-    width: 104px !important;
-    max-width: 104px !important;
-    max-height: 22px !important;
+    width: 140px !important;
+    max-width: 140px !important;
+    max-height: 30px !important;
   }
   .site-header-inner {
     padding: 0.5rem 0.75rem;
