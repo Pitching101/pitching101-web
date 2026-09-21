@@ -102,10 +102,8 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
 
   return (
     <ParkSky tone="park">
-      <article
-        className={`park-page magnet-page${isLongForm ? " magnet-page-long" : ""}`}
-      >
-        <Reveal className={isLongForm ? "guide-hero" : "magnet-page-intro"}>
+      <article className="park-page magnet-page">
+        <Reveal className="guide-hero">
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/guides/" className="hover:underline">
               ← Free guides
