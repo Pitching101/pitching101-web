@@ -3397,7 +3397,8 @@ a.reviews-verified:focus-visible {
   width: 100%;
   margin-top: 0.35rem;
 }
-.start-thanks-actions .btn {
+.start-thanks-actions .btn,
+.start-thanks-actions .btn-ghost {
   justify-self: center;
   margin-top: 0.35rem;
 }

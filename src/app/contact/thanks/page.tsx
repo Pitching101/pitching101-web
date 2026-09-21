@@ -27,7 +27,8 @@ export default function StartThanksPage() {
           </p>
           <h1 className="ui-title ui-title-lg">Thanks.</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            {RESPONSE_PROMISE}
+            {RESPONSE_PROMISE} Keep the short packet so you&apos;ve got how I
+            work after we hang up.
           </p>
           <StartThanksActions />
         </Reveal>

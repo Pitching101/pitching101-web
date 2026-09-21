@@ -1,4 +1,4 @@
-import { EMAIL } from "@/data/siteCopy";
+import { EMAIL, INFO_PACKET_FILENAME, INFO_PACKET_HREF, SITE_URL } from "@/data/siteCopy";
 
 export const START_LEAD_KEY = "p101-start-lead";
 export const START_LEAD_MAIL_KEY = "p101-start-lead-mail";
@@ -83,6 +83,9 @@ export function thanksEmailHref(lead: StartLead) {
     "Kids 8–16. Parent, coach, travel team, or school.",
     "We meet once, talk about your kid, then I'll recommend Monthly Strikes Pack or Busy-Week Check-In.",
     "",
+    "Keep this short packet about how I work:",
+    `${SITE_URL}${INFO_PACKET_HREF}`,
+    "",
     "What happens:",
     "1. We receive your evaluation form.",
     "2. We'll respond within 24 business hours.",
@@ -107,4 +110,14 @@ export function readStartLead(): StartLead | null {
 export function writeStartLead(lead: StartLead) {
   sessionStorage.setItem(START_LEAD_KEY, JSON.stringify(lead));
   sessionStorage.removeItem(START_LEAD_MAIL_KEY);
+}
+
+export function downloadInfoPacket() {
+  const link = document.createElement("a");
+  link.href = INFO_PACKET_HREF;
+  link.download = INFO_PACKET_FILENAME;
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
 }
