@@ -7,6 +7,7 @@ export const EMAIL = "nickdeisng@gmail.com";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/pitching101.com";
 export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
+export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 
 export const business = {
   name: "Pitching101",
@@ -45,7 +46,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "How do I get started?",
-    a: "Fill in the short note. It texts my phone. I call or text you back. Or text 845-768-2211.",
+    a: "Send the short form. We'll respond within 24 business hours. Or text 845-768-2211.",
   },
   {
     q: "Do you teach arm care with pitching?",
@@ -99,8 +100,8 @@ export const startSteps = [
     note: "Ages 8–16. Parent, coach, travel team, or school — and how you want to train.",
   },
   {
-    label: "I call or text you back",
-    note: "Your note hits my phone. I'll call the number you left.",
+    label: "We'll respond within 24 business hours",
+    note: "We'll use the number you left.",
   },
   {
     label: "First session",

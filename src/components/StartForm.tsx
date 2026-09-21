@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { PHONE_DISPLAY, PHONE_TEL, trainingOptions, workWithRoles } from "@/data/siteCopy";
+import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE, trainingOptions, workWithRoles } from "@/data/siteCopy";
 import { leadFromForm, writeStartLead } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
@@ -99,8 +99,7 @@ export default function StartForm() {
         {sending ? "Opening a text…" : "Text Coach Deising and get started"}
       </button>
       <p className="start-form-or">
-        Your phone opens a text to me with this note. I call or text you back.
-        Or{" "}
+        {RESPONSE_PROMISE} Or{" "}
         <a className="footer-link" href={`sms:${PHONE_TEL}`}>
           text {PHONE_DISPLAY}
         </a>{" "}

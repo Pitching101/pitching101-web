@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/data/siteCopy";
+import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE } from "@/data/siteCopy";
 import {
   START_LEAD_SMS_KEY,
   readStartLead,
@@ -29,7 +29,7 @@ export default function StartThanksActions() {
           Text {PHONE_DISPLAY}
         </a>
         <p className="start-form-or">
-          No note on this phone? Text me and I&apos;ll call you back.
+          {RESPONSE_PROMISE}
         </p>
       </div>
     );
@@ -50,8 +50,7 @@ export default function StartThanksActions() {
         </a>
       )}
       <p className="start-form-or">
-        I&apos;ll call or text {lead.phone}. Kids 8–16. Parent, coach, travel
-        team, or school.
+        {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Kids 8–16.
       </p>
     </div>
   );

@@ -9,7 +9,7 @@ import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyChips, INSTAGRAM_URL, trainingOptions } from "@/data/siteCopy";
+import { faqs, guyChips, INSTAGRAM_URL, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +48,7 @@ export default function HomePage() {
               </Link>
             </div>
             <p className="text-sm text-ink-soft">
-              Fill in a note. I call or text you back.
+              {RESPONSE_PROMISE}
             </p>
           </Reveal>
         </div>

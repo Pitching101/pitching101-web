@@ -5,12 +5,12 @@ import ParkSky from "@/components/ParkSky";
 import StartThanksActions from "@/components/StartThanksActions";
 import StartSteps from "@/components/StartSteps";
 import SessionBeats from "@/components/SessionBeats";
-import { trainingOptions } from "@/data/siteCopy";
+import { RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Thanks — I'll call or text you",
+  title: "Thanks — we'll respond within 24 business hours",
   description:
-    "Your Pitching101 note is ready to text Coach Deising. He'll call or text you back. Ages 8-16 in Naples, FL.",
+    "Thanks for getting started with Pitching101. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/thanks/" },
   robots: { index: false, follow: false },
 };
@@ -25,10 +25,9 @@ export default function StartThanksPage() {
               ← Get started
             </Link>
           </p>
-          <h1 className="ui-title ui-title-lg">Thanks. I&apos;ll call you.</h1>
+          <h1 className="ui-title ui-title-lg">Thanks.</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Your note should open a text to my phone. Send it. I call or text
-            you back and we pick a field.
+            {RESPONSE_PROMISE}
           </p>
           <StartThanksActions />
         </Reveal>
