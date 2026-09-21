@@ -9,7 +9,7 @@ import { faqs, trainingOptions } from "@/data/siteCopy";
 export const metadata: Metadata = {
   title: "Pitching coach for kids in Naples, FL",
   description:
-    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Nick — lessons for ages 8-14, arm care first. Text 845-768-2211.",
+    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Deising — lessons for ages 8-14, arm care first. Text 845-768-2211.",
   keywords: [
     "youth pitching lessons in Naples FL",
     "Naples FL pitching lessons",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Coach Nick helps kids ages 8-14 throw more strikes in Naples and SWFL. Parents, other coaches, travel teams, and schools.",
+      "Coach Deising helps kids ages 8-14 throw more strikes in Naples and SWFL. Parents, other coaches, travel teams, and schools.",
     type: "website",
   },
 };
@@ -48,7 +48,7 @@ export default function NaplesPitchingLessonsPage() {
             Youth pitching lessons in Naples, FL
           </h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Coach Nick. Kids 8–14. JV head coach at Gulfshore High
+            Coach Deising. Kids 8–14. JV head coach at Gulfshore High
             School. Sometimes a parent. Sometimes another coach, a
             travel team, or a school.
           </p>

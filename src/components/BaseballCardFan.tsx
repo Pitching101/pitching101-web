@@ -32,7 +32,7 @@ export default function BaseballCardFan() {
   }, []);
 
   return (
-    <ul className="bb-fan" aria-label="Coach Nick baseball cards">
+    <ul className="bb-fan" aria-label="Coach Deising baseball cards">
       <li className="bb-card bb-card-left">
         <p className="bb-card-kicker">Roster</p>
         <p className="bb-card-stat">8–14</p>
@@ -46,14 +46,14 @@ export default function BaseballCardFan() {
         <div className="bb-card-photo">
           <Image
             src="/assets/nick-coach-card.png"
-            alt="Coach Nick in his jersey and hat, pointing at a glove"
+            alt="Coach Deising in his jersey and hat, pointing at a glove"
             fill
             sizes="(max-width: 560px) 42vw, 240px"
             className="bb-card-img"
             priority={false}
           />
         </div>
-        <p className="bb-card-name">Nick</p>
+        <p className="bb-card-name">Coach Deising</p>
         <p className="bb-card-role">Gulfshore JV head coach</p>
       </li>
       <li className="bb-card bb-card-right">

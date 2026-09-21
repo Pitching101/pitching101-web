@@ -10,7 +10,7 @@ import {
   type StartLead,
 } from "@/data/startLead";
 
-/** After Get started — send the note to Nick's phone, or email more info. */
+/** After Get started — send the note to Coach Deising's phone, or email more info. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 
@@ -38,7 +38,7 @@ export default function StartThanksActions() {
   return (
     <div className="start-thanks-actions">
       <a href={smsHref(lead.body)} className="btn">
-        Send this to Nick&apos;s phone
+        Send this to Coach Deising&apos;s phone
       </a>
       {lead.email ? (
         <a href={thanksEmailHref(lead)} className="footer-link">

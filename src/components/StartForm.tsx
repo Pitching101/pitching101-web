@@ -7,7 +7,7 @@ import { leadFromForm, writeStartLead } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "Mixed 8–14"] as const;
 
-/** Collects a start note, texts Nick, then goes to the thank-you page. */
+/** Collects a start note, texts Coach Deising, then goes to the thank-you page. */
 export default function StartForm() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
@@ -96,7 +96,7 @@ export default function StartForm() {
         <textarea name="note" rows={3} />
       </label>
       <button type="submit" className="btn" disabled={sending}>
-        {sending ? "Opening a text…" : "Text Nick and get started"}
+        {sending ? "Opening a text…" : "Text Coach Deising and get started"}
       </button>
       <p className="start-form-or">
         Your phone opens a text to me with this note. I call or text you back.

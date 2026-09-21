@@ -21,7 +21,7 @@ export default function ContactCtas({
         {compact ? "Call 845-768-2211" : "Call 845-768-2211"}
       </a>
       <a href={mailHref} className="btn-ghost">
-        {compact ? "Email Nick" : "Email nickdeisng@gmail.com"}
+        {compact ? "Email Coach Deising" : "Email nickdeisng@gmail.com"}
       </a>
     </div>
   );

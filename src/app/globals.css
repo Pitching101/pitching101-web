@@ -1546,9 +1546,10 @@ html.glove-cursor * {
 .bb-card-name {
   margin: 0.45rem 0 0;
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.02rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.015em;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 .bb-card-role,
@@ -1598,7 +1599,7 @@ html.glove-cursor * {
   .bb-card-stat { font-size: 1.55rem; }
   .bb-card-note,
   .bb-card-quote { font-size: 0.68rem; }
-  .bb-card-name { font-size: 1rem; }
+  .bb-card-name { font-size: 0.78rem; }
 }
 .bb-chip-row {
   display: flex;
@@ -2579,7 +2580,7 @@ html.glove-cursor * {
   .clip-fan { min-height: 22.5rem; }
   .clip-card { width: 8.6rem; }
   .clip-card-main { width: 12.8rem; }
-  .bb-card-name { font-size: 0.88rem; }
+  .bb-card-name { font-size: 0.68rem; }
   .btn {
     width: 100%;
     max-width: 20rem;

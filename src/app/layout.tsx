@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Pitching101",
   },
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
+    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-14. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
   keywords: [
     "youth pitching lessons Naples FL",
     "pitching coach Naples Florida",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Coach Nick helps kids ages 8-14 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
+      "Coach Deising helps kids ages 8-14 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
     locale: "en_US",
     type: "website",
   },

@@ -34,7 +34,7 @@ export function businessJsonLd() {
     name: "Pitching101",
     url: "https://pitching101.com",
     description:
-      "Youth pitching lessons in Naples, FL for kids ages 8-14. Coach Nick is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
+      "Youth pitching lessons in Naples, FL for kids ages 8-14. Coach Deising is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
     telephone: "+18457682211",
     email: "nickdeisng@gmail.com",
     areaServed: [
@@ -44,8 +44,8 @@ export function businessJsonLd() {
     ],
     founder: {
       "@type": "Person",
-      name: "Nick",
-      alternateName: "Coach Nick",
+      name: "Nick Deising",
+      alternateName: "Coach Deising",
       jobTitle: "Junior varsity head coach at Gulfshore High School",
     },
     sameAs: [TRUSTPILOT_URL, INSTAGRAM_URL],

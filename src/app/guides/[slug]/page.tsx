@@ -20,7 +20,7 @@ export async function generateMetadata({
 
   return {
     title: magnet.title,
-    description: `${magnet.note} Free from Coach Nick at Pitching101.`,
+    description: `${magnet.note} Free from Coach Deising at Pitching101.`,
     alternates: { canonical: `/guides/${magnet.slug}/` },
   };
 }

@@ -10,14 +10,14 @@ export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 
 export const business = {
   name: "Pitching101",
-  coach: "Coach Nick",
+  coach: "Coach Deising",
   area: "Naples, FL",
   ages: "8–14",
   phoneDisplay: PHONE_DISPLAY,
   phoneTel: PHONE_TEL,
   email: EMAIL,
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. He is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
+    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-14. He is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
 };
 
 export type FaqItem = { q: string; a: string };
@@ -25,7 +25,7 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Coach Nick. Kids 8–14 in Naples, FL. He's the JV head coach at Gulfshore High School. Arm care and a plan you can use Tuesday.",
+    a: "Coach Deising. Kids 8–14 in Naples, FL. He's the JV head coach at Gulfshore High School. Arm care and a plan you can use Tuesday.",
   },
   {
     q: "What ages do you coach?",

@@ -11,7 +11,7 @@ import { INSTAGRAM_HANDLE, INSTAGRAM_URL, trainingOptions } from "@/data/siteCop
 export const metadata: Metadata = {
   title: "Get started with youth pitching lessons",
   description:
-    "Tell Coach Nick who you are. Your note texts his phone. He calls or texts back. Ages 8-14 in Naples, FL.",
+    "Tell Coach Deising who you are. Your note texts his phone. He calls or texts back. Ages 8-14 in Naples, FL.",
   alternates: { canonical: "/contact/" },
 };
 
