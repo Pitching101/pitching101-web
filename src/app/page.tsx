@@ -6,6 +6,7 @@ import ReviewsCarousel from "@/components/ReviewsCarousel";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 import ParkSky from "@/components/ParkSky";
 import HeroArcBalls from "@/components/HeroArcBalls";
+import PitchGame from "@/components/PitchGame";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
@@ -133,6 +134,17 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        className="pitch-game-band"
+        aria-label="Throw a pitch with the mouse glove"
+      >
+        <div className="home-stack px-5 py-14 sm:px-8 sm:py-16">
+          <Reveal>
+            <PitchGame />
           </Reveal>
         </div>
       </section>
