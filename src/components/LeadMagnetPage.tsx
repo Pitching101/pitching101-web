@@ -151,7 +151,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
           <Reveal delayMs={50} className="magnet-page-cta">
             <p className="text-base text-ink-soft">Want to hop on a field, not just read the sheet?</p>
             <Link href="/contact/" className="btn">
-              Get started
+              Book a First Look
             </Link>
           </Reveal>
         )}

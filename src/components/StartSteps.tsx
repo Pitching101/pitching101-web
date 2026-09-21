@@ -1,6 +1,6 @@
 import { startSteps } from "@/data/siteCopy";
 
-/** What happens after Get started — short, no price talk. */
+/** What happens after a First Look — still no price talk. */
 export default function StartSteps() {
   return (
     <ol className="start-steps">

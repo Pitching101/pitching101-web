@@ -3,25 +3,25 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import StartForm from "@/components/StartForm";
-import { GOOGLE_REVIEW_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL, shareImage } from "@/data/siteCopy";
+import { ENROLL_LABEL, RESPONSE_PROMISE, shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Get started with youth pitching lessons",
+  title: "Book a First Look",
   description:
-    "Tell me who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    "Book a First Look with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/" },
   openGraph: {
-    title: "Get started with youth pitching lessons | Pitching101",
+    title: "Book a First Look | Pitching101",
     description:
-      "Tell Coach Deising who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+      "Book a First Look with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
     url: "/contact/",
-    images: shareImage("/og/contact.png", "Get started with Pitching101"),
+    images: shareImage("/og/contact.png", "Book a First Look with Pitching101"),
   },
   twitter: {
     card: "summary_large_image",
-    title: "Get started with youth pitching lessons | Pitching101",
+    title: "Book a First Look | Pitching101",
     description:
-      "Tell Coach Deising who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+      "Book a First Look with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
     images: ["/og/contact.png"],
   },
 };
@@ -36,44 +36,15 @@ export default function ContactPage() {
               ← Home
             </Link>
           </p>
-          <h1 className="ui-title ui-title-lg">Get started</h1>
+          <h1 className="ui-title ui-title-lg">{ENROLL_LABEL}</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Kids 8–16. Tell me a little and we'll get back within 24 business hours.
+            One visit. Plain English. Then a pack that fits — not a giant
+            menu first. Kids 8–16. {RESPONSE_PROMISE}
           </p>
         </Reveal>
 
         <Reveal delayMs={20} className="mt-8">
           <StartForm />
-        </Reveal>
-
-        <Reveal delayMs={40} className="mt-10">
-          <ul className="fence-links">
-            <li>
-              <a className="footer-link" href="mailto:nickdeisng@gmail.com">
-                Email nickdeisng@gmail.com
-              </a>
-            </li>
-            <li>
-              <a
-                className="footer-link"
-                href={GOOGLE_REVIEW_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Leave a Google review
-              </a>
-            </li>
-            <li>
-              <a
-                className="footer-link"
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram @{INSTAGRAM_HANDLE}
-              </a>
-            </li>
-          </ul>
         </Reveal>
       </article>
     </ParkSky>

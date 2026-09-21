@@ -4,12 +4,12 @@ import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
 import JsonLd, { faqJsonLd } from "@/components/JsonLd";
-import { ABOUT_INTRO, ABOUT_MORE, faqs, HOW_WE_TRAIN_LINE, OG_DESCRIPTION, OG_TITLE, RESPONSE_PROMISE, shareImage, trainingOptions } from "@/data/siteCopy";
+import { ABOUT_INTRO, ABOUT_MORE, ENROLL_HREF, ENROLL_LABEL, faqs, HOW_WE_TRAIN_LINE, OG_DESCRIPTION, OG_TITLE, RESPONSE_PROMISE, shareImage, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Pitching coach for kids in Naples, FL",
   description:
-    "Looking for a youth pitching coach in Naples, FL? I'm Coach Deising — lessons for ages 8-16, arm care first.",
+    "Looking for a youth pitching coach in Naples, FL? I'm Coach Deising — book a First Look, then a simple pack. Ages 8-16, arm care first.",
   keywords: [
     "youth pitching lessons in Naples FL",
     "Naples FL pitching lessons",
@@ -57,8 +57,8 @@ export default function NaplesPitchingLessonsPage() {
           <p className="text-lg leading-relaxed text-ink-soft">
             {ABOUT_INTRO} {ABOUT_MORE}
           </p>
-          <Link href="/contact/" className="btn">
-            Get started
+          <Link href={ENROLL_HREF} className="btn">
+            {ENROLL_LABEL}
           </Link>
         </Reveal>
 
@@ -93,8 +93,8 @@ export default function NaplesPitchingLessonsPage() {
 
         <Reveal className="mt-12 space-y-4">
           <p className="text-ink-soft">{RESPONSE_PROMISE}</p>
-          <Link href="/contact/" className="btn">
-            Get started
+          <Link href={ENROLL_HREF} className="btn">
+            {ENROLL_LABEL}
           </Link>
         </Reveal>
 

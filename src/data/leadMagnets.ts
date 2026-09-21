@@ -62,7 +62,7 @@ export const leadMagnets: LeadMagnet[] = [
     artAlt: "Green flags and red flags for choosing youth pitching lessons",
     ogImage: "/assets/og-green-red-flags.png",
     emailSubject: "How to Choose Pitching Lessons in Naples FL",
-    cta: "Get started",
+    cta: "Book a First Look",
     ctaHref: "/contact/",
     sections: [
       {
@@ -124,7 +124,7 @@ export const leadMagnets: LeadMagnet[] = [
           "Share age, goals, and schedule on the short form. If a week is too busy to meet in person, video check-ins are an option.",
         ],
         links: [
-          { href: "/contact/", label: "Get started" },
+          { href: "/contact/", label: "Book a First Look" },
           { href: "/naples-fl-pitching-lessons/", label: "Naples pitching lessons" },
           { href: "/guides/", label: "Free guides" },
           { href: "/about/", label: "About Coach Deising" },

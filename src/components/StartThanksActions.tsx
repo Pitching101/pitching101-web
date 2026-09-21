@@ -10,7 +10,7 @@ import {
   type StartLead,
 } from "@/data/startLead";
 
-/** After Get started — email the note to Coach Deising, or email more info. */
+/** After First Look — send the note so Coach Deising gets it. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 
@@ -36,15 +36,9 @@ export default function StartThanksActions() {
       <a href={inquiryEmailHref(lead)} className="btn">
         Email this to Coach Deising
       </a>
-      {lead.email ? (
-        <a href={thanksEmailHref(lead)} className="footer-link">
-          Email what happens next
-        </a>
-      ) : (
-        <a href={thanksEmailHref(lead)} className="footer-link">
-          Email more information
-        </a>
-      )}
+      <a href={thanksEmailHref(lead)} className="footer-link">
+        {lead.email ? "Email what happens next" : "Email more information"}
+      </a>
       <p className="start-form-or">
         {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Kids 8–16.
       </p>

@@ -15,6 +15,8 @@ import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
 import {
   ABOUT_INTRO,
   ABOUT_MORE,
+  ENROLL_HREF,
+  ENROLL_LABEL,
   FAQ_INTRO,
   faqs,
   guyChips,
@@ -67,8 +69,8 @@ export default function HomePage() {
               {HERO_LINE}
             </p>
             <div className="home-cta-row pt-1">
-              <Link href="/contact/" className="btn">
-                Get started
+              <Link href={ENROLL_HREF} className="btn">
+                {ENROLL_LABEL}
               </Link>
             </div>
             <p className="text-sm text-ink-soft">
@@ -152,6 +154,11 @@ export default function HomePage() {
               ))}
             </ul>
           </Reveal>
+          <Reveal delayMs={80} className="home-cta-row">
+            <Link href={ENROLL_HREF} className="btn">
+              {ENROLL_LABEL}
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -201,8 +208,8 @@ export default function HomePage() {
           <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-32 text-center sm:px-8 sm:pt-28 sm:pb-48">
             <p className="ui-title ui-title-sm">See how we train</p>
             <TrainingClipsStrip />
-            <Link href="/contact/" className="btn stadium-cta">
-              Get started
+            <Link href={ENROLL_HREF} className="btn stadium-cta">
+              {ENROLL_LABEL}
             </Link>
           </Reveal>
         </div>

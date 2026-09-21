@@ -14,11 +14,13 @@ export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 /** Public @pitchinglesson count as of 2026-09-21. Update when it moves. */
 export const INSTAGRAM_FOLLOWERS = 4102;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
+export const ENROLL_LABEL = "Book a First Look";
+export const ENROLL_HREF = "/contact/";
 export const META_DESCRIPTION =
-  "I'm Coach Deising. Youth pitching lessons in Naples, FL for kids 8-16 — parents, travel teams, other coaches, and schools.";
+  "I'm Coach Deising. Youth pitching lessons in Naples, FL for kids 8-16. Book a First Look, then a simple pack.";
 export const OG_TITLE = "Youth pitching lessons in Naples, FL | Pitching101";
 export const OG_DESCRIPTION =
-  "I'm Coach Deising. I help kids 8-16 throw more strikes in Naples, FL. Parents, travel teams, other coaches, and schools.";
+  "I'm Coach Deising. I help kids 8-16 throw more strikes in Naples, FL. Book a First Look, then a simple pack.";
 export const OG_IMAGE = "/og/home.png";
 export const OG_IMAGE_ALT = "Pitching101 — youth pitching lessons in Naples, FL";
 export const HERO_LINE =
@@ -28,7 +30,7 @@ export const ABOUT_INTRO =
 export const ABOUT_MORE =
   "Parents, travel teams, other coaches, schools — if you're in a kid's corner, come on. Let's get them throwing strikes and taking care of that arm.";
 export const HOW_WE_TRAIN_LINE =
-  "In person, at home, or both. We'll figure out what fits.";
+  "Book a First Look. Then a simple pack — no price menu first.";
 export const FAQ_INTRO = "Stuff parents and coaches ask before we get going.";
 
 export function shareImage(path = OG_IMAGE, alt = OG_IMAGE_ALT) {
@@ -56,15 +58,23 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
-    a: "Around Naples and Southwest Florida. There's no walk-up shop — send the short form and I'll tell you where we're meeting.",
+    a: "Around Naples and Southwest Florida. There's no walk-up shop — we'll share the meeting location after you book a First Look.",
   },
   {
     q: "Do you only do in-person lessons?",
     a: "Nope. We can do it in person, at home, or both. Whatever fits the week.",
   },
   {
-    q: "How do I get started?",
-    a: "Send the short form. We'll get back within 24 business hours.",
+    q: "How do I book a First Look?",
+    a: "Send the short form — age, goals, and schedule. We'll get back within 24 business hours. We meet once, talk plain English, then recommend a pack.",
+  },
+  {
+    q: "What is a First Look?",
+    a: "One visit. We talk in plain English about your kid, then recommend the Monthly Strikes Pack or a Busy-Week Check-In. No price menu first.",
+  },
+  {
+    q: "What packs come after the First Look?",
+    a: "Monthly Strikes Pack is the main plan. Busy-Week Check-In is an add-on when the week is packed. We'll recommend after we meet.",
   },
   {
     q: "Do you teach arm care with pitching?",
@@ -74,19 +84,19 @@ export const faqs: FaqItem[] = [
 
 export const trainingOptions = [
   {
-    label: "In person",
-    note: "We'll pick a field around Naples.",
+    label: "First Look",
+    note: "Meet once. Talk plain English. Then we recommend Monthly or Check-In.",
+    icon: "/assets/icons/icon-plan-checklist.png",
+  },
+  {
+    label: "Monthly Strikes Pack",
+    note: "The main plan after the First Look. Regular work and a clear next practice.",
     icon: "/assets/icons/icon-strikes.png",
   },
   {
-    label: "At home",
-    note: "Work they can actually do between practices.",
+    label: "Busy-Week Check-In",
+    note: "An add-on when the week is packed. A short look, then back to the plan.",
     icon: "/assets/icons/icon-free-guide-v2.png",
-  },
-  {
-    label: "A mix",
-    note: "Homework plus live check-ins, so they're not guessing.",
-    icon: "/assets/icons/icon-plan-checklist.png",
   },
 ];
 
@@ -107,20 +117,20 @@ export const workWithRoles = [
 
 export const startSteps = [
   {
-    label: "Tell us who",
-    note: "Your kid's age (8–16), who you are, and how you want to train.",
+    label: "Book a First Look",
+    note: "Age, goals, and schedule. Parent, coach, travel team, or school.",
   },
   {
     label: "We'll respond within 24 business hours",
     note: "We'll hit the number you left.",
   },
   {
-    label: "First session",
-    note: "Warm-up, a couple cues, and something to try at the next practice.",
+    label: "We meet once",
+    note: "Plain English. Then a pack that fits — not a giant menu first.",
   },
   {
-    label: "Keep the plan",
-    note: "In person, at home, or both — whatever fits the week.",
+    label: "Monthly or Check-In",
+    note: "Monthly Strikes Pack is the main plan. Busy-Week Check-In is the add-on.",
   },
 ];
 
@@ -134,7 +144,7 @@ export const sessionBeats = [
     note: "One or two things they can actually remember.",
   },
   {
-    label: "Something to try",
-    note: "They leave with work for the next practice, not a speech.",
+    label: "Then a pack",
+    note: "Monthly Strikes Pack, or a Busy-Week Check-In if the week is packed.",
   },
 ];

@@ -10,7 +10,7 @@ import { RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 export const metadata: Metadata = {
   title: "Thanks — we'll respond within 24 business hours",
   description:
-    "Thanks for writing. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    "Thanks for booking a First Look with Pitching101. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/thanks/" },
   robots: { index: false, follow: false },
 };
@@ -22,7 +22,7 @@ export default function StartThanksPage() {
         <Reveal className="space-y-5">
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/contact/" className="hover:underline">
-              ← Get started
+              ← Book a First Look
             </Link>
           </p>
           <h1 className="ui-title ui-title-lg">Thanks.</h1>
@@ -38,12 +38,12 @@ export default function StartThanksPage() {
         </Reveal>
 
         <Reveal delayMs={50} className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">First session</h2>
+          <h2 className="ui-title ui-title-sm">The First Look</h2>
           <SessionBeats />
         </Reveal>
 
         <Reveal delayMs={70} className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">How we train</h2>
+          <h2 className="ui-title ui-title-sm">Packs after</h2>
           <ul className="dugout-row">
             {trainingOptions.map((item) => (
               <li key={item.label} className="dugout-sign">
