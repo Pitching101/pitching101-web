@@ -51,7 +51,7 @@ export const OG_DESCRIPTION =
 export const OG_IMAGE = "/og/home.png";
 export const OG_IMAGE_ALT = "Pitching101 — youth pitching lessons in Naples, FL";
 export const HERO_LINE =
-  "Let's get 'em throwing strikes — and taking care of that arm.";
+  "Let's get 'em throwing strikes and keep that arm healthy.";
 export const ABOUT_INTRO =
   "I'm Coach Deising. I work with kids 8–16 here in Naples, and I'm the JV head coach at Gulfshore High School.";
 export const ABOUT_MORE =
