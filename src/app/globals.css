@@ -2721,7 +2721,7 @@ a.reviews-verified:focus-visible {
   border: 2px solid #0f1a2e;
 }
 .magnet-card-art img {
-  width: 4.6rem;
+  width: 6.1rem;
   height: auto;
   image-rendering: pixelated;
 }
@@ -2729,6 +2729,7 @@ a.reviews-verified:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  image-rendering: auto;
 }
 .magnet-card-kicker {
   margin: 0.55rem 0 0;
