@@ -15,7 +15,7 @@ export default function Footer() {
             travel teams, other coaches, and schools.
           </p>
           <Link href="/contact/" className="btn">
-            Get your child started
+            Get started
           </Link>
         </div>
 

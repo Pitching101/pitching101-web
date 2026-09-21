@@ -57,7 +57,7 @@ export default function BaseballCardFan() {
         <p className="bb-card-role">Pitching coach · Naples, FL</p>
       </li>
       <li className="bb-card bb-card-right">
-        <p className="bb-card-kicker">Parents</p>
+        <p className="bb-card-kicker">People</p>
         <p className="bb-card-stars" aria-label="5 out of 5 stars">
           ★★★★★
         </p>
