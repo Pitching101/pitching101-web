@@ -117,14 +117,11 @@ function MouseGloveField() {
       const vx = (clientX - lastX) / dt;
       const vy = (clientY - lastY) / dt;
       const speed = Math.hypot(vx, vy) / 1000;
-      const hero = document.querySelector(".hero-overlay");
-      const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
       if (
         !mq.matches &&
         shown &&
         now - lastThrow > MIN_GAP_MS &&
         speed > MIN_SPEED &&
-        clientY > heroBottom - 8 &&
         !document.documentElement.classList.contains("pitch-playing") &&
         (Math.abs(clientX - lastX) > 16 || Math.abs(clientY - lastY) > 16)
       ) {
