@@ -42,6 +42,7 @@ export default function TrainingClipsStrip() {
   const hoverLocked = useRef(false);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [held, setHeld] = useState(false);
   const [shuffling, setShuffling] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [canHover, setCanHover] = useState(false);
@@ -96,25 +97,25 @@ export default function TrainingClipsStrip() {
   }, [index, reduceMotion]);
 
   useEffect(() => {
-    if (reduceMotion || paused || !inView || CLIPS.length < 2) return;
+    if (reduceMotion || paused || held || !inView || CLIPS.length < 2) return;
     const id = window.setInterval(() => {
       goTo(index + 1);
     }, 6000);
     return () => window.clearInterval(id);
-  }, [reduceMotion, paused, inView, goTo, index]);
+  }, [reduceMotion, paused, held, inView, goTo, index]);
 
   useEffect(() => {
     const videos = videoRefs.current;
     videos.forEach((video, i) => {
       if (!video) return;
       const slot = slotOf(i, index);
-      if (reduceMotion || !inView || slot === "back") {
+      if (reduceMotion || held || !inView || slot === "back") {
         video.pause();
         return;
       }
       playMuted(video);
     });
-  }, [index, inView, reduceMotion]);
+  }, [index, inView, reduceMotion, held]);
 
   function onPointerDown(event: PointerEvent<HTMLDivElement>) {
     startX.current = event.clientX;
@@ -245,6 +246,14 @@ export default function TrainingClipsStrip() {
         })}
       </div>
       <div className="training-clips-nav">
+        <button
+          type="button"
+          className="motion-pause"
+          aria-pressed={held}
+          onClick={() => setHeld((current) => !current)}
+        >
+          {held ? "Play clips" : "Pause clips"}
+        </button>
         <div className="training-clips-dots" role="tablist" aria-label="Choose clip">
           {CLIPS.map((item, i) => (
             <button

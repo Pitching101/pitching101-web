@@ -526,6 +526,13 @@ function PitchGameField() {
   }
 
   function onKey(event: KeyboardEvent<HTMLDivElement>) {
+    const digit = Number(event.key);
+    if (digit >= 1 && digit <= 9) {
+      event.preventDefault();
+      placeZone(digit);
+      return;
+    }
+    if (event.target !== event.currentTarget) return;
     if (event.key !== " " && event.key !== "Enter") return;
     event.preventDefault();
     if (reduceMotion) {
@@ -541,19 +548,16 @@ function PitchGameField() {
 
   return (
     <div className="pitch-game">
-      <p className="ui-chip px-3.5 py-1.5">Desktop · mouse glove</p>
+      <p className="ui-chip px-3.5 py-1.5">Try a pitch</p>
       <h2 className="ui-title ui-title-md">Throw a pitch</h2>
       <p className="pitch-game-copy">
-        {reduceMotion
-          ? "Click a zone. I'll talk like we would in a lesson."
-          : "The mouse is the glove. Flick at the box you want — 1 through 9."}
+        Click a box, or press 1 through 9. On a computer you can also flick the mouse.
       </p>
       <div
         ref={fieldRef}
         className={`pitch-field${armed ? " is-armed" : ""}${book.card ? ` is-${book.card}` : ""}`}
-        role="application"
-        aria-label="Throw a pitch at the strike zone with the mouse"
-        tabIndex={0}
+        role="group"
+        aria-label="Strike zone"
         data-pitch-zone={result.zone ?? ""}
         data-pitch-card={book.card}
         data-pitch-note={result.text}
@@ -587,10 +591,7 @@ function PitchGameField() {
                 }}
                 className="pitch-cell"
                 aria-label={`Zone ${zone}`}
-                tabIndex={reduceMotion ? 0 : -1}
-                onClick={() => {
-                  if (reduceMotion) placeZone(zone);
-                }}
+                onClick={() => placeZone(zone)}
               />
             ))}
           </div>

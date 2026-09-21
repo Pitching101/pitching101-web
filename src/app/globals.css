@@ -10,7 +10,9 @@
   --foreground: #0f1a2e;
 
   --blue: #3295fb;
-  --blue-dark: #1a78e8;
+  --blue-dark: #0e59a8;
+  --blue-solid: #0e59a8;
+  --blue-solid-hover: #0b4a8c;
   --blue-light: #6bb3fc;
   --blue-mid: #3295fb;
   --blue-soft: #BBD6F1;
@@ -63,6 +65,7 @@
   --color-foreground: var(--foreground);
   --color-blue: var(--blue);
   --color-blue-dark: var(--blue-dark);
+  --color-blue-solid: var(--blue-solid);
   --color-blue-light: var(--blue-light);
   --color-blue-mid: var(--blue-mid);
   --color-blue-soft: var(--blue-soft);
@@ -108,6 +111,25 @@ body {
   padding-top: calc(var(--header-bar) + env(safe-area-inset-top));
 }
 
+.skip-link {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 0.65rem);
+  left: 0.75rem;
+  z-index: 80;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  background: #0f1a2e;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+  outline: 3px solid #ffc600;
+  outline-offset: 3px;
+}
+
 /* Varsity condensed display — Oswald, not a script jersey for every line */
 .heading {
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
@@ -137,25 +159,26 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 .site-header .site-logo img {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 .site-header .nav-link {
-  color: #ffffff;
+  color: #0f1a2e;
 }
 .site-header .nav-link:hover,
 .site-header .nav-link:focus-visible {
-  color: #ffffff;
-  opacity: 0.82;
+  color: #0f1a2e;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
 }
 .site-header .btn-nav {
   background: #ffffff;
-  color: #3295fb;
+  color: var(--blue-solid);
   box-shadow: none;
 }
 .site-header .btn-nav:hover,
 .site-header .btn-nav:focus-visible {
   background: #f4f9ff;
-  color: #1a78e8;
+  color: var(--blue-solid-hover);
 }
 .site-header-inner {
   position: relative;
@@ -481,14 +504,14 @@ html[data-tod="night"] :is(
 ) {
   --ink: #0f1a2e;
   --ink-soft: #3d5674;
-  --blue-dark: #1a78e8;
+  --blue-dark: #0e59a8;
   --foreground: #0f1a2e;
   color: #0f1a2e;
 }
 html[data-tod="night"] .ui-chip {
   --ink: #0f1a2e;
   --ink-soft: #3d5674;
-  --blue-dark: #1a78e8;
+  --blue-dark: #0e59a8;
 }
 
 .home-sky-clouds-fixed {
@@ -744,6 +767,11 @@ html[data-tod="night"] .ui-chip {
   border: 0;
   background: transparent;
   cursor: inherit;
+}
+.pitch-cell:focus-visible {
+  outline: 3px solid #0f1a2e;
+  outline-offset: -4px;
+  background: color-mix(in srgb, #ffc600 38%, transparent);
 }
 .pitch-cell.is-hit {
   background: color-mix(in srgb, #ffc600 42%, transparent);
@@ -1088,7 +1116,7 @@ html[data-tod="night"] .ui-chip {
   min-height: 2.75rem;
   border-radius: var(--radius-sm);
   border: none;
-  background: var(--blue);
+  background: var(--blue-solid);
   color: #ffffff;
   font-family: var(--font-body), system-ui, sans-serif;
   font-weight: 600;
@@ -1104,7 +1132,7 @@ html[data-tod="night"] .ui-chip {
   line-height: 1.3;
 }
 .btn-primary:hover {
-  background: var(--blue-dark);
+  background: var(--blue-solid-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -1200,8 +1228,12 @@ html[data-tod="night"] .ui-chip {
 }
 
 a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--blue);
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #0f1a2e;
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -1209,6 +1241,16 @@ button:focus-visible {
 html.glove-cursor,
 html.glove-cursor * {
   cursor: none !important;
+}
+html.glove-cursor :is(input, textarea, select, [contenteditable="true"]),
+html.glove-cursor :is(input, textarea, select, [contenteditable="true"]) * {
+  cursor: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.glove-cursor,
+  html.glove-cursor * {
+    cursor: auto !important;
+  }
 }
 .mouse-throw {
   position: fixed;
@@ -1254,16 +1296,16 @@ html.glove-cursor * {
 
 /* Wordmark is already the mark — no pill/box around it, even on focus */
 .site-logo,
-.site-logo:focus,
-.site-logo:focus-visible,
 .site-logo img {
-  outline: none;
   border: none;
   box-shadow: none;
   background: transparent;
 }
 .site-logo:focus-visible {
-  opacity: 0.72;
+  outline: 3px solid #0f1a2e;
+  outline-offset: 4px;
+  border-radius: 4px;
+  opacity: 1;
 }
 
 .btn-nav {
@@ -1287,12 +1329,12 @@ html.glove-cursor * {
     border: none;
     border-radius: 0.6rem;
     background: transparent;
-    color: #ffffff;
+    color: #0f1a2e;
     cursor: pointer;
   }
   .nav-toggle:hover,
   .nav-toggle:focus-visible {
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(15, 26, 46, 0.12);
   }
   .nav-toggle-bars {
     position: relative;
@@ -1517,8 +1559,8 @@ html.glove-cursor * {
 .ui-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .ui-card-alt { background: var(--blue-soft); border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent); box-shadow: var(--shadow-sm); border-radius: var(--radius); transition: transform 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft); }
 .ui-card-alt:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: none; background: var(--blue); color: #ffffff; font-family: var(--font-display), var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.25rem; box-shadow: 0 4px 14px -4px rgba(50, 149, 251, 0.45); transition: transform 0.2s var(--ease-soft), box-shadow 0.2s var(--ease-soft), background 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
-.btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: none; background: var(--blue-solid); color: #ffffff; font-family: var(--font-display), var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.25rem; box-shadow: 0 4px 14px -4px rgba(14, 89, 168, 0.45); transition: transform 0.2s var(--ease-soft), box-shadow 0.2s var(--ease-soft), background 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
+.btn:hover { background: var(--blue-solid-hover); transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 .btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border-radius: var(--radius-sm); border: 1.5px solid var(--blue-dark); background: var(--background); color: var(--blue-dark); font-family: var(--font-display), var(--font-body), system-ui, sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1.15rem; transition: transform 0.2s var(--ease-soft), background 0.2s var(--ease-soft), color 0.2s var(--ease-soft), border-color 0.2s var(--ease-soft); text-decoration: none; line-height: 1.3; }
 .btn-ghost:hover { background: var(--blue-soft); color: var(--ink); border-color: var(--blue); transform: translateY(-1px); }
@@ -1806,6 +1848,7 @@ a.reviews-verified:focus-visible {
 .reviews-dots,
 .reviews-arrows {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
@@ -1858,12 +1901,12 @@ a.reviews-verified:focus-visible {
   width: 0.65rem;
   height: 0.65rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--blue) 28%, transparent);
+  background: #3d5674;
   transform: translate(-50%, -50%);
   transition: background 0.2s var(--ease-soft), transform 0.2s var(--ease-soft);
 }
 .reviews-dot.is-active::after {
-  background: var(--blue);
+  background: var(--blue-solid);
   transform: translate(-50%, -50%) scale(1.15);
 }
 .reviews-nav {
@@ -1881,6 +1924,18 @@ a.reviews-verified:focus-visible {
 .reviews-nav:hover {
   background: var(--blue-soft);
   color: var(--ink);
+}
+.motion-pause {
+  min-height: 2.75rem;
+  padding: 0.45rem 0.9rem;
+  border: 2px solid #ffffff;
+  border-radius: var(--radius-sm);
+  background: #0f1a2e;
+  color: #ffffff;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 @media (prefers-reduced-motion: reduce) {
   .reviews-dot,
@@ -2450,14 +2505,23 @@ a.reviews-verified:focus-visible {
   box-shadow: none;
   text-align: center;
 }
+.home-stadium-inner .ui-title {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: #0f1a2e;
+  color: #ffffff;
+}
 .training-clips-label {
   margin: 0 0 0.15rem;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 0 rgba(15, 26, 46, 0.35);
+  color: #ffffff;
+  background: #0f1a2e;
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  text-shadow: none;
 }
 .clip-fan {
   position: relative;
@@ -2603,6 +2667,7 @@ a.reviews-verified:focus-visible {
 }
 .training-clips-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -2622,8 +2687,11 @@ a.reviews-verified:focus-visible {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 0 rgba(15, 26, 46, 0.35);
+  color: #ffffff;
+  background: rgba(15, 26, 46, 0.82);
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  text-shadow: none;
 }
 .training-clips-hint-hover { display: none; }
 @media (hover: hover) and (pointer: fine) {
@@ -2893,7 +2961,8 @@ a.reviews-verified:focus-visible {
 }
 .magnet-card:focus-visible {
   transform: rotate(var(--magnet-tilt)) translateY(-7px);
-  outline: none;
+  outline: 3px solid #0f1a2e;
+  outline-offset: 3px;
 }
 /* Guide thumbnails are 3:4 baseball-card photos. OG share images stay 1200×630. */
 .magnet-card-art {
@@ -3492,7 +3561,7 @@ a.reviews-verified:focus-visible {
 .start-field input:focus,
 .start-field select:focus,
 .start-field textarea:focus {
-  outline: 2px solid var(--blue);
+  outline: 3px solid #0f1a2e;
   outline-offset: 2px;
 }
 .start-train {
@@ -3522,7 +3591,7 @@ a.reviews-verified:focus-visible {
   height: 1.15rem;
   margin: 0;
   flex-shrink: 0;
-  accent-color: #3295fb;
+  accent-color: var(--blue-solid);
 }
 .start-form .btn {
   width: 100%;
@@ -3635,15 +3704,15 @@ a.reviews-verified:focus-visible {
   }
 }
 .portal-who-btn.is-on {
-  background: #3295fb;
+  background: var(--blue-solid);
   color: #fff;
   border-color: #1a2438;
 }
 .portal-who-btn:focus-visible,
 .portal-tab:focus-visible,
 .portal-roster-btn:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
+  outline: 3px solid #0f1a2e;
+  outline-offset: 3px;
 }
 .portal-kicker {
   margin: 0;
@@ -3776,7 +3845,7 @@ a.reviews-verified:focus-visible {
   cursor: pointer;
 }
 .portal-tab.is-on {
-  background: #3295fb;
+  background: var(--blue-solid);
   color: #fff;
   border-color: #1a2438;
 }
@@ -3831,7 +3900,7 @@ a.reviews-verified:focus-visible {
   color: var(--ink-soft);
 }
 .portal-roster-btn.is-on {
-  background: #3295fb;
+  background: var(--blue-solid);
   color: #fff;
   border-color: #1a2438;
 }
