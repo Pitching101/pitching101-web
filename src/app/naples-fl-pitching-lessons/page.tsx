@@ -48,8 +48,9 @@ export default function NaplesPitchingLessonsPage() {
             Youth pitching lessons in Naples, FL
           </h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Coach Nick. Kids 8–14. Sometimes a parent. Sometimes another
-            coach, a travel team, or a school.
+            Coach Nick. Kids 8–14. JV head coach at Gulfshore High
+            School. Sometimes a parent. Sometimes another coach, a
+            travel team, or a school.
           </p>
           <Link href="/contact/" className="btn">
             Get started

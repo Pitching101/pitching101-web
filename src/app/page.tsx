@@ -71,9 +71,10 @@ export default function HomePage() {
           <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              I coach kids 8–14 in Naples. Sometimes I work with a
-              parent. Sometimes another coach, a travel team, or a
-              school.
+              I coach kids 8–14 in Naples. I&apos;m the junior varsity
+              head coach at Gulfshore High School. Sometimes I work
+              with a parent. Sometimes another coach, a travel team,
+              or a school.
             </p>
             <BaseballCardFan />
             <ul id="your-guy" className="bb-chip-row">
