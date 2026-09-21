@@ -55,7 +55,7 @@ export const leadMagnets: LeadMagnet[] = [
     metaDescription:
       "A short parent checklist for picking youth pitching lessons in Naples, FL — what to ask, green flags, red flags, and when pitching-focused coaching fits.",
     kicker: "Free guide",
-    note: "A short parent checklist so you can pick a coach without the jargon — or the guesswork.",
+    note: "A short parent checklist so you can pick a coach without guessing.",
     topic: "Choosing a coach",
     icon: "/assets/icons/icon-free-guide-v2.png",
     art: "/assets/og-green-red-flags.png",
@@ -68,7 +68,7 @@ export const leadMagnets: LeadMagnet[] = [
       {
         heading: 'What "good" looks like for ages 8–16',
         paragraphs: [
-          "You do not need a pitching dictionary to know if a lesson is helping. For this age, good looks simple.",
+          "You'll know if a lesson's helping. For this age, good looks simple.",
         ],
         bullets: [
           "Clear cues your kid can remember at practice",
@@ -80,7 +80,7 @@ export const leadMagnets: LeadMagnet[] = [
       {
         heading: "Five questions to ask any coach",
         paragraphs: [
-          "If the answers are plain, you are in the right place. If they get foggy, keep looking.",
+          "If they can answer without dancing around it, you're in the right place. If it gets foggy, keep looking.",
         ],
         numbered: [
           "What ages do you coach best?",
@@ -94,7 +94,7 @@ export const leadMagnets: LeadMagnet[] = [
         heading: "Green flags",
         tone: "green",
         bullets: [
-          "Talks like a human, not a textbook",
+          "You'll actually understand what they're saying",
           'More than "throw harder" — command, mechanics, recovery',
           "Happy to use the contact form with a clear next step",
           "Gets Southwest Florida schedules and heat",

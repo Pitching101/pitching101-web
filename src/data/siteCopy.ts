@@ -57,7 +57,7 @@ export const ABOUT_INTRO =
 export const ABOUT_MORE =
   "Parents, travel teams, other coaches, schools — if you're in a kid's corner, come on. Let's get them throwing strikes and taking care of that arm.";
 export const HOW_WE_TRAIN_LINE =
-  "Book an evaluation. Then a simple pack — no price menu first.";
+  "Book an evaluation. Then I'll tell you which pack I'd actually use.";
 export const FAQ_INTRO = "Stuff parents and coaches ask before we get going.";
 
 export function shareImage(path = OG_IMAGE, alt = OG_IMAGE_ALT) {
@@ -93,11 +93,11 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "How do I book an evaluation?",
-    a: "Send the short form — age, goals, and schedule. We'll get back within 24 business hours. We meet once, talk plain English, then recommend a pack.",
+    a: "Send the short form — age, goals, and schedule. We'll get back within 24 business hours. We meet once, talk about your kid, then I'll tell you what I'd do next.",
   },
   {
     q: "What is an evaluation?",
-    a: "One visit. We talk in plain English about your kid, then recommend the Monthly Strikes Pack or a Busy-Week Check-In. No price menu first.",
+    a: "One visit. We talk about your kid, then I'll recommend the Monthly Strikes Pack or a Busy-Week Check-In.",
   },
   {
     q: "What packs come after the evaluation?",
@@ -112,7 +112,7 @@ export const faqs: FaqItem[] = [
 export const trainingOptions = [
   {
     label: "Evaluation",
-    note: "Meet once. Talk plain English. Then we recommend Monthly or Check-In.",
+    note: "Meet once. We talk about your kid, then I recommend Monthly or Check-In.",
     icon: "/assets/icons/icon-plan-checklist.png",
   },
   {
@@ -153,7 +153,7 @@ export const startSteps = [
   },
   {
     label: "We meet once",
-    note: "Plain English. Then a pack that fits — not a giant menu first.",
+    note: "We talk about your kid, then I recommend a pack that fits.",
   },
   {
     label: "Monthly or Check-In",
