@@ -33,15 +33,11 @@ export default function BaseballCardFan() {
 
   return (
     <ul className="bb-fan" aria-label="Coach Nick baseball cards">
-      <li className="bb-card bb-card-art bb-card-left" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/pixel-pitcher-card.png"
-          alt=""
-          width={542}
-          height={685}
-          className="bb-card-art-img"
-        />
+      <li className="bb-card bb-card-left">
+        <p className="bb-card-kicker">Roster</p>
+        <p className="bb-card-stat">8–14</p>
+        <p className="bb-card-label">Ages</p>
+        <p className="bb-card-note">Still learning the mound.</p>
       </li>
       <li
         ref={nickRef}
@@ -60,15 +56,15 @@ export default function BaseballCardFan() {
         <p className="bb-card-name">Nick</p>
         <p className="bb-card-role">Pitching coach · Naples, FL</p>
       </li>
-      <li className="bb-card bb-card-art bb-card-right" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/pixel-pitching-card.png"
-          alt=""
-          width={523}
-          height={666}
-          className="bb-card-art-img"
-        />
+      <li className="bb-card bb-card-right">
+        <p className="bb-card-kicker">Parents</p>
+        <p className="bb-card-stars" aria-label="5 out of 5 stars">
+          ★★★★★
+        </p>
+        <p className="bb-card-quote">
+          “He takes the time to teach the kids proper warm up.”
+        </p>
+        <p className="bb-card-attr">Eric · Trustpilot</p>
       </li>
     </ul>
   );
