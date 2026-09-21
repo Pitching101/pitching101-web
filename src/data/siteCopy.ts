@@ -164,7 +164,7 @@ export const startSteps = [
     note: "Age, goals, and schedule. Parent, coach, travel team, or school.",
   },
   {
-    label: "We'll respond within 24 business hours",
+    label: "We call or text you back",
     note: "We'll hit the number you left.",
   },
   {
