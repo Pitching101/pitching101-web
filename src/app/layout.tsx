@@ -1,16 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Outfit } from "next/font/google";
+import { DM_Sans, Oswald, Yesteryear } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MouseGlove from "@/components/MouseGlove";
 import { META_DESCRIPTION } from "@/data/siteCopy";
 import "./globals.css";
 
-/** Friendly big-headline display — conversion feel, not pixel fonts. */
-const outfit = Outfit({
+/** Varsity condensed — athletic headlines, not a script jersey for every line. */
+const oswald = Oswald({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["500", "600", "700"],
+});
+
+/** Script accent for a retro Athletics lockup — not running copy. */
+const yesteryear = Yesteryear({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 /** Clean readable body. */
@@ -57,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${oswald.variable} ${yesteryear.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans text-foreground">
         <Header />
