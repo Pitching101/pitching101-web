@@ -160,7 +160,7 @@ export const leadMagnets: LeadMagnet[] = [
     steps: [
       {
         label: "Get warm first",
-        note: "Don't throw until the body's moving. A little jog, jumping jacks — whatever gets blood going.",
+        note: "Don't throw until the body's moving. A little jog, jumping jacks, whatever gets blood going.",
       },
       {
         label: "Then the bands",
