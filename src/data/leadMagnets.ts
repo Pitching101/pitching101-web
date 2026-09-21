@@ -11,6 +11,9 @@ export type LeadMagnet = {
   note: string;
   topic: string;
   icon: string;
+  /** Optional full-bleed card art (nine-box, etc). Falls back to icon. */
+  art?: string;
+  artAlt?: string;
   emailSubject: string;
   cta: string;
 };
@@ -33,6 +36,8 @@ export const leadMagnets: LeadMagnet[] = [
     note: "Backyard cues. More strikes. Less overthinking.",
     topic: "Strikes",
     icon: "/assets/icons/icon-strikes.png",
+    art: "/assets/pixel-strike-zone.png",
+    artAlt: "Nine-box strike zone with zone 5, the middle, highlighted",
     emailSubject: "Strike Percent Tips Guide",
     cta: "Email me the tips",
   },

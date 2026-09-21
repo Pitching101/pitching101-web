@@ -1901,6 +1901,15 @@ html.glove-cursor * {
   height: auto;
   image-rendering: pixelated;
 }
+.magnet-card-art-zone {
+  aspect-ratio: 900 / 670;
+  background: #fff8e6;
+}
+.magnet-card-art-zone img {
+  width: 92%;
+  max-height: 100%;
+  object-fit: contain;
+}
 .magnet-card-kicker {
   margin: 0.55rem 0 0;
   font-size: 0.68rem;
@@ -1933,6 +1942,16 @@ html.glove-cursor * {
 }
 .magnet-page {
   max-width: 36rem;
+}
+.magnet-zone {
+  width: min(22rem, 100%);
+  margin: 0.35rem auto 0.15rem;
+}
+.magnet-zone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
 }
 .magnet-page-card {
   width: min(12.5rem, 58vw);

@@ -14,13 +14,25 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
               ← Free guides
             </Link>
           </p>
-          <div className="magnet-page-card" aria-hidden="true">
-            <div className="magnet-card-art">
+          {magnet.art ? (
+            <figure className="magnet-zone">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={magnet.icon} alt="" width={88} height={88} />
+              <img
+                src={magnet.art}
+                alt={magnet.artAlt ?? ""}
+                width={900}
+                height={670}
+              />
+            </figure>
+          ) : (
+            <div className="magnet-page-card" aria-hidden="true">
+              <div className="magnet-card-art">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={magnet.icon} alt="" width={88} height={88} />
+              </div>
+              <p className="magnet-card-kicker">{magnet.kicker}</p>
             </div>
-            <p className="magnet-card-kicker">{magnet.kicker}</p>
-          </div>
+          )}
           <h1 className="ui-title ui-title-lg">{magnet.title}</h1>
           <p className="text-lg leading-relaxed text-ink-soft">{magnet.note}</p>
           <ul className="bb-chip-row">
