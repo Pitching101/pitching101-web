@@ -5,8 +5,10 @@ export const PHONE_DISPLAY = "845-768-2211";
 export const PHONE_TEL = "8457682211";
 export const EMAIL = "nickdeisng@gmail.com";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/pitching101.com";
-export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
+export const INSTAGRAM_HANDLE = "pitchinglesson";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
+/** Public @pitchinglesson count as of 2026-09-21. Update when it moves. */
+export const INSTAGRAM_FOLLOWERS = 4102;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const META_DESCRIPTION =
   "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.";

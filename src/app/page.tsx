@@ -8,8 +8,9 @@ import ParkSky from "@/components/ParkSky";
 import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
+import InstagramFollow from "@/components/InstagramFollow";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyChips, INSTAGRAM_URL, META_DESCRIPTION, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import { faqs, guyChips, META_DESCRIPTION, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
@@ -84,7 +85,7 @@ export default function HomePage() {
             <Reveal delayMs={40}>
               <BaseballCardFan />
             </Reveal>
-            <Reveal delayMs={80} className="space-y-6">
+            <Reveal delayMs={80} className="who-follow">
               <ul id="your-guy" className="bb-chip-row">
                 {guyChips.map((chip) => (
                   <li key={chip} className="bb-chip">
@@ -92,14 +93,7 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <a
-                className="footer-link"
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Follow on Instagram
-              </a>
+              <InstagramFollow />
             </Reveal>
           </div>
         </div>
