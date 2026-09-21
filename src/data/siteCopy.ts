@@ -8,18 +8,8 @@ export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/pitching101.com
 export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
-
-export const business = {
-  name: "Pitching101",
-  coach: "Coach Deising",
-  area: "Naples, FL",
-  ages: "8–16",
-  phoneDisplay: PHONE_DISPLAY,
-  phoneTel: PHONE_TEL,
-  email: EMAIL,
-  description:
-    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. He is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
-};
+export const META_DESCRIPTION =
+  "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.";
 
 export type FaqItem = { q: string; a: string };
 
@@ -78,13 +68,6 @@ export const guyChips = [
   "Other coaches",
   "Travel teams",
   "Schools",
-];
-
-export const workWith = [
-  { label: "Parents", note: "A parent or guardian reaches out. We confirm a field." },
-  { label: "Other coaches", note: "We can work alongside your existing plan." },
-  { label: "Travel teams", note: "A coach or team contact. Same ages." },
-  { label: "Schools", note: "Kids 8–16. We will confirm the location." },
 ];
 
 export const workWithRoles = [

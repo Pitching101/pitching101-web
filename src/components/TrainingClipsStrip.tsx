@@ -153,12 +153,12 @@ export default function TrainingClipsStrip() {
                 videoRefs.current[0] = node;
               }}
               className="training-clip-video"
-              src={CLIPS[prev].src}
+              src={inView ? CLIPS[prev].src : undefined}
               muted
               loop
               playsInline
               autoPlay
-              preload="auto"
+              preload="none"
               aria-hidden="true"
             />
           </div>
@@ -173,12 +173,12 @@ export default function TrainingClipsStrip() {
                 videoRefs.current[1] = node;
               }}
               className="training-clip-video"
-              src={clip.src}
+              src={inView ? clip.src : undefined}
               muted
               loop
               playsInline
               autoPlay
-              preload="auto"
+              preload="none"
               aria-hidden="true"
             />
           </div>
@@ -198,12 +198,12 @@ export default function TrainingClipsStrip() {
                 videoRefs.current[2] = node;
               }}
               className="training-clip-video"
-              src={CLIPS[next].src}
+              src={inView ? CLIPS[next].src : undefined}
               muted
               loop
               playsInline
               autoPlay
-              preload="auto"
+              preload="none"
               aria-hidden="true"
             />
           </div>

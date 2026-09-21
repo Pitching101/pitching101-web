@@ -9,14 +9,13 @@ import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
-import { faqs, guyChips, INSTAGRAM_URL, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import { faqs, guyChips, INSTAGRAM_URL, META_DESCRIPTION, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: {
     absolute: "Youth pitching lessons in Naples, FL | Pitching101",
   },
-  description:
-    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
+  description: META_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",

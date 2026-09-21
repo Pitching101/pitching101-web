@@ -1,4 +1,4 @@
-import { INSTAGRAM_URL, TRUSTPILOT_URL } from "@/data/siteCopy";
+import { EMAIL, INSTAGRAM_URL, SITE_URL, TRUSTPILOT_URL } from "@/data/siteCopy";
 
 /** JSON-LD for search + answer engines. Values are static site copy. */
 export default function JsonLd({ data }: { data: Record<string, unknown> }) {
@@ -32,11 +32,11 @@ export function businessJsonLd() {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "SportsActivityLocation"],
     name: "Pitching101",
-    url: "https://pitching101.com",
+    url: SITE_URL,
     description:
       "Youth pitching lessons in Naples, FL for kids ages 8-16. Coach Deising is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
     telephone: "+18457682211",
-    email: "nickdeisng@gmail.com",
+    email: EMAIL,
     areaServed: [
       { "@type": "City", name: "Naples", addressRegion: "FL" },
       { "@type": "AdministrativeArea", name: "Collier County" },

@@ -3,13 +3,14 @@ import { DM_Sans, Outfit } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MouseGlove from "@/components/MouseGlove";
+import { META_DESCRIPTION } from "@/data/siteCopy";
 import "./globals.css";
 
 /** Friendly big-headline display — conversion feel, not pixel fonts. */
 const outfit = Outfit({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["700", "800"],
 });
 
 /** Clean readable body. */
@@ -32,8 +33,7 @@ export const metadata: Metadata = {
     default: "Youth pitching lessons in Naples, FL | Pitching101",
     template: "%s | Pitching101",
   },
-  description:
-    "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
+  description: META_DESCRIPTION,
   keywords: [
     "youth pitching lessons Naples FL",
     "pitching coach Naples Florida",

@@ -1,3 +1,5 @@
+import { TRUSTPILOT_URL as SITE_TRUSTPILOT_URL } from "@/data/siteCopy";
+
 /** Real Trustpilot reviews from https://www.trustpilot.com/review/pitching101.com — scraped live, not invented. */
 export type TrustpilotReview = {
   name: string;
@@ -6,8 +8,7 @@ export type TrustpilotReview = {
   quote: string;
 };
 
-export const TRUSTPILOT_URL =
-  "https://www.trustpilot.com/review/pitching101.com" as const;
+export const TRUSTPILOT_URL = SITE_TRUSTPILOT_URL;
 
 export const trustpilotReviews: TrustpilotReview[] = [
   {

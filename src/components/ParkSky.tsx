@@ -39,6 +39,7 @@ export default function ParkSky({
                 width={cloud.w}
                 height={cloud.h}
                 className={`float-cloud float-cloud-${index + 1}`}
+                loading={index < 4 ? "eager" : "lazy"}
               />
             );
           })}
@@ -53,6 +54,7 @@ export default function ParkSky({
             width={pin.src.w}
             height={pin.src.h}
             className={`float-cloud ${pin.className}`}
+            loading="lazy"
           />
         ))}
       </div>

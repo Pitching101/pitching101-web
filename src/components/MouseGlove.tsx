@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const BALLS = 10;
 const HOT_X = 22;
@@ -20,9 +20,25 @@ type Flight = {
 
 /**
  * Fine-pointer only: the mouse is the glove, and moving it throws baseballs.
- * Hidden on phones. No extra gloves.
+ * Hidden on phones. Images wait until a real mouse moves.
  */
 export default function MouseGlove() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const fine = window.matchMedia("(pointer: fine)");
+    if (!fine.matches) return;
+
+    const start = () => setReady(true);
+    window.addEventListener("pointermove", start, { once: true, passive: true });
+    return () => window.removeEventListener("pointermove", start);
+  }, []);
+
+  if (!ready) return null;
+  return <MouseGloveField />;
+}
+
+function MouseGloveField() {
   const gloveRef = useRef<HTMLImageElement>(null);
   const ballRefs = useRef<Array<HTMLImageElement | null>>([]);
 
