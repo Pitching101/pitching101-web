@@ -982,6 +982,9 @@ html.glove-cursor * {
 .soft-bob { animation: soft-bob 2.4s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-arc {
+    display: none !important;
+  }
   .nav-toggle-bars span {
     transition: none;
   }
@@ -1112,6 +1115,9 @@ html.glove-cursor * {
   margin-right: auto;
   text-align: center;
   text-shadow: none;
+}
+.hero-arc {
+  display: none;
 }
 
 /*
@@ -2297,6 +2303,30 @@ html.glove-cursor * {
   }
   .hero-overlay-copy {
     gap: 1.35rem;
+  }
+  .hero-arc {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0.2rem;
+    height: 8.75rem;
+    z-index: 3;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .hero-arc-ball {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: auto;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(0 3px 5px rgba(15, 26, 46, 0.16));
+    will-change: transform;
+    user-select: none;
+    transform: translate3d(-48px, 52px, 0);
   }
   .ui-title-hero {
     font-size: clamp(1.7rem, 8.6vw, 2.25rem);

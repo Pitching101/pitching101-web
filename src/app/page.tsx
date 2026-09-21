@@ -5,6 +5,7 @@ import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 import ParkSky from "@/components/ParkSky";
+import HeroArcBalls from "@/components/HeroArcBalls";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
@@ -31,6 +32,7 @@ export default function HomePage() {
       <JsonLd data={faqJsonLd(faqs)} />
 
       <section className="hero-overlay" aria-label="Youth pitching lessons in Naples, FL">
+        <HeroArcBalls />
         <div className="hero-overlay-inner">
           <Reveal from="left" className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–14</p>
