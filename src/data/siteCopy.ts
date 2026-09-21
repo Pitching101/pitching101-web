@@ -45,7 +45,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "How do I get started?",
-    a: "Text or call 845-768-2211. One conversation.",
+    a: "Fill in the short note. It texts my phone. I call or text you back. Or text 845-768-2211.",
   },
   {
     q: "Do you teach arm care with pitching?",
@@ -84,4 +84,45 @@ export const workWith = [
   { label: "Other coaches", note: "I can work next to your plan." },
   { label: "Travel teams", note: "A coach or team mom. Same ages." },
   { label: "Schools", note: "Kids 8–14. I'll say where." },
+];
+
+export const workWithRoles = [
+  "Parent",
+  "Coach",
+  "Travel team",
+  "School",
+] as const;
+
+export const startSteps = [
+  {
+    label: "Tell me who",
+    note: "Ages 8–14. Parent, coach, travel team, or school — and how you want to train.",
+  },
+  {
+    label: "I call or text you back",
+    note: "Your note hits my phone. I'll call the number you left.",
+  },
+  {
+    label: "First session",
+    note: "Warmup, a few cues, something to try next practice.",
+  },
+  {
+    label: "Keep the plan",
+    note: "In person, at home, or both — pick what fits.",
+  },
+];
+
+export const sessionBeats = [
+  {
+    label: "Warmup",
+    note: "Arm care first. Same stuff they can do next practice.",
+  },
+  {
+    label: "A few cues",
+    note: "One or two things they can actually keep.",
+  },
+  {
+    label: "Something to try",
+    note: "They leave with work for Tuesday.",
+  },
 ];

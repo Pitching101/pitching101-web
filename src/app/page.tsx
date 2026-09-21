@@ -42,11 +42,13 @@ export default function HomePage() {
               More strikes. A healthy arm. A plan you can say in the car.
             </p>
             <div className="home-cta-row pt-1">
-              <Link href="#contact" className="btn">
+              <Link href="/contact/" className="btn">
                 Get started
               </Link>
             </div>
-            <p className="text-sm text-ink-soft">Text first. Then we pick a field.</p>
+            <p className="text-sm text-ink-soft">
+              Fill in a note. I call or text you back.
+            </p>
           </Reveal>
         </div>
         <div id="sky-start" aria-hidden="true" />
