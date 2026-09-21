@@ -134,8 +134,8 @@ body {
 }
 .nav-link-short { display: none; }
 .site-footer {
-  border-top: none;
-  background: transparent;
+  border-top: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
+  background: var(--surface);
 }
 
 .text-band {
