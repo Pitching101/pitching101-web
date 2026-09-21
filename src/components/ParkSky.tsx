@@ -9,13 +9,10 @@ const skyClouds = [
   { src: "/assets/pixel-cloud-4-transparent.png", w: 223, h: 99 },
 ];
 
-/** A few clouds hang in the viewport so they stay put as you walk the park. */
+/** Two high-sky clouds only — mid-screen pins read like extra type. */
 const pinnedClouds = [
   { src: skyClouds[0], className: "float-cloud-pin-1" },
   { src: skyClouds[2], className: "float-cloud-pin-2" },
-  { src: skyClouds[1], className: "float-cloud-pin-3" },
-  { src: skyClouds[3], className: "float-cloud-pin-4" },
-  { src: skyClouds[0], className: "float-cloud-pin-5" },
 ];
 
 /** Continuous park sky + drifting clouds. Home measures the fade at #your-guy. */
@@ -42,6 +39,7 @@ export default function ParkSky({
                 width={cloud.w}
                 height={cloud.h}
                 className={`float-cloud float-cloud-${index + 1}`}
+                loading={index < 4 ? "eager" : "lazy"}
               />
             );
           })}
@@ -56,6 +54,7 @@ export default function ParkSky({
             width={pin.src.w}
             height={pin.src.h}
             className={`float-cloud ${pin.className}`}
+            loading="lazy"
           />
         ))}
       </div>

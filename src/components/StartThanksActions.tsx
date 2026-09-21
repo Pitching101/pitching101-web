@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/data/siteCopy";
+import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE } from "@/data/siteCopy";
 import {
   START_LEAD_SMS_KEY,
   readStartLead,
@@ -10,12 +10,13 @@ import {
   type StartLead,
 } from "@/data/startLead";
 
-/** After Get started — send the note to Nick's phone, or email more info. */
+/** After Get started — send the note to Coach Deising's phone, or email more info. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 
   useEffect(() => {
     const next = readStartLead();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- lead lives in sessionStorage
     setLead(next);
     if (!next || sessionStorage.getItem(START_LEAD_SMS_KEY)) return;
     sessionStorage.setItem(START_LEAD_SMS_KEY, "1");
@@ -29,7 +30,7 @@ export default function StartThanksActions() {
           Text {PHONE_DISPLAY}
         </a>
         <p className="start-form-or">
-          No note on this phone? Text me and I&apos;ll call you back.
+          {RESPONSE_PROMISE}
         </p>
       </div>
     );
@@ -38,11 +39,11 @@ export default function StartThanksActions() {
   return (
     <div className="start-thanks-actions">
       <a href={smsHref(lead.body)} className="btn">
-        Send this to Nick&apos;s phone
+        Send this to Coach Deising&apos;s phone
       </a>
       {lead.email ? (
         <a href={thanksEmailHref(lead)} className="footer-link">
-          Email me what happens next
+          Email what happens next
         </a>
       ) : (
         <a href={thanksEmailHref(lead)} className="footer-link">
@@ -50,8 +51,7 @@ export default function StartThanksActions() {
         </a>
       )}
       <p className="start-form-or">
-        I&apos;ll call or text {lead.phone}. Kids 8–14. Parent, coach, travel
-        team, or school.
+        {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Kids 8–16.
       </p>
     </div>
   );

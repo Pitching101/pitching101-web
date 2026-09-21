@@ -2,12 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { PHONE_DISPLAY, PHONE_TEL, trainingOptions, workWithRoles } from "@/data/siteCopy";
+import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE, trainingOptions, workWithRoles } from "@/data/siteCopy";
 import { leadFromForm, writeStartLead } from "@/data/startLead";
 
-const AGES = ["8", "9", "10", "11", "12", "13", "14", "Mixed 8–14"] as const;
+const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
 
-/** Collects a start note, texts Nick, then goes to the thank-you page. */
+/** Collects a start note, texts Coach Deising, then goes to the thank-you page. */
 export default function StartForm() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
@@ -23,7 +23,7 @@ export default function StartForm() {
   return (
     <form className="start-form" onSubmit={onSubmit}>
       <fieldset className="start-field">
-        <legend>I am a</legend>
+        <legend>Role</legend>
         <div className="start-train">
           {workWithRoles.map((role) => (
             <label key={role} className="start-train-option">
@@ -52,7 +52,7 @@ export default function StartForm() {
           <span>Age</span>
           <select name="age" required defaultValue="">
             <option value="" disabled>
-              8–14
+              8–16
             </option>
             {AGES.map((age) => (
               <option key={age} value={age}>
@@ -63,12 +63,12 @@ export default function StartForm() {
         </label>
       </div>
       <label className="start-field">
-        <span>Phone so I can call you</span>
+        <span>Phone</span>
         <input name="phone" type="tel" autoComplete="tel" required />
       </label>
       <label className="start-field">
         <span>
-          Email <em>optional — I can send more info</em>
+          Email <em>optional</em>
         </span>
         <input name="email" type="email" autoComplete="email" />
       </label>
@@ -91,20 +91,19 @@ export default function StartForm() {
       </fieldset>
       <label className="start-field">
         <span>
-          Anything I should know <em>optional</em>
+          Additional details <em>optional</em>
         </span>
         <textarea name="note" rows={3} />
       </label>
       <button type="submit" className="btn" disabled={sending}>
-        {sending ? "Opening a text…" : "Text Nick and get started"}
+        {sending ? "Sending…" : "Get started"}
       </button>
       <p className="start-form-or">
-        Your phone opens a text to me with this note. I call or text you back.
-        Or{" "}
+        {RESPONSE_PROMISE} Or{" "}
         <a className="footer-link" href={`sms:${PHONE_TEL}`}>
           text {PHONE_DISPLAY}
-        </a>{" "}
-        yourself.
+        </a>
+        .
       </p>
     </form>
   );

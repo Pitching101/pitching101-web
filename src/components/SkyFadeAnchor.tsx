@@ -21,7 +21,13 @@ export default function SkyFadeAnchor() {
       const height = Math.max(1, sceneBox.height);
       const pct = Math.min(82, Math.max(8, ((markBox.top - sceneBox.top) / height) * 100));
       scene.style.setProperty("--sky-stop", `${pct.toFixed(2)}%`);
-      scene.classList.toggle("is-sky-in", markBox.top < window.innerHeight * 0.62);
+      const footer = document.querySelector<HTMLElement>(".site-footer");
+      const footerBox = footer?.getBoundingClientRect();
+      const footerIn = footerBox != null && footerBox.top < window.innerHeight * 0.78;
+      scene.classList.toggle(
+        "is-sky-in",
+        markBox.top < window.innerHeight * 0.62 && !footerIn,
+      );
     };
 
     sync();

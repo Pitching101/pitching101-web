@@ -26,13 +26,13 @@ export function leadFromForm(data: FormData): StartLead {
   const note = String(data.get("note") || "").trim();
 
   const body = [
-    "Pitching101 start note",
+    "Pitching101 inquiry",
     "",
     `Who: ${role}`,
     `Name: ${name}`,
     `Player or team: ${player}`,
     `Age: ${age}`,
-    `Call them: ${phone}`,
+    `Phone: ${phone}`,
     email ? `Email: ${email}` : "",
     `Train: ${train}`,
     note ? `Note: ${note}` : "",
@@ -54,21 +54,21 @@ export function smsHref(body: string) {
 export function thanksEmailHref(lead: StartLead) {
   const to = lead.email || EMAIL;
   const more = [
-    `Hey ${lead.name || "there"} —`,
+    `Hi ${lead.name || "there"},`,
     "",
-    "Got your Pitching101 note. I'll call or text you back at",
+    "Thank you for getting started with Pitching101. We'll respond within 24 business hours at",
     lead.phone || "the number you left",
-    "and we'll pick a field.",
+    "and confirm where to meet.",
     "",
-    "Kids 8–14. Parent, other coach, travel team, or school.",
+    "Kids 8–16. Parent, other coach, travel team, or school.",
     "In person, at home, or a mix.",
     "",
     "What happens:",
-    "1. I get your note on my phone.",
-    "2. I call or text you back.",
-    "3. First session — warmup, a few cues, something to try next practice.",
+    "1. We receive your form.",
+    "2. We'll respond within 24 business hours.",
+    "3. First session — warm-up, a few cues, and work for the next practice.",
     "",
-    "Text or call 845-768-2211 if you want to jump ahead.",
+    "Text or call 845-768-2211 if you would like to reach us sooner.",
   ].join("\n");
 
   return `mailto:${to}?subject=${encodeURIComponent(

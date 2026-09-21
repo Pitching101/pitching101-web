@@ -1,102 +1,53 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Logo from "./Logo";
 
 const homeAnchors = [
   { href: "/#reviews", full: "What people say", short: "Reviews" },
-  { href: "/#about", full: "Hey, I'm Nick", short: "Nick" },
+  { href: "/#about", full: "About Coach Deising", short: "About" },
   { href: "/#how-it-works", full: "How we train", short: "Train" },
   { href: "/#faq", full: "Questions", short: "Questions" },
 ] as const;
 
-const menuItems = [
-  ...homeAnchors.map((item) => ({
-    href: item.href,
-    label: item.full,
-    short: item.short,
-  })),
-  { href: "/guides/", label: "Free guides", short: "Guides" },
-  { href: "/contact/", label: "Get started", short: "Get started", cta: true },
-] as const;
-
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const panelId = useId();
-  const toggleRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
-  const previouslyFocused = useRef<HTMLElement | null>(null);
-
-  const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
     if (!open) return;
-
-    previouslyFocused.current =
-      document.activeElement instanceof HTMLElement
-        ? document.activeElement
-        : null;
-
-    const { overflow } = document.body.style;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    document.body.dataset.navOpen = "true";
 
-    const panel = panelRef.current;
-    const focusables = panel
-      ? Array.from(
-          panel.querySelectorAll<HTMLElement>(
-            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-          ),
-        )
-      : [];
-    focusables[0]?.focus();
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        close();
-        return;
-      }
-      if (event.key !== "Tab" || focusables.length === 0) return;
-
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      const active = document.activeElement;
-
-      if (event.shiftKey && active === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && active === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = overflow;
-      delete document.body.dataset.navOpen;
-      document.removeEventListener("keydown", onKeyDown);
-      previouslyFocused.current?.focus();
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKey);
     };
-  }, [open, close]);
+  }, [open]);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const onChange = () => {
-      if (mq.matches) close();
-    };
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, [close]);
+    const media = window.matchMedia("(min-width: 900px)");
+    function onChange() {
+      if (media.matches) setOpen(false);
+    }
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  function closeMenu() {
+    setOpen(false);
+  }
 
   return (
-    <header className="site-header sticky top-0 z-40">
+    <header className={`site-header${open ? " is-menu-open" : ""}`}>
       <div className="site-header-inner">
-        <Logo variant="primary" width={160} />
-
-        <nav className="site-nav site-nav-desktop" aria-label="Primary">
+        <Logo variant="primary" width={160} onClick={closeMenu} />
+        <nav className="site-nav" aria-label="Primary">
           {homeAnchors.map((item) => (
             <a key={item.href} href={item.href} className="nav-link">
               <span className="nav-link-full">{item.full}</span>
@@ -111,15 +62,13 @@ export default function Header() {
             Get started
           </Link>
         </nav>
-
         <button
-          ref={toggleRef}
           type="button"
           className="nav-toggle"
           aria-expanded={open}
-          aria-controls={panelId}
+          aria-controls="site-menu"
           aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => setOpen((current) => !current)}
         >
           <span className="nav-toggle-bars" aria-hidden="true">
             <span />
@@ -128,73 +77,32 @@ export default function Header() {
           </span>
         </button>
       </div>
-
-      <div
-        className={`nav-overlay${open ? " is-open" : ""}`}
-        hidden={!open}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) close();
-        }}
+      <nav
+        id="site-menu"
+        className="site-menu"
+        aria-label="Mobile"
+        aria-hidden={!open}
+        inert={!open}
       >
-        <div
-          ref={panelRef}
-          id={panelId}
-          className="nav-overlay-panel"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Site menu"
-        >
-          <div
-            className="nav-overlay-top"
-            onClick={(event) => {
-              if ((event.target as HTMLElement).closest("a.site-logo")) {
-                close();
-              }
-            }}
-          >
-            <Logo variant="primary" width={140} />
-            <button
-              type="button"
-              className="nav-overlay-close"
-              aria-label="Close menu"
-              onClick={close}
+        <div className="site-menu-inner">
+          {homeAnchors.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="site-menu-link"
+              onClick={closeMenu}
             >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <nav className="nav-overlay-nav" aria-label="Mobile primary">
-            {menuItems.map((item) =>
-              item.href.startsWith("/#") ? (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={
-                    "cta" in item && item.cta
-                      ? "nav-overlay-link nav-overlay-cta"
-                      : "nav-overlay-link"
-                  }
-                  onClick={close}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={
-                    "cta" in item && item.cta
-                      ? "nav-overlay-link nav-overlay-cta"
-                      : "nav-overlay-link"
-                  }
-                  onClick={close}
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
-          </nav>
+              {item.full}
+            </a>
+          ))}
+          <Link href="/guides/" className="site-menu-link" onClick={closeMenu}>
+            Free guides
+          </Link>
+          <Link href="/contact/" className="btn site-menu-cta" onClick={closeMenu}>
+            Get started
+          </Link>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }

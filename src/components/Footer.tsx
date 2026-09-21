@@ -11,7 +11,7 @@ export default function Footer() {
           <Logo height={48} />
           <p className="text-sm font-semibold text-blue-dark">Naples, FL</p>
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
-            Youth pitching lessons in Naples, FL for ages 8–14. Families,
+            Youth pitching lessons in Naples, FL for ages 8–16. Families,
             travel teams, other coaches, and schools.
           </p>
           <Link href="/contact/" className="btn">
@@ -59,7 +59,7 @@ export default function Footer() {
           </p>
           <p>
             <Link className="text-ink-soft hover:text-blue-dark" href="/#about">
-              About
+              About Coach Deising
             </Link>
           </p>
           <p>

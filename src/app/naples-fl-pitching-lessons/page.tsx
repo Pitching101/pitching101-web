@@ -4,12 +4,12 @@ import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import FaqList from "@/components/FaqList";
 import JsonLd, { faqJsonLd } from "@/components/JsonLd";
-import { faqs, trainingOptions } from "@/data/siteCopy";
+import { faqs, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Pitching coach for kids in Naples, FL",
   description:
-    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Nick — lessons for ages 8-14, arm care first. Text 845-768-2211.",
+    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Deising — lessons for ages 8-16, arm care first. Text 845-768-2211.",
   keywords: [
     "youth pitching lessons in Naples FL",
     "Naples FL pitching lessons",
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Coach Nick helps kids ages 8-14 throw more strikes in Naples and SWFL. Parents, other coaches, travel teams, and schools.",
+      "Coach Deising helps kids ages 8-16 throw more strikes in Naples and SWFL. Parents, other coaches, travel teams, and schools.",
     type: "website",
   },
 };
 
 const whoFor = [
-  "Youth pitchers ages 8–14",
+  "Youth pitchers ages 8–16",
   "Parents, other coaches, travel teams, and schools",
   "Naples, Collier County, and SWFL",
 ];
@@ -43,13 +43,14 @@ export default function NaplesPitchingLessonsPage() {
               ← Home
             </Link>
           </p>
-          <p className="ui-chip px-3.5 py-1.5">Naples · SWFL · ages 8–14</p>
+          <p className="ui-chip px-3.5 py-1.5">Naples · SWFL · ages 8–16</p>
           <h1 className="ui-title ui-title-lg">
             Youth pitching lessons in Naples, FL
           </h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Coach Nick. Kids 8–14. Sometimes a parent. Sometimes another
-            coach, a travel team, or a school.
+            Coach Deising works with kids ages 8–16. He is the junior
+            varsity head coach at Gulfshore High School, and works with
+            parents, other coaches, travel teams, and schools.
           </p>
           <Link href="/contact/" className="btn">
             Get started
@@ -85,7 +86,7 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-4">
-          <p className="text-ink-soft">Text first. I&apos;ll point you to the field.</p>
+          <p className="text-ink-soft">{RESPONSE_PROMISE}</p>
           <Link href="/contact/" className="btn">
             Get started
           </Link>

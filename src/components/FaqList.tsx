@@ -6,7 +6,7 @@ import type { FaqItem } from "@/data/siteCopy";
 /** Tap a question — first one starts open, answers ease in and out. */
 export default function FaqList({ items }: { items: FaqItem[] }) {
   const [open, setOpen] = useState<ReadonlySet<number>>(() => new Set([0]));
-  const [ready, setReady] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
   const panels = useRef<Array<HTMLDivElement | null>>([]);
   const skipMotion = useRef(true);
 
@@ -26,7 +26,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
       }
     });
     skipMotion.current = false;
-    setReady(true);
+    rootRef.current?.classList.add("is-ready");
   }, [open, items]);
 
   function toggle(index: number) {
@@ -39,7 +39,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
   }
 
   return (
-    <div className={`faq-list${ready ? " is-ready" : ""}`}>
+    <div ref={rootRef} className="faq-list">
       {items.map((item, index) => {
         const isOpen = open.has(index);
         const panelId = `faq-a-${index}`;
