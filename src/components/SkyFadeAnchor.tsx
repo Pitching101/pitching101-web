@@ -21,17 +21,20 @@ export default function SkyFadeAnchor() {
       const height = Math.max(1, sceneBox.height);
       const pct = Math.min(82, Math.max(8, ((markBox.top - sceneBox.top) / height) * 100));
       scene.style.setProperty("--sky-stop", `${pct.toFixed(2)}%`);
+      scene.classList.toggle("is-sky-in", markBox.top < window.innerHeight * 0.62);
     };
 
     sync();
     const raf = window.requestAnimationFrame(sync);
     window.addEventListener("resize", sync, { passive: true });
+    window.addEventListener("scroll", sync, { passive: true });
     const ro = new ResizeObserver(sync);
     ro.observe(scene);
     ro.observe(mark);
     return () => {
       window.cancelAnimationFrame(raf);
       window.removeEventListener("resize", sync);
+      window.removeEventListener("scroll", sync);
       ro.disconnect();
     };
   }, []);
