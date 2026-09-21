@@ -9,15 +9,17 @@ const skyClouds = [
   { src: "/assets/pixel-cloud-4-transparent.png", w: 223, h: 99 },
 ];
 
-/** Continuous park sky + drifting clouds. Home measures the fade at #your-guy. */
+/** Continuous park sky + drifting clouds. Home can use the same wash as Free guides. */
 export default function ParkSky({
   children,
   tone = "home",
+  clouds,
 }: {
   children: ReactNode;
   tone?: "home" | "park";
+  clouds?: number;
 }) {
-  const count = tone === "home" ? 14 : 8;
+  const count = clouds ?? (tone === "home" ? 14 : 8);
   return (
     <div className={`home-sky-scene park-sky park-sky-${tone}`}>
       <div className="home-sky-layers" aria-hidden="true">
