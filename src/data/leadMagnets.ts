@@ -922,6 +922,70 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  {
+    slug: "long-toss-lessons",
+    title: "Long toss lessons",
+    metaTitle: "Long Toss Lessons for Young Pitchers",
+    metaDescription:
+      "Coach Deising's 15-day long toss focus for youth pitchers in Naples, FL. Same sequence as the lesson curriculum, run as long toss for players ages 8–16.",
+    kicker: "Free guide",
+    note: "Same 15-day focus as the curriculum. This one is the long-toss day.",
+    topic: "Long toss",
+    icon: "/assets/icons/icon-plan-checklist.png",
+    ogImage: "/assets/icons/icon-plan-checklist.png",
+    emailSubject: "Long Toss Lessons Guide",
+    cta: ENROLL_LABEL,
+    ctaHref: "/contact/",
+    steps: [
+      {
+        label: "Same 15 focuses",
+        note: "Routine and balance, then landing, then timing, then a bullpen. Keep going through 15.",
+      },
+      {
+        label: "Run it as long toss",
+        note: "The mound-day drills live on the 15-lesson curriculum. This page is the focus of the day when you're stretching it out.",
+      },
+      {
+        label: "Bullpen days stay bullpen days",
+        note: "4, 8, 12, and 15. Lesson 15 is a 60+ pitch bullpen.",
+      },
+    ],
+    sections: [
+      {
+        heading: "The 15 long-toss days",
+        numbered: [
+          "Lesson 1 — routine, balance, timing, stability",
+          "Lesson 2 — landing, repeatability, direction",
+          "Lesson 3 — timing, upper-half awareness, sequencing hips and arms",
+          "Lesson 4 — bullpen, mechanics into the game, mindset",
+          "Lesson 5 — arm extension, lower-body drive, body awareness",
+          "Lesson 6 — balance, stability, timing, leg lift",
+          "Lesson 7 — balance, timing, stability, body control",
+          "Lesson 8 — bullpen, mechanics into the game, mindset",
+          "Lesson 9 — timing, rhythm, flow",
+          "Lesson 10 — rhythm, flow, staying loose / whippy",
+          "Lesson 11 — leg-drive repeatability, using the back hip",
+          "Lesson 12 — bullpen, mechanics into the game, mindset",
+          "Lesson 13 — four points of contact, visualization, repeatability",
+          "Lesson 14 — visualization, lower-half sequencing",
+          "Lesson 15 — bullpen, mechanics into the game, mindset — 60+ pitch bullpen",
+        ],
+      },
+      {
+        heading: "Easy next step",
+        paragraphs: [
+          "Want this run with your player? Share age, goals, and schedule on the short form.",
+        ],
+        links: [
+          { href: "/contact/", label: ENROLL_LABEL },
+          { href: "/guides/lesson-curriculum/", label: "15-lesson curriculum" },
+          { href: "/guides/pre-throwing-routine/", label: "Pre-throwing routine" },
+          { href: "/guides/pre-catch-warmup/", label: "Pre-catch warmup" },
+          { href: "/guides/", label: "Free guides" },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
