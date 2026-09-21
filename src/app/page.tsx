@@ -173,7 +173,7 @@ export default function HomePage() {
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
             <h2 className="ui-title ui-title-md">FAQs</h2>
-            <p className="text-base text-ink-soft">{FAQ_INTRO}</p>
+            <p className="faq-intro">{FAQ_INTRO}</p>
           </Reveal>
           <Reveal delayMs={40}>
             <FaqList items={faqs} />
