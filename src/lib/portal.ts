@@ -57,3 +57,28 @@ export function lessonCountLabel(count: number) {
   if (count === 1) return "1 lesson";
   return `${count} lessons`;
 }
+
+export type TrackerAccount = {
+  id: string;
+  name: string;
+  sort_order: number;
+};
+
+export type TrackerPayment = {
+  id: string;
+  account_id: string;
+  paid_on: string;
+  amount: number;
+};
+
+export function formatMoney(amount: number) {
+  const dollars = Number(amount);
+  if (!Number.isFinite(dollars)) return "$0";
+  const whole = Number.isInteger(dollars);
+  return dollars.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: whole ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+}

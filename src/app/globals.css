@@ -3783,6 +3783,45 @@ a.reviews-verified:focus-visible {
 .portal-desk-family .portal-clip {
   max-height: min(70vh, 28rem);
 }
+.portal-tracker {
+  display: grid;
+  gap: 1.15rem;
+}
+.portal-tracker-head {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.portal-tracker-head .ui-title {
+  margin: 0;
+}
+.portal-tracker-head strong {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+}
+.portal-tracker-line .portal-lesson-top {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+}
+.portal-tracker-line .portal-lesson-top span {
+  font-weight: 700;
+}
+.portal-tracker-add {
+  margin-top: 1rem;
+}
+.portal-tracker-row {
+  grid-template-columns: 1fr 8rem;
+}
 .start-form-or button {
   background: none;
   border: 0;

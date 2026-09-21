@@ -12,11 +12,12 @@ import {
 } from "@/lib/portal";
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
 import CoachClips from "./CoachClips";
+import CoachTracker from "./CoachTracker";
 import PortalLessonClip from "./PortalLessonClip";
 import PortalHomeLink from "./PortalHomeLink";
 
-type Tab = "lessons" | "clips" | "roster";
-const COACH_TABS = ["lessons", "clips", "roster"] as const;
+type Tab = "tracker" | "lessons" | "clips" | "roster";
+const COACH_TABS = ["tracker", "lessons", "clips", "roster"] as const;
 
 export default function CoachDesk({
   supabase,
@@ -27,7 +28,7 @@ export default function CoachDesk({
   profile: Profile;
   onSignOut: () => void;
 }) {
-  const [tab, setTab] = useState<Tab>("lessons");
+  const [tab, setTab] = useState<Tab>("tracker");
   const [players, setPlayers] = useState<Player[]>([]);
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [clipCount, setClipCount] = useState(0);
@@ -220,8 +221,8 @@ export default function CoachDesk({
         </button>
       </div>
       <p className="portal-lead">
-        Your working desk. Log lessons, keep the roster, drop clips. Families
-        only see what you post.
+        Your working desk. Tracker is the money book. Lessons, roster, and
+        clips stay over here. Families only see what you post.
       </p>
 
       <ul className="portal-stats">
@@ -250,6 +251,7 @@ export default function CoachDesk({
         onKeyDown={onTabsKeyDown}
       >
         {([
+          ["tracker", "Tracker"],
           ["lessons", "Lessons"],
           ["clips", "My videos"],
           ["roster", "Roster"],
@@ -269,6 +271,8 @@ export default function CoachDesk({
           </button>
         ))}
       </div>
+
+      {tab === "tracker" ? <CoachTracker supabase={supabase} profile={profile} /> : null}
 
       {tab === "lessons" ? (
         <div
