@@ -18,6 +18,11 @@ export type LeadMagnetSection = {
  * Standard for every free lead magnet on /guides.
  * Add one object here → card on the shelf + /guides/{slug}/ page.
  */
+export type LeadMagnetStep = {
+  label: string;
+  note: string;
+};
+
 export type LeadMagnet = {
   slug: string;
   title: string;
@@ -38,6 +43,8 @@ export type LeadMagnet = {
   ogImage?: string;
   /** Long-form body for parent guides. Short magnets omit this. */
   sections?: LeadMagnetSection[];
+  /** Numbered checklist for short magnets. */
+  steps?: LeadMagnetStep[];
 };
 
 export const leadMagnets: LeadMagnet[] = [
@@ -137,6 +144,28 @@ export const leadMagnets: LeadMagnet[] = [
       "The same warm-up and cool-down Coach Deising teaches in Naples pitching lessons. A simple arm-care checklist parents can use before and after throwing.",
     emailSubject: "Arm-Care Checklist Guide",
     cta: "Email the checklist",
+    steps: [
+      {
+        label: "Get warm first",
+        note: "Don't throw until the body's moving. A little jog, jumping jacks — whatever gets blood going.",
+      },
+      {
+        label: "Arms both ways",
+        note: "Easy circles forward and back. Slow. You're not showing off.",
+      },
+      {
+        label: "Then play catch",
+        note: "Start close. Move back when it feels easy. Save the juice.",
+      },
+      {
+        label: "Cool down after",
+        note: "Don't bag it and sit. Light stretch, same arm care you started with.",
+      },
+      {
+        label: "Hurt means stop",
+        note: "Tell a parent or coach. We don't throw through that.",
+      },
+    ],
   },
   {
     slug: "strike-tips",
@@ -152,6 +181,24 @@ export const leadMagnets: LeadMagnet[] = [
       "Simple strike cues from Coach Deising's Naples pitching lessons. Help your 8–16 year old throw more strikes with a clear plan parents can use at practice.",
     emailSubject: "Strike Percent Tips Guide",
     cta: "Email the tips",
+    steps: [
+      {
+        label: "Hunt the middle",
+        note: "Your best pitch is a strike. Get zone 5 — the middle of that nine-box — before you get cute.",
+      },
+      {
+        label: "One cue",
+        note: "Don't stack five thoughts. One thing you can actually remember on the mound.",
+      },
+      {
+        label: "Finish to the plate",
+        note: "Get out over the front side. The ball tends to follow you.",
+      },
+      {
+        label: "If you're spraying",
+        note: "Slow it down. Easy catch, then you earn the juice. Strikes first.",
+      },
+    ],
   },
   {
     slug: "pre-catch-warmup",
@@ -165,6 +212,24 @@ export const leadMagnets: LeadMagnet[] = [
       "A short pre-catch warmup so your pitcher starts ready. The same routine Coach Deising uses in youth pitching lessons in Naples, FL for kids ages 8–16.",
     emailSubject: "Pre-Catch Warmup Guide",
     cta: "Email the warmup",
+    steps: [
+      {
+        label: "Body first",
+        note: "Legs and trunk before the arm. You're not starting catch from zero.",
+      },
+      {
+        label: "Then the arm",
+        note: "Easy circles, both ways. Same arm care as the checklist.",
+      },
+      {
+        label: "Short toss",
+        note: "First ones are easy strikes to your partner. Close. Loose.",
+      },
+      {
+        label: "Then stretch it out",
+        note: "Move back when it feels easy. That's when catch can get competitive.",
+      },
+    ],
   },
 ];
 

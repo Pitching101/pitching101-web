@@ -80,7 +80,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
       <article
         className={`park-page magnet-page${isLongForm ? " magnet-page-long" : ""}`}
       >
-        <Reveal className="space-y-5">
+        <Reveal className={isLongForm ? "space-y-5" : "magnet-page-intro"}>
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/guides/" className="hover:underline">
               ← Free guides
@@ -123,6 +123,24 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
           </div>
         </Reveal>
 
+        {magnet.steps?.length ? (
+          <Reveal delayMs={30}>
+            <ol className="magnet-template">
+              {magnet.steps.map((step, index) => (
+                <li key={step.label} className="magnet-step">
+                  <span className="magnet-step-num" aria-hidden="true">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h2 className="magnet-step-title">{step.label}</h2>
+                    <p className="magnet-step-note">{step.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        ) : null}
+
         {magnet.sections?.map((section, index) => (
           <Reveal key={section.heading} delayMs={20 + index * 20}>
             <GuideSection section={section} />
@@ -130,7 +148,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
         ))}
 
         {isLongForm ? null : (
-          <Reveal delayMs={40} className="mt-12 space-y-4">
+          <Reveal delayMs={50} className="magnet-page-cta">
             <p className="text-base text-ink-soft">Want to hop on a field, not just read the sheet?</p>
             <Link href="/contact/" className="btn">
               Get started
