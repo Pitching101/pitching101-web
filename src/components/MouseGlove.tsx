@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const BALLS = 10;
+const BALLS = 3;
 const HOT_X = 22;
 const HOT_Y = 20;
-const MIN_GAP_MS = 95;
-const MIN_SPEED = 0.42;
+const MIN_GAP_MS = 340;
+const MIN_SPEED = 0.72;
 
 type Flight = {
   x: number;
@@ -72,7 +72,7 @@ function MouseGloveField() {
         const elapsed = (now - flight.born) / 1000;
         const t = Math.min(1, (now - flight.born) / flight.life);
         const x = flight.x + flight.vx * elapsed;
-        const y = flight.y + flight.vy * elapsed + 520 * elapsed * elapsed;
+        const y = flight.y + flight.vy * elapsed + 380 * elapsed * elapsed;
         const fade = t < 0.1 ? t / 0.1 : 1 - Math.max(0, (t - 0.7) / 0.3);
         el.style.opacity = fade.toFixed(3);
         el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${(flight.spin * t).toFixed(1)}deg)`;
@@ -86,15 +86,15 @@ function MouseGloveField() {
       const slot = flights.findIndex((flight) => !flight);
       if (slot < 0) return;
       const speed = Math.hypot(vx, vy) || 1;
-      const kick = 640 + Math.min(420, speed * 0.35);
+      const kick = 380 + Math.min(220, speed * 0.22);
       flights[slot] = {
         x: x - 16,
         y: y - 16,
         vx: (vx / speed) * kick,
-        vy: (vy / speed) * kick - 140,
-        spin: (vx >= 0 ? 1 : -1) * (220 + Math.random() * 200),
+        vy: (vy / speed) * kick - 90,
+        spin: (vx >= 0 ? 1 : -1) * (140 + Math.random() * 120),
         born: now,
-        life: 720 + Math.random() * 280,
+        life: 1100 + Math.random() * 400,
       };
       lastThrow = now;
     };
@@ -135,9 +135,6 @@ function MouseGloveField() {
       if (e.pointerType === "touch") return;
       place(e.clientX, e.clientY, e.target, performance.now());
     };
-    const onMouse = (e: MouseEvent) => {
-      place(e.clientX, e.clientY, e.target, performance.now());
-    };
 
     const leave = () => {
       shown = false;
@@ -148,12 +145,10 @@ function MouseGloveField() {
     };
 
     window.addEventListener("pointermove", onPointer, { passive: true });
-    window.addEventListener("mousemove", onMouse, { passive: true });
     document.addEventListener("mouseleave", leave);
     return () => {
       if (raf) window.cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onPointer);
-      window.removeEventListener("mousemove", onMouse);
       document.removeEventListener("mouseleave", leave);
       document.documentElement.classList.remove("glove-cursor");
     };
