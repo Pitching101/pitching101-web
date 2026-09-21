@@ -15,6 +15,10 @@ const BALL = 30;
 const KICK_LO = 520;
 const KICK_HI = 1180;
 
+function nowMs() {
+  return performance.now();
+}
+
 type CellBox = {
   zone: number;
   left: number;
@@ -330,7 +334,7 @@ function PitchGameField() {
       y0: y - BALL / 2,
       x1: landing.x - BALL / 2,
       y1: landing.y - BALL / 2,
-      t0: performance.now(),
+      t0: nowMs(),
       dur: 520 - t * 160,
       landing,
     };
@@ -345,7 +349,11 @@ function PitchGameField() {
   function onPointerDown(event: PointerEvent<HTMLDivElement>) {
     if (event.pointerType === "touch") return;
     if (reduceMotion) return;
-    event.currentTarget.setPointerCapture(event.pointerId);
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      /* synthetic events and some browsers skip capture */
+    }
     document.documentElement.classList.add("pitch-playing");
     flightRef.current = null;
     const point = fieldPoint(event);
@@ -353,7 +361,7 @@ function PitchGameField() {
       ...point,
       vx: 0,
       vy: 0,
-      t: performance.now(),
+      t: nowMs(),
       startX: point.x,
       startY: point.y,
     };
@@ -369,7 +377,7 @@ function PitchGameField() {
   function onPointerMove(event: PointerEvent<HTMLDivElement>) {
     const drag = dragRef.current;
     if (!drag) return;
-    const now = performance.now();
+    const now = nowMs();
     const point = fieldPoint(event);
     const dt = Math.max(0.008, (now - drag.t) / 1000);
     drag.vx = (point.x - drag.x) / dt;
@@ -450,6 +458,7 @@ function PitchGameField() {
         tabIndex={0}
         data-pitch-zone={result.zone ?? ""}
         data-pitch-card={book.card}
+        data-pitch-note={result.text}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
