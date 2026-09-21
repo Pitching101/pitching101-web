@@ -3,9 +3,9 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { FaqItem } from "@/data/siteCopy";
 
-/** Tap a question — first one starts open, answers ease in and out. */
+/** Tap a question — one answer at a time, all start closed. */
 export default function FaqList({ items }: { items: FaqItem[] }) {
-  const [open, setOpen] = useState<ReadonlySet<number>>(() => new Set([0]));
+  const [open, setOpen] = useState<number | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const panels = useRef<Array<HTMLDivElement | null>>([]);
   const skipMotion = useRef(true);
@@ -14,7 +14,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     panels.current.forEach((panel, index) => {
       if (!panel) return;
-      const next = open.has(index) ? panel.scrollHeight : 0;
+      const next = open === index ? panel.scrollHeight : 0;
       if (skipMotion.current || reduce) {
         const previous = panel.style.transition;
         panel.style.transition = "none";
@@ -30,18 +30,13 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
   }, [open, items]);
 
   function toggle(index: number) {
-    setOpen((current) => {
-      const next = new Set(current);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
-      return next;
-    });
+    setOpen((current) => (current === index ? null : index));
   }
 
   return (
     <div ref={rootRef} className="faq-list">
       {items.map((item, index) => {
-        const isOpen = open.has(index);
+        const isOpen = open === index;
         const panelId = `faq-a-${index}`;
         return (
           <div
