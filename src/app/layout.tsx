@@ -3,7 +3,7 @@ import { DM_Sans, Oswald, Yesteryear } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MouseGlove from "@/components/MouseGlove";
-import { META_DESCRIPTION } from "@/data/siteCopy";
+import { META_DESCRIPTION, OG_DESCRIPTION } from "@/data/siteCopy";
 import "./globals.css";
 
 /** Varsity condensed — athletic headlines, not a script jersey for every line. */
@@ -49,8 +49,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
-    description:
-      "Coach Deising helps kids ages 8-16 throw more strikes in Naples, FL. Parents, other coaches, travel teams, and schools.",
+    description: OG_DESCRIPTION,
     locale: "en_US",
     type: "website",
   },

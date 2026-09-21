@@ -3,12 +3,12 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import StartForm from "@/components/StartForm";
-import { GOOGLE_REVIEW_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL, RESPONSE_PROMISE } from "@/data/siteCopy";
+import { GOOGLE_REVIEW_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Get started with youth pitching lessons",
   description:
-    "Tell Coach Deising who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    "Tell me who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/" },
 };
 
@@ -24,7 +24,7 @@ export default function ContactPage() {
           </p>
           <h1 className="ui-title ui-title-lg">Get started</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Kids 8–16. {RESPONSE_PROMISE}
+            Kids 8–16. Tell me a little and we'll get back within 24 business hours.
           </p>
         </Reveal>
 
