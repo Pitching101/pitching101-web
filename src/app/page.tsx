@@ -75,8 +75,7 @@ export default function HomePage() {
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
               Pitching101 is me — a pitching coach for kids ages 8–14 in Naples, FL.
-              I help young pitchers throw more strikes without the jargon or the
-              crazy price tag.
+              I help young pitchers throw more strikes.
             </p>
             <p className="text-base leading-relaxed text-ink-soft">
               Kids this age need clear cues, healthy arm habits, and something they
