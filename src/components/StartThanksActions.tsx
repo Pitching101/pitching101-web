@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { INFO_PACKET_FILENAME, INFO_PACKET_HREF } from "@/data/siteCopy";
 import {
   START_LEAD_SMS_KEY,
@@ -23,6 +24,16 @@ export default function StartThanksActions() {
     window.location.href = smsHref(next.body);
   }, []);
 
+  const afterForm = (
+    <p className="start-form-or">
+      This booking note is not saved in the client portal. It opens a message
+      to Coach Deising, and you tap send.{" "}
+      <Link href="/privacy/">Privacy policy</Link>
+      {" · "}
+      <Link href="/terms/">Terms of service</Link>
+    </p>
+  );
+
   const packet = (
     <a
       href={INFO_PACKET_HREF}
@@ -34,7 +45,12 @@ export default function StartThanksActions() {
   );
 
   if (!lead) {
-    return <div className="start-thanks-actions">{packet}</div>;
+    return (
+      <div className="start-thanks-actions">
+        {packet}
+        {afterForm}
+      </div>
+    );
   }
 
   return (
@@ -49,6 +65,7 @@ export default function StartThanksActions() {
       <p className="start-form-or">
         We&apos;ll use {lead.phone}. Players 8–16.
       </p>
+      {afterForm}
     </div>
   );
 }
