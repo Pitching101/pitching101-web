@@ -11,6 +11,7 @@ export default function Logo({
   height,
   width,
   variant: _variant = "primary",
+  onClick,
 }: {
   className?: string;
   /** primary / on-white / on-blue — kept for page-level compatibility. */
@@ -19,6 +20,7 @@ export default function Logo({
   height?: number;
   /** Prefer width for a full readable wordmark (~140–180). */
   width?: number;
+  onClick?: () => void;
 }) {
   void _variant;
   const src = "/assets/logo-header-navy.png";
@@ -33,6 +35,7 @@ export default function Logo({
       href="/"
       className={`site-logo inline-flex shrink-0 items-center ${className}`}
       aria-label="Pitching101 home"
+      onClick={onClick}
     >
       <Image
         src={src}

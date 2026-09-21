@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 
@@ -9,11 +12,41 @@ const homeAnchors = [
 ] as const;
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 900px)");
+    function onChange() {
+      if (media.matches) setOpen(false);
+    }
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  function closeMenu() {
+    setOpen(false);
+  }
+
   return (
-    <header className="site-header sticky top-0 z-40">
+    <header className={`site-header sticky top-0 z-40${open ? " is-menu-open" : ""}`}>
       <div className="site-header-inner">
-        {/* Transparent dark navy (~#181850) header mark; accents stay #3295fb */}
-        <Logo variant="primary" width={160} />
+        <Logo variant="primary" width={160} onClick={closeMenu} />
         <nav className="site-nav" aria-label="Primary">
           {homeAnchors.map((item) => (
             <a key={item.href} href={item.href} className="nav-link">
@@ -29,7 +62,47 @@ export default function Header() {
             Get started
           </Link>
         </nav>
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={open}
+          aria-controls="site-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((current) => !current)}
+        >
+          <span className="nav-toggle-bars" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
       </div>
+      <nav
+        id="site-menu"
+        className="site-menu"
+        aria-label="Mobile"
+        aria-hidden={!open}
+        inert={!open}
+      >
+        <div className="site-menu-inner">
+          {homeAnchors.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="site-menu-link"
+              onClick={closeMenu}
+            >
+              {item.full}
+            </a>
+          ))}
+          <Link href="/guides/" className="site-menu-link" onClick={closeMenu}>
+            Free guides
+          </Link>
+          <Link href="/contact/" className="btn site-menu-cta" onClick={closeMenu}>
+            Get started
+          </Link>
+        </div>
+      </nav>
     </header>
   );
 }
