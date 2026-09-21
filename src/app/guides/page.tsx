@@ -30,7 +30,7 @@ export default function GuidesPage() {
   return (
     <ParkSky tone="park">
       <article className="park-page park-page-magnets">
-        <Reveal className="space-y-5">
+        <Reveal className="guide-hero">
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/" className="hover:underline">
               ← Home

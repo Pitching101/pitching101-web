@@ -2444,6 +2444,8 @@ a.reviews-verified:focus-visible {
 /* Free lead magnets — one baseball-card template for every guide */
 .park-page-magnets {
   max-width: 56rem;
+  padding-top: calc(var(--header-bar) + 2.4rem);
+  padding-bottom: 8rem;
 }
 .magnet-shelf {
   display: grid;
@@ -2562,15 +2564,6 @@ a.reviews-verified:focus-visible {
   color: #1a78e8;
 }
 .magnet-page {
-  max-width: 40rem;
-  padding-bottom: 3.25rem;
-}
-.magnet-page-intro {
-  display: grid;
-  justify-items: center;
-  gap: 0.85rem;
-}
-.magnet-page-long {
   max-width: 46rem;
   padding-top: calc(var(--header-bar) + 2.4rem);
   padding-bottom: 8rem;
@@ -2731,10 +2724,10 @@ a.reviews-verified:focus-visible {
 }
 .magnet-template {
   display: grid;
-  gap: 1.15rem;
+  gap: 1.35rem;
   width: 100%;
   max-width: 32rem;
-  margin: 1.85rem auto 0;
+  margin: 0.6rem auto 0;
   padding: 0;
   list-style: none;
   text-align: left;
@@ -2780,8 +2773,8 @@ a.reviews-verified:focus-visible {
 .magnet-page-cta {
   display: grid;
   justify-items: center;
-  gap: 0.85rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 3.4rem;
 }
 @media (max-width: 639px) {
   .magnet-shelf { padding-left: 0.15rem; padding-right: 0.15rem; }
