@@ -986,6 +986,132 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  {
+    slug: "fun-games",
+    title: "Fun games to play",
+    metaTitle: "Fun Pitching Games for Youth Lessons",
+    metaDescription:
+      "Command games Coach Deising mixes into youth pitching lessons in Naples, FL: around the world, 21, call your shot, knockout, and more for players ages 8–16.",
+    kicker: "Free guide",
+    note: "Games we mix in so command work feels like competing, not a lecture.",
+    topic: "Games",
+    icon: "/assets/icons/icon-strikes.png",
+    ogImage: "/assets/icons/icon-strikes.png",
+    emailSubject: "Fun Pitching Games Guide",
+    cta: ENROLL_LABEL,
+    ctaHref: "/contact/",
+    sections: [
+      {
+        heading: "Quick mix-ins",
+        paragraphs: ["These are the ones we throw in most."],
+        bullets: [
+          "Around the world",
+          "21",
+          "Call your shot",
+          "Partner spot control — 5 in a row",
+        ],
+      },
+      {
+        heading: "Target knockout",
+        paragraphs: [
+          "Put 3–5 small targets on a net — cones, numbers, tape squares. Command, pressure, and competition.",
+        ],
+        bullets: [
+          "Each player gets 5 pitches per round",
+          "Hit a target = 1 point",
+          "Hit the bonus small target = 3 points",
+          "After 3 rounds, highest score wins",
+        ],
+      },
+      {
+        heading: "21 count",
+        paragraphs: [
+          "First pitcher to hit exactly 21 points wins. Go over and you drop back to 15. Strategy and precision under pressure.",
+        ],
+        bullets: [
+          "Middle target = 3",
+          "Corners = 5",
+          "Miss entirely = –1",
+        ],
+      },
+      {
+        heading: "Freeze out",
+        paragraphs: ["Every pitch feels like a real at-bat."],
+        bullets: [
+          "Each pitcher throws 1 ball",
+          "Hit the zone and you freeze the next thrower — they skip a turn",
+          "Frozen twice and you're out that round",
+          "Last pitcher standing wins",
+        ],
+      },
+      {
+        heading: "Pitcher's poker",
+        paragraphs: [
+          "Assign each location a card value. High in is an ace. Low away is a king. Low in is a queen. Middle is a 10. You have to locate to all the quadrants.",
+        ],
+        bullets: [
+          "Each pitch earns a card",
+          "Build the best poker hand in 10 pitches",
+        ],
+      },
+      {
+        heading: "Battle boxes",
+        paragraphs: [
+          "Divide the strike zone into 6 labeled boxes. Game-speed execution with consequences.",
+        ],
+        bullets: [
+          "Coach calls a battle box — low-away, whatever it is",
+          "Each pitcher gets 2 pitches to hit it",
+          "Hit it = win the battle, 1 point",
+          "First to 5 wins",
+        ],
+      },
+      {
+        heading: "Around the world",
+        paragraphs: [
+          "Hit all 6 zones in order — up-in, up-middle, up-away, and on around. Smooths out command across the whole zone.",
+        ],
+        bullets: [
+          "Each player gets 2 shots at each zone",
+          "Miss both and you stay on that zone until your next turn",
+          "First to finish all zones wins",
+        ],
+      },
+      {
+        heading: "Strike zone bowling",
+        paragraphs: [
+          "Put 10 cones in a bowling formation behind home plate or on a net. Accuracy plus a visual target. It shows up fast.",
+        ],
+        bullets: [
+          "Each pitcher gets 2 frames, 5 pitches per frame",
+          "Knock down (hit) as many cones as you can",
+        ],
+      },
+      {
+        heading: "Sudden death showdown",
+        paragraphs: ["Pure pressure. Great last game."],
+        bullets: [
+          "Coach picks a spot",
+          "Everyone throws 1 pitch",
+          "Closest to the target wins the point",
+          "New spot, go again",
+          "First to 7 wins",
+        ],
+      },
+      {
+        heading: "Easy next step",
+        paragraphs: [
+          "Want these mixed into a lesson? Share age, goals, and schedule on the short form.",
+        ],
+        links: [
+          { href: "/contact/", label: ENROLL_LABEL },
+          { href: "/guides/strike-tips/", label: "Strike tips" },
+          { href: "/guides/pre-catch-warmup/", label: "Pre-catch warmup" },
+          { href: "/guides/", label: "Free guides" },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
