@@ -3203,6 +3203,9 @@ a.reviews-verified:focus-visible {
 
 /* Phone: keep the park on the field, no sideways scroll */
 @media (max-width: 639px) {
+  html {
+    scroll-behavior: auto;
+  }
   .hero-overlay {
     min-height: calc(100svh - var(--header-bar) - env(safe-area-inset-top));
     min-height: calc(100dvh - var(--header-bar) - env(safe-area-inset-top));
@@ -3219,13 +3222,13 @@ a.reviews-verified:focus-visible {
   .hero-arc {
     display: block;
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 6.4rem;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    margin-left: 0;
+    margin-right: 0;
     z-index: 3;
     pointer-events: none;
-    overflow: visible;
+    overflow: hidden;
   }
   .hero-arc-ball {
     position: absolute;
