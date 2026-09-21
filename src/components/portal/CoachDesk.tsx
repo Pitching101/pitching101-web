@@ -276,7 +276,9 @@ export default function CoachDesk({
       </div>
 
       {tab === "tracker" ? <CoachTracker supabase={supabase} profile={profile} /> : null}
-      {tab === "progress" ? <CoachProgress supabase={supabase} profile={profile} /> : null}
+      {tab === "progress" ? (
+        <CoachProgress supabase={supabase} profile={profile} roster={players} />
+      ) : null}
 
       {tab === "lessons" ? (
         <div

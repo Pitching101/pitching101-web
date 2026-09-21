@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   formatProgressMark,
+  type Player,
   type Profile,
   type ProgressMark,
   type ProgressPlayer,
@@ -20,9 +21,11 @@ function latestHeadline(marks: ProgressMark[]) {
 export default function CoachProgress({
   supabase,
   profile,
+  roster = [],
 }: {
   supabase: SupabaseClient;
   profile: Profile;
+  roster?: Player[];
 }) {
   const [players, setPlayers] = useState<ProgressPlayer[]>([]);
   const [marks, setMarks] = useState<ProgressMark[]>([]);
@@ -39,6 +42,11 @@ export default function CoachProgress({
       return { player, lines };
     });
   }, [players, marks]);
+
+  const rosterToAdd = useMemo(() => {
+    const taken = new Set(players.map((player) => player.name.trim().toLowerCase()));
+    return roster.filter((player) => !taken.has(player.first_name.trim().toLowerCase()));
+  }, [players, roster]);
 
   const reload = useCallback(async () => {
     const [{ data: playerRows }, { data: markRows }] = await Promise.all([
@@ -64,26 +72,44 @@ export default function CoachProgress({
     void reload();
   }, [reload]);
 
-  async function addPlayer(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const name = String(new FormData(form).get("name") || "").trim();
-    if (!name) return;
+  async function savePlayer(name: string) {
+    const trimmed = name.trim();
+    if (!trimmed) return;
     setBusy(true);
     setStatus("");
     const nextOrder = (players.at(-1)?.sort_order ?? 0) + 1;
-    const { error } = await supabase.from("tracker_progress_players").insert({
-      name,
-      sort_order: nextOrder,
-      created_by: profile.id,
-    });
+    const { data, error } = await supabase
+      .from("tracker_progress_players")
+      .insert({
+        name: trimmed,
+        sort_order: nextOrder,
+        created_by: profile.id,
+      })
+      .select("id")
+      .single();
     setBusy(false);
     if (error) {
       setStatus(error.message);
       return;
     }
-    form.reset();
     await reload();
+    if (data?.id) setOpenId(data.id);
+  }
+
+  async function addPlayer(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const name = String(new FormData(form).get("name") || "").trim();
+    if (!name) return;
+    await savePlayer(name);
+    form.reset();
+  }
+
+  async function addFromRoster(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const name = String(new FormData(event.currentTarget).get("roster_name") || "").trim();
+    if (!name) return;
+    await savePlayer(name);
   }
 
   async function addMark(event: FormEvent<HTMLFormElement>, playerId: string, nextOrder: number) {
@@ -152,9 +178,38 @@ export default function CoachProgress({
         <p className="portal-kicker">Your notebook</p>
         <h2 className="ui-title ui-title-sm">Strike growth</h2>
         <p className="portal-lead">
-          Same book as the money tracker, for strikes and long toss. Add a
-          player, drop in 10/20 or 65 yards. Families don&apos;t see this.
+          Type a name yourself, or pull one off the roster. Then drop in 10/20
+          or yards. Families don&apos;t see this yet.
         </p>
+        <form className="start-form portal-mini-form" onSubmit={(event) => void addPlayer(event)}>
+          <label className="start-field">
+            <span>Add a player</span>
+            <input name="name" required autoCapitalize="words" placeholder="First name" />
+          </label>
+          <button className="btn" type="submit" disabled={busy}>
+            Add to progress
+          </button>
+        </form>
+        {rosterToAdd.length ? (
+          <form className="start-form portal-mini-form" onSubmit={(event) => void addFromRoster(event)}>
+            <label className="start-field">
+              <span>Or pull off the roster</span>
+              <select name="roster_name" defaultValue="" required>
+                <option value="" disabled>
+                  Pick a roster player
+                </option>
+                {rosterToAdd.map((player) => (
+                  <option key={player.id} value={player.first_name}>
+                    {player.first_name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button className="btn" type="submit" disabled={busy}>
+              Add from roster
+            </button>
+          </form>
+        ) : null}
       </section>
 
       {rows.map(({ player, lines }) => {
@@ -227,19 +282,6 @@ export default function CoachProgress({
           </section>
         );
       })}
-
-      <section className="portal-card">
-        <h3 className="ui-title ui-title-sm">Add a player</h3>
-        <form className="start-form portal-mini-form" onSubmit={(event) => void addPlayer(event)}>
-          <label className="start-field">
-            <span>Name</span>
-            <input name="name" required autoCapitalize="words" />
-          </label>
-          <button className="btn" type="submit" disabled={busy}>
-            Add to progress
-          </button>
-        </form>
-      </section>
 
       {status ? (
         <p className="portal-note" aria-live="polite">
