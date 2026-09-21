@@ -148,6 +148,14 @@ export const workWithRoles = [
   "School",
 ] as const;
 
+export const hearAboutOptions = [
+  "Google search",
+  "ChatGPT",
+  "Instagram",
+  "A friend or coach",
+  "Other",
+] as const;
+
 export const startSteps = [
   {
     label: ENROLL_LABEL,

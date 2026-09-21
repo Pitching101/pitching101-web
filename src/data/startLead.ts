@@ -12,6 +12,7 @@ export type StartLead = {
   email: string;
   goals: string;
   schedule: string;
+  heard: string;
   train: string;
   note: string;
   body: string;
@@ -26,6 +27,7 @@ export function leadFromForm(data: FormData): StartLead {
   const email = String(data.get("email") || "").trim();
   const goals = String(data.get("goals") || "").trim();
   const schedule = String(data.get("schedule") || "").trim();
+  const heard = String(data.get("heard") || "").trim();
   const train = String(data.get("train") || "").trim();
   const note = String(data.get("note") || "").trim();
 
@@ -40,6 +42,7 @@ export function leadFromForm(data: FormData): StartLead {
     email ? `Email: ${email}` : "",
     goals ? `Goals: ${goals}` : "",
     schedule ? `Schedule: ${schedule}` : "",
+    heard ? `How they heard: ${heard}` : "",
     train ? `Train: ${train}` : "",
     note ? `Note: ${note}` : "",
   ]
@@ -55,6 +58,7 @@ export function leadFromForm(data: FormData): StartLead {
     email,
     goals,
     schedule,
+    heard,
     train,
     note,
     body,

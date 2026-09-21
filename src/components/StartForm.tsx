@@ -2,7 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { ENROLL_LABEL, RESPONSE_PROMISE, workWithRoles } from "@/data/siteCopy";
+import {
+  ENROLL_LABEL,
+  hearAboutOptions,
+  RESPONSE_PROMISE,
+  workWithRoles,
+} from "@/data/siteCopy";
 import { leadFromForm, writeStartLead } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
@@ -105,10 +110,21 @@ export default function StartForm() {
           name="schedule"
           required
           rows={2}
-          enterKeyHint="go"
+          enterKeyHint="next"
           placeholder="Days or times that usually work"
         />
       </label>
+      <fieldset className="start-field">
+        <legend>How&apos;d you hear about us</legend>
+        <div className="start-train">
+          {hearAboutOptions.map((heard) => (
+            <label key={heard} className="start-train-option">
+              <input type="radio" name="heard" value={heard} required />
+              <span>{heard}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <button type="submit" className="btn" disabled={sending}>
         {sending ? "Sending…" : ENROLL_LABEL}
       </button>
