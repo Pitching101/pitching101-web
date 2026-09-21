@@ -82,7 +82,7 @@ export default function InstagramFollow() {
               rel="noopener noreferrer"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={post.src} alt={post.alt} width={560} height={560} />
+              <img src={post.src} alt={post.alt} width={540} height={960} />
               <span className="ig-post-play" aria-hidden="true" />
             </a>
           </li>
