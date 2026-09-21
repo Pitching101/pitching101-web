@@ -309,7 +309,17 @@ function PitchGameField() {
     const nx = vx / (speed || 1);
     const ny = vy / (speed || 1);
     const cells = cellsFromField(field, cellRefs.current);
-    const landing = landingForThrow(originX, originY, nx * kick, ny * kick, cells);
+    const releaseHit = cells.find(
+      (cell) => x >= cell.left && x <= cell.right && y >= cell.top && y <= cell.bottom,
+    );
+    const landing = releaseHit
+      ? {
+          x: (releaseHit.left + releaseHit.right) / 2,
+          y: (releaseHit.top + releaseHit.bottom) / 2,
+          zone: releaseHit.zone,
+          miss: null,
+        }
+      : landingForThrow(originX, originY, nx * kick, ny * kick, cells);
     if (!landing.zone) {
       landing.x = Math.min(field.clientWidth - 18, Math.max(18, landing.x));
       landing.y = Math.min(field.clientHeight - 18, Math.max(18, landing.y));
