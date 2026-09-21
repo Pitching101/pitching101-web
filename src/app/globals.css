@@ -3543,11 +3543,6 @@ a.reviews-verified:focus-visible {
   color: var(--ink-soft);
   line-height: 1.55;
 }
-.portal-page > .portal-lead {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
 .portal-stat {
   margin: 0.15rem 0 0.4rem;
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
