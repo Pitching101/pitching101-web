@@ -169,7 +169,7 @@ export default function CoachDesk({
 
     setBusy(false);
     form.reset();
-    setStatus("Lesson is in. They'll see it in their dugout.");
+    setStatus("Lesson is in. They'll see it in the client portal.");
     await reload();
   }
 

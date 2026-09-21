@@ -115,7 +115,7 @@ export default function DugoutGate({
       {error ? <p className="portal-note portal-note-warn">{error}</p> : null}
       {message ? <p className="portal-note">{message}</p> : null}
       <button className="btn" type="submit" disabled={busy}>
-        {busy ? "Hang on…" : mode === "signup" ? "Create my dugout" : "Walk in"}
+        {busy ? "Hang on…" : mode === "signup" ? "Create my account" : "Sign in"}
       </button>
       <button
         className="btn-ghost portal-link-btn"

@@ -5,13 +5,13 @@ import PortalApp from "@/components/portal/PortalApp";
 import { pageTitle, shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Dugout",
+  title: "Client portal",
   description:
-    "Pitching101 dugout: families can see lesson counts and clips. Coach tracks the roster.",
+    "Pitching101 client portal: families can see lesson counts and clips. Coach tracks the roster.",
   alternates: { canonical: "/portal/" },
   robots: { index: false, follow: false },
   openGraph: {
-    title: pageTitle("Dugout"),
+    title: pageTitle("Client portal"),
     description: "Lesson counts and clips for Pitching101 families.",
     url: "/portal/",
     images: shareImage(),

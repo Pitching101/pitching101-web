@@ -57,7 +57,7 @@ export type LeadMagnet = {
   introVideo?: string;
   /** Named checklists with clips, like the band routine. */
   routines?: LeadMagnetRoutine[];
-  /** Hide routine clips until they sign in (same login as the dugout). */
+  /** Hide routine clips until they sign in (same login as the client portal). */
   videoGate?: boolean;
 };
 

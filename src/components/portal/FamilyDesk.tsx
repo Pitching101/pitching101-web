@@ -82,7 +82,7 @@ export default function FamilyDesk({
     return (
       <div className="portal-desk">
         <div className="portal-desk-bar">
-          <p className="portal-kicker">Your dugout</p>
+          <p className="portal-kicker">Client portal</p>
           <button type="button" className="footer-link" onClick={onSignOut}>
             Sign out
           </button>
@@ -101,7 +101,7 @@ export default function FamilyDesk({
   return (
     <div className="portal-desk">
       <div className="portal-desk-bar">
-        <p className="portal-kicker">Your dugout</p>
+        <p className="portal-kicker">Client portal</p>
         <button type="button" className="footer-link" onClick={onSignOut}>
           Sign out
         </button>

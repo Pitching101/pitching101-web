@@ -44,7 +44,7 @@ export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const ENROLL_LABEL = "Book an Evaluation";
 export const ENROLL_HREF = "/contact/";
 export const PORTAL_HREF = "/portal/";
-export const PORTAL_LABEL = "Portal";
+export const PORTAL_LABEL = "Client portal";
 /** Short keep-this packet after the evaluation form. */
 export const INFO_PACKET_HREF = "/pitching101-how-i-work.pdf";
 export const INFO_PACKET_FILENAME = "Pitching101-how-I-work.pdf";
