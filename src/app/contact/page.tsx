@@ -3,13 +3,27 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import StartForm from "@/components/StartForm";
-import { GOOGLE_REVIEW_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/data/siteCopy";
+import { GOOGLE_REVIEW_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL, shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Get started with youth pitching lessons",
   description:
     "Tell me who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/" },
+  openGraph: {
+    title: "Get started with youth pitching lessons | Pitching101",
+    description:
+      "Tell Coach Deising who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    url: "/contact/",
+    images: shareImage("/og/contact.png", "Get started with Pitching101"),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Get started with youth pitching lessons | Pitching101",
+    description:
+      "Tell Coach Deising who you are. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    images: ["/og/contact.png"],
+  },
 };
 
 export default function ContactPage() {

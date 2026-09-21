@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import JsonLd, { articleJsonLd } from "@/components/JsonLd";
 import LeadMagnetPage from "@/components/LeadMagnetPage";
 import { getLeadMagnet, leadMagnets } from "@/data/leadMagnets";
+import { shareImage } from "@/data/siteCopy";
 
 export const dynamicParams = false;
 
@@ -21,25 +23,30 @@ export async function generateMetadata({
   const title = magnet.metaTitle || magnet.title;
   const description = magnet.metaDescription;
   const url = `/guides/${magnet.slug}/`;
-  const images = magnet.ogImage ? [magnet.ogImage] : undefined;
+  const image = magnet.ogImage || `/og/${magnet.slug}.png`;
 
   return {
     title,
     description,
     alternates: { canonical: url },
     openGraph: {
+      type: "article",
       title,
       description,
       url,
-      type: "article",
-      ...(images ? { images } : {}),
+      siteName: "Pitching101",
+      locale: "en_US",
+      images: shareImage(image, magnet.title),
+      authors: ["Coach Deising"],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(images ? { images } : {}),
+      images: [image],
     },
+    authors: [{ name: "Coach Deising" }],
+    category: magnet.topic,
   };
 }
 
@@ -52,5 +59,10 @@ export default async function GuideSlugPage({
   const magnet = getLeadMagnet(slug);
   if (!magnet) notFound();
 
-  return <LeadMagnetPage magnet={magnet} />;
+  return (
+    <>
+      <JsonLd data={articleJsonLd(magnet)} />
+      <LeadMagnetPage magnet={magnet} />
+    </>
+  );
 }

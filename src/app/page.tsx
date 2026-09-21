@@ -21,7 +21,9 @@ import {
   HOW_WE_TRAIN_LINE,
   META_DESCRIPTION,
   OG_DESCRIPTION,
+  OG_TITLE,
   RESPONSE_PROMISE,
+  shareImage,
   trainingOptions,
 } from "@/data/siteCopy";
 
@@ -32,8 +34,16 @@ export const metadata: Metadata = {
   description: META_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Youth pitching lessons in Naples, FL | Pitching101",
+    title: OG_TITLE,
     description: OG_DESCRIPTION,
+    url: "/",
+    images: shareImage(),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    images: shareImage()[0].url,
   },
 };
 

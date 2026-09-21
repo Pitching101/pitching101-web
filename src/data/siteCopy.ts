@@ -16,8 +16,11 @@ export const INSTAGRAM_FOLLOWERS = 4102;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const META_DESCRIPTION =
   "I'm Coach Deising. Youth pitching lessons in Naples, FL for kids 8-16 — parents, travel teams, other coaches, and schools.";
+export const OG_TITLE = "Youth pitching lessons in Naples, FL | Pitching101";
 export const OG_DESCRIPTION =
   "I'm Coach Deising. I help kids 8-16 throw more strikes in Naples, FL. Parents, travel teams, other coaches, and schools.";
+export const OG_IMAGE = "/og/home.png";
+export const OG_IMAGE_ALT = "Pitching101 — youth pitching lessons in Naples, FL";
 export const HERO_LINE =
   "Let's get 'em throwing strikes — and taking care of that arm.";
 export const ABOUT_INTRO =
@@ -27,6 +30,10 @@ export const ABOUT_MORE =
 export const HOW_WE_TRAIN_LINE =
   "In person, at home, or both. We'll figure out what fits.";
 export const FAQ_INTRO = "Stuff parents and coaches ask before we get going.";
+
+export function shareImage(path = OG_IMAGE, alt = OG_IMAGE_ALT) {
+  return [{ url: path, width: 1200, height: 630, alt }];
+}
 
 export type FaqItem = { q: string; a: string };
 
