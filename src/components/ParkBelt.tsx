@@ -3,7 +3,7 @@ const MARKS = [
   "Naples, FL",
   "Ages 8–16",
   "Arm care",
-  "Gulfshore JV",
+  "Head coach",
   "Travel teams",
   "Parents",
   "Strikes",

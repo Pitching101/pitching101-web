@@ -48,7 +48,7 @@ export default function BaseballCardFan() {
           />
         </div>
         <p className="bb-card-name">Coach Deising</p>
-        <p className="bb-card-role">Gulfshore JV head coach</p>
+        <p className="bb-card-role">Head coach</p>
       </li>
       <li className="bb-card bb-card-right">
         <p className="bb-card-kicker">People</p>
