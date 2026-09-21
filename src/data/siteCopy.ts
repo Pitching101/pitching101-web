@@ -17,7 +17,7 @@ export const business = {
   phoneTel: PHONE_TEL,
   email: EMAIL,
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Families and travel teams.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. He works with parents, other coaches, travel teams, and schools.",
 };
 
 export type FaqItem = { q: string; a: string };
@@ -33,7 +33,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Who do you work with?",
-    a: "Families and travel teams. Same ages. Same work.",
+    a: "Kids 8–14. Sometimes a parent. Sometimes another coach, a travel team, or a school. Same work.",
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
@@ -44,7 +44,7 @@ export const faqs: FaqItem[] = [
     a: "Nope. In person, at home, or both. Pick what fits the week.",
   },
   {
-    q: "How do I get my child started?",
+    q: "How do I get started?",
     a: "Text or call 845-768-2211. One conversation.",
   },
   {
@@ -73,7 +73,15 @@ export const trainingOptions = [
 
 export const guyChips = [
   "Ages 8–14",
-  "Naples, FL",
+  "Parents",
+  "Other coaches",
   "Travel teams",
-  "Arm care first",
+  "Schools",
+];
+
+export const workWith = [
+  { label: "Parents", note: "A parent or guardian texts. We pick a field." },
+  { label: "Other coaches", note: "I can work next to your plan." },
+  { label: "Travel teams", note: "A coach or team mom. Same ages." },
+  { label: "Schools", note: "Kids 8–14. I'll say where." },
 ];

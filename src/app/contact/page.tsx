@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/data/siteCopy";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, workWith } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Book youth pitching lessons in Naples, FL",
@@ -23,18 +23,22 @@ export default function ContactPage() {
           </p>
           <h1 className="ui-title ui-title-lg">Let&apos;s throw</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Text me. I&apos;ll tell you if we&apos;re a fit.
+            Kids 8–14. A parent, another coach, a travel team, or a
+            school — text me and I&apos;ll tell you if we&apos;re a fit.
           </p>
           <ul className="bb-chip-row">
-            <li className="bb-chip">Coach Nick</li>
             <li className="bb-chip">Ages 8–14</li>
-            <li className="bb-chip">Families and travel teams</li>
+            {workWith.map((item) => (
+              <li key={item.label} className="bb-chip">
+                {item.label}
+              </li>
+            ))}
             <li className="bb-chip">Naples, FL</li>
           </ul>
 
           <div className="home-cta-row pt-2">
             <a href="sms:8457682211" className="btn">
-              Get your child started
+              Get started
             </a>
           </div>
           <ul className="fence-links">

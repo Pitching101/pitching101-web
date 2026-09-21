@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     absolute: "Youth pitching lessons in Naples, FL | Pitching101",
   },
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Families and travel teams. Text 845-768-2211.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Parents, other coaches, travel teams, and schools. Text 845-768-2211.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
@@ -43,7 +43,7 @@ export default function HomePage() {
             </p>
             <div className="home-cta-row pt-1">
               <Link href="#contact" className="btn">
-                Get your child started
+                Get started
               </Link>
             </div>
             <p className="text-sm text-ink-soft">Text first. Then we pick a field.</p>
@@ -51,10 +51,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="text-band" id="reviews" aria-label="What families and teams say">
+      <section className="text-band" id="reviews" aria-label="What people say">
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
-            <h2 className="ui-title ui-title-md">What families and teams say</h2>
+            <h2 className="ui-title ui-title-md">What people say</h2>
             <div id="sky-start">
               <ReviewsCarousel />
             </div>
@@ -71,7 +71,9 @@ export default function HomePage() {
           <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              I coach kids 8–14 in Naples. Families and travel teams.
+              I coach kids 8–14 in Naples. Sometimes I work with a
+              parent. Sometimes another coach, a travel team, or a
+              school.
             </p>
             <BaseballCardFan />
             <ul id="your-guy" className="bb-chip-row">
@@ -162,7 +164,7 @@ export default function HomePage() {
             <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
-              Get your child started
+              Get started
             </Link>
           </div>
         </div>
