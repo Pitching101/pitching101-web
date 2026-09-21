@@ -1318,6 +1318,9 @@ html.glove-cursor * {
   background: #3295fb;
   border: 2px solid #0f1a2e;
 }
+.bb-card-nick .bb-card-photo {
+  aspect-ratio: 908 / 819;
+}
 .bb-card-img {
   object-fit: cover;
   object-position: center center;
