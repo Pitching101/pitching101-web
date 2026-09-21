@@ -33,7 +33,7 @@ export default function HomePage() {
 
       <section className="hero-overlay" aria-label="Youth pitching lessons in Naples, FL">
         <div className="hero-overlay-inner">
-          <Reveal from="left" className="hero-overlay-copy">
+          <Reveal className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–14</p>
             <HeroArcBalls />
             <h1 className="ui-title ui-title-hero hero-overlay-title">
@@ -70,31 +70,37 @@ export default function HomePage() {
         aria-label="About Coach Deising — ages 8 to 14"
       >
         <div className="content-row ages-band-content">
-          <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
-            <h2 className="ui-title ui-title-md">About Coach Deising</h2>
-            <p className="text-lg leading-relaxed text-ink">
-              I coach kids 8–14 in Naples. I&apos;m the junior varsity
-              head coach at Gulfshore High School. Sometimes I work
-              with a parent. Sometimes another coach, a travel team,
-              or a school.
-            </p>
-            <BaseballCardFan />
-            <ul id="your-guy" className="bb-chip-row">
-              {guyChips.map((chip) => (
-                <li key={chip} className="bb-chip">
-                  {chip}
-                </li>
-              ))}
-            </ul>
-            <a
-              className="footer-link"
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              See the work on Instagram
-            </a>
-          </Reveal>
+          <div className="content-row-copy content-row-copy-wide who-copy space-y-6">
+            <Reveal className="space-y-4">
+              <h2 className="ui-title ui-title-md">About Coach Deising</h2>
+              <p className="text-lg leading-relaxed text-ink">
+                I coach kids 8–14 in Naples. I&apos;m the junior varsity
+                head coach at Gulfshore High School. Sometimes I work
+                with a parent. Sometimes another coach, a travel team,
+                or a school.
+              </p>
+            </Reveal>
+            <Reveal delayMs={40}>
+              <BaseballCardFan />
+            </Reveal>
+            <Reveal delayMs={80} className="space-y-6">
+              <ul id="your-guy" className="bb-chip-row">
+                {guyChips.map((chip) => (
+                  <li key={chip} className="bb-chip">
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+              <a
+                className="footer-link"
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See the work on Instagram
+              </a>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -162,13 +168,13 @@ export default function HomePage() {
           />
         </div>
         <div className="home-stadium-inner">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-24 text-center sm:px-8 sm:pt-28 sm:pb-44">
+          <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 pt-14 pb-24 text-center sm:px-8 sm:pt-28 sm:pb-44">
             <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
               Get started
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
     </ParkSky>
