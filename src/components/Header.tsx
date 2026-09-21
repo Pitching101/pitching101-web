@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { ENROLL_HREF, ENROLL_LABEL, PORTAL_HREF, PORTAL_LABEL } from "@/data/siteCopy";
 
@@ -11,7 +12,14 @@ const homeAnchors = [
   { href: "/#faq", full: "FAQs", short: "FAQs" },
 ] as const;
 
+function currentPage(pathname: string, href: string) {
+  if (href === "/guides/") return pathname.startsWith("/guides") ? "page" : undefined;
+  if (href.startsWith("/#")) return undefined;
+  return pathname === href ? "page" : undefined;
+}
+
 export default function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -46,7 +54,7 @@ export default function Header() {
   return (
     <header className={`site-header${open ? " is-menu-open" : ""}`}>
       <div className="site-header-inner">
-        <Logo variant="primary" width={160} onClick={closeMenu} />
+        <Logo variant="primary" width={160} onClick={closeMenu} current={pathname === "/"} />
         <nav className="site-nav" aria-label="Primary">
           {homeAnchors.map((item) => (
             <a key={item.href} href={item.href} className="nav-link">
@@ -54,15 +62,15 @@ export default function Header() {
               <span className="nav-link-short">{item.short}</span>
             </a>
           ))}
-          <Link href="/guides/" className="nav-link">
+          <Link href="/guides/" className="nav-link" aria-current={currentPage(pathname, "/guides/")}>
             <span className="nav-link-full">Free guides</span>
             <span className="nav-link-short">Guides</span>
           </Link>
-          <Link href={PORTAL_HREF} className="nav-link">
+          <Link href={PORTAL_HREF} className="nav-link" aria-current={currentPage(pathname, PORTAL_HREF)}>
             <span className="nav-link-full">{PORTAL_LABEL}</span>
             <span className="nav-link-short">{PORTAL_LABEL}</span>
           </Link>
-          <Link href={ENROLL_HREF} className="btn btn-nav">
+          <Link href={ENROLL_HREF} className="btn btn-nav" aria-current={currentPage(pathname, ENROLL_HREF)}>
             {ENROLL_LABEL}
           </Link>
         </nav>
@@ -99,13 +107,13 @@ export default function Header() {
               {item.full}
             </a>
           ))}
-          <Link href="/guides/" className="site-menu-link" onClick={closeMenu}>
+          <Link href="/guides/" className="site-menu-link" aria-current={currentPage(pathname, "/guides/")} onClick={closeMenu}>
             Free guides
           </Link>
-          <Link href={PORTAL_HREF} className="site-menu-link" onClick={closeMenu}>
+          <Link href={PORTAL_HREF} className="site-menu-link" aria-current={currentPage(pathname, PORTAL_HREF)} onClick={closeMenu}>
             {PORTAL_LABEL}
           </Link>
-          <Link href={ENROLL_HREF} className="btn site-menu-cta" onClick={closeMenu}>
+          <Link href={ENROLL_HREF} className="btn site-menu-cta" aria-current={currentPage(pathname, ENROLL_HREF)} onClick={closeMenu}>
             {ENROLL_LABEL}
           </Link>
         </div>

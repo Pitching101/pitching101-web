@@ -60,7 +60,7 @@ export default function InstagramFollow() {
         href={INSTAGRAM_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Follow @${INSTAGRAM_HANDLE} on Instagram, ${FOLLOWERS_LABEL} followers`}
+        aria-label={`Follow @${INSTAGRAM_HANDLE} on Instagram, ${FOLLOWERS_LABEL} followers, opens in a new tab`}
       >
         <span className="ig-follow-count">
           <span className="ig-follow-count-ghost" aria-hidden="true">
@@ -83,6 +83,7 @@ export default function InstagramFollow() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={post.src} alt={post.alt} width={540} height={960} />
+              <span className="sr-only"> (opens in a new tab)</span>
               <span className="ig-post-play" aria-hidden="true" />
             </a>
           </li>

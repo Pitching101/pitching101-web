@@ -59,6 +59,7 @@ export default function FaqList({ items }: { items: FaqItem[] }) {
               id={panelId}
               role="region"
               aria-hidden={!isOpen}
+              inert={!isOpen}
               ref={(node) => {
                 panels.current[index] = node;
               }}
