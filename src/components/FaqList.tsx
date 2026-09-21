@@ -3,9 +3,9 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { FaqItem } from "@/data/siteCopy";
 
-/** Tap a question — one answer at a time, all start closed. */
+/** Tap a question — one answer at a time, first one open by default. */
 export default function FaqList({ items }: { items: FaqItem[] }) {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const panels = useRef<Array<HTMLDivElement | null>>([]);
   const skipMotion = useRef(true);

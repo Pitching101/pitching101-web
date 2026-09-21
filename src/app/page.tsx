@@ -140,14 +140,6 @@ export default function HomePage() {
             <ul className="dugout-row">
               {trainingOptions.map((opt) => (
                 <li key={opt.label} className="dugout-sign">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={opt.icon}
-                    alt=""
-                    width={64}
-                    height={64}
-                    className="card-icon"
-                  />
                   <h3 className="dugout-sign-title">{opt.label}</h3>
                   <p className="dugout-sign-note">{opt.note}</p>
                 </li>
@@ -176,11 +168,11 @@ export default function HomePage() {
       <section
         id="faq"
         className="text-band scroll-mt-24"
-        aria-label="Questions about youth pitching lessons in Naples, FL"
+        aria-label="FAQs about youth pitching lessons in Naples, FL"
       >
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">Questions</h2>
+            <h2 className="ui-title ui-title-md">FAQs</h2>
             <p className="text-base text-ink-soft">{FAQ_INTRO}</p>
           </Reveal>
           <Reveal delayMs={40}>

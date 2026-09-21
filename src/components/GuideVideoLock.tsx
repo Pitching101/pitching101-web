@@ -142,13 +142,13 @@ export default function GuideVideoLock({
         <h2 className="ui-title ui-title-sm">Sign in to keep going</h2>
         <p className="guide-copy">
           Welcome&apos;s free. The J-band and single-band clips unlock with the same
-          email as the portal.
+          email as the client portal.
         </p>
         {isSupabaseConfigured() && supabase ? (
           <GuideAuth supabase={supabase} onSession={setSession} />
         ) : (
           <p className="guide-gate-warn">
-            Login isn&apos;t open on this preview yet. Same email as the portal once it is.
+            Login isn&apos;t open on this preview yet. Same email as the client portal once it is.
           </p>
         )}
       </div>

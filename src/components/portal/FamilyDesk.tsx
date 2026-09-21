@@ -82,7 +82,7 @@ export default function FamilyDesk({
     return (
       <div className="portal-desk">
         <div className="portal-desk-bar">
-          <p className="portal-kicker">Your dugout</p>
+          <p className="portal-kicker">Client portal</p>
           <button type="button" className="footer-link" onClick={onSignOut}>
             Sign out
           </button>
@@ -91,7 +91,7 @@ export default function FamilyDesk({
           <h2 className="ui-title ui-title-sm">Nothing on the card yet</h2>
           <p className="portal-lead">
             Use the same email Coach has on file. If this is your first login, hang
-            tight — I&apos;ll add you to the roster after we start lessons.
+            tight. I&apos;ll add you to the roster after we start lessons.
           </p>
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function FamilyDesk({
   return (
     <div className="portal-desk">
       <div className="portal-desk-bar">
-        <p className="portal-kicker">Your dugout</p>
+        <p className="portal-kicker">Client portal</p>
         <button type="button" className="footer-link" onClick={onSignOut}>
           Sign out
         </button>

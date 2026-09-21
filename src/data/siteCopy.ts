@@ -44,7 +44,7 @@ export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const ENROLL_LABEL = "Book an Evaluation";
 export const ENROLL_HREF = "/contact/";
 export const PORTAL_HREF = "/portal/";
-export const PORTAL_LABEL = "Portal";
+export const PORTAL_LABEL = "Client portal";
 /** Short keep-this packet after the evaluation form. */
 export const INFO_PACKET_HREF = "/pitching101-how-i-work.pdf";
 export const INFO_PACKET_FILENAME = "Pitching101-how-I-work.pdf";
@@ -124,17 +124,14 @@ export const trainingOptions = [
   {
     label: "Evaluation",
     note: "Meet once. We talk about your kid, then I recommend Monthly or Check-In.",
-    icon: "/assets/icons/icon-plan-checklist.png",
   },
   {
     label: "Monthly Strikes Pack",
     note: "The main plan after the evaluation. Regular work and a clear next practice.",
-    icon: "/assets/icons/icon-strikes.png",
   },
   {
     label: "Busy-Week Check-In",
     note: "An add-on when the week is packed. A short look, then back to the plan.",
-    icon: "/assets/icons/icon-free-guide-v2.png",
   },
 ];
 

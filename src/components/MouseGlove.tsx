@@ -19,7 +19,7 @@ type Flight = {
 };
 
 /**
- * Fine-pointer only: the mouse is the glove, and moving it throws baseballs.
+ * Fine-pointer only: the mouse is the glove. Click to throw a baseball.
  * Hidden on phones. Images wait until a real mouse moves.
  */
 export default function MouseGlove() {
@@ -54,6 +54,8 @@ function MouseGloveField() {
     let lastY = 0;
     let lastT = 0;
     let lastThrow = 0;
+    let lastVx = 220;
+    let lastVy = -320;
     let raf = 0;
 
     const park = (el: HTMLImageElement) => {
@@ -114,19 +116,8 @@ function MouseGloveField() {
       glove.style.transform = `translate3d(${clientX - HOT_X}px, ${clientY - HOT_Y}px, 0) scale(${ready ? 1.1 : 1})`;
 
       const dt = Math.max(0.008, (now - lastT) / 1000);
-      const vx = (clientX - lastX) / dt;
-      const vy = (clientY - lastY) / dt;
-      const speed = Math.hypot(vx, vy) / 1000;
-      if (
-        !mq.matches &&
-        shown &&
-        now - lastThrow > MIN_GAP_MS &&
-        speed > MIN_SPEED &&
-        !document.documentElement.classList.contains("pitch-playing") &&
-        (Math.abs(clientX - lastX) > 16 || Math.abs(clientY - lastY) > 16)
-      ) {
-        throwBall(clientX, clientY, vx, vy, now);
-      }
+      lastVx = (clientX - lastX) / dt;
+      lastVy = (clientY - lastY) / dt;
       lastX = clientX;
       lastY = clientY;
       lastT = now;
@@ -135,6 +126,27 @@ function MouseGloveField() {
     const onPointer = (e: PointerEvent) => {
       if (e.pointerType === "touch") return;
       place(e.clientX, e.clientY, e.target, performance.now());
+    };
+
+    const onThrowClick = (e: PointerEvent) => {
+      if (e.pointerType === "touch" || e.button !== 0) return;
+      if (mq.matches) return;
+      if (document.documentElement.classList.contains("pitch-playing")) return;
+      if (
+        e.target instanceof Element &&
+        e.target.closest("a, button, [role='button'], input, textarea, select, label")
+      ) {
+        return;
+      }
+      const now = performance.now();
+      if (!shown || now - lastThrow < MIN_GAP_MS) return;
+      let vx = lastVx;
+      let vy = lastVy;
+      if (Math.hypot(vx, vy) / 1000 < MIN_SPEED) {
+        vx = 220;
+        vy = -340;
+      }
+      throwBall(e.clientX, e.clientY, vx, vy, now);
     };
 
     const leave = () => {
@@ -146,10 +158,12 @@ function MouseGloveField() {
     };
 
     window.addEventListener("pointermove", onPointer, { passive: true });
+    window.addEventListener("pointerdown", onThrowClick);
     document.addEventListener("mouseleave", leave);
     return () => {
       if (raf) window.cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onPointer);
+      window.removeEventListener("pointerdown", onThrowClick);
       document.removeEventListener("mouseleave", leave);
       document.documentElement.classList.remove("glove-cursor");
     };

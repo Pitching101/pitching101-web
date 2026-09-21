@@ -17,7 +17,7 @@ export function isPortalConfigured() {
   return isSupabaseConfigured();
 }
 
-/** Same browser client as the dugout. Session stays in local storage. */
+/** Same browser client as the client portal. Session stays in local storage. */
 export function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

@@ -73,7 +73,7 @@ export default function PortalApp() {
   if (!isPortalConfigured() || !supabase) {
     return (
       <div className="portal-card">
-        <h1 className="ui-title ui-title-lg">The dugout isn&apos;t open yet</h1>
+        <h1 className="ui-title ui-title-lg">The client portal isn&apos;t open yet</h1>
         <p className="portal-lead">
           Lesson tracking is still getting wired. Book an evaluation and I&apos;ll
           get you in when it&apos;s ready.
@@ -86,15 +86,15 @@ export default function PortalApp() {
   }
 
   if (!ready) {
-    return <p className="portal-lead">Opening the dugout…</p>;
+    return <p className="portal-lead">Opening the client portal…</p>;
   }
 
   if (!session) {
     return (
       <>
-        <h1 className="ui-title ui-title-lg">The dugout</h1>
+        <h1 className="ui-title ui-title-lg">Client portal</h1>
         <p className="portal-lead">
-          Families see lesson counts and clips. Coach gets the desk — lessons,
+          Families see lesson counts and clips. Coach gets the desk: lessons,
           roster, and your videos. Use the email I have on file.
         </p>
         <DugoutGate supabase={supabase} onSession={setSession} />
