@@ -27,15 +27,15 @@ export default function HeroArcBalls() {
       const width = layer.clientWidth;
       const height = layer.clientHeight;
       if (width < 8 || height < 8) return;
-      const travel = width + SIZE;
-      const rise = Math.max(24, height - SIZE - 6);
+      const travel = Math.max(0, width - SIZE);
+      const rise = Math.max(20, height - SIZE - 4);
       const progress = Math.min(
         1,
-        Math.max(0, window.scrollY / (window.innerHeight * 0.58)),
+        Math.max(0, window.scrollY / (window.innerHeight * 0.42)),
       );
 
       const place = (el: HTMLImageElement, t: number, spin: number) => {
-        const x = -SIZE + t * travel;
+        const x = t * travel;
         const y = rise * (1 - 4 * t * (1 - t));
         el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${(spin * t).toFixed(1)}deg)`;
       };

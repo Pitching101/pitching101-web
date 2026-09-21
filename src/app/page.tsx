@@ -32,10 +32,10 @@ export default function HomePage() {
       <JsonLd data={faqJsonLd(faqs)} />
 
       <section className="hero-overlay" aria-label="Youth pitching lessons in Naples, FL">
-        <HeroArcBalls />
         <div className="hero-overlay-inner">
           <Reveal from="left" className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–14</p>
+            <HeroArcBalls />
             <h1 className="ui-title ui-title-hero hero-overlay-title">
               Youth pitching lessons in Naples, FL
             </h1>

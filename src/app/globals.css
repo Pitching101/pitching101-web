@@ -2306,11 +2306,11 @@ html.glove-cursor * {
   }
   .hero-arc {
     display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0.2rem;
-    height: 8.75rem;
+    position: relative;
+    width: 100vw;
+    height: 5.6rem;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     z-index: 3;
     pointer-events: none;
     overflow: visible;
@@ -2326,7 +2326,7 @@ html.glove-cursor * {
     filter: drop-shadow(0 3px 5px rgba(15, 26, 46, 0.16));
     will-change: transform;
     user-select: none;
-    transform: translate3d(-48px, 52px, 0);
+    transform: translate3d(0, 48px, 0);
   }
   .ui-title-hero {
     font-size: clamp(1.7rem, 8.6vw, 2.25rem);
