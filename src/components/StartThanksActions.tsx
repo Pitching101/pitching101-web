@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { RESPONSE_PROMISE } from "@/data/siteCopy";
+import { INFO_PACKET_FILENAME, INFO_PACKET_HREF, RESPONSE_PROMISE } from "@/data/siteCopy";
 import {
   START_LEAD_MAIL_KEY,
   inquiryEmailHref,
@@ -10,7 +10,7 @@ import {
   type StartLead,
 } from "@/data/startLead";
 
-/** After the evaluation — send the note so Coach Deising gets it. */
+/** After the evaluation — send the note so Coach Deising gets it, and keep the packet. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 
@@ -23,9 +23,20 @@ export default function StartThanksActions() {
     window.location.href = inquiryEmailHref(next);
   }, []);
 
+  const packet = (
+    <a
+      href={INFO_PACKET_HREF}
+      download={INFO_PACKET_FILENAME}
+      className="btn"
+    >
+      Download how I work
+    </a>
+  );
+
   if (!lead) {
     return (
       <div className="start-thanks-actions">
+        {packet}
         <p className="start-form-or">{RESPONSE_PROMISE}</p>
       </div>
     );
@@ -33,7 +44,8 @@ export default function StartThanksActions() {
 
   return (
     <div className="start-thanks-actions">
-      <a href={inquiryEmailHref(lead)} className="btn">
+      {packet}
+      <a href={inquiryEmailHref(lead)} className="btn-ghost">
         Email this to Coach Deising
       </a>
       <a href={thanksEmailHref(lead)} className="footer-link">

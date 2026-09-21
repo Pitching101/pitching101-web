@@ -8,7 +8,7 @@ import {
   RESPONSE_PROMISE,
   workWithRoles,
 } from "@/data/siteCopy";
-import { leadFromForm, writeStartLead } from "@/data/startLead";
+import { leadFromForm, writeStartLead, downloadInfoPacket } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
 
@@ -21,6 +21,7 @@ export default function StartForm() {
     event.preventDefault();
     const lead = leadFromForm(new FormData(event.currentTarget));
     writeStartLead(lead);
+    downloadInfoPacket();
     setSending(true);
     router.push("/contact/thanks/");
   }
@@ -128,7 +129,10 @@ export default function StartForm() {
       <button type="submit" className="btn" disabled={sending}>
         {sending ? "Sending…" : ENROLL_LABEL}
       </button>
-      <p className="start-form-or">{RESPONSE_PROMISE}</p>
+      <p className="start-form-or">
+        {RESPONSE_PROMISE} You&apos;ll get a short packet about how I work so
+        you&apos;ve got it after you send this.
+      </p>
     </form>
   );
 }

@@ -45,6 +45,9 @@ export const ENROLL_LABEL = "Book an Evaluation";
 export const ENROLL_HREF = "/contact/";
 export const PORTAL_HREF = "/portal/";
 export const PORTAL_LABEL = "Portal";
+/** Short keep-this packet after the evaluation form. */
+export const INFO_PACKET_HREF = "/pitching101-how-i-work.pdf";
+export const INFO_PACKET_FILENAME = "Pitching101-how-I-work.pdf";
 export const BRAND_NAME = "Pitching101";
 export const HOME_TITLE = "Youth pitching lessons in Naples, FL";
 export function pageTitle(page: string) {
