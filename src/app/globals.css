@@ -46,6 +46,7 @@
   --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
   --radius: 0.75rem;
   --radius-sm: 0.5rem;
+  --header-bar: 3.6rem;
 }
 
 @theme inline {
@@ -84,7 +85,7 @@
 html {
   overflow-x: clip;
   scroll-behavior: smooth;
-  scroll-padding-top: 5.75rem;
+  scroll-padding-top: calc(var(--header-bar) + env(safe-area-inset-top));
 }
 body {
   background-color: color-mix(in srgb, #3295fb 48%, #BBD6F1);
@@ -93,6 +94,7 @@ body {
   line-height: 1.65;
   overflow-x: clip;
   max-width: 100%;
+  padding-top: calc(var(--header-bar) + env(safe-area-inset-top));
 }
 
 /* Distinctive modern display titles — Outfit (not pixel) */
@@ -109,8 +111,10 @@ body {
 .heading-sm { font-size: clamp(1.1rem, 2vw, 1.35rem); }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 40;
   border-bottom: none;
   background: #3295fb;
@@ -859,17 +863,19 @@ html.glove-cursor * {
     height: 100svh;
     height: 100dvh;
     max-height: 100dvh;
-    overflow: auto;
+    overflow: hidden;
     backdrop-filter: none;
     background: #3295fb;
   }
   .site-header.is-menu-open .site-header-inner {
     width: 100%;
     max-width: none;
+    flex-shrink: 0;
   }
   .site-menu {
     display: none;
     flex: 1;
+    overflow: auto;
     padding: 1.25rem 1.5rem calc(2rem + env(safe-area-inset-bottom));
     background:
       linear-gradient(
@@ -915,8 +921,8 @@ html.glove-cursor * {
   }
 }
 @media (max-width: 639px) {
-  html {
-    scroll-padding-top: 4.5rem;
+  :root {
+    --header-bar: 3.75rem;
   }
   .site-header .site-logo img {
     width: 140px !important;
@@ -2295,8 +2301,8 @@ html.glove-cursor * {
 /* Phone: keep the park on the field, no sideways scroll */
 @media (max-width: 639px) {
   .hero-overlay {
-    min-height: calc(100svh - 4.5rem);
-    min-height: calc(100dvh - 4.5rem);
+    min-height: calc(100svh - var(--header-bar) - env(safe-area-inset-top));
+    min-height: calc(100dvh - var(--header-bar) - env(safe-area-inset-top));
   }
   .hero-overlay-inner {
     padding: 3.25rem 1.25rem 4.75rem;
