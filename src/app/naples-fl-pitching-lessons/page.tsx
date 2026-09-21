@@ -9,7 +9,7 @@ import { faqs, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 export const metadata: Metadata = {
   title: "Pitching coach for kids in Naples, FL",
   description:
-    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Deising — lessons for ages 8-16, arm care first. Text 845-768-2211.",
+    "Looking for a youth pitching coach in Naples, FL? Pitching101 is Coach Deising — lessons for ages 8-16, arm care first. Use the contact form to get started.",
   keywords: [
     "youth pitching lessons in Naples FL",
     "Naples FL pitching lessons",

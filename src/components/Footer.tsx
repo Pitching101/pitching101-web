@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import { INSTAGRAM_URL } from "@/data/siteCopy";
+import { INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL } from "@/data/siteCopy";
 
 /** Original three-column footer — brand, contact, explore. */
 export default function Footer() {
@@ -23,13 +23,13 @@ export default function Footer() {
           <p className="text-sm font-semibold text-blue-dark">Contact</p>
           <ul className="footer-contact-links space-y-2">
             <li>
-              <a className="footer-link" href="tel:8457682211">
-                Call 845-768-2211
+              <a className="footer-link" href={`tel:${PHONE_TEL}`}>
+                Call {PHONE_DISPLAY}
               </a>
             </li>
             <li>
-              <a className="footer-link" href="sms:8457682211">
-                Text 845-768-2211
+              <a className="footer-link" href={`sms:${PHONE_TEL}`}>
+                Text {PHONE_DISPLAY}
               </a>
             </li>
             <li>

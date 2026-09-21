@@ -35,16 +35,6 @@ export default function ContactPage() {
         <Reveal delayMs={40} className="mt-10">
           <ul className="fence-links">
             <li>
-              <a className="footer-link" href="tel:8457682211">
-                Call 845-768-2211
-              </a>
-            </li>
-            <li>
-              <a className="footer-link" href="sms:8457682211">
-                Text 845-768-2211
-              </a>
-            </li>
-            <li>
               <a className="footer-link" href="mailto:nickdeisng@gmail.com">
                 Email nickdeisng@gmail.com
               </a>

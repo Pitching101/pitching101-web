@@ -2,12 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE, workWithRoles } from "@/data/siteCopy";
+import { RESPONSE_PROMISE, workWithRoles } from "@/data/siteCopy";
 import { leadFromForm, writeStartLead } from "@/data/startLead";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
 
-/** Short start form — name, phone, age. Texts Coach Deising, then thank-you. */
+/** Short start form — name, phone, age. Then thank-you. */
 export default function StartForm() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
@@ -92,13 +92,7 @@ export default function StartForm() {
       <button type="submit" className="btn" disabled={sending}>
         {sending ? "Sending…" : "Get started"}
       </button>
-      <p className="start-form-or">
-        {RESPONSE_PROMISE} Or{" "}
-        <a className="footer-link" href={`sms:${PHONE_TEL}`}>
-          text {PHONE_DISPLAY}
-        </a>
-        .
-      </p>
+      <p className="start-form-or">{RESPONSE_PROMISE}</p>
     </form>
   );
 }

@@ -1,7 +1,7 @@
-import { EMAIL, PHONE_TEL } from "@/data/siteCopy";
+import { EMAIL } from "@/data/siteCopy";
 
 export const START_LEAD_KEY = "p101-start-lead";
-export const START_LEAD_SMS_KEY = "p101-start-lead-sms";
+export const START_LEAD_MAIL_KEY = "p101-start-lead-mail";
 
 export type StartLead = {
   role: string;
@@ -43,12 +43,10 @@ export function leadFromForm(data: FormData): StartLead {
   return { role, name, player, age, phone, email, train, note, body };
 }
 
-export function smsHref(body: string) {
-  const encoded = encodeURIComponent(body);
-  if (typeof navigator !== "undefined" && /iPad|iPhone|iPod/i.test(navigator.userAgent)) {
-    return `sms:${PHONE_TEL}&body=${encoded}`;
-  }
-  return `sms:${PHONE_TEL}?body=${encoded}`;
+export function inquiryEmailHref(lead: StartLead) {
+  return `mailto:${EMAIL}?subject=${encodeURIComponent(
+    "Pitching101 inquiry",
+  )}&body=${encodeURIComponent(lead.body)}`;
 }
 
 export function thanksEmailHref(lead: StartLead) {
@@ -67,8 +65,6 @@ export function thanksEmailHref(lead: StartLead) {
     "1. We receive your form.",
     "2. We'll respond within 24 business hours.",
     "3. First session — warm-up, a few cues, and work for the next practice.",
-    "",
-    "Text or call 845-768-2211 if you would like to reach us sooner.",
   ].join("\n");
 
   return `mailto:${to}?subject=${encodeURIComponent(
@@ -88,5 +84,5 @@ export function readStartLead(): StartLead | null {
 
 export function writeStartLead(lead: StartLead) {
   sessionStorage.setItem(START_LEAD_KEY, JSON.stringify(lead));
-  sessionStorage.removeItem(START_LEAD_SMS_KEY);
+  sessionStorage.removeItem(START_LEAD_MAIL_KEY);
 }
