@@ -44,7 +44,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`site-header sticky top-0 z-40${open ? " is-menu-open" : ""}`}>
+    <header className={`site-header${open ? " is-menu-open" : ""}`}>
       <div className="site-header-inner">
         <Logo variant="primary" width={160} onClick={closeMenu} />
         <nav className="site-nav" aria-label="Primary">
