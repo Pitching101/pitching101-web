@@ -7,7 +7,7 @@ import LeadMagnetShelf from "@/components/LeadMagnetShelf";
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
   description:
-    "Free pitching guides for Naples FL parents: arm-care checklist, strike tips, and a pre-catch warmup. From Coach Nick at Pitching101.",
+    "Free pitching guides for ages 8-14: arm-care checklist, strike tips, and a pre-catch warmup. From Coach Nick at Pitching101.",
   alternates: { canonical: "/guides/" },
 };
 
@@ -35,7 +35,7 @@ export default function GuidesPage() {
         <Reveal delayMs={60} className="mt-12 space-y-4">
           <p className="text-base text-ink-soft">Want a coach with the PDF?</p>
           <Link href="/contact/" className="btn">
-            Get your child started
+            Get started
           </Link>
         </Reveal>
       </article>

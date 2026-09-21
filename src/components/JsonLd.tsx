@@ -34,7 +34,7 @@ export function businessJsonLd() {
     name: "Pitching101",
     url: "https://pitching101.com",
     description:
-      "Youth pitching lessons in Naples, FL for kids ages 8-14. Coach Nick teaches clear cues, arm care, and a plan parents can use.",
+      "Youth pitching lessons in Naples, FL for kids ages 8-14. Coach Nick works with families, travel teams, other coaches, and schools.",
     telephone: "+18457682211",
     email: "nickdeisng@gmail.com",
     areaServed: [

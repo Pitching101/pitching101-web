@@ -1,9 +1,15 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { EMAIL, PHONE_DISPLAY, PHONE_TEL, trainingOptions } from "@/data/siteCopy";
+import {
+  EMAIL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  trainingOptions,
+  workWithRoles,
+} from "@/data/siteCopy";
 
-const AGES = ["8", "9", "10", "11", "12", "13", "14"] as const;
+const AGES = ["8", "9", "10", "11", "12", "13", "14", "Mixed 8–14"] as const;
 
 /** Static-export friendly — opens a ready-to-send email to Nick. */
 export default function StartForm() {
@@ -12,8 +18,9 @@ export default function StartForm() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const parent = String(data.get("parent") || "").trim();
-    const kid = String(data.get("kid") || "").trim();
+    const role = String(data.get("role") || "").trim();
+    const name = String(data.get("name") || "").trim();
+    const player = String(data.get("player") || "").trim();
     const age = String(data.get("age") || "").trim();
     const phone = String(data.get("phone") || "").trim();
     const email = String(data.get("email") || "").trim();
@@ -23,8 +30,9 @@ export default function StartForm() {
     const lines = [
       "New Pitching101 start note",
       "",
-      `Parent: ${parent}`,
-      `Kid: ${kid}`,
+      `Who: ${role}`,
+      `Name: ${name}`,
+      `Player or team: ${player}`,
       `Age: ${age}`,
       `Phone: ${phone}`,
       email ? `Email: ${email}` : "",
@@ -33,7 +41,7 @@ export default function StartForm() {
     ].filter((line) => line !== "");
 
     const href = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      `Get started — ${kid || parent}`,
+      `Get started — ${player || name}`,
     )}&body=${encodeURIComponent(lines.join("\n"))}`;
 
     setSent(true);
@@ -42,14 +50,31 @@ export default function StartForm() {
 
   return (
     <form className="start-form" onSubmit={onSubmit}>
+      <fieldset className="start-field">
+        <legend>I am a</legend>
+        <div className="start-train">
+          {workWithRoles.map((role) => (
+            <label key={role} className="start-train-option">
+              <input
+                type="radio"
+                name="role"
+                value={role}
+                required
+                defaultChecked={role === "Family"}
+              />
+              <span>{role}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <label className="start-field">
         <span>Your name</span>
-        <input name="parent" type="text" autoComplete="name" required />
+        <input name="name" type="text" autoComplete="name" required />
       </label>
       <div className="start-field-row">
         <label className="start-field">
-          <span>Kid&apos;s first name</span>
-          <input name="kid" type="text" autoComplete="off" required />
+          <span>Player or team</span>
+          <input name="player" type="text" autoComplete="off" required />
         </label>
         <label className="start-field">
           <span>Age</span>
@@ -99,7 +124,7 @@ export default function StartForm() {
         <textarea name="note" rows={3} />
       </label>
       <button type="submit" className="btn">
-        Get your child started
+        Get started
       </button>
       <p className="start-form-or">
         {sent ? "Your email app should open next. " : ""}

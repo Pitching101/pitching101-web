@@ -10,6 +10,8 @@ import BaseballCardFan from "@/components/BaseballCardFan";
 import PixelScoreboard from "@/components/PixelScoreboard";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
 import StartSteps from "@/components/StartSteps";
+import SessionBeats from "@/components/SessionBeats";
+import WorkWith from "@/components/WorkWith";
 import { faqs, guyChips, INSTAGRAM_URL, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
     absolute: "Youth pitching lessons in Naples, FL | Pitching101",
   },
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Families, travel teams, other coaches, and schools. Text 845-768-2211.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
@@ -44,7 +46,7 @@ export default function HomePage() {
             </p>
             <div className="home-cta-row pt-1">
               <Link href="/contact/" className="btn">
-                Get your child started
+                Get started
               </Link>
             </div>
             <p className="text-sm text-ink-soft">Text first. Then we pick a field.</p>
@@ -52,10 +54,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="text-band" id="reviews" aria-label="What parents say">
+      <section className="text-band" id="reviews" aria-label="What people say">
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
-            <h2 className="ui-title ui-title-md">What parents say</h2>
+            <h2 className="ui-title ui-title-md">What people say</h2>
             <div id="sky-start">
               <ReviewsCarousel />
             </div>
@@ -72,7 +74,8 @@ export default function HomePage() {
           <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              I coach kids 8–14 in Naples.
+              I coach kids 8–14 in Naples. Families, travel teams, other
+              coaches, and schools.
             </p>
             <BaseballCardFan />
             <ul id="your-guy" className="bb-chip-row">
@@ -125,9 +128,25 @@ export default function HomePage() {
             </ul>
           </Reveal>
 
+          <Reveal delayMs={60} className="space-y-5">
+            <h3 className="ui-title ui-title-sm">Who I work with</h3>
+            <WorkWith />
+          </Reveal>
+
           <Reveal delayMs={80} className="space-y-5">
             <h3 className="ui-title ui-title-sm">What happens</h3>
             <StartSteps />
+          </Reveal>
+
+          <Reveal delayMs={100} className="space-y-5">
+            <h3 className="ui-title ui-title-sm">First session</h3>
+            <SessionBeats />
+          </Reveal>
+
+          <Reveal delayMs={120} className="pt-2">
+            <Link href="/contact/" className="btn">
+              Get started
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -139,7 +158,7 @@ export default function HomePage() {
       >
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">Parents ask</h2>
+            <h2 className="ui-title ui-title-md">Questions</h2>
             <p className="text-base text-ink-soft">Tap a question.</p>
           </Reveal>
           <Reveal delayMs={40}>
@@ -168,7 +187,7 @@ export default function HomePage() {
             <p className="ui-title ui-title-sm">That&apos;s the field. Let&apos;s get on it.</p>
             <TrainingClipsStrip />
             <Link href="/contact/" className="btn">
-              Get your child started
+              Get started
             </Link>
           </div>
         </div>
