@@ -293,6 +293,7 @@ export const leadMagnets: LeadMagnet[] = [
           { href: "/contact/", label: ENROLL_LABEL },
           { href: "/guides/arm-care-checklist/", label: "Arm-care checklist" },
           { href: "/guides/pre-catch-warmup/", label: "Pre-catch warmup" },
+          { href: "/guides/lesson-curriculum/", label: "15-lesson curriculum" },
           { href: "/guides/", label: "Free guides" },
         ],
       },
@@ -359,6 +360,164 @@ export const leadMagnets: LeadMagnet[] = [
       {
         label: "Then stretch it out",
         note: "Move back when it feels easy. That's when catch can get competitive.",
+      },
+    ],
+  },
+  {
+    slug: "lesson-curriculum",
+    title: "15-lesson curriculum",
+    metaTitle: "15-Lesson Pitching Curriculum for Ages 8–16",
+    metaDescription:
+      "Coach Deising's 15-lesson pitching sequence for players 8–16 in Naples, FL: everyday warmup, then drills and bullpens in order.",
+    kicker: "Free guide",
+    note: "The order I like. We don't always run it straight through — we go by the player.",
+    topic: "Lessons",
+    icon: "/assets/icons/icon-plan-checklist.png",
+    ogImage: "/assets/icons/icon-plan-checklist.png",
+    emailSubject: "15-Lesson Pitching Curriculum",
+    cta: ENROLL_LABEL,
+    ctaHref: "/contact/",
+    steps: [
+      {
+        label: "Everydays first",
+        note: "Stretch, bands, activation, heart rate, catch, mound drill of the day, then close. Full checklist is on the stretching and recovery page.",
+      },
+      {
+        label: "Then the lesson of the day",
+        note: "One main thing. Teach it, then put it into the throw.",
+      },
+      {
+        label: "Bullpens are checkpoints",
+        note: "Lessons 4, 8, 12, and 15. That's when we take the work onto the mound.",
+      },
+    ],
+    routines: [
+      {
+        heading: "Lesson 1 · routine, balance, timing, stability",
+        steps: [
+          {
+            label: "Catch play",
+            note: "Talk about replicating our mechanics.",
+          },
+          {
+            label: "Mound drill of the day",
+            note: "1–4 steps. Mix up the order.",
+          },
+          { label: "Recovery", note: "Close it out. Purpose + arm care." },
+        ],
+      },
+      {
+        heading: "Lesson 2 · landing, repeatability, direction",
+        steps: [
+          {
+            label: "Quick review",
+            note: "1–4 on catch play.",
+          },
+          {
+            label: "Landing cone drill and direction",
+            note: "Start without throwing. Lead into partner catch. Direction to the plate. Repeat the landing area and stride.",
+          },
+        ],
+      },
+      {
+        heading: "Lesson 3 · timing, upper-half awareness, sequencing hips and arms",
+        note: "May need two lessons to finish.",
+        steps: [
+          { label: "Flip-up drill", note: "Feel the upper half." },
+          { label: "Flip-up with hips", note: "Now add the hips." },
+        ],
+      },
+      {
+        heading: "Lesson 4 · bullpen, mechanics into the game, mindset",
+        steps: [{ label: "Bullpen", note: "30 pitches." }],
+      },
+      {
+        heading: "Lesson 5 · arm extension, lower-body drive, body awareness",
+        steps: [{ label: "Ball tee up", note: "Extension and drive." }],
+      },
+      {
+        heading: "Lesson 6 · balance, stability, timing, leg lift",
+        steps: [{ label: "Leg-lift toe taps n' go", note: "Lift, tap, go." }],
+      },
+      {
+        heading: "Lesson 7 · balance, timing, stability, body control",
+        steps: [{ label: "Yu Darvish drill", note: "Stay in control." }],
+      },
+      {
+        heading: "Lesson 8 · bullpen, mechanics into the game, mindset",
+        steps: [{ label: "Bullpen", note: "30–45 pitches." }],
+      },
+      {
+        heading: "Lesson 9 · timing, rhythm, flow",
+        steps: [
+          {
+            label: "Toss to the pitcher, catch and finish",
+            note: "Keep it moving.",
+          },
+        ],
+      },
+      {
+        heading: "Lesson 10 · rhythm, flow, staying loose / whippy",
+        steps: [
+          {
+            label: "1–4 timing",
+            note: "Put lessons 1–4 into the throw.",
+          },
+        ],
+      },
+      {
+        heading: "Lesson 11 · leg-drive repeatability, using the back hip",
+        steps: [
+          { label: "Timing drills", note: "Keep the timing work in." },
+          {
+            label: "Slide feet into 90, land and glove point",
+            note: "Back hip. Land. Glove.",
+          },
+        ],
+      },
+      {
+        heading: "Lesson 12 · bullpen, mechanics into the game, mindset",
+        steps: [{ label: "Bullpen", note: "45–60 pitches." }],
+      },
+      {
+        heading: "Lesson 13 · four points of contact, visualization, repeatability",
+        steps: [
+          { label: "Landing-position drill", note: "Hold the shape." },
+          {
+            label: "Four points",
+            note: "Foot pointed, glove pointed, weight in back, arm up.",
+          },
+        ],
+      },
+      {
+        heading: "Lesson 14 · visualization, lower-half sequencing",
+        steps: [
+          { label: "Hands in front drill", note: "See it in front." },
+          { label: "Shuffle hands in front", note: "Same idea, add the shuffle." },
+          {
+            label: "Leg lift / pitch, hands in front",
+            note: "Now into the pitch.",
+          },
+        ],
+      },
+      {
+        heading: "Lesson 15 · bullpen, mechanics into the game, mindset",
+        steps: [{ label: "Bullpen", note: "60+ pitches." }],
+      },
+    ],
+    sections: [
+      {
+        heading: "Easy next step",
+        paragraphs: [
+          "Want this sequence for your player? Share age, goals, and schedule on the short form. The everyday stretch and throw list lives on the stretching and recovery page.",
+        ],
+        links: [
+          { href: "/contact/", label: ENROLL_LABEL },
+          { href: "/guides/stretch-recovery-warmup/", label: "Stretching and recovery" },
+          { href: "/guides/arm-care-checklist/", label: "Arm-care checklist" },
+          { href: "/guides/pre-catch-warmup/", label: "Pre-catch warmup" },
+          { href: "/guides/", label: "Free guides" },
+        ],
       },
     ],
   },
