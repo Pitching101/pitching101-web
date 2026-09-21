@@ -9,6 +9,7 @@ import {
   type Player,
 } from "@/lib/portal";
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
+import PortalLessonClip from "./PortalLessonClip";
 
 export default function FamilyDesk({
   supabase,
@@ -75,75 +76,112 @@ export default function FamilyDesk({
   }, [selectedLessons, supabase]);
 
   if (loading) {
-    return <p className="portal-lead">Grabbing your card…</p>;
+    return <p className="portal-lead">Loading your lessons…</p>;
   }
 
   if (!players.length) {
     return (
-      <div className="portal-desk">
+      <div className="portal-desk portal-desk-family">
         <div className="portal-desk-bar">
-          <p className="portal-kicker">Client portal</p>
+          <div>
+            <p className="portal-kicker">Client portal</p>
+            <h1 className="ui-title ui-title-md">Your lessons</h1>
+          </div>
           <button type="button" className="footer-link" onClick={onSignOut}>
             Sign out
           </button>
         </div>
         <div className="portal-card">
-          <h2 className="ui-title ui-title-sm">Nothing on the card yet</h2>
+          <h2 className="ui-title ui-title-sm">Nothing posted yet</h2>
           <p className="portal-lead">
-            Use the same email Coach has on file. If this is your first login, hang
-            tight. I&apos;ll add you to the roster after we start lessons.
+            Sign in with the email Coach has on file. After we start lessons,
+            notes and clips show up here.
           </p>
         </div>
       </div>
     );
   }
 
+  const heading =
+    players.length === 1 && selected
+      ? `${selected.first_name}'s lessons`
+      : "Your lessons";
+
   return (
-    <div className="portal-desk">
+    <div className="portal-desk portal-desk-family">
       <div className="portal-desk-bar">
-        <p className="portal-kicker">Client portal</p>
+        <div>
+          <p className="portal-kicker">Client portal</p>
+          <h1 className="ui-title ui-title-md">{heading}</h1>
+        </div>
         <button type="button" className="footer-link" onClick={onSignOut}>
           Sign out
         </button>
       </div>
+      <p className="portal-lead">
+        Notes and clips from lessons. Coach posts them here after you throw.
+      </p>
       {players.length > 1 ? (
-        <ul className="portal-roster portal-roster-row">
-          {players.map((player) => (
-            <li key={player.id}>
+        <div className="portal-picker">
+          <p className="portal-picker-label" id="portal-whose-lessons">
+            Whose lessons
+          </p>
+          <div
+            className="portal-roster portal-roster-row"
+            role="radiogroup"
+            aria-labelledby="portal-whose-lessons"
+          >
+            {players.map((player) => (
               <button
+                key={player.id}
                 type="button"
+                role="radio"
+                aria-checked={player.id === selectedId}
                 className={`portal-roster-btn${player.id === selectedId ? " is-on" : ""}`}
                 onClick={() => setSelectedId(player.id)}
               >
                 <span>{player.first_name}</span>
               </button>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        </div>
       ) : null}
       {selected ? (
-        <section className="portal-card">
-          <h2 className="ui-title ui-title-sm">{selected.first_name}</h2>
+        <section className="portal-card" aria-label={`${selected.first_name}'s lesson notes`}>
+          {players.length > 1 ? (
+            <h2 className="ui-title ui-title-sm">
+              {selected.first_name}
+              {selected.age ? ` · ${selected.age}` : ""}
+            </h2>
+          ) : null}
           <p className="portal-stat">{lessonCountLabel(selectedLessons.length)}</p>
-          <p className="portal-lead">
-            {selectedLessons.length
-              ? "Here's the work so far. Watch the clip if Coach dropped one in."
-              : "No lessons posted yet. We'll put them here after we throw."}
-          </p>
-          <ol className="portal-lessons">
-            {selectedLessons.map((lesson) => (
-              <li key={lesson.id} className="portal-lesson">
-                <div className="portal-lesson-top">
-                  <strong>{formatLessonDay(lesson.held_on)}</strong>
-                </div>
-                {lesson.title ? <p>{lesson.title}</p> : null}
-                {lesson.notes ? <p className="portal-lesson-notes">{lesson.notes}</p> : null}
-                {clips[lesson.id] ? (
-                  <video className="portal-clip" controls playsInline src={clips[lesson.id]} />
-                ) : null}
-              </li>
-            ))}
-          </ol>
+          {selectedLessons.length ? (
+            <ol className="portal-lessons">
+              {selectedLessons.map((lesson) => {
+                const day = formatLessonDay(lesson.held_on);
+                const clipLabel = lesson.title
+                  ? `Lesson clip: ${lesson.title}`
+                  : `Lesson clip from ${day}`;
+                return (
+                  <li key={lesson.id} className="portal-lesson">
+                    <h2 className="portal-lesson-day">{day}</h2>
+                    {lesson.title ? <p className="portal-lesson-title">{lesson.title}</p> : null}
+                    {lesson.notes ? <p className="portal-lesson-notes">{lesson.notes}</p> : null}
+                    {clips[lesson.id] ? (
+                      <PortalLessonClip src={clips[lesson.id]} label={clipLabel} />
+                    ) : lesson.video_path ? (
+                      <p className="portal-note">Loading clip…</p>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </ol>
+          ) : (
+            <p className="portal-lead">
+              No lessons posted yet. After we throw, you&apos;ll see notes and
+              clips here.
+            </p>
+          )}
         </section>
       ) : null}
     </div>

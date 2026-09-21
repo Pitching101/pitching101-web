@@ -6,7 +6,7 @@ import type { Session } from "@supabase/supabase-js";
 import { ENROLL_HREF, ENROLL_LABEL } from "@/data/siteCopy";
 import { getSupabase, isPortalConfigured } from "@/lib/supabase";
 import type { Profile } from "@/lib/portal";
-import DugoutGate from "./DugoutGate";
+import DugoutGate, { type PortalAudience } from "./DugoutGate";
 import CoachDesk from "./CoachDesk";
 import FamilyDesk from "./FamilyDesk";
 
@@ -14,13 +14,11 @@ export default function PortalApp() {
   const supabase = getSupabase();
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(!supabase);
+  const [audience, setAudience] = useState<PortalAudience>("family");
 
   useEffect(() => {
-    if (!supabase) {
-      setReady(true);
-      return;
-    }
+    if (!supabase) return;
     let cancelled = false;
     supabase.auth.getSession().then(({ data }) => {
       if (!cancelled) setSession(data.session ?? null);
@@ -35,13 +33,12 @@ export default function PortalApp() {
   }, [supabase]);
 
   useEffect(() => {
-    if (!supabase) {
-      setReady(true);
-      return;
-    }
+    if (!supabase) return;
     if (!session) {
-      setProfile(null);
-      setReady(true);
+      queueMicrotask(() => {
+        setProfile(null);
+        setReady(true);
+      });
       return;
     }
     let cancelled = false;
@@ -70,6 +67,10 @@ export default function PortalApp() {
     setProfile(null);
   }
 
+  function chooseAudience(next: PortalAudience) {
+    setAudience(next);
+  }
+
   if (!isPortalConfigured() || !supabase) {
     return (
       <div className="portal-card">
@@ -90,15 +91,50 @@ export default function PortalApp() {
   }
 
   if (!session) {
+    const familyDoor = audience === "family";
     return (
-      <>
-        <h1 className="ui-title ui-title-lg">Client portal</h1>
-        <p className="portal-lead">
-          Families see lesson counts and clips. Coach gets the desk: lessons,
-          roster, and your videos. Use the email I have on file.
-        </p>
-        <DugoutGate supabase={supabase} onSession={setSession} />
-      </>
+      <div className="portal-gate">
+        <div className="portal-who" role="group" aria-label="Who is signing in">
+          <button
+            type="button"
+            className={`portal-who-btn${familyDoor ? " is-on" : ""}`}
+            aria-pressed={familyDoor}
+            onClick={() => chooseAudience("family")}
+          >
+            Parents and players
+          </button>
+          <button
+            type="button"
+            className={`portal-who-btn${!familyDoor ? " is-on" : ""}`}
+            aria-pressed={!familyDoor}
+            onClick={() => chooseAudience("coach")}
+          >
+            Coach
+          </button>
+        </div>
+        {familyDoor ? (
+          <>
+            <h1 className="ui-title ui-title-lg">Client portal</h1>
+            <p className="portal-lead">
+              See lesson notes and clips from Coach Deising. Use the email we
+              have on file.
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className="ui-title ui-title-lg">Coach desk</h1>
+            <p className="portal-lead">
+              Log lessons, keep the roster, and drop clips. Families see what
+              you post.
+            </p>
+          </>
+        )}
+        <DugoutGate
+          supabase={supabase}
+          audience={audience}
+          onSession={setSession}
+        />
+      </div>
     );
   }
 

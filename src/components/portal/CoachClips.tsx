@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState, type FormEvent } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { formatLessonDay, type CoachClip, type Profile } from "@/lib/portal";
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
+import PortalLessonClip from "./PortalLessonClip";
 
 export default function CoachClips({
   supabase,
@@ -26,6 +27,7 @@ export default function CoachClips({
   }, [supabase]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- load clips from supabase
     void reload();
   }, [reload]);
 
@@ -133,7 +135,11 @@ export default function CoachClips({
           Save to my desk
         </button>
       </form>
-      {status ? <p className="portal-note">{status}</p> : null}
+      {status ? (
+        <p className="portal-note" aria-live="polite">
+          {status}
+        </p>
+      ) : null}
       <ol className="portal-lessons">
         {clips.map((clip) => (
           <li key={clip.id} className="portal-lesson">
@@ -146,7 +152,7 @@ export default function CoachClips({
             <p className="portal-lesson-notes">{formatLessonDay(clip.created_at.slice(0, 10))}</p>
             {clip.notes ? <p className="portal-lesson-notes">{clip.notes}</p> : null}
             {urls[clip.id] ? (
-              <video className="portal-clip" controls playsInline src={urls[clip.id]} />
+              <PortalLessonClip src={urls[clip.id]} label={`Clip: ${clip.title}`} />
             ) : (
               <p className="portal-note">Loading clip…</p>
             )}

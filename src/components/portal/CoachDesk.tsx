@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useMemo, useState, type FormEvent, type KeyboardEvent } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   formatLessonDay,
@@ -12,8 +12,10 @@ import {
 } from "@/lib/portal";
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
 import CoachClips from "./CoachClips";
+import PortalLessonClip from "./PortalLessonClip";
 
 type Tab = "lessons" | "clips" | "roster";
+const COACH_TABS = ["lessons", "clips", "roster"] as const;
 
 export default function CoachDesk({
   supabase,
@@ -58,6 +60,7 @@ export default function CoachDesk({
   }, [supabase]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- load desk from supabase
     void reload();
   }, [reload, tab]);
 
@@ -191,17 +194,33 @@ export default function CoachDesk({
 
   const videoLessons = lessons.filter((lesson) => lesson.video_path).length;
 
+  function onTabsKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    event.preventDefault();
+    const index = COACH_TABS.indexOf(tab);
+    const dir = event.key === "ArrowRight" ? 1 : -1;
+    const next = COACH_TABS[(index + dir + COACH_TABS.length) % COACH_TABS.length];
+    setTab(next);
+    requestAnimationFrame(() => {
+      document.getElementById(`portal-tab-${next}`)?.focus();
+    });
+  }
+
   return (
-    <div className="portal-desk">
+    <div className="portal-desk portal-desk-coach">
       <div className="portal-desk-bar">
         <div>
-          <p className="portal-kicker">Your desk</p>
+          <p className="portal-kicker">Coach desk</p>
           <h1 className="ui-title ui-title-md">Lessons and clips</h1>
         </div>
         <button type="button" className="footer-link" onClick={onSignOut}>
           Sign out
         </button>
       </div>
+      <p className="portal-lead">
+        Your working desk. Log lessons, keep the roster, drop clips. Families
+        only see what you post.
+      </p>
 
       <ul className="portal-stats">
         <li>
@@ -222,7 +241,12 @@ export default function CoachDesk({
         </li>
       </ul>
 
-      <div className="portal-tabs" role="tablist" aria-label="Coach desk">
+      <div
+        className="portal-tabs"
+        role="tablist"
+        aria-label="Coach desk"
+        onKeyDown={onTabsKeyDown}
+      >
         {([
           ["lessons", "Lessons"],
           ["clips", "My videos"],
@@ -232,7 +256,10 @@ export default function CoachDesk({
             key={id}
             type="button"
             role="tab"
+            id={`portal-tab-${id}`}
             aria-selected={tab === id}
+            aria-controls={`portal-panel-${id}`}
+            tabIndex={tab === id ? 0 : -1}
             className={`portal-tab${tab === id ? " is-on" : ""}`}
             onClick={() => setTab(id)}
           >
@@ -242,7 +269,12 @@ export default function CoachDesk({
       </div>
 
       {tab === "lessons" ? (
-        <div className="portal-grid portal-grid-desk">
+        <div
+          className="portal-grid portal-grid-desk"
+          id="portal-panel-lessons"
+          role="tabpanel"
+          aria-labelledby="portal-tab-lessons"
+        >
           <section className="portal-card">
             <h2 className="ui-title ui-title-sm">Log a lesson</h2>
             {players.length ? (
@@ -347,7 +379,14 @@ export default function CoachDesk({
                   {lesson.title ? <p>{lesson.title}</p> : null}
                   {lesson.notes ? <p className="portal-lesson-notes">{lesson.notes}</p> : null}
                   {clips[lesson.id] ? (
-                    <video className="portal-clip" controls playsInline src={clips[lesson.id]} />
+                    <PortalLessonClip
+                      src={clips[lesson.id]}
+                      label={
+                        lesson.title
+                          ? `Lesson clip: ${lesson.title}`
+                          : `Lesson clip from ${formatLessonDay(lesson.held_on)}`
+                      }
+                    />
                   ) : lesson.video_path ? (
                     <p className="portal-note">Loading clip…</p>
                   ) : null}
@@ -361,10 +400,23 @@ export default function CoachDesk({
         </div>
       ) : null}
 
-      {tab === "clips" ? <CoachClips supabase={supabase} profile={profile} /> : null}
+      {tab === "clips" ? (
+        <div
+          id="portal-panel-clips"
+          role="tabpanel"
+          aria-labelledby="portal-tab-clips"
+        >
+          <CoachClips supabase={supabase} profile={profile} />
+        </div>
+      ) : null}
 
       {tab === "roster" ? (
-        <section className="portal-card">
+        <section
+          className="portal-card"
+          id="portal-panel-roster"
+          role="tabpanel"
+          aria-labelledby="portal-tab-roster"
+        >
           <h2 className="ui-title ui-title-sm">Roster</h2>
           <p className="portal-lead">
             {players.length
@@ -424,7 +476,11 @@ export default function CoachDesk({
         </section>
       ) : null}
 
-      {status ? <p className="portal-note">{status}</p> : null}
+      {status ? (
+        <p className="portal-note" aria-live="polite">
+          {status}
+        </p>
+      ) : null}
     </div>
   );
 }

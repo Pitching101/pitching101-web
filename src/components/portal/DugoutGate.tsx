@@ -1,21 +1,31 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 
 type Mode = "signin" | "signup";
+export type PortalAudience = "family" | "coach";
 
 export default function DugoutGate({
   supabase,
+  audience,
   onSession,
 }: {
   supabase: SupabaseClient;
+  audience: PortalAudience;
   onSession: (session: Session) => void;
 }) {
   const [mode, setMode] = useState<Mode>("signin");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const errorId = useId();
+  const messageId = useId();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const describedBy = [error ? errorId : null, message ? messageId : null]
+    .filter(Boolean)
+    .join(" ") || undefined;
+  const effectiveMode = audience === "coach" ? "signin" : mode;
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,7 +38,7 @@ export default function DugoutGate({
     const displayName = String(form.get("name") || "").trim();
     const redirectTo = `${window.location.origin}/portal/`;
 
-    if (mode === "signup") {
+    if (effectiveMode === "signup") {
       const { data, error: signError } = await supabase.auth.signUp({
         email,
         password,
@@ -63,8 +73,7 @@ export default function DugoutGate({
   }
 
   async function sendLink() {
-    const emailInput = document.querySelector<HTMLInputElement>('input[name="email"]');
-    const email = emailInput?.value.trim().toLowerCase() || "";
+    const email = emailRef.current?.value.trim().toLowerCase() || "";
     if (!email) {
       setError("Put your email in first.");
       return;
@@ -84,9 +93,15 @@ export default function DugoutGate({
     setMessage("I emailed you a login link. It might take a minute.");
   }
 
+  const familySignup = audience === "family" && effectiveMode === "signup";
+
   return (
-    <form className="start-form portal-auth" onSubmit={onSubmit}>
-      {mode === "signup" ? (
+    <form
+      className="start-form portal-auth"
+      onSubmit={onSubmit}
+      aria-describedby={describedBy}
+    >
+      {familySignup ? (
         <label className="start-field">
           <span>Your name</span>
           <input name="name" type="text" autoComplete="name" autoCapitalize="words" />
@@ -100,6 +115,8 @@ export default function DugoutGate({
           autoComplete="email"
           required
           enterKeyHint="next"
+          ref={emailRef}
+          aria-invalid={error ? true : undefined}
         />
       </label>
       <label className="start-field">
@@ -107,15 +124,24 @@ export default function DugoutGate({
         <input
           name="password"
           type="password"
-          autoComplete={mode === "signup" ? "new-password" : "current-password"}
+          autoComplete={familySignup ? "new-password" : "current-password"}
           minLength={8}
           required
+          aria-invalid={error ? true : undefined}
         />
       </label>
-      {error ? <p className="portal-note portal-note-warn">{error}</p> : null}
-      {message ? <p className="portal-note">{message}</p> : null}
+      {error ? (
+        <p id={errorId} className="portal-note portal-note-warn" role="alert">
+          {error}
+        </p>
+      ) : null}
+      {message ? (
+        <p id={messageId} className="portal-note" aria-live="polite">
+          {message}
+        </p>
+      ) : null}
       <button className="btn" type="submit" disabled={busy}>
-        {busy ? "Hang on…" : mode === "signup" ? "Create my account" : "Sign in"}
+        {busy ? "Hang on…" : familySignup ? "Create my account" : "Sign in"}
       </button>
       <button
         className="btn-ghost portal-link-btn"
@@ -125,17 +151,19 @@ export default function DugoutGate({
       >
         Email me a login link
       </button>
-      <p className="start-form-or">
-        {mode === "signin" ? (
-          <button type="button" className="footer-link" onClick={() => setMode("signup")}>
-            New here? Make an account
-          </button>
-        ) : (
-          <button type="button" className="footer-link" onClick={() => setMode("signin")}>
-            I already have one
-          </button>
-        )}
-      </p>
+      {audience === "family" ? (
+        <p className="start-form-or">
+          {effectiveMode === "signin" ? (
+            <button type="button" className="footer-link" onClick={() => setMode("signup")}>
+              First time? Make an account
+            </button>
+          ) : (
+            <button type="button" className="footer-link" onClick={() => setMode("signin")}>
+              I already have one
+            </button>
+          )}
+        </p>
+      ) : null}
     </form>
   );
 }

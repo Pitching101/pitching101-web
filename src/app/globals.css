@@ -3463,6 +3463,59 @@ a.reviews-verified:focus-visible {
 .portal-page {
   max-width: 64rem;
 }
+.portal-gate {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: center;
+  width: 100%;
+}
+.portal-gate .ui-title {
+  margin: 0;
+}
+.portal-gate .portal-lead,
+.portal-page > .portal-lead {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.portal-who {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 36rem;
+}
+.portal-who-btn {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  border: 3px solid color-mix(in srgb, #1a2438 42%, #3295fb);
+  background: color-mix(in srgb, #BBD6F1 36%, #fff);
+  color: var(--ink);
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+@media (max-width: 420px) {
+  .portal-who-btn {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+}
+.portal-who-btn.is-on {
+  background: #3295fb;
+  color: #fff;
+  border-color: #1a2438;
+}
+.portal-who-btn:focus-visible,
+.portal-tab:focus-visible,
+.portal-roster-btn:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
 .portal-kicker {
   margin: 0;
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
@@ -3500,6 +3553,32 @@ a.reviews-verified:focus-visible {
 .portal-desk {
   display: grid;
   gap: 1.25rem;
+  width: 100%;
+  text-align: left;
+}
+.portal-desk-family {
+  max-width: 38rem;
+  margin-inline: auto;
+}
+.portal-desk .portal-lead {
+  margin-left: 0;
+  margin-right: 0;
+}
+.portal-picker {
+  display: grid;
+  gap: 0.4rem;
+}
+.portal-picker-label {
+  margin: 0;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.portal-picker .portal-roster {
+  margin-bottom: 0;
 }
 .portal-desk-bar {
   display: flex;
@@ -3509,6 +3588,11 @@ a.reviews-verified:focus-visible {
 }
 .portal-desk-bar .ui-title {
   margin: 0.2rem 0 0;
+}
+.portal-desk-bar .footer-link {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
 }
 .portal-stats {
   list-style: none;
@@ -3550,7 +3634,7 @@ a.reviews-verified:focus-visible {
   gap: 0.4rem;
 }
 .portal-tab {
-  min-height: 2.5rem;
+  min-height: 2.75rem;
   padding: 0.4rem 0.9rem;
   border: 3px solid color-mix(in srgb, #1a2438 42%, #3295fb);
   background: color-mix(in srgb, #BBD6F1 36%, #fff);
@@ -3648,18 +3732,44 @@ a.reviews-verified:focus-visible {
   gap: 0.75rem;
   margin-bottom: 0.35rem;
 }
+.portal-lesson-day {
+  margin: 0 0 0.25rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.portal-lesson-title {
+  margin: 0.2rem 0 0;
+  font-weight: 600;
+}
 .portal-lesson p {
   margin: 0.2rem 0 0;
 }
 .portal-lesson-notes {
   color: var(--ink-soft);
+  line-height: 1.5;
+}
+.portal-clip-wrap {
+  margin-top: 0.75rem;
+}
+.portal-clip-label {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 .portal-clip {
   display: block;
   width: 100%;
-  margin-top: 0.7rem;
+  margin-top: 0;
   background: #0f1a2e;
   max-height: 22rem;
+}
+.portal-desk-family .portal-clip {
+  max-height: min(70vh, 28rem);
 }
 .start-form-or button {
   background: none;
