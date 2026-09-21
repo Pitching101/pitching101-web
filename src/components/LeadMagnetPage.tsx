@@ -7,8 +7,32 @@ import {
   type LeadMagnetSection,
 } from "@/data/leadMagnets";
 
+function groupSections(sections: LeadMagnetSection[]) {
+  const groups: Array<
+    | { type: "section"; item: LeadMagnetSection }
+    | { type: "flags"; items: LeadMagnetSection[] }
+  > = [];
+
+  for (let i = 0; i < sections.length; i += 1) {
+    const current = sections[i];
+    const next = sections[i + 1];
+    if (current.tone === "green" && next?.tone === "red") {
+      groups.push({ type: "flags", items: [current, next] });
+      i += 1;
+    } else {
+      groups.push({ type: "section", item: current });
+    }
+  }
+
+  return groups;
+}
+
 function GuideSection({ section }: { section: LeadMagnetSection }) {
-  const listClass = section.tone ? "guide-list guide-flag-list" : "guide-list";
+  const listClass = section.tone
+    ? "guide-list guide-flag-list"
+    : section.bullets
+      ? "guide-list guide-list-cards"
+      : "guide-list";
 
   return (
     <section
@@ -74,13 +98,14 @@ function MagnetCta({ magnet }: { magnet: LeadMagnet }) {
 /** One landing page shape for every free lead magnet. */
 export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
   const isLongForm = Boolean(magnet.sections?.length);
+  const groups = magnet.sections ? groupSections(magnet.sections) : [];
 
   return (
     <ParkSky tone="park">
       <article
         className={`park-page magnet-page${isLongForm ? " magnet-page-long" : ""}`}
       >
-        <Reveal className="space-y-5">
+        <Reveal className={isLongForm ? "guide-hero" : "space-y-5"}>
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/guides/" className="hover:underline">
               ← Free guides
@@ -118,16 +143,26 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
             <li className="bb-chip">Ages 8–16</li>
             <li className="bb-chip">Free</li>
           </ul>
-          <div className="home-cta-row pt-2">
+          <div className="home-cta-row">
             <MagnetCta magnet={magnet} />
           </div>
         </Reveal>
 
-        {magnet.sections?.map((section, index) => (
-          <Reveal key={section.heading} delayMs={20 + index * 20}>
-            <GuideSection section={section} />
-          </Reveal>
-        ))}
+        {groups.map((group, index) =>
+          group.type === "flags" ? (
+            <div key={group.items.map((item) => item.heading).join("-")} className="guide-flag-row">
+              {group.items.map((item, flagIndex) => (
+                <Reveal key={item.heading} delayMs={20 + (index + flagIndex) * 20}>
+                  <GuideSection section={item} />
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <Reveal key={group.item.heading} delayMs={20 + index * 20}>
+              <GuideSection section={group.item} />
+            </Reveal>
+          ),
+        )}
 
         {isLongForm ? null : (
           <Reveal delayMs={40} className="mt-12 space-y-4">
