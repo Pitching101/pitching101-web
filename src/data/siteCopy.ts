@@ -16,7 +16,7 @@ export type FaqItem = { q: string; a: string };
 export const faqs: FaqItem[] = [
   {
     q: "What are Pitching101 youth pitching lessons?",
-    a: "Coach Deising works with kids ages 8–16 in Naples, FL. He is the junior varsity head coach at Gulfshore High School. Lessons include arm care and a plan they can use at the next practice.",
+    a: "Coach Deising works with kids ages 8–16 in Naples, FL. He is the junior varsity head coach at Gulfshore High School, and also coaches travel teams. Lessons include arm care and a plan they can use at the next practice.",
   },
   {
     q: "What ages do you coach?",
@@ -24,7 +24,11 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Who do you work with?",
-    a: "Kids ages 8–16. We work with parents, other coaches, travel teams, and schools.",
+    a: "Kids ages 8–16. Parents, other coaches, travel teams, and schools. Same work either way.",
+  },
+  {
+    q: "Do you coach travel teams?",
+    a: "Yes. Coach Deising works as a pitching coach for travel teams — with a coach, a team contact, or next to your existing plan. Ages 8–16.",
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
