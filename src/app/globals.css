@@ -1223,7 +1223,7 @@ html.glove-cursor * {
 .hero-script {
   position: relative;
   z-index: 1;
-  margin: 0.2rem 0 -1.05rem;
+  margin: 0.4rem 0 -0.42rem;
   font-size: clamp(2.45rem, 8.5vw, 3.85rem);
   transform: rotate(-8deg);
   color: var(--blue-dark);
@@ -2836,6 +2836,9 @@ a.reviews-verified:focus-visible {
   }
   .hero-overlay-copy {
     gap: 1.35rem;
+  }
+  .hero-script {
+    margin: 0.3rem 0 -0.28rem;
   }
   .hero-arc {
     display: block;
