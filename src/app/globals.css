@@ -90,8 +90,13 @@
 
 html {
   overflow-x: clip;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-padding-top: calc(var(--header-bar) + env(safe-area-inset-top));
+}
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 body {
   background-color: color-mix(in srgb, #3295fb 48%, #BBD6F1);
@@ -817,6 +822,18 @@ html[data-tod="night"] .ui-chip {
 .float-cloud-14 { right: 20%; top: 87%; --cloud-size: 11.2rem; --cloud-duration: 19s; --cloud-delay: -5.5s; }
 .float-cloud-pin-1 { left: 4%; top: 8%; --cloud-size: 5.2rem; --cloud-duration: 22s; --cloud-delay: 0s; opacity: 0.48; }
 .float-cloud-pin-2 { right: 5%; top: 11%; --cloud-size: 4.4rem; --cloud-duration: 19s; --cloud-delay: -6s; opacity: 0.4; }
+@media (max-width: 639px) {
+  .float-cloud-7,
+  .float-cloud-8,
+  .float-cloud-9,
+  .float-cloud-10,
+  .float-cloud-11,
+  .float-cloud-12,
+  .float-cloud-13,
+  .float-cloud-14 {
+    display: none;
+  }
+}
 @keyframes cloud-drift {
   0% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0.9rem, -0.45rem, 0); }
@@ -1598,6 +1615,9 @@ html.glove-cursor * {
   text-shadow: none;
 }
 .hero-arc {
+  display: none;
+}
+.hero-arc-slot {
   display: none;
 }
 
@@ -3301,16 +3321,21 @@ a.reviews-verified:focus-visible {
   .hero-script {
     margin: 0.3rem 0 -0.28rem;
   }
+  .hero-arc-slot {
+    display: block;
+    width: 100%;
+    height: 7.4rem;
+  }
   .hero-arc {
     display: block;
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
     width: 100%;
-    height: 6.4rem;
-    margin-left: 0;
-    margin-right: 0;
+    height: 7.4rem;
     z-index: 3;
     pointer-events: none;
-    overflow: hidden;
+    overflow: visible;
   }
   .hero-arc-ball {
     position: absolute;
@@ -3321,9 +3346,8 @@ a.reviews-verified:focus-visible {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     filter: drop-shadow(0 3px 5px rgba(15, 26, 46, 0.16));
-    will-change: transform;
     user-select: none;
-    transform: translate3d(0, 48px, 0);
+    transform: translate3d(-48px, 48px, 0);
   }
   .ui-title-hero {
     font-size: clamp(1.7rem, 8.6vw, 2.25rem);
@@ -3354,6 +3378,14 @@ a.reviews-verified:focus-visible {
   .bb-chip {
     padding: 0.45rem 0.75rem;
     font-size: 0.86rem;
+  }
+  .ages-band,
+  .how-clouds-band,
+  .pitch-game-band,
+  #faq,
+  .home-stadium-band {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
   }
 }
 .park-page-start {

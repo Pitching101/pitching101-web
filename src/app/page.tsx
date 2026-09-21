@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
+import dynamic from "next/dynamic";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 import ParkSky from "@/components/ParkSky";
 import HeroArcBalls from "@/components/HeroArcBalls";
-import PitchGame from "@/components/PitchGame";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import InstagramFollow from "@/components/InstagramFollow";
@@ -29,6 +29,8 @@ import {
   shareImage,
   trainingOptions,
 } from "@/data/siteCopy";
+
+const PitchGame = dynamic(() => import("@/components/PitchGame"));
 
 export const metadata: Metadata = {
   title: {
@@ -57,10 +59,11 @@ export default function HomePage() {
       <JsonLd data={faqJsonLd(faqs)} />
 
       <section className="hero-overlay" aria-label="Youth pitching lessons in Naples, FL">
+        <HeroArcBalls />
         <div className="hero-overlay-inner">
-          <Reveal className="hero-overlay-copy">
+          <div className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–16</p>
-            <HeroArcBalls />
+            <div className="hero-arc-slot" aria-hidden="true" />
             <h1 className="hero-overlay-title">
               <span className="ui-script hero-script">Youth</span>
               <span className="ui-title ui-title-hero">Pitching lessons in Naples, FL</span>
@@ -76,7 +79,7 @@ export default function HomePage() {
             <p className="text-sm text-ink-soft">
               {RESPONSE_PROMISE}
             </p>
-          </Reveal>
+          </div>
         </div>
         <div id="sky-start" aria-hidden="true" />
       </section>

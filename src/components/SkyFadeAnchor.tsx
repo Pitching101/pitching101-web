@@ -6,6 +6,10 @@ import { useEffect } from "react";
  * Pins where the homepage wash leaves solid white and fades into blue.
  * White stays on the youth pitching lessons hero; sky and clouds start at
  * #sky-start (the bottom of that title block).
+ *
+ * The stop itself does not move with scroll — only the viewport check for
+ * pinned clouds does, and that uses IntersectionObserver instead of a
+ * scroll listener so the page can stay on the compositor.
  */
 export default function SkyFadeAnchor() {
   useEffect(() => {
@@ -16,46 +20,52 @@ export default function SkyFadeAnchor() {
     if (!scene || !mark) return;
 
     let lastStop = "";
-    let lastSkyIn: boolean | null = null;
-    let raf = 0;
 
-    const paint = () => {
-      raf = 0;
+    const paintStop = () => {
       const sceneBox = scene.getBoundingClientRect();
       const markBox = mark.getBoundingClientRect();
       const height = Math.max(1, sceneBox.height);
       const pct = Math.min(82, Math.max(8, ((markBox.top - sceneBox.top) / height) * 100));
       const stop = `${pct.toFixed(1)}%`;
-      if (stop !== lastStop) {
-        lastStop = stop;
-        scene.style.setProperty("--sky-stop", stop);
-      }
-      const footer = document.querySelector<HTMLElement>(".site-footer");
-      const footerBox = footer?.getBoundingClientRect();
-      const footerIn = footerBox != null && footerBox.top < window.innerHeight * 0.78;
-      const skyIn = markBox.top < window.innerHeight * 0.62 && !footerIn;
-      if (skyIn !== lastSkyIn) {
-        lastSkyIn = skyIn;
-        scene.classList.toggle("is-sky-in", skyIn);
-      }
+      if (stop === lastStop) return;
+      lastStop = stop;
+      scene.style.setProperty("--sky-stop", stop);
     };
 
-    const requestPaint = () => {
-      if (raf) return;
-      raf = window.requestAnimationFrame(paint);
+    const setSkyIn = (on: boolean) => {
+      scene.classList.toggle("is-sky-in", on);
     };
 
-    paint();
-    window.addEventListener("resize", requestPaint, { passive: true });
-    window.addEventListener("scroll", requestPaint, { passive: true });
-    const ro = new ResizeObserver(requestPaint);
+    paintStop();
+
+    const markIo = new IntersectionObserver(
+      (entries) => {
+        setSkyIn(entries.some((entry) => entry.isIntersecting));
+      },
+      { rootMargin: "-8% 0px -38% 0px", threshold: 0 },
+    );
+    markIo.observe(mark);
+
+    const footer = document.querySelector<HTMLElement>(".site-footer");
+    const footerIo = footer
+      ? new IntersectionObserver(
+          (entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) setSkyIn(false);
+          },
+          { rootMargin: "0px 0px -22% 0px", threshold: 0 },
+        )
+      : null;
+    if (footer && footerIo) footerIo.observe(footer);
+
+    window.addEventListener("resize", paintStop, { passive: true });
+    const ro = new ResizeObserver(paintStop);
     ro.observe(scene);
     ro.observe(mark);
     return () => {
-      window.cancelAnimationFrame(raf);
-      window.removeEventListener("resize", requestPaint);
-      window.removeEventListener("scroll", requestPaint);
+      window.removeEventListener("resize", paintStop);
       ro.disconnect();
+      markIo.disconnect();
+      footerIo?.disconnect();
     };
   }, []);
 

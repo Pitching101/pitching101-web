@@ -227,7 +227,7 @@ export default function TrainingClipsStrip() {
                     loop
                     playsInline
                     autoPlay
-                    preload="metadata"
+                    preload="none"
                     aria-hidden="true"
                   />
                 </div>

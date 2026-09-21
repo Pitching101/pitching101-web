@@ -8,7 +8,7 @@ const CYCLE_MS = 5600;
 
 /**
  * Phone only: two baseballs throw themselves across the hero.
- * Paths stay offset so they do not meet in a straight X.
+ * The layer spans the full hero so balls are not sliced at the type column.
  * Reduced motion hides the layer in CSS.
  */
 export default function HeroArcBalls() {
@@ -22,18 +22,33 @@ export default function HeroArcBalls() {
     const right = rightRef.current;
     if (!layer || !left || !right) return;
 
+    const overlay = layer.closest(".hero-overlay");
+    const slot = overlay?.querySelector<HTMLElement>(".hero-arc-slot");
     const mobile = window.matchMedia("(max-width: 639px)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
     let origin = 0;
     let running = false;
+    let inView = true;
+
+    const align = () => {
+      if (!overlay || !slot) return;
+      const scene = overlay.getBoundingClientRect();
+      const band = slot.getBoundingClientRect();
+      layer.style.top = `${(band.top - scene.top).toFixed(1)}px`;
+      layer.style.height = `${Math.max(band.height, 1).toFixed(1)}px`;
+    };
 
     const paint = (progress: number) => {
       const width = layer.clientWidth;
       const height = layer.clientHeight;
       if (width < 8 || height < 8) return;
-      const off = SIZE + 12;
+      const off = SIZE + 8;
       const span = width + off * 2;
+      const topPad = 10;
+      const floor = Math.max(8, height - SIZE - 4);
+      const high = Math.max(topPad + 18, floor);
+      const low = Math.max(topPad + 12, high * 0.62);
 
       const bump = (t: number, peak: number) => {
         const denom = Math.max(0.12, peak * (1 - peak));
@@ -48,12 +63,10 @@ export default function HeroArcBalls() {
         spin: number,
       ) => {
         const x = -off + t * span;
-        const y = rise * (1 - bump(t, peak));
+        const y = topPad + (rise - topPad) * (1 - bump(t, peak));
         el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${(spin * t).toFixed(1)}deg)`;
       };
 
-      const high = Math.max(22, height - SIZE - 2);
-      const low = Math.max(16, high * 0.58);
       place(left, progress, 0.34, high, 420);
       place(right, 1 - progress, 0.68, low, -300);
     };
@@ -65,8 +78,9 @@ export default function HeroArcBalls() {
     };
 
     const bind = () => {
-      const on = mobile.matches && !reduce.matches;
+      const on = mobile.matches && !reduce.matches && inView;
       if (on && !running) {
+        align();
         origin = 0;
         running = true;
         raf = window.requestAnimationFrame(tick);
@@ -79,13 +93,31 @@ export default function HeroArcBalls() {
       }
     };
 
+    const io = new IntersectionObserver(
+      (entries) => {
+        inView = entries.some((entry) => entry.isIntersecting);
+        bind();
+      },
+      { rootMargin: "40px 0px", threshold: 0.05 },
+    );
+    io.observe(layer);
+
+    const ro = new ResizeObserver(align);
+    if (overlay) ro.observe(overlay);
+    if (slot) ro.observe(slot);
+
+    align();
     bind();
     mobile.addEventListener("change", bind);
     reduce.addEventListener("change", bind);
+    window.addEventListener("resize", align, { passive: true });
     return () => {
       window.cancelAnimationFrame(raf);
+      io.disconnect();
+      ro.disconnect();
       mobile.removeEventListener("change", bind);
       reduce.removeEventListener("change", bind);
+      window.removeEventListener("resize", align);
     };
   }, []);
 
