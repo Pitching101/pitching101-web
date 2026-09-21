@@ -1,26 +1,26 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent, type TransitionEvent } from "react";
-import { GOOGLE_REVIEW_URL } from "@/data/siteCopy";
 import {
+  TRUSTPILOT_URL,
   trustpilotReviews,
   type TrustpilotReview,
 } from "@/data/trustpilotReviews";
 
-function GoogleReviewLink() {
+const FADE_MS = 560;
+
+function TrustpilotMark() {
   return (
     <a
-      href={GOOGLE_REVIEW_URL}
-      className="reviews-more-link"
+      href={TRUSTPILOT_URL}
+      className="reviews-verified"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Leave a Google review
+      Verified on Trustpilot
     </a>
   );
 }
-
-const FADE_MS = 560;
 
 function Stars({ n }: { n: number }) {
   const filled = Math.max(0, Math.min(5, Math.round(n)));
@@ -157,16 +157,17 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
     return (
       <div className={`reviews-wrap ${className}`.trim()}>
         <p className="text-base text-ink-soft">
-          Google reviews will show here once families leave them.
+          Reviews will show here once they&apos;re in.
         </p>
-        <GoogleReviewLink />
+        <TrustpilotMark />
       </div>
     );
   }
 
   if (reduceMotion) {
     return (
-      <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="What people say">
+      <div className={`reviews-stack space-y-4 ${className}`.trim()} aria-label="Client reviews from Trustpilot">
+        <TrustpilotMark />
         <ul className="space-y-4">
           {reviews.map((r) => (
             <li key={`${r.name}-${r.title}`} className="reviews-carousel">
@@ -174,7 +175,6 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
             </li>
           ))}
         </ul>
-        <GoogleReviewLink />
       </div>
     );
   }
@@ -213,6 +213,8 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         }
       }}
     >
+      <TrustpilotMark />
+
       <div
         className="reviews-stage"
         onPointerDown={onPointerDown}
@@ -273,7 +275,6 @@ export default function ReviewsCarousel({ className = "" }: { className?: string
         </div>
       </div>
 
-      <GoogleReviewLink />
       <p className="reviews-swipe-hint">Swipe to read the next one</p>
     </div>
   );
