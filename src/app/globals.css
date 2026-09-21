@@ -3120,11 +3120,35 @@ a.reviews-verified:focus-visible {
   display: grid;
   gap: 1.35rem;
   width: 100%;
-  max-width: 32rem;
+  max-width: 40rem;
   margin: 0.6rem auto 0;
   padding: 0;
   list-style: none;
   text-align: left;
+}
+.guide-routine {
+  margin-top: 2.25rem;
+}
+.guide-routine .ui-title {
+  text-align: left;
+}
+.guide-clip {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  margin: 0.75rem auto 0;
+  background: #0f1a2e;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 3px solid var(--card-rim);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 2px #0f1a2e,
+    7px 9px 0 rgba(15, 26, 46, 0.14);
+}
+.guide-hero .guide-clip {
+  max-width: 22rem;
+  margin-top: 0.15rem;
 }
 .magnet-step {
   display: grid;

@@ -21,6 +21,14 @@ export type LeadMagnetSection = {
 export type LeadMagnetStep = {
   label: string;
   note: string;
+  /** Optional clip under public/, e.g. /videos/band/....mp4 */
+  video?: string;
+};
+
+export type LeadMagnetRoutine = {
+  heading: string;
+  note?: string;
+  steps: LeadMagnetStep[];
 };
 
 export type LeadMagnet = {
@@ -45,6 +53,10 @@ export type LeadMagnet = {
   sections?: LeadMagnetSection[];
   /** Numbered checklist for short magnets. */
   steps?: LeadMagnetStep[];
+  /** Intro clip on the page, e.g. a welcome. */
+  introVideo?: string;
+  /** Named checklists with clips, like the band routine. */
+  routines?: LeadMagnetRoutine[];
 };
 
 export const leadMagnets: LeadMagnet[] = [
@@ -136,34 +148,63 @@ export const leadMagnets: LeadMagnet[] = [
     slug: "arm-care-checklist",
     title: "Arm-care checklist",
     kicker: "Free guide",
-    note: "The same warm-up and cool-down I run in lessons.",
+    note: "This is the same band routine I run in lessons. Hit play and do it with me.",
     topic: "Arm care",
     icon: "/assets/icons/icon-arm-care-v2.png",
     ogImage: "/assets/icons/icon-arm-care-v2.png",
     metaDescription:
-      "The same warm-up and cool-down Coach Deising teaches in Naples pitching lessons. A simple arm-care checklist parents can use before and after throwing.",
+      "Coach Deising's band-routine videos for youth pitchers in Naples, FL. Watch the J-band and single-band checklist right on the page.",
     emailSubject: "Arm-Care Checklist Guide",
     cta: "Email the checklist",
+    introVideo: "/videos/band/00-welcome.mp4",
     steps: [
       {
         label: "Get warm first",
         note: "Don't throw until the body's moving. A little jog, jumping jacks — whatever gets blood going.",
       },
       {
-        label: "Arms both ways",
-        note: "Easy circles forward and back. Slow. You're not showing off.",
+        label: "Then the bands",
+        note: "J-band if you've got them. Single band if that's what you've got. Watch, then do it.",
       },
       {
         label: "Then play catch",
         note: "Start close. Move back when it feels easy. Save the juice.",
       },
       {
-        label: "Cool down after",
-        note: "Don't bag it and sit. Light stretch, same arm care you started with.",
-      },
-      {
         label: "Hurt means stop",
         note: "Tell a parent or coach. We don't throw through that.",
+      },
+    ],
+    routines: [
+      {
+        heading: "J-band routine",
+        note: "The longer tube. Same order I use.",
+        steps: [
+          { label: "Internal extension", video: "/videos/band/jband-01-internal-extension.mp4", note: "Easy. Don't yank it." },
+          { label: "External extension", video: "/videos/band/jband-02-external-extension.mp4", note: "Other way. Same pace." },
+          { label: "I's extension", video: "/videos/band/jband-03-is-extension.mp4", note: "Arms stay long." },
+          { label: "T extension", video: "/videos/band/jband-04-t-extension.mp4", note: "Out to the sides." },
+          { label: "90 internal rotations", video: "/videos/band/jband-05-90-internal-rotations.mp4", note: "Elbows at 90. Slow." },
+          { label: "Y extension", video: "/videos/band/jband-06-y-extension.mp4", note: "Up and out." },
+          { label: "I's away", video: "/videos/band/jband-07-is-away.mp4", note: "Now we're facing away from the anchor." },
+          { label: "T's away", video: "/videos/band/jband-08-ts-away.mp4", note: "Same idea, T shape." },
+          { label: "90's away", video: "/videos/band/jband-09-90s-away.mp4", note: "Elbows at 90, facing away." },
+          { label: "Tricep extension", video: "/videos/band/jband-10-tricep-extension.mp4", note: "Finish the arm." },
+        ],
+      },
+      {
+        heading: "Single-band routine",
+        note: "One band. If that's what you've got at home, this is the one.",
+        steps: [
+          { label: "Palms-down pull-aparts", video: "/videos/band/single-01-palms-down-pa.mp4", note: "Palms down. Squeeze the shoulder blades." },
+          { label: "Palms-up pull-aparts", video: "/videos/band/single-02-palms-up-pa.mp4", note: "Flip the hands." },
+          { label: "Diagonal pull-aparts", video: "/videos/band/single-03-diagonal-pa.mp4", note: "One high, one low." },
+          { label: "Shoulder-blade pinch", video: "/videos/band/single-04-shoulder-blade-pinch.mp4", note: "Band behind the head. Pinch." },
+          { label: "Around the world", video: "/videos/band/single-05-around-the-world.mp4", note: "Big slow circle." },
+          { label: "Bicep curls", video: "/videos/band/single-06-bicep-curls.mp4", note: "Don't cheat the top." },
+          { label: "Tricep extension", video: "/videos/band/single-07-tricep-extension.mp4", note: "Lock it out easy." },
+          { label: "Shoulder press", video: "/videos/band/single-08-shoulder-press.mp4", note: "Press it up. That's the last one." },
+        ],
       },
     ],
   },
