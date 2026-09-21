@@ -11,8 +11,8 @@ export default function Footer() {
           <Logo height={48} />
           <p className="text-sm font-semibold text-blue-dark">Naples, FL</p>
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
-            Youth pitching lessons for Naples, FL families. Clear coaching. No
-            jargon.
+            Youth pitching lessons in Naples, FL for ages 8–14. Families,
+            travel teams, other coaches, and schools.
           </p>
           <Link href="/contact/" className="btn">
             Get your child started
