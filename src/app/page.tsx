@@ -5,7 +5,6 @@ import Reveal from "@/components/Reveal";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import TrainingClipsStrip from "@/components/TrainingClipsStrip";
 import ParkSky from "@/components/ParkSky";
-import HeroArcBalls from "@/components/HeroArcBalls";
 import PitchGame from "@/components/PitchGame";
 import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
@@ -60,10 +59,9 @@ export default function HomePage() {
         <div className="hero-overlay-inner">
           <Reveal className="hero-overlay-copy">
             <p className="ui-chip px-3.5 py-1.5">Naples, FL · ages 8–16</p>
-            <HeroArcBalls />
             <h1 className="hero-overlay-title">
-              <span className="ui-script hero-script">Youth</span>
-              <span className="ui-title ui-title-hero">Pitching lessons in Naples, FL</span>
+              <span className="ui-title ui-title-hero">Pitching lessons</span>
+              <span className="ui-title ui-title-hero">in Naples, FL</span>
             </h1>
             <p className="text-lg leading-relaxed text-ink-soft sm:text-xl">
               {HERO_LINE}
@@ -77,6 +75,24 @@ export default function HomePage() {
               {RESPONSE_PROMISE}
             </p>
           </Reveal>
+          <div className="hero-overlay-media">
+            <figure className="bb-card bb-card-main hero-nick">
+              <div className="bb-card-photo">
+                <Image
+                  src="/assets/nick-coach-card.png"
+                  alt="Coach Deising in his jersey and hat, pointing at a glove"
+                  fill
+                  sizes="(max-width: 859px) 42vw, 240px"
+                  className="bb-card-img"
+                  priority
+                />
+              </div>
+              <figcaption>
+                <p className="bb-card-name">Coach Deising</p>
+                <p className="bb-card-role">Gulfshore JV head coach</p>
+              </figcaption>
+            </figure>
+          </div>
         </div>
         <div id="sky-start" aria-hidden="true" />
       </section>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 /**
  * Pins where the homepage wash leaves solid white and fades into blue.
- * White stays on the youth pitching lessons hero; sky and clouds start at
+ * White stays on the pitching-lessons hero; sky and clouds start at
  * #sky-start (the bottom of that title block).
  */
 export default function SkyFadeAnchor() {

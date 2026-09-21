@@ -23,7 +23,7 @@ export default function ParkSky({
   children: ReactNode;
   tone?: "home" | "park";
 }) {
-  const count = tone === "home" ? 14 : 8;
+  const count = 8;
   return (
     <div className={`home-sky-scene park-sky park-sky-${tone}`}>
       <div className="home-sky-layers" aria-hidden="true">
