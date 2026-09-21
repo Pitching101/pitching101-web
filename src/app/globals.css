@@ -1752,8 +1752,8 @@ a.reviews-verified:focus-visible {
 .ig-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.55rem;
-  width: min(24.5rem, 100%);
+  gap: 0.7rem;
+  width: min(36rem, 100%);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1809,8 +1809,8 @@ a.reviews-verified:focus-visible {
 @media (max-width: 639px) {
   .ig-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: min(17.75rem, 92%);
-    gap: 0.65rem;
+    width: min(20.5rem, 92%);
+    gap: 0.7rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
