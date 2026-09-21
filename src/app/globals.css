@@ -3450,3 +3450,212 @@ a.reviews-verified:focus-visible {
   }
 }
 
+.portal-page {
+  max-width: 64rem;
+}
+.portal-kicker {
+  margin: 0;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+.portal-lead {
+  margin: 0.35rem 0 1.1rem;
+  max-width: 36rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.portal-stat {
+  margin: 0.15rem 0 0.4rem;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.portal-note {
+  margin: 0.4rem 0 0;
+  color: var(--ink-soft);
+}
+.portal-note-warn {
+  color: var(--red-deep);
+}
+.portal-auth .btn-ghost,
+.portal-link-btn {
+  width: 100%;
+}
+.portal-desk {
+  display: grid;
+  gap: 1.25rem;
+}
+.portal-desk-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.portal-desk-bar .ui-title {
+  margin: 0.2rem 0 0;
+}
+.portal-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+@media (min-width: 700px) {
+  .portal-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.portal-stats li {
+  padding: 0.85rem 0.9rem;
+  background: color-mix(in srgb, var(--card-stock) 88%, #fff);
+  border: 3px solid color-mix(in srgb, #1a2438 42%, var(--card-rim));
+}
+.portal-stats strong {
+  display: block;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.55rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.portal-stats span {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.portal-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.portal-tab {
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 3px solid color-mix(in srgb, #1a2438 42%, #3295fb);
+  background: color-mix(in srgb, #BBD6F1 36%, #fff);
+  color: var(--ink);
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.portal-tab.is-on {
+  background: #3295fb;
+  color: #fff;
+  border-color: #1a2438;
+}
+.portal-grid-desk {
+  margin-top: 0.15rem;
+}
+.portal-grid {
+  display: grid;
+  gap: 1.15rem;
+}
+@media (min-width: 860px) {
+  .portal-grid {
+    grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.portal-card {
+  padding: 1.25rem 1.15rem 1.4rem;
+  background: color-mix(in srgb, var(--card-stock) 88%, #fff);
+  border: 3px solid color-mix(in srgb, #1a2438 42%, var(--card-rim));
+  box-shadow: 6px 7px 0 color-mix(in srgb, #1a2438 18%, transparent);
+}
+.portal-roster {
+  list-style: none;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+.portal-roster-row {
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+}
+.portal-roster-btn {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 3px solid color-mix(in srgb, #1a2438 42%, #3295fb);
+  background: color-mix(in srgb, #BBD6F1 36%, #fff);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.portal-roster-btn em {
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.portal-roster-btn.is-on {
+  background: #3295fb;
+  color: #fff;
+  border-color: #1a2438;
+}
+.portal-roster-btn.is-on em {
+  color: color-mix(in srgb, #fff 80%, #BBD6F1);
+}
+.portal-mini-form {
+  margin: 0;
+  max-width: none;
+}
+.portal-lessons {
+  list-style: none;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+.portal-lesson {
+  padding: 0.85rem 0.9rem 1rem;
+  background: color-mix(in srgb, var(--paper) 70%, #fff);
+  border: 2px solid color-mix(in srgb, #1a2438 22%, var(--card-rim));
+}
+.portal-lesson-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+.portal-lesson p {
+  margin: 0.2rem 0 0;
+}
+.portal-lesson-notes {
+  color: var(--ink-soft);
+}
+.portal-clip {
+  display: block;
+  width: 100%;
+  margin-top: 0.7rem;
+  background: #0f1a2e;
+  max-height: 22rem;
+}
+.start-form-or button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+

@@ -30,7 +30,7 @@ npm run build
 | Route | Purpose |
 | --- | --- |
 | `/` | Parent-friendly homepage (programs, CTAs, contact) |
-| `/naples-fl-pitching-lessons` | Local SEO landing page for Naples FL pitching lessons |
+| `/portal/` | Dugout: families see lessons; Coach logs work and clips |
 
 ## Contact (scaffold)
 

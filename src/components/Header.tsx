@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
-import { ENROLL_HREF, ENROLL_LABEL } from "@/data/siteCopy";
+import { ENROLL_HREF, ENROLL_LABEL, PORTAL_HREF, PORTAL_LABEL } from "@/data/siteCopy";
 
 const homeAnchors = [
   { href: "/#reviews", full: "What people say", short: "Reviews" },
@@ -59,6 +59,10 @@ export default function Header() {
             <span className="nav-link-full">Free guides</span>
             <span className="nav-link-short">Guides</span>
           </Link>
+          <Link href={PORTAL_HREF} className="nav-link">
+            <span className="nav-link-full">{PORTAL_LABEL}</span>
+            <span className="nav-link-short">{PORTAL_LABEL}</span>
+          </Link>
           <Link href={ENROLL_HREF} className="btn btn-nav">
             {ENROLL_LABEL}
           </Link>
@@ -98,6 +102,9 @@ export default function Header() {
           ))}
           <Link href="/guides/" className="site-menu-link" onClick={closeMenu}>
             Free guides
+          </Link>
+          <Link href={PORTAL_HREF} className="site-menu-link" onClick={closeMenu}>
+            {PORTAL_LABEL}
           </Link>
           <Link href={ENROLL_HREF} className="btn site-menu-cta" onClick={closeMenu}>
             {ENROLL_LABEL}
