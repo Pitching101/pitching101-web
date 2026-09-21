@@ -9,6 +9,7 @@ import type { Profile } from "@/lib/portal";
 import DugoutGate, { type PortalAudience } from "./DugoutGate";
 import CoachDesk from "./CoachDesk";
 import FamilyDesk from "./FamilyDesk";
+import PortalHomeLink from "./PortalHomeLink";
 
 export default function PortalApp() {
   const supabase = getSupabase();
@@ -94,6 +95,7 @@ export default function PortalApp() {
     const familyDoor = audience === "family";
     return (
       <div className="portal-gate">
+        <PortalHomeLink />
         <div className="portal-who" role="group" aria-label="Who is signing in">
           <button
             type="button"

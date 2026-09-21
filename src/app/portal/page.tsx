@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ParkSky from "@/components/ParkSky";
 import PortalApp from "@/components/portal/PortalApp";
 import { pageTitle, shareImage } from "@/data/siteCopy";
@@ -22,11 +21,6 @@ export default function PortalPage() {
   return (
     <ParkSky tone="park">
       <article className="park-page park-page-start portal-page">
-        <p className="text-base font-semibold text-blue-dark">
-          <Link href="/" className="hover:underline">
-            ← Home
-          </Link>
-        </p>
         <PortalApp />
       </article>
     </ParkSky>

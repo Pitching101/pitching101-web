@@ -10,6 +10,7 @@ import {
 } from "@/lib/portal";
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
 import PortalLessonClip from "./PortalLessonClip";
+import PortalHomeLink from "./PortalHomeLink";
 
 export default function FamilyDesk({
   supabase,
@@ -84,6 +85,7 @@ export default function FamilyDesk({
       <div className="portal-desk portal-desk-family">
         <div className="portal-desk-bar">
           <div>
+            <PortalHomeLink />
             <p className="portal-kicker">Client portal</p>
             <h1 className="ui-title ui-title-md">Your lessons</h1>
           </div>
@@ -111,6 +113,7 @@ export default function FamilyDesk({
     <div className="portal-desk portal-desk-family">
       <div className="portal-desk-bar">
         <div>
+          <PortalHomeLink />
           <p className="portal-kicker">Client portal</p>
           <h1 className="ui-title ui-title-md">{heading}</h1>
         </div>

@@ -3472,6 +3472,18 @@ a.reviews-verified:focus-visible {
 .portal-gate .ui-title {
   margin: 0;
 }
+.portal-home {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--blue-dark);
+}
+.portal-home a:hover {
+  text-decoration: underline;
+}
+.portal-gate .portal-home {
+  justify-self: center;
+}
 .portal-gate .portal-lead,
 .portal-page > .portal-lead {
   margin-left: auto;

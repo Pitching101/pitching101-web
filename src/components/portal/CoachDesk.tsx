@@ -13,6 +13,7 @@ import {
 import { LESSON_VIDEO_BUCKET } from "@/lib/supabase";
 import CoachClips from "./CoachClips";
 import PortalLessonClip from "./PortalLessonClip";
+import PortalHomeLink from "./PortalHomeLink";
 
 type Tab = "lessons" | "clips" | "roster";
 const COACH_TABS = ["lessons", "clips", "roster"] as const;
@@ -210,6 +211,7 @@ export default function CoachDesk({
     <div className="portal-desk portal-desk-coach">
       <div className="portal-desk-bar">
         <div>
+          <PortalHomeLink />
           <p className="portal-kicker">Coach desk</p>
           <h1 className="ui-title ui-title-md">Lessons and clips</h1>
         </div>
