@@ -1877,9 +1877,8 @@ html.glove-cursor * {
   text-shadow: 0 1px 0 rgba(15, 26, 46, 0.35);
 }
 .clip-fan {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  position: relative;
+  display: block;
   width: 100%;
   min-height: 28rem;
   padding: 0.8rem 0 1.8rem;
@@ -1888,25 +1887,52 @@ html.glove-cursor * {
   user-select: none;
 }
 .clip-card {
+  position: absolute;
+  left: 50%;
+  bottom: 1.6rem;
   width: min(12.6rem, 34vw);
+  margin: 0;
+  appearance: none;
+  font: inherit;
+  color: inherit;
   cursor: pointer;
+  transform-origin: 50% 80%;
+  transition:
+    transform 0.62s var(--ease-soft),
+    width 0.62s var(--ease-soft),
+    filter 0.4s var(--ease-soft),
+    opacity 0.4s var(--ease-soft);
+}
+.clip-card-inner {
+  transform-origin: 50% 80%;
 }
 .clip-card-main {
   z-index: 3;
   width: min(18.4rem, 56vw);
-  transform: rotate(2.4deg) translateY(-18px);
-  cursor: default;
-  pointer-events: none;
+  transform: translateX(-50%) rotate(2.4deg) translateY(-18px);
 }
 .clip-card-left {
   z-index: 1;
-  transform: rotate(-14deg) translate(1.35rem, 0.55rem);
+  transform: translateX(-50%) translate(-7.1rem, 0.55rem) rotate(-14deg);
   filter: saturate(0.86);
 }
 .clip-card-right {
   z-index: 2;
-  transform: rotate(12deg) translate(-1.2rem, 0.7rem);
+  transform: translateX(-50%) translate(7.1rem, 0.7rem) rotate(12deg);
   filter: saturate(0.86);
+}
+.clip-card-back {
+  z-index: 0;
+  width: min(11.2rem, 30vw);
+  transform: translateX(-50%) translate(0, 1.35rem) rotate(-2deg) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.clip-card .bb-card-role.is-muted {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
 }
 .clip-card-left:hover,
 .clip-card-left:focus-visible,
@@ -1914,7 +1940,38 @@ html.glove-cursor * {
 .clip-card-right:focus-visible {
   filter: none;
   outline: none;
-  z-index: 4;
+}
+.clip-card-main:focus-visible,
+.clip-card-left:focus-visible,
+.clip-card-right:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+.clip-fan.is-shuffling .clip-card-main {
+  z-index: 5;
+}
+.clip-fan.is-shuffling .clip-card-left .clip-card-inner {
+  animation: clip-riffle 0.58s var(--ease-soft);
+}
+.clip-fan.is-shuffling .clip-card-main .clip-card-inner {
+  animation: clip-riffle 0.58s 0.05s var(--ease-soft);
+}
+.clip-fan.is-shuffling .clip-card-right .clip-card-inner {
+  animation: clip-riffle-rev 0.58s var(--ease-soft);
+}
+@keyframes clip-riffle {
+  0% { transform: rotate(0deg) translateY(0); }
+  24% { transform: rotate(-12deg) translateY(-18px); }
+  52% { transform: rotate(10deg) translateY(-30px); }
+  78% { transform: rotate(-5deg) translateY(-8px); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+@keyframes clip-riffle-rev {
+  0% { transform: rotate(0deg) translateY(0); }
+  24% { transform: rotate(12deg) translateY(-16px); }
+  52% { transform: rotate(-10deg) translateY(-28px); }
+  78% { transform: rotate(5deg) translateY(-8px); }
+  100% { transform: rotate(0deg) translateY(0); }
 }
 .clip-card-hit {
   display: block;
@@ -1977,20 +2034,29 @@ html.glove-cursor * {
   color: #fff;
   text-shadow: 0 1px 0 rgba(15, 26, 46, 0.35);
 }
-@media (min-width: 640px) {
-  .training-clips-hint {
-    display: none;
-  }
+.training-clips-hint-hover { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .training-clips-hint-touch { display: none; }
+  .training-clips-hint-hover { display: block; }
 }
 .home-stadium-inner .stadium-cta {
   margin-top: 2.15rem;
 }
 @media (max-width: 560px) {
   .clip-fan { min-height: 24.5rem; padding: 0.5rem 0 1.4rem; }
-  .clip-card { width: 9.6rem; }
-  .clip-card-main { width: 14.2rem; transform: rotate(1.8deg) translateY(-10px); }
-  .clip-card-left { transform: rotate(-10deg) translate(0.55rem, 0.55rem); }
-  .clip-card-right { transform: rotate(9deg) translate(-0.5rem, 0.65rem); }
+  .clip-card { width: 9.6rem; bottom: 1.2rem; }
+  .clip-card-main { width: 14.2rem; transform: translateX(-50%) rotate(1.8deg) translateY(-10px); }
+  .clip-card-left { transform: translateX(-50%) translate(-4.6rem, 0.55rem) rotate(-10deg); }
+  .clip-card-right { transform: translateX(-50%) translate(4.6rem, 0.65rem) rotate(9deg); }
+  .clip-card-back { transform: translateX(-50%) translate(0, 1.1rem) rotate(-2deg) scale(0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clip-card {
+    transition: none;
+  }
+  .clip-fan.is-shuffling .clip-card-inner {
+    animation: none;
+  }
 }
 .home-stadium-inner > .mx-auto {
   width: 100%;
@@ -2763,7 +2829,9 @@ html.glove-cursor * {
   .bb-card-main { width: 7.15rem; }
   .clip-fan { min-height: 22.5rem; }
   .clip-card { width: 8.6rem; }
-  .clip-card-main { width: 12.8rem; }
+  .clip-card-main { width: 12.8rem; transform: translateX(-50%) rotate(1.6deg) translateY(-8px); }
+  .clip-card-left { transform: translateX(-50%) translate(-3.8rem, 0.5rem) rotate(-8deg); }
+  .clip-card-right { transform: translateX(-50%) translate(3.8rem, 0.55rem) rotate(8deg); }
   .bb-card-name { font-size: 0.68rem; }
   .btn {
     width: 100%;

@@ -9,6 +9,18 @@ const CLIPS = [
   { src: "/videos/IMG_2698.mp4", name: "Rep 4" },
 ] as const;
 
+const SHUFFLE_MS = 620;
+
+type Slot = "left" | "main" | "right" | "back";
+
+function slotOf(clipIndex: number, current: number): Slot {
+  const rel = (clipIndex - current + CLIPS.length) % CLIPS.length;
+  if (rel === 0) return "main";
+  if (rel === 1) return "right";
+  if (rel === CLIPS.length - 1) return "left";
+  return "back";
+}
+
 function playMuted(el: HTMLVideoElement | null) {
   if (!el) return;
   el.muted = true;
@@ -18,8 +30,8 @@ function playMuted(el: HTMLVideoElement | null) {
 }
 
 /**
- * A few baseball cards on the field. Swipe or tap to shuffle.
- * Every visible card plays its clip automatically.
+ * A few baseball cards on the field. Desktop hover shuffles the deck;
+ * swipe or tap still works on a phone.
  */
 export default function TrainingClipsStrip() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -27,16 +39,29 @@ export default function TrainingClipsStrip() {
   const startX = useRef<number | null>(null);
   const startY = useRef(0);
   const swiped = useRef(false);
+  const busy = useRef(false);
+  const hoverLocked = useRef(false);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [shuffling, setShuffling] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [canHover, setCanHover] = useState(false);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduceMotion(mq.matches);
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => {
+      setReduceMotion(motion.matches);
+      setCanHover(hover.matches);
+    };
     sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
+    motion.addEventListener("change", sync);
+    hover.addEventListener("change", sync);
+    return () => {
+      motion.removeEventListener("change", sync);
+      hover.removeEventListener("change", sync);
+    };
   }, []);
 
   useEffect(() => {
@@ -53,30 +78,44 @@ export default function TrainingClipsStrip() {
     return () => io.disconnect();
   }, []);
 
+  const goTo = useCallback((next: number, { riffle } = { riffle: true }) => {
+    const wrapped = ((next % CLIPS.length) + CLIPS.length) % CLIPS.length;
+    if (wrapped === index || busy.current) return;
+
+    if (reduceMotion || !riffle) {
+      setIndex(wrapped);
+      return;
+    }
+
+    busy.current = true;
+    setShuffling(true);
+    setIndex(wrapped);
+    window.setTimeout(() => {
+      setShuffling(false);
+      busy.current = false;
+    }, SHUFFLE_MS);
+  }, [index, reduceMotion]);
+
   useEffect(() => {
     if (reduceMotion || paused || !inView || CLIPS.length < 2) return;
     const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % CLIPS.length);
+      goTo(index + 1);
     }, 6000);
     return () => window.clearInterval(id);
-  }, [reduceMotion, paused, inView]);
+  }, [reduceMotion, paused, inView, goTo, index]);
 
   useEffect(() => {
     const videos = videoRefs.current;
-    videos.forEach((video) => {
+    videos.forEach((video, i) => {
       if (!video) return;
-      if (reduceMotion || !inView) {
+      const slot = slotOf(i, index);
+      if (reduceMotion || !inView || slot === "back") {
         video.pause();
         return;
       }
-      video.currentTime = 0;
       playMuted(video);
     });
   }, [index, inView, reduceMotion]);
-
-  const goTo = useCallback((next: number) => {
-    setIndex(((next % CLIPS.length) + CLIPS.length) % CLIPS.length);
-  }, []);
 
   function onPointerDown(event: PointerEvent<HTMLDivElement>) {
     startX.current = event.clientX;
@@ -110,9 +149,17 @@ export default function TrainingClipsStrip() {
     goTo(next);
   }
 
-  const prev = (index - 1 + CLIPS.length) % CLIPS.length;
-  const next = (index + 1) % CLIPS.length;
-  const clip = CLIPS[index];
+  function onFanEnter() {
+    setPaused(true);
+    if (!canHover || reduceMotion || hoverLocked.current) return;
+    hoverLocked.current = true;
+    goTo(index + 1);
+  }
+
+  function onFanLeave() {
+    hoverLocked.current = false;
+    setPaused(false);
+  }
 
   return (
     <div
@@ -121,85 +168,66 @@ export default function TrainingClipsStrip() {
       role="region"
       aria-roledescription="carousel"
       aria-label="A look at training"
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          setPaused(false);
+        }
+      }}
     >
       <p className="training-clips-label">A look at training</p>
       <div
-        className="clip-fan"
+        className={`clip-fan${shuffling ? " is-shuffling" : ""}`}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={() => {
           startX.current = null;
         }}
+        onMouseEnter={onFanEnter}
+        onMouseLeave={onFanLeave}
       >
-        <button
-          type="button"
-          className="bb-card clip-card clip-card-left"
-          aria-label={`Show ${CLIPS[prev].name}`}
-          onClick={() => onCardClick(prev)}
-        >
-          <div className="bb-card-photo">
-            <video
-              ref={(node) => {
-                videoRefs.current[0] = node;
+        {CLIPS.map((item, i) => {
+          const slot = slotOf(i, index);
+          const isMain = slot === "main";
+          return (
+            <button
+              key={item.src}
+              type="button"
+              className={`bb-card clip-card clip-card-${slot}`}
+              aria-label={isMain ? item.name : `Show ${item.name}`}
+              aria-current={isMain ? "true" : undefined}
+              tabIndex={slot === "back" ? -1 : 0}
+              onClick={() => onCardClick(i)}
+              onMouseEnter={() => {
+                if (!canHover || reduceMotion || slot === "back" || slot === "main") return;
+                goTo(i);
               }}
-              className="training-clip-video"
-              src={inView ? CLIPS[prev].src : undefined}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="none"
-              aria-hidden="true"
-            />
-          </div>
-          <p className="bb-card-name">{CLIPS[prev].name}</p>
-        </button>
-
-        <div className="bb-card clip-card clip-card-main">
-          <div className="bb-card-photo">
-            <video
-              key={clip.src}
-              ref={(node) => {
-                videoRefs.current[1] = node;
-              }}
-              className="training-clip-video"
-              src={inView ? clip.src : undefined}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="none"
-              aria-hidden="true"
-            />
-          </div>
-          <p className="bb-card-name">{clip.name}</p>
-          <p className="bb-card-role">Pitching101</p>
-        </div>
-
-        <button
-          type="button"
-          className="bb-card clip-card clip-card-right"
-          aria-label={`Show ${CLIPS[next].name}`}
-          onClick={() => onCardClick(next)}
-        >
-          <div className="bb-card-photo">
-            <video
-              ref={(node) => {
-                videoRefs.current[2] = node;
-              }}
-              className="training-clip-video"
-              src={inView ? CLIPS[next].src : undefined}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="none"
-              aria-hidden="true"
-            />
-          </div>
-          <p className="bb-card-name">{CLIPS[next].name}</p>
-        </button>
+            >
+              <div className="clip-card-inner">
+                <div className="bb-card-photo">
+                  <video
+                    ref={(node) => {
+                      videoRefs.current[i] = node;
+                    }}
+                    className="training-clip-video"
+                    src={inView ? item.src : undefined}
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    preload="none"
+                    aria-hidden="true"
+                  />
+                </div>
+                <p className="bb-card-name">{item.name}</p>
+                <p className={`bb-card-role${isMain ? "" : " is-muted"}`}>
+                  Pitching101
+                </p>
+              </div>
+            </button>
+          );
+        })}
       </div>
       <div className="training-clips-nav">
         <div className="training-clips-dots" role="tablist" aria-label="Choose clip">
@@ -216,7 +244,12 @@ export default function TrainingClipsStrip() {
           ))}
         </div>
       </div>
-      <p className="training-clips-hint">Swipe to shuffle</p>
+      <p className="training-clips-hint training-clips-hint-touch" aria-hidden="true">
+        Swipe to shuffle
+      </p>
+      <p className="training-clips-hint training-clips-hint-hover" aria-hidden="true">
+        Hover to shuffle
+      </p>
     </div>
   );
 }
