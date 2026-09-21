@@ -66,7 +66,7 @@ export const leadMagnets: LeadMagnet[] = [
     ctaHref: "/contact/",
     sections: [
       {
-        heading: 'What "good" looks like for ages 8–14',
+        heading: 'What "good" looks like for ages 8–16',
         paragraphs: [
           "You do not need a pitching dictionary to know if a lesson is helping. For this age, good looks simple.",
         ],
