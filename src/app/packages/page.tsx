@@ -41,14 +41,6 @@ export default function PackagesPage() {
           <ul className="dugout-row">
             {trainingOptions.map((item) => (
               <li key={item.label} className="dugout-sign">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.icon}
-                  alt=""
-                  width={64}
-                  height={64}
-                  className="card-icon"
-                />
                 <h2 className="dugout-sign-title">{item.label}</h2>
                 <p className="dugout-sign-note">{item.note}</p>
               </li>
@@ -59,7 +51,7 @@ export default function PackagesPage() {
         <Reveal className="mt-12 space-y-4">
           <p className="text-lg leading-relaxed text-ink-soft">
             Monthly Strikes Pack is the main plan. Busy-Week Check-In is
-            the add-on. Exact dollars come after we talk — not here.
+            the add-on. Exact dollars come after we talk, not here.
           </p>
           <p className="text-ink-soft">{RESPONSE_PROMISE}</p>
           <Link href={ENROLL_HREF} className="btn">

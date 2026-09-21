@@ -140,14 +140,6 @@ export default function HomePage() {
             <ul className="dugout-row">
               {trainingOptions.map((opt) => (
                 <li key={opt.label} className="dugout-sign">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={opt.icon}
-                    alt=""
-                    width={64}
-                    height={64}
-                    className="card-icon"
-                  />
                   <h3 className="dugout-sign-title">{opt.label}</h3>
                   <p className="dugout-sign-note">{opt.note}</p>
                 </li>

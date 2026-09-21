@@ -124,17 +124,14 @@ export const trainingOptions = [
   {
     label: "Evaluation",
     note: "Meet once. We talk about your kid, then I recommend Monthly or Check-In.",
-    icon: "/assets/icons/icon-plan-checklist.png",
   },
   {
     label: "Monthly Strikes Pack",
     note: "The main plan after the evaluation. Regular work and a clear next practice.",
-    icon: "/assets/icons/icon-strikes.png",
   },
   {
     label: "Busy-Week Check-In",
     note: "An add-on when the week is packed. A short look, then back to the plan.",
-    icon: "/assets/icons/icon-free-guide-v2.png",
   },
 ];
 

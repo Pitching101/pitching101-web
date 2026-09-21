@@ -2626,11 +2626,11 @@ a.reviews-verified:focus-visible {
   max-width: 48rem;
 }
 
-/* Dugout signs — pixel lockers instead of SaaS pricing cards */
+/* Pack cards — type only, no pixel lockers. */
 .dugout-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.15rem;
+  gap: 1rem;
   width: 100%;
   padding: 1rem 0 0;
   margin: 0;
@@ -2639,120 +2639,25 @@ a.reviews-verified:focus-visible {
 @media (min-width: 640px) {
   .dugout-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 1.1rem;
   }
 }
 .dugout-sign {
-  --dugout-tilt: -2.4deg;
-  --dugout-delay: 40ms;
-  --hook-delay: 0.72s;
-  --icon-delay: 0.82s;
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 1.2rem 0.95rem 1.15rem;
-  text-align: center;
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, #BBD6F1 78%, #ffffff) 0%,
-      color-mix(in srgb, #3295fb 18%, #BBD6F1) 100%
-    );
-  border: 4px solid color-mix(in srgb, #1a2438 62%, #3295fb);
-  border-radius: 0;
-  box-shadow:
-    inset 0 0 0 2px color-mix(in srgb, #ffffff 36%, transparent),
-    5px 5px 0 color-mix(in srgb, #0f1a2e 20%, transparent);
-  image-rendering: pixelated;
-  transform-origin: top center;
-  transition:
-    transform 0.25s var(--ease-soft),
-    box-shadow 0.25s var(--ease-soft);
-}
-.dugout-sign:nth-child(1) {
-  --dugout-tilt: -2.8deg;
-  --dugout-delay: 40ms;
-  --hook-delay: 0.78s;
-  --icon-delay: 0.86s;
-}
-.dugout-sign:nth-child(2) {
-  --dugout-tilt: 2.1deg;
-  --dugout-delay: 150ms;
-  --hook-delay: 0.96s;
-  --icon-delay: 1.12s;
-}
-.dugout-sign:nth-child(3) {
-  --dugout-tilt: -1.5deg;
-  --dugout-delay: 260ms;
-  --hook-delay: 1.14s;
-  --icon-delay: 1.36s;
-}
-.reveal:not(.is-revealed) .dugout-sign {
-  opacity: 0;
-  transform: translateY(-22px) rotate(var(--dugout-tilt));
-}
-.reveal.is-revealed .dugout-sign {
-  animation: dugout-hang-in 0.78s var(--ease-out) var(--dugout-delay) backwards;
-}
-.dugout-sign::before {
-  content: "";
-  position: absolute;
-  top: -9px;
-  left: 50%;
-  width: 2.1rem;
-  height: 0.7rem;
-  transform: translateX(-50%);
-  transform-origin: 50% 0;
-  background: color-mix(in srgb, #1a2438 70%, #3295fb);
-  border: 2px solid color-mix(in srgb, #0f1a2e 50%, #1a78e8);
-  border-radius: 1px 1px 0 0;
-  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 28%, transparent);
-}
-.reveal.is-revealed .dugout-sign::before {
-  animation: dugout-hook-sway 2.8s ease-in-out var(--hook-delay) infinite;
-}
-.reveal.is-revealed .dugout-sign .card-icon {
-  animation: dugout-icon-bob 2.6s ease-in-out var(--icon-delay) infinite;
-}
-@media (hover: hover) and (pointer: fine) {
-  .reveal.is-revealed .dugout-sign:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      inset 0 0 0 2px color-mix(in srgb, #ffffff 42%, transparent),
-      7px 9px 0 color-mix(in srgb, #0f1a2e 16%, transparent);
-  }
-}
-@keyframes dugout-hang-in {
-  0% {
-    opacity: 0;
-    transform: translateY(-24px) rotate(var(--dugout-tilt));
-  }
-  58% {
-    opacity: 1;
-    transform: translateY(4px) rotate(calc(var(--dugout-tilt) * -0.55));
-  }
-  78% {
-    transform: translateY(-2px) rotate(calc(var(--dugout-tilt) * 0.28));
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg);
-  }
-}
-@keyframes dugout-hook-sway {
-  0%, 100% { transform: translateX(-50%) rotate(0deg); }
-  50% { transform: translateX(-50%) rotate(6deg); }
-}
-@keyframes dugout-icon-bob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(7deg); }
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 1.15rem 1.15rem 1.2rem;
+  text-align: left;
+  background: color-mix(in srgb, var(--paper) 72%, #e7f2fc);
+  border: 1px solid color-mix(in srgb, var(--blue) 26%, transparent);
+  border-radius: var(--radius-sm);
+  box-shadow: none;
 }
 .dugout-sign-title {
   margin: 0;
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2760,7 +2665,7 @@ a.reviews-verified:focus-visible {
 }
 .dugout-sign-note {
   margin: 0;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: 1.5;
   color: var(--ink-soft);
 }
