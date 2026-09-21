@@ -9,6 +9,7 @@ import FaqList from "@/components/FaqList";
 import BaseballCardFan from "@/components/BaseballCardFan";
 import PixelScoreboard from "@/components/PixelScoreboard";
 import JsonLd, { businessJsonLd, faqJsonLd } from "@/components/JsonLd";
+import StartSteps from "@/components/StartSteps";
 import { faqs, guyChips, INSTAGRAM_URL, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default function HomePage() {
               More strikes. A healthy arm. A plan you can say in the car.
             </p>
             <div className="home-cta-row pt-1">
-              <Link href="#contact" className="btn">
+              <Link href="/contact/" className="btn">
                 Get your child started
               </Link>
             </div>
@@ -122,6 +123,11 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+
+          <Reveal delayMs={80} className="space-y-5">
+            <h3 className="ui-title ui-title-sm">What happens</h3>
+            <StartSteps />
           </Reveal>
         </div>
       </section>

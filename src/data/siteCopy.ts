@@ -41,7 +41,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "How do I get my child started?",
-    a: "Text or call 845-768-2211. One conversation.",
+    a: "Fill in the short note or text 845-768-2211. One conversation.",
   },
   {
     q: "Do you teach arm care with pitching?",
@@ -72,4 +72,23 @@ export const guyChips = [
   "Naples, FL",
   "More strikes",
   "Arm care first",
+];
+
+export const startSteps = [
+  {
+    label: "Tell me the kid",
+    note: "Name, age, and how you want to train this week.",
+  },
+  {
+    label: "I text you back",
+    note: "A field and a time. No walk-up address.",
+  },
+  {
+    label: "First session",
+    note: "Warmup, a few cues, something to try Tuesday.",
+  },
+  {
+    label: "Keep the plan",
+    note: "In person, at home, or both — pick what fits.",
+  },
 ];
