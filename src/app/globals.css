@@ -3031,6 +3031,77 @@ a.reviews-verified:focus-visible {
   padding-top: calc(var(--header-bar) + 2.4rem);
   padding-bottom: 8rem;
 }
+.guide-toc-target {
+  scroll-margin-top: calc(var(--header-bar) + env(safe-area-inset-top) + 0.75rem);
+}
+.guide-toc {
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto 2.5rem;
+  padding: 1rem 1.05rem 1.1rem;
+  text-align: left;
+  background: color-mix(in srgb, var(--paper) 88%, #ffffff);
+  border: 3px solid color-mix(in srgb, #0f1a2e 28%, #3295fb);
+  border-radius: 10px;
+  box-shadow: 4px 5px 0 rgba(15, 26, 46, 0.08);
+}
+.guide-toc-label {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #0f1a2e 72%, #3295fb);
+}
+.guide-toc ol {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.guide-toc a {
+  display: block;
+  padding: 0.2rem 0.15rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.guide-toc a.is-active {
+  color: #0f1a2e;
+  font-weight: 700;
+}
+@media (min-width: 1100px) {
+  .magnet-page.has-toc {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 16.5rem;
+    grid-template-areas: "hero toc" "body toc";
+    column-gap: 2rem;
+    row-gap: 0;
+    max-width: 72rem;
+  }
+  .magnet-page.has-toc > .guide-hero {
+    grid-area: hero;
+  }
+  .magnet-page.has-toc > .guide-body {
+    grid-area: body;
+  }
+  .magnet-page.has-toc > .guide-toc-rail {
+    grid-area: toc;
+    align-self: stretch;
+    min-width: 0;
+    min-height: 100%;
+  }
+  .magnet-page.has-toc .guide-toc {
+    z-index: 3;
+    max-width: none;
+    max-height: calc(100svh - var(--header-bar) - env(safe-area-inset-top) - 1.7rem);
+    margin: 0;
+    overflow: auto;
+  }
+}
 .guide-related {
   margin-top: 4.25rem;
   text-align: center;
