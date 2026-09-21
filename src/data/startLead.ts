@@ -30,7 +30,7 @@ export function leadFromForm(data: FormData): StartLead {
   const note = String(data.get("note") || "").trim();
 
   const body = [
-    "Pitching101 First Look",
+    "Pitching101 evaluation",
     "",
     `Who: ${role}`,
     `Name: ${name}`,
@@ -72,7 +72,7 @@ export function thanksEmailHref(lead: StartLead) {
   const more = [
     `Hi ${lead.name || "there"},`,
     "",
-    "Thanks for booking a First Look with Pitching101. We'll respond within 24 business hours at",
+    "Thanks for booking an evaluation with Pitching101. We'll respond within 24 business hours at",
     lead.phone || "the number you left",
     "and pick a time to meet.",
     "",
@@ -80,7 +80,7 @@ export function thanksEmailHref(lead: StartLead) {
     "We meet once, talk plain English, then recommend Monthly Strikes Pack or Busy-Week Check-In.",
     "",
     "What happens:",
-    "1. We receive your First Look form.",
+    "1. We receive your evaluation form.",
     "2. We'll respond within 24 business hours.",
     "3. We meet once — then a pack that fits.",
   ].join("\n");

@@ -6,6 +6,7 @@ import {
   type LeadMagnet,
   type LeadMagnetSection,
 } from "@/data/leadMagnets";
+import { ENROLL_HREF, ENROLL_LABEL } from "@/data/siteCopy";
 
 function groupSections(sections: LeadMagnetSection[]) {
   const groups: Array<
@@ -185,8 +186,8 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
         {isLongForm ? null : (
           <Reveal delayMs={50} className="magnet-page-cta">
             <p className="text-base text-ink-soft">Want to hop on a field, not just read the sheet?</p>
-            <Link href="/contact/" className="btn">
-              Book a First Look
+            <Link href={ENROLL_HREF} className="btn">
+              {ENROLL_LABEL}
             </Link>
           </Reveal>
         )}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ParkSky from "@/components/ParkSky";
 import LeadMagnetShelf from "@/components/LeadMagnetShelf";
-import { shareImage } from "@/data/siteCopy";
+import { ENROLL_HREF, ENROLL_LABEL, shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
@@ -49,8 +49,8 @@ export default function GuidesPage() {
 
         <Reveal delayMs={60} className="mt-12 space-y-4">
           <p className="text-base text-ink-soft">Want to hop on a field, not just read the sheet?</p>
-          <Link href="/contact/" className="btn">
-            Book a First Look
+          <Link href={ENROLL_HREF} className="btn">
+            {ENROLL_LABEL}
           </Link>
         </Reveal>
       </article>

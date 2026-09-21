@@ -5,12 +5,12 @@ import ParkSky from "@/components/ParkSky";
 import StartThanksActions from "@/components/StartThanksActions";
 import StartSteps from "@/components/StartSteps";
 import SessionBeats from "@/components/SessionBeats";
-import { RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
+import { ENROLL_LABEL, RESPONSE_PROMISE, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
   title: "Thanks — we'll respond within 24 business hours",
   description:
-    "Thanks for booking a First Look with Pitching101. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    "Thanks for booking an evaluation with Pitching101. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/thanks/" },
   robots: { index: false, follow: false },
 };
@@ -22,7 +22,7 @@ export default function StartThanksPage() {
         <Reveal className="space-y-5">
           <p className="text-base font-semibold text-blue-dark">
             <Link href="/contact/" className="hover:underline">
-              ← Book a First Look
+              ← {ENROLL_LABEL}
             </Link>
           </p>
           <h1 className="ui-title ui-title-lg">Thanks.</h1>
@@ -38,7 +38,7 @@ export default function StartThanksPage() {
         </Reveal>
 
         <Reveal delayMs={50} className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">The First Look</h2>
+          <h2 className="ui-title ui-title-sm">The evaluation</h2>
           <SessionBeats />
         </Reveal>
 

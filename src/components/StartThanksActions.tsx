@@ -10,7 +10,7 @@ import {
   type StartLead,
 } from "@/data/startLead";
 
-/** After First Look — send the note so Coach Deising gets it. */
+/** After the evaluation — send the note so Coach Deising gets it. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 

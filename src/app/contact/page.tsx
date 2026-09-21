@@ -6,22 +6,22 @@ import StartForm from "@/components/StartForm";
 import { ENROLL_LABEL, RESPONSE_PROMISE, shareImage } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Book a First Look",
+  title: ENROLL_LABEL,
   description:
-    "Book a First Look with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+    "Book an evaluation with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
   alternates: { canonical: "/contact/" },
   openGraph: {
-    title: "Book a First Look | Pitching101",
+    title: `${ENROLL_LABEL} | Pitching101`,
     description:
-      "Book a First Look with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+      "Book an evaluation with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
     url: "/contact/",
-    images: shareImage("/og/contact.png", "Book a First Look with Pitching101"),
+    images: shareImage("/og/contact.png", "Book an evaluation with Pitching101"),
   },
   twitter: {
     card: "summary_large_image",
-    title: "Book a First Look | Pitching101",
+    title: `${ENROLL_LABEL} | Pitching101`,
     description:
-      "Book a First Look with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
+      "Book an evaluation with Coach Deising. Send age, goals, and schedule. We'll respond within 24 business hours. Ages 8-16 in Naples, FL.",
     images: ["/og/contact.png"],
   },
 };
