@@ -7,7 +7,7 @@ import LeadMagnetShelf from "@/components/LeadMagnetShelf";
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
   description:
-    "Free pitching guides for Naples FL parents: arm-care checklist, strike tips, and a pre-catch warmup. From Coach Nick at Pitching101.",
+    "Free pitching guides for families and travel teams in Naples, FL: arm-care checklist, strike tips, and a pre-catch warmup. From Coach Nick at Pitching101.",
   alternates: { canonical: "/guides/" },
 };
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     absolute: "Youth pitching lessons in Naples, FL | Pitching101",
   },
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Families and travel teams. Text 845-768-2211.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
@@ -51,10 +51,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="text-band" id="reviews" aria-label="What parents say">
+      <section className="text-band" id="reviews" aria-label="What families and teams say">
         <div className="home-stack space-y-6 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-6">
-            <h2 className="ui-title ui-title-md">What parents say</h2>
+            <h2 className="ui-title ui-title-md">What families and teams say</h2>
             <div id="sky-start">
               <ReviewsCarousel />
             </div>
@@ -71,7 +71,7 @@ export default function HomePage() {
           <Reveal className="content-row-copy content-row-copy-wide who-copy space-y-6">
             <h2 className="ui-title ui-title-md">Hey, I&apos;m Nick</h2>
             <p className="text-lg leading-relaxed text-ink">
-              I coach kids 8–14 in Naples.
+              I coach kids 8–14 in Naples. Families and travel teams.
             </p>
             <BaseballCardFan />
             <ul id="your-guy" className="bb-chip-row">
@@ -133,7 +133,7 @@ export default function HomePage() {
       >
         <div className="home-stack space-y-8 px-5 py-14 sm:px-8 sm:py-16">
           <Reveal className="space-y-3">
-            <h2 className="ui-title ui-title-md">Parents ask</h2>
+            <h2 className="ui-title ui-title-md">Questions</h2>
             <p className="text-base text-ink-soft">Tap a question.</p>
           </Reveal>
           <Reveal delayMs={40}>

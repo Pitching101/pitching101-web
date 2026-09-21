@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | Pitching101",
   },
   description:
-    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. More strikes, healthy arms, a plan parents get. Text 845-768-2211.",
+    "Pitching101 is Coach Nick's youth pitching lessons in Naples, FL for kids ages 8-14. Families and travel teams. Text 845-768-2211.",
   keywords: [
     "youth pitching lessons Naples FL",
     "pitching coach Naples Florida",

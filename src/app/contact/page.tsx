@@ -28,6 +28,7 @@ export default function ContactPage() {
           <ul className="bb-chip-row">
             <li className="bb-chip">Coach Nick</li>
             <li className="bb-chip">Ages 8–14</li>
+            <li className="bb-chip">Families and travel teams</li>
             <li className="bb-chip">Naples, FL</li>
           </ul>
 

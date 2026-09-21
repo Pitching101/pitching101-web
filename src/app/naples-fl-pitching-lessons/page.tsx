@@ -21,15 +21,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Youth pitching lessons in Naples, FL | Pitching101",
     description:
-      "Coach Nick helps kids ages 8-14 throw more strikes in Naples and SWFL.",
+      "Coach Nick helps kids ages 8-14 throw more strikes in Naples and SWFL. Families and travel teams.",
     type: "website",
   },
 };
 
 const whoFor = [
-  "Parents who want plain-English pitching help",
   "Youth pitchers ages 8–14",
-  "Naples, Collier County, and SWFL families",
+  "Families and travel teams",
+  "Naples, Collier County, and SWFL",
 ];
 
 export default function NaplesPitchingLessonsPage() {
@@ -79,7 +79,7 @@ export default function NaplesPitchingLessonsPage() {
         </Reveal>
 
         <Reveal className="mt-12 space-y-5">
-          <h2 className="ui-title ui-title-sm">Parents ask</h2>
+          <h2 className="ui-title ui-title-sm">Questions</h2>
           <FaqList items={faqs} />
         </Reveal>
 
