@@ -18,10 +18,28 @@ export async function generateMetadata({
   const magnet = getLeadMagnet(slug);
   if (!magnet) return {};
 
+  const title = magnet.metaTitle || magnet.title;
+  const description = magnet.metaDescription;
+  const url = `/guides/${magnet.slug}/`;
+  const images = magnet.ogImage ? [magnet.ogImage] : undefined;
+
   return {
-    title: magnet.title,
-    description: `${magnet.note} Free from Coach Deising at Pitching101.`,
-    alternates: { canonical: `/guides/${magnet.slug}/` },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      ...(images ? { images } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(images ? { images } : {}),
+    },
   };
 }
 

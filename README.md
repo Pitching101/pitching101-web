@@ -34,6 +34,7 @@ npm run build
 
 ## Contact (scaffold)
 
-- Phone: 845-768-2211
+- Primary: Get started form at `/contact/`
+- Phone appears in the site footer only (do not add it to pages)
 - Email: nickdeisng@gmail.com
 - Area: Naples, FL (no street address on site yet)

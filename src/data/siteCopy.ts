@@ -9,7 +9,7 @@ export const INSTAGRAM_HANDLE = "pitching101_nickdeising";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 export const RESPONSE_PROMISE = "We'll respond within 24 business hours.";
 export const META_DESCRIPTION =
-  "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Text 845-768-2211.";
+  "Pitching101 is Coach Deising's youth pitching lessons in Naples, FL for kids ages 8-16. Parents, other coaches, travel teams, and schools. Use the contact form to get started.";
 
 export type FaqItem = { q: string; a: string };
 
@@ -32,7 +32,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "Where are pitching lessons in Naples, FL?",
-    a: "Naples and Southwest Florida. There is no walk-up address — text 845-768-2211 and we will share the meeting location.",
+    a: "Naples and Southwest Florida. There is no walk-up address — send the short form and we will share the meeting location.",
   },
   {
     q: "Do you only do in-person lessons?",
@@ -40,7 +40,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "How do I get started?",
-    a: "Send the short form. We'll respond within 24 business hours. Or text 845-768-2211.",
+    a: "Send the short form. We'll respond within 24 business hours.",
   },
   {
     q: "Do you teach arm care with pitching?",

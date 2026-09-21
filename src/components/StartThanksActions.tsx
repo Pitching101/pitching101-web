@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PHONE_DISPLAY, PHONE_TEL, RESPONSE_PROMISE } from "@/data/siteCopy";
+import { RESPONSE_PROMISE } from "@/data/siteCopy";
 import {
-  START_LEAD_SMS_KEY,
+  START_LEAD_MAIL_KEY,
+  inquiryEmailHref,
   readStartLead,
-  smsHref,
   thanksEmailHref,
   type StartLead,
 } from "@/data/startLead";
 
-/** After Get started — send the note to Coach Deising's phone, or email more info. */
+/** After Get started — email the note to Coach Deising, or email more info. */
 export default function StartThanksActions() {
   const [lead, setLead] = useState<StartLead | null>(null);
 
@@ -18,28 +18,23 @@ export default function StartThanksActions() {
     const next = readStartLead();
     // eslint-disable-next-line react-hooks/set-state-in-effect -- lead lives in sessionStorage
     setLead(next);
-    if (!next || sessionStorage.getItem(START_LEAD_SMS_KEY)) return;
-    sessionStorage.setItem(START_LEAD_SMS_KEY, "1");
-    window.location.href = smsHref(next.body);
+    if (!next || sessionStorage.getItem(START_LEAD_MAIL_KEY)) return;
+    sessionStorage.setItem(START_LEAD_MAIL_KEY, "1");
+    window.location.href = inquiryEmailHref(next);
   }, []);
 
   if (!lead) {
     return (
       <div className="start-thanks-actions">
-        <a href={`sms:${PHONE_TEL}`} className="btn">
-          Text {PHONE_DISPLAY}
-        </a>
-        <p className="start-form-or">
-          {RESPONSE_PROMISE}
-        </p>
+        <p className="start-form-or">{RESPONSE_PROMISE}</p>
       </div>
     );
   }
 
   return (
     <div className="start-thanks-actions">
-      <a href={smsHref(lead.body)} className="btn">
-        Send this to Coach Deising&apos;s phone
+      <a href={inquiryEmailHref(lead)} className="btn">
+        Email this to Coach Deising
       </a>
       {lead.email ? (
         <a href={thanksEmailHref(lead)} className="footer-link">

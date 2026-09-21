@@ -2126,7 +2126,7 @@ html.glove-cursor * {
 }
 @media (min-width: 700px) {
   .magnet-shelf {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
   }
 }
@@ -2182,6 +2182,9 @@ html.glove-cursor * {
   max-height: 100%;
   object-fit: contain;
 }
+.magnet-card-art-wide {
+  aspect-ratio: 16 / 9;
+}
 .magnet-card-kicker {
   margin: 0.55rem 0 0;
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
@@ -2218,9 +2221,63 @@ html.glove-cursor * {
 .magnet-page {
   max-width: 36rem;
 }
+.magnet-page-long {
+  max-width: 42rem;
+}
+.guide-section {
+  margin-top: 2.75rem;
+  text-align: left;
+}
+.guide-section .ui-title {
+  text-align: left;
+}
+.guide-copy {
+  margin: 0.85rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.guide-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.95rem 0 0;
+  padding: 0 0 0 1.25rem;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.guide-list-numbered {
+  list-style: decimal;
+}
+.guide-flag {
+  padding: 1.1rem 1.15rem 1.2rem;
+  border: 3px solid color-mix(in srgb, #0f1a2e 70%, #3295fb);
+  box-shadow: 4px 5px 0 rgba(15, 26, 46, 0.1);
+}
+.guide-flag-green {
+  background: color-mix(in srgb, #e7f4e4 82%, #fff8e6);
+}
+.guide-flag-red {
+  background: color-mix(in srgb, #f6e0d6 80%, #fff8e6);
+}
+.guide-flag-list {
+  padding-left: 1.15rem;
+}
+.guide-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.15rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
 .magnet-zone {
   width: min(22rem, 100%);
   margin: 0.35rem auto 0.15rem;
+}
+.magnet-zone-wide {
+  width: min(40rem, 100%);
 }
 .magnet-zone img {
   display: block;

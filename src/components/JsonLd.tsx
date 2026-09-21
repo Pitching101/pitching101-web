@@ -35,7 +35,6 @@ export function businessJsonLd() {
     url: SITE_URL,
     description:
       "Youth pitching lessons in Naples, FL for kids ages 8-16. Coach Deising is the junior varsity head coach at Gulfshore High School, and works with parents, other coaches, travel teams, and schools.",
-    telephone: "+18457682211",
     email: EMAIL,
     areaServed: [
       { "@type": "City", name: "Naples", addressRegion: "FL" },
