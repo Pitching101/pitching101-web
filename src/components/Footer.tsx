@@ -14,6 +14,9 @@ export default function Footer() {
             Youth pitching lessons for Naples, FL families. Clear coaching. No
             jargon.
           </p>
+          <Link href="/contact/" className="btn">
+            Get your child started
+          </Link>
         </div>
 
         <div className="footer-contact space-y-3 text-sm">
@@ -74,7 +77,7 @@ export default function Footer() {
           </p>
           <p>
             <Link className="text-ink-soft hover:text-blue-dark" href="/contact/">
-              Get started
+              Contact
             </Link>
           </p>
         </div>
