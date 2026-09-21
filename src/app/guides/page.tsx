@@ -8,7 +8,7 @@ import { ENROLL_HREF, ENROLL_LABEL, pageTitle, shareImage } from "@/data/siteCop
 export const metadata: Metadata = {
   title: "Free youth pitching guides",
   description:
-    "Free pitching guides for kids 8–16 in Naples: how to choose lessons, arm care, strike tips, and a pre-catch warmup. Same stuff I use in lessons.",
+    "Free pitching guides for players 8–16 in Naples: how to choose lessons, arm care, strike tips, and a pre-catch warmup. Same stuff I use in lessons.",
   alternates: { canonical: "/guides/" },
   openGraph: {
     title: pageTitle("Free youth pitching guides"),

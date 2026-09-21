@@ -52,7 +52,7 @@ export default function StartThanksActions() {
         {lead.email ? "Email what happens next" : "Email more information"}
       </a>
       <p className="start-form-or">
-        {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Kids 8–16.
+        {RESPONSE_PROMISE} We&apos;ll use {lead.phone}. Players 8–16.
       </p>
     </div>
   );

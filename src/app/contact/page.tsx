@@ -38,8 +38,8 @@ export default function ContactPage() {
           </p>
           <h1 className="ui-title ui-title-lg">{ENROLL_LABEL}</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            One visit. We talk about your kid, then I recommend a pack
-            that fits. Kids 8–16. {RESPONSE_PROMISE}
+            One visit. We talk about your player, then I recommend a pack
+            that fits. Players 8–16. {RESPONSE_PROMISE}
           </p>
         </Reveal>
 

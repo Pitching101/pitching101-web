@@ -85,7 +85,7 @@ export const leadMagnets: LeadMagnet[] = [
           "You'll know if a lesson's helping. For this age, good looks simple.",
         ],
         bullets: [
-          "Clear cues your kid can remember at practice",
+          "Clear cues your player can remember at practice",
           "Arm care in the session (warm-up + cool-down)",
           "A plan you can explain at dinner in one sentence",
           "Fits Naples / travel-ball weeks, not just perfect Saturdays",
@@ -340,7 +340,7 @@ export const leadMagnets: LeadMagnet[] = [
     icon: "/assets/icons/icon-plan-checklist.png",
     ogImage: "/assets/icons/icon-plan-checklist.png",
     metaDescription:
-      "A short pre-catch warmup so your pitcher starts ready. The same routine Coach Deising uses in youth pitching lessons in Naples, FL for kids ages 8–16.",
+      "A short pre-catch warmup so your pitcher starts ready. The same routine Coach Deising uses in youth pitching lessons in Naples, FL for players ages 8–16.",
     emailSubject: "Pre-Catch Warmup Guide",
     cta: "Email the warmup",
     steps: [

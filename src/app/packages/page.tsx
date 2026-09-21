@@ -29,7 +29,7 @@ export default function PackagesPage() {
           <p className="ui-chip px-3.5 py-1.5">After the evaluation</p>
           <h1 className="ui-title ui-title-lg">Packages</h1>
           <p className="text-lg leading-relaxed text-ink-soft">
-            Book an evaluation. We meet once, talk about your kid, then
+            Book an evaluation. We meet once, talk about your player, then
             pick a pack that fits.
           </p>
           <Link href={ENROLL_HREF} className="btn">

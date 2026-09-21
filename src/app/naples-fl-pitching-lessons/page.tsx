@@ -7,7 +7,7 @@ import JsonLd, { faqJsonLd } from "@/components/JsonLd";
 import { ABOUT_INTRO, ABOUT_MORE, ENROLL_HREF, ENROLL_LABEL, faqs, HOW_WE_TRAIN_LINE, OG_DESCRIPTION, OG_TITLE, RESPONSE_PROMISE, shareImage, trainingOptions } from "@/data/siteCopy";
 
 export const metadata: Metadata = {
-  title: "Pitching coach for kids in Naples, FL",
+  title: "Pitching coach for players in Naples, FL",
   description:
     "Looking for a youth pitching coach in Naples, FL? I'm Coach Deising — book an evaluation, then a simple pack. Ages 8-16, arm care first.",
   keywords: [
