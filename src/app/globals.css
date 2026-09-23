@@ -3731,6 +3731,13 @@ a.reviews-verified:focus-visible {
   justify-self: center;
   margin-top: 0.35rem;
 }
+.start-form-error {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--red-deep);
+}
 .start-form-or {
   margin: 0;
   text-align: center;

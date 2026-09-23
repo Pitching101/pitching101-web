@@ -8,21 +8,53 @@ import {
   RESPONSE_PROMISE,
   workWithRoles,
 } from "@/data/siteCopy";
-import { leadFromForm, writeStartLead, downloadInfoPacket } from "@/data/startLead";
+import {
+  contactLeadInsert,
+  downloadInfoPacket,
+  leadFromForm,
+  writeStartLead,
+} from "@/data/startLead";
+import { getSupabase } from "@/lib/supabase";
 
 const AGES = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "Mixed 8–16"] as const;
+
+const SAVE_ERROR = "We couldn't save your evaluation. Please try again.";
 
 /** Evaluation form — age, goals, schedule. */
 export default function StartForm() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (sending) return;
     const lead = leadFromForm(new FormData(event.currentTarget));
-    writeStartLead(lead);
-    downloadInfoPacket();
+    setError("");
     setSending(true);
+
+    const supabase = getSupabase();
+    if (supabase) {
+      try {
+        const { error: insertError } = await supabase
+          .from("contact_leads")
+          .insert(contactLeadInsert(lead));
+        if (insertError) {
+          console.error("contact_leads insert failed", insertError);
+          setError(SAVE_ERROR);
+          setSending(false);
+          return;
+        }
+      } catch (insertError) {
+        console.error("contact_leads insert failed", insertError);
+        setError(SAVE_ERROR);
+        setSending(false);
+        return;
+      }
+    }
+
+    writeStartLead(lead, Boolean(supabase));
+    downloadInfoPacket();
     router.push("/contact/thanks/");
   }
 
@@ -126,6 +158,11 @@ export default function StartForm() {
           ))}
         </div>
       </fieldset>
+      {error ? (
+        <p className="start-form-error" role="alert">
+          {error}
+        </p>
+      ) : null}
       <button type="submit" className="btn" disabled={sending}>
         {sending ? "Sending…" : ENROLL_LABEL}
       </button>
