@@ -1,9 +1,21 @@
-import { EMAIL, ENROLL_LABEL } from "@/data/siteCopy";
+import { EMAIL, ENROLL_LABEL, OG_IMAGE, OG_IMAGE_ALT } from "@/data/siteCopy";
 
 export type LeadMagnetLink = {
   href: string;
   label: string;
 };
+
+export type GuideFaq = {
+  q: string;
+  a: string;
+};
+
+export type GuideBlock =
+  | { kind: "p"; text: string }
+  | { kind: "ul"; items: string[] }
+  | { kind: "ol"; items: string[] }
+  | { kind: "table"; label?: string; headers: string[]; rows: string[][] }
+  | { kind: "faq"; items: GuideFaq[] };
 
 export type LeadMagnetSection = {
   heading: string;
@@ -12,6 +24,8 @@ export type LeadMagnetSection = {
   numbered?: string[];
   tone?: "green" | "red";
   links?: LeadMagnetLink[];
+  /** Ordered body. When set, this is the section copy. */
+  blocks?: GuideBlock[];
 };
 
 /**
@@ -49,8 +63,18 @@ export type LeadMagnet = {
   ctaHref?: string;
   metaTitle?: string;
   metaDescription: string;
+  /** Share title. Falls back to the branded page title. */
+  ogTitle?: string;
+  ogDescription?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
   /** Path under public/, e.g. /assets/... */
   ogImage?: string;
+  ogImageAlt?: string;
+  /** ISO date for Article JSON-LD. */
+  datePublished?: string;
+  /** Opening paragraphs before the first section. */
+  lede?: string[];
   /** Long-form body for parent guides. Short magnets omit this. */
   sections?: LeadMagnetSection[];
   /** Numbered checklist for short magnets. */
@@ -1114,10 +1138,228 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  {
+    slug: "how-often-should-young-pitchers-throw-between-lessons",
+    title: "How Often Should Young Pitchers Throw Between Lessons?",
+    metaTitle: "How Often Should Kids Throw Between Pitching Lessons?",
+    metaDescription:
+      "A simple week of throwing for young pitchers between lessons: easy catch days, rest days, and pitch-count limits by age. A parent guide from Naples, FL.",
+    ogTitle: "How Often Should Young Pitchers Throw Between Lessons?",
+    ogDescription:
+      "Easy catch, real rest, and pitch-count limits by age. A simple weekly plan for parents of pitchers ages 8–16.",
+    twitterTitle: "How Often Should Young Pitchers Throw Between Lessons?",
+    twitterDescription:
+      "Easy catch, real rest, and pitch-count limits by age. A simple weekly plan for parents.",
+    ogImage: OG_IMAGE,
+    ogImageAlt: OG_IMAGE_ALT,
+    datePublished: "2026-09-26",
+    kicker: "Free guide",
+    note: "A simple week of easy catch, rest days, and pitch-count limits by age.",
+    topic: "Arm care",
+    icon: "/assets/icons/icon-arm-care-v2.png",
+    emailSubject: "How Often Should Young Pitchers Throw Between Lessons",
+    cta: "Contact",
+    ctaHref: "/contact/",
+    lede: [
+      "**Short answer:** Most healthy young pitchers do well with **light, easy catch three to four days a week** between lessons, **at least one or two full rest days**, and **only one or two days of real pitching effort**, following the pitch-count and rest rules for their age. Throwing and pitching are not the same thing. Easy catch keeps the arm in rhythm. Full-effort pitching is what needs rest after.",
+      "Every week, parents ask us the same thing after a lesson: \"How much should they throw before we come back?\" Here's the simple plan we give families in Naples.",
+    ],
+    sections: [
+      {
+        heading: "Throwing is not the same as pitching",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "**Easy catch:** relaxed throws to a partner, short to medium distance, no max effort. This is how the arm stays loose and the new movement from the lesson sticks.",
+              "**Pitching:** full-effort throws off a mound or flat ground to a catcher. This is what wears the arm out, so it gets counted and followed by rest.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "If your child only remembers one thing: **practice the movement often, throw hard rarely.**",
+          },
+        ],
+      },
+      {
+        heading: "A simple week between lessons",
+        blocks: [
+          {
+            kind: "p",
+            text: "This sample is for a healthy player ages 8–16 with one lesson a week and no games that week. Adjust it around games and team practice.",
+          },
+          {
+            kind: "table",
+            headers: ["Day", "What to do"],
+            rows: [
+              ["Lesson day", "Lesson. That counts as the pitching day."],
+              ["Day 2", "Rest from throwing. Bands and stretching are fine."],
+              ["Day 3", "Easy catch, 10–15 minutes, plus the warm-up from the lesson."],
+              ["Day 4", "Easy catch plus 10–15 dry-run motions (no ball) of the lesson cue."],
+              ["Day 5", "Rest."],
+              [
+                "Day 6",
+                "Easy catch, or a short, light flat-ground session (well under the daily pitch limit).",
+              ],
+              ["Day 7", "Rest or easy catch only."],
+            ],
+          },
+          {
+            kind: "p",
+            text: "**Game week?** The game becomes the pitching day. Drop the extra flat-ground session and follow the rest rules below.",
+          },
+        ],
+      },
+      {
+        heading: "Pitch counts and rest days by age",
+        blocks: [
+          {
+            kind: "p",
+            text: "The most widely used youth guidelines come from MLB and USA Baseball's Pitch Smart program. The main idea: the more pitches thrown in a day, the more days of rest before pitching again.",
+          },
+          {
+            kind: "table",
+            label: "Daily pitch limits (games):",
+            headers: ["Age", "Max pitches per day"],
+            rows: [
+              ["7–8", "50"],
+              ["9–10", "75"],
+              ["11–12", "85"],
+              ["13–14", "95"],
+              ["15–16", "95"],
+            ],
+          },
+          {
+            kind: "table",
+            label: "Rest before pitching again (ages 14 and under):",
+            headers: ["Pitches thrown", "Days of rest"],
+            rows: [
+              ["1–20", "0"],
+              ["21–35", "1"],
+              ["36–50", "2"],
+              ["51–65", "3"],
+              ["66 or more", "4"],
+            ],
+          },
+          {
+            kind: "p",
+            text: "**Ages 15–16:** 1–30 pitches, 0 days. 31–45 pitches, 1 day. 46–60 pitches, 2 days. 61–75 pitches, 3 days. 76 or more, 4 days.",
+          },
+          {
+            kind: "p",
+            text: "A few more rules worth knowing:",
+          },
+          {
+            kind: "ul",
+            items: [
+              "Don't pitch on back-to-back days in games.",
+              "Don't pitch for more than one team in the same week without adding up the pitches.",
+              "Don't catch and pitch in the same game. Catching is a lot of throws too.",
+              "Take real time off each year. Pitch Smart suggests at least two to three months a year away from overhead throwing, with at least four months off from competitive pitching.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "Rest days mean rest from **pitching**. Easy catch and bands are usually fine on those days, as long as the arm feels good.",
+          },
+        ],
+      },
+      {
+        heading: "Signs it's time to back off",
+        blocks: [
+          {
+            kind: "p",
+            text: "Stop throwing for the day and check in with your coach if your child:",
+          },
+          {
+            kind: "ul",
+            items: [
+              "Says their elbow or shoulder hurts (not just \"tired\")",
+              "Starts dropping their arm or changing their motion",
+              "Loses a lot of speed or control all of a sudden",
+              "Is still sore the next morning",
+            ],
+          },
+          {
+            kind: "p",
+            text: "Pain that doesn't go away after a couple of days is a reason to see a doctor, not to push through.",
+          },
+        ],
+      },
+      {
+        heading: "Make the easy-catch days count",
+        blocks: [
+          {
+            kind: "p",
+            text: "Easy catch is where lesson cues turn into habits. Keep it short and focused:",
+          },
+          {
+            kind: "ol",
+            items: [
+              "Warm up first. Our [pre-catch warm-up](/guides/pre-catch-warmup/) takes about five minutes.",
+              "Do the band routine from our [band routine checklist](/guides/band-routine-checklist/).",
+              "Pick one cue from the last lesson and think about only that one.",
+              "Stop while the arm still feels fresh.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "For more on keeping the arm healthy, see the [arm care checklist](/guides/arm-care-checklist/). When your child is ready to work on accuracy, try our [strike tips](/guides/strike-tips/).",
+          },
+        ],
+      },
+      {
+        heading: "Quick answers for parents",
+        blocks: [
+          {
+            kind: "faq",
+            items: [
+              {
+                q: "Can my kid throw every day?",
+                a: "Easy, relaxed catch most days is usually fine for a healthy player. Full-effort pitching every day is not. Build in at least one or two full rest days a week.",
+              },
+              {
+                q: "Should they pitch the day after a lesson?",
+                a: "No. Treat the lesson as the pitching day and rest or play easy catch the next day.",
+              },
+              {
+                q: "Does long toss count as pitching?",
+                a: "Long toss at high effort is hard on the arm, so treat it like a pitching day. Short, easy catch does not count.",
+              },
+              {
+                q: "What if they play on two teams?",
+                a: "Add up all the pitches across both teams for the week. The rest rules apply to the total.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Want a plan built around your child's schedule?",
+        blocks: [
+          {
+            kind: "p",
+            text: "Every young pitcher's week looks different once games, team practice, and other sports are in the mix. Reach out on the [contact page](/contact/) and send a note with your child's age, goals, and schedule. We'll help you map out a throwing week that fits. We offer in-person lessons around Naples and video check-ins if you can't make it in person.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
   return leadMagnets.find((magnet) => magnet.slug === slug);
+}
+
+/** FAQ pairs from a guide, in the order they appear. */
+export function guideFaqs(magnet: LeadMagnet): GuideFaq[] {
+  const items: GuideFaq[] = [];
+  for (const section of magnet.sections ?? []) {
+    for (const block of section.blocks ?? []) {
+      if (block.kind === "faq") items.push(...block.items);
+    }
+  }
+  return items;
 }
 
 /** Topics that sit next to each other when a guide has no siblings. */

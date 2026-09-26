@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import JsonLd, { articleJsonLd } from "@/components/JsonLd";
+import JsonLd, { articleJsonLd, faqJsonLd } from "@/components/JsonLd";
 import LeadMagnetPage from "@/components/LeadMagnetPage";
-import { getLeadMagnet, leadMagnets } from "@/data/leadMagnets";
+import { getLeadMagnet, guideFaqs, leadMagnets } from "@/data/leadMagnets";
 import { pageTitle, shareImage } from "@/data/siteCopy";
 
 export const dynamicParams = false;
@@ -24,6 +24,7 @@ export async function generateMetadata({
   const description = magnet.metaDescription;
   const url = `/guides/${magnet.slug}/`;
   const image = magnet.ogImage || `/og/${magnet.slug}.png`;
+  const imageAlt = magnet.ogImageAlt ?? magnet.title;
 
   return {
     title,
@@ -31,19 +32,19 @@ export async function generateMetadata({
     alternates: { canonical: url },
     openGraph: {
       type: "article",
-      title: pageTitle(title),
-      description,
+      title: magnet.ogTitle ?? pageTitle(title),
+      description: magnet.ogDescription ?? description,
       url,
       siteName: "Pitching101",
       locale: "en_US",
-      images: shareImage(image, magnet.title),
+      images: shareImage(image, imageAlt),
       authors: ["Coach Deising"],
     },
     twitter: {
       card: "summary_large_image",
-      title: pageTitle(title),
-      description,
-      images: [image],
+      title: magnet.twitterTitle ?? pageTitle(title),
+      description: magnet.twitterDescription ?? description,
+      images: magnet.ogImageAlt ? shareImage(image, imageAlt) : [image],
     },
     authors: [{ name: "Coach Deising" }],
     category: magnet.topic,
@@ -59,9 +60,12 @@ export default async function GuideSlugPage({
   const magnet = getLeadMagnet(slug);
   if (!magnet) notFound();
 
+  const faqs = guideFaqs(magnet);
+
   return (
     <>
       <JsonLd data={articleJsonLd(magnet)} />
+      {faqs.length > 0 ? <JsonLd data={faqJsonLd(faqs)} /> : null}
       <LeadMagnetPage magnet={magnet} />
     </>
   );

@@ -9,6 +9,7 @@ import ParkSky from "@/components/ParkSky";
 import {
   guideOutline,
   leadMagnetCtaHref,
+  type GuideBlock,
   type LeadMagnet,
   type LeadMagnetLink,
   type LeadMagnetSection,
@@ -34,6 +35,117 @@ function groupSections<T extends LeadMagnetSection>(sections: T[]) {
   }
 
   return groups;
+}
+
+const GUIDE_INLINE_RE = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
+
+/** Bold (`**text**`) and internal links (`[label](/path/)`) in guide copy. */
+function GuideInline({ text }: { text: string }) {
+  GUIDE_INLINE_RE.lastIndex = 0;
+  const parts = text.split(GUIDE_INLINE_RE);
+
+  return parts.map((part, index) => {
+    if (!part) return null;
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
+    if (link && link[2].startsWith("/")) {
+      return (
+        <Link key={index} href={link[2]} className="footer-link">
+          {link[1]}
+        </Link>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+}
+
+function GuideTable({
+  table,
+}: {
+  table: Extract<GuideBlock, { kind: "table" }>;
+}) {
+  const caption = table.label ?? table.headers.join(", ");
+
+  return (
+    <div className="guide-table-wrap">
+      <table className="guide-table">
+        <caption className={table.label ? undefined : "guide-table-caption-sr"}>
+          {caption}
+        </caption>
+        <thead>
+          <tr>
+            {table.headers.map((header) => (
+              <th key={header} scope="col">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((row) => (
+            <tr key={row.join("|")}>
+              {row.map((cell, index) => (
+                <td key={`${row[0]}-${index}`}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function GuideBlocks({ blocks }: { blocks: GuideBlock[] }) {
+  return blocks.map((block, index) => {
+    if (block.kind === "p") {
+      return (
+        <p key={index} className="guide-copy">
+          <GuideInline text={block.text} />
+        </p>
+      );
+    }
+    if (block.kind === "ul") {
+      return (
+        <ul key={index} className="guide-list guide-list-cards">
+          {block.items.map((item) => (
+            <li key={item}>
+              <GuideInline text={item} />
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    if (block.kind === "ol") {
+      return (
+        <ol key={index} className="guide-list guide-list-numbered">
+          {block.items.map((item) => (
+            <li key={item}>
+              <GuideInline text={item} />
+            </li>
+          ))}
+        </ol>
+      );
+    }
+    if (block.kind === "table") {
+      return <GuideTable key={tableKey(block)} table={block} />;
+    }
+    return (
+      <div key={index} className="guide-faq">
+        {block.items.map((item) => (
+          <div key={item.q} className="guide-faq-item">
+            <h3 className="guide-faq-q">{item.q}</h3>
+            <p className="guide-copy">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    );
+  });
+}
+
+function tableKey(table: Extract<GuideBlock, { kind: "table" }>) {
+  return table.label ?? table.headers.join("|");
 }
 
 function GuideLink({ link }: { link: LeadMagnetLink }) {
@@ -69,34 +181,40 @@ function GuideSection({ section }: { section: LeadMagnetSection & { id?: string 
       <h2 id={section.id} className="ui-title ui-title-sm guide-toc-target">
         {section.heading}
       </h2>
-      {section.paragraphs?.map((paragraph) => (
-        <p key={paragraph} className="guide-copy">
-          {paragraph}
-        </p>
-      ))}
-      {section.bullets ? (
-        <ul className={listClass}>
-          {section.bullets.map((item, index) => (
-            <li key={`${item}-${index}`}>{item}</li>
+      {section.blocks?.length ? (
+        <GuideBlocks blocks={section.blocks} />
+      ) : (
+        <>
+          {section.paragraphs?.map((paragraph) => (
+            <p key={paragraph} className="guide-copy">
+              {paragraph}
+            </p>
           ))}
-        </ul>
-      ) : null}
-      {section.numbered ? (
-        <ol className="guide-list guide-list-numbered">
-          {section.numbered.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ol>
-      ) : null}
-      {section.links ? (
-        <ul className="guide-links">
-          {section.links.map((link) => (
-            <li key={link.href}>
-              <GuideLink link={link} />
-            </li>
-          ))}
-        </ul>
-      ) : null}
+          {section.bullets ? (
+            <ul className={listClass}>
+              {section.bullets.map((item, index) => (
+                <li key={`${item}-${index}`}>{item}</li>
+              ))}
+            </ul>
+          ) : null}
+          {section.numbered ? (
+            <ol className="guide-list guide-list-numbered">
+              {section.numbered.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          ) : null}
+          {section.links ? (
+            <ul className="guide-links">
+              {section.links.map((link) => (
+                <li key={link.href}>
+                  <GuideLink link={link} />
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </>
+      )}
     </section>
   );
 }
@@ -163,6 +281,15 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
         {showToc ? <GuideToc items={outline.toc} /> : null}
 
         <div className="guide-body">
+        {magnet.lede?.length ? (
+          <div className="guide-lede">
+            {magnet.lede.map((paragraph) => (
+              <p key={paragraph} className="guide-copy">
+                <GuideInline text={paragraph} />
+              </p>
+            ))}
+          </div>
+        ) : null}
         {magnet.steps?.length ? (
           <Reveal delayMs={30}>
             <GuideSteps steps={magnet.steps} />
