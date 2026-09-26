@@ -1,0 +1,7 @@
+# Local CLI config for the contact-lead email function.
+# Deploy is manual. This file does not change pitching101.com.
+project_id = "pitching101-web"
+
+# The insert trigger authenticates with a shared secret header, not a user JWT.
+[functions.notify-contact-lead]
+verify_jwt = false
