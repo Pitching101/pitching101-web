@@ -3290,6 +3290,82 @@ a.reviews-verified:focus-visible {
   padding: 0;
   list-style: none;
 }
+.guide-lede {
+  max-width: 42rem;
+  text-align: left;
+}
+.guide-lede .guide-copy:first-child {
+  margin-top: 0;
+}
+.guide-copy strong,
+.guide-list strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+.guide-table-wrap {
+  margin-top: 1.2rem;
+  overflow-x: auto;
+}
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+.guide-table caption {
+  caption-side: top;
+  margin: 0 0 0.7rem;
+  text-align: left;
+  font-weight: 700;
+  color: var(--ink);
+}
+.guide-table-caption-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.guide-table th,
+.guide-table td {
+  padding: 0.8rem 0.95rem;
+  text-align: left;
+  vertical-align: top;
+  border: 2px solid color-mix(in srgb, #0f1a2e 14%, #3295fb);
+}
+.guide-table th {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: color-mix(in srgb, #f7fbff 70%, #bbd6f1);
+}
+.guide-table td {
+  background: color-mix(in srgb, #f7fbff 88%, #fff);
+  color: var(--ink);
+}
+.guide-faq {
+  display: grid;
+  gap: 1.35rem;
+  margin-top: 1.2rem;
+}
+.guide-faq-q {
+  margin: 0;
+  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.guide-faq .guide-copy {
+  margin-top: 0.4rem;
+}
 .magnet-page-card {
   width: min(14rem, 52vw);
   margin: 0.15rem auto 0;

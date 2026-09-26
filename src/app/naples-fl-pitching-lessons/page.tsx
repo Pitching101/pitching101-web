@@ -86,6 +86,20 @@ export default function NaplesPitchingLessonsPage() {
           </ul>
         </Reveal>
 
+        <Reveal className="mt-12 space-y-4">
+          <h2 className="ui-title ui-title-sm">Between lessons</h2>
+          <p className="text-lg leading-relaxed text-ink-soft">
+            Parents ask how much to throw before the next lesson.{" "}
+            <Link
+              href="/guides/how-often-should-young-pitchers-throw-between-lessons/"
+              className="footer-link"
+            >
+              How often should young pitchers throw between lessons
+            </Link>{" "}
+            is the simple week we give families in Naples: easy catch, rest days, and pitch counts by age.
+          </p>
+        </Reveal>
+
         <Reveal className="mt-12 space-y-5">
           <h2 className="ui-title ui-title-sm">FAQs</h2>
           <FaqList items={faqs} />
