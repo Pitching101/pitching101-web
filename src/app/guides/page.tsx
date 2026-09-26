@@ -43,9 +43,7 @@ export default function GuidesPage() {
           </p>
         </Reveal>
 
-        <Reveal delayMs={40}>
-          <LeadMagnetShelf />
-        </Reveal>
+        <LeadMagnetShelf />
 
         <Reveal delayMs={60} className="mt-12 space-y-4">
           <p className="text-base text-ink-soft">Want to hop on a field, not just read the sheet?</p>

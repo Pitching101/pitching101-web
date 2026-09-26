@@ -337,9 +337,7 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
           </Reveal>
         )}
 
-        <Reveal delayMs={60}>
-          <RelatedGuides slug={magnet.slug} />
-        </Reveal>
+        <RelatedGuides slug={magnet.slug} />
         </div>
       </article>
     </ParkSky>

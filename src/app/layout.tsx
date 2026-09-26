@@ -107,6 +107,9 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col font-sans text-foreground">
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important;transition:none!important}`}</style>
+        </noscript>
         <a className="skip-link" href="#main">
           Skip to content
         </a>

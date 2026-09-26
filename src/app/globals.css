@@ -1484,6 +1484,14 @@ html.glove-cursor :is(input, textarea, select, [contenteditable="true"]) * {
   opacity: 1;
   transform: translate(0, 0);
 }
+/* Browsers with JavaScript disabled never add .is-revealed. */
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 @keyframes soft-bob {
   0%, 100% { transform: translateY(0); }
@@ -2965,10 +2973,22 @@ a.reviews-verified:focus-visible {
   }
 }
 .magnet-slot {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   position: relative;
   z-index: 0;
   isolation: isolate;
+}
+.magnet-slot > .reveal {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+}
+.magnet-slot > .reveal > .magnet-card {
+  flex: 1 1 auto;
+  width: 100%;
 }
 .magnet-card {
   --magnet-tilt: -1.6deg;
