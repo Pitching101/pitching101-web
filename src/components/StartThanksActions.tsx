@@ -4,35 +4,41 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { INFO_PACKET_FILENAME, INFO_PACKET_HREF } from "@/data/siteCopy";
 import {
-  START_LEAD_SMS_KEY,
   inquiryEmailHref,
   readStartLead,
+  readStartLeadSaved,
   smsHref,
   type StartLead,
 } from "@/data/startLead";
 
 /** After the evaluation — text and email Coach Deising, and keep the packet. */
 export default function StartThanksActions() {
-  const [lead, setLead] = useState<StartLead | null>(null);
+  const [view, setView] = useState<{
+    lead: StartLead | null;
+    saved: boolean;
+  } | null>(null);
 
   useEffect(() => {
-    const next = readStartLead();
     // eslint-disable-next-line react-hooks/set-state-in-effect -- lead lives in sessionStorage
-    setLead(next);
-    if (!next || sessionStorage.getItem(START_LEAD_SMS_KEY)) return;
-    sessionStorage.setItem(START_LEAD_SMS_KEY, "1");
-    window.location.href = smsHref(next.body);
+    setView({ lead: readStartLead(), saved: readStartLeadSaved() });
   }, []);
 
-  const afterForm = (
+  const lead = view?.lead ?? null;
+  const saved = view?.saved ?? false;
+  const note = saved
+    ? "Coach Deising has your evaluation. Text or email is a backup if you want to send the same note yourself."
+    : lead
+      ? "Text or email this note to Coach Deising, then tap send."
+      : "Send the evaluation and Coach Deising will have it. Text or email is a backup.";
+
+  const afterForm = view ? (
     <p className="start-form-or">
-      This booking note is not saved in the client portal. It opens a message
-      to Coach Deising, and you tap send.{" "}
+      {note}{" "}
       <Link href="/privacy/">Privacy policy</Link>
       {" · "}
       <Link href="/terms/">Terms of service</Link>
     </p>
-  );
+  ) : null;
 
   const packet = (
     <a

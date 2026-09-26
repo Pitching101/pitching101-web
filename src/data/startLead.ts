@@ -2,6 +2,45 @@ import { EMAIL, INFO_PACKET_FILENAME, INFO_PACKET_HREF, PHONE_TEL } from "@/data
 
 export const START_LEAD_KEY = "p101-start-lead";
 export const START_LEAD_SMS_KEY = "p101-start-lead-sms";
+export const START_LEAD_SAVED_KEY = "p101-start-lead-saved";
+
+/** Row written to public.contact_leads. id and created_at stay on the database. */
+export type ContactLeadInsert = {
+  role: string;
+  name: string;
+  age: string;
+  phone: string;
+  player: string | null;
+  email: string | null;
+  goals: string | null;
+  schedule: string | null;
+  heard: string | null;
+  train: string | null;
+  note: string | null;
+  source: "start_form";
+};
+
+function blankToNull(value: string) {
+  return value.length > 0 ? value : null;
+}
+
+/** Form fields map 1:1 onto contact_leads. Blank optional answers are null. */
+export function contactLeadInsert(lead: StartLead): ContactLeadInsert {
+  return {
+    role: lead.role,
+    name: lead.name,
+    age: lead.age,
+    phone: lead.phone,
+    player: blankToNull(lead.player),
+    email: blankToNull(lead.email),
+    goals: blankToNull(lead.goals),
+    schedule: blankToNull(lead.schedule),
+    heard: blankToNull(lead.heard),
+    train: blankToNull(lead.train),
+    note: blankToNull(lead.note),
+    source: "start_form",
+  };
+}
 
 export type StartLead = {
   role: string;
@@ -91,9 +130,16 @@ export function readStartLead(): StartLead | null {
   }
 }
 
-export function writeStartLead(lead: StartLead) {
+export function readStartLeadSaved() {
+  if (typeof sessionStorage === "undefined") return false;
+  return sessionStorage.getItem(START_LEAD_SAVED_KEY) === "1";
+}
+
+export function writeStartLead(lead: StartLead, saved = false) {
   sessionStorage.setItem(START_LEAD_KEY, JSON.stringify(lead));
   sessionStorage.removeItem(START_LEAD_SMS_KEY);
+  if (saved) sessionStorage.setItem(START_LEAD_SAVED_KEY, "1");
+  else sessionStorage.removeItem(START_LEAD_SAVED_KEY);
 }
 
 export function downloadInfoPacket() {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
 import { EMAIL, PHONE_DISPLAY, PHONE_TEL, pageTitle } from "@/data/siteCopy";
 
-const UPDATED = "September 21, 2026";
+const UPDATED = "September 23, 2026";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
@@ -46,15 +46,16 @@ export default function PrivacyPage() {
                 about us.
               </p>
               <p>
-                Those answers stay in your browser for that visit. The site
-                then opens a text to {PHONE_DISPLAY} or an email to {EMAIL}.
-                You still tap send in Messages or Mail. Pitching101 does not
-                keep a copy of the form on a server.
+                We save that evaluation so Coach Deising can reply and plan
+                the visit. It is stored with Supabase, separate from the
+                client portal. A copy also stays in your browser for that
+                visit, and you can text or email the same note as a backup.
+                You still tap send in Messages or Mail if you use those
+                buttons.
               </p>
               <p>
-                Coach Deising uses what you send to reply within 24 business
-                hours and to plan the visit. The booking form does not go
-                into the client portal.
+                Coach Deising uses the evaluation to reply within 24 business
+                hours. It does not show up in a family&apos;s portal account.
               </p>
             </>
           ),
