@@ -1345,6 +1345,185 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  {
+    slug: "when-should-young-pitchers-start-throwing-a-changeup",
+    title: "When Should Young Pitchers Start Throwing a Changeup?",
+    metaTitle: "When Should Young Pitchers Start a Changeup? | Pitching101",
+    metaDescription:
+      "Parent guide: when kids should start a changeup, a simple grip, and why fastball command comes first. For families in Naples / Collier County.",
+    ogTitle: "When Should Young Pitchers Start Throwing a Changeup?",
+    ogDescription:
+      "Age guide, simple grip, and when to wait — so you don’t rush the wrong pitch.",
+    twitterTitle: "When Should Young Pitchers Start Throwing a Changeup?",
+    twitterDescription:
+      "Fastball first, then a soft changeup. Parent-friendly age guide for Naples families.",
+    ogImage: OG_IMAGE,
+    ogImageAlt: OG_IMAGE_ALT,
+    datePublished: "2026-09-29",
+    kicker: "Free guide",
+    note: "A parent guide to age, arm readiness, and a simple grip — so you don’t rush the wrong pitch too soon.",
+    topic: "Pitch selection",
+    icon: "/assets/icons/icon-strikes.png",
+    emailSubject: "When Should Young Pitchers Start Throwing a Changeup",
+    cta: "Contact",
+    ctaHref: "/contact/",
+    lede: [
+      "Short answer: Most kids do best with a solid fastball and a simple changeup only after they can throw strikes with good arm care. A true curveball can wait. In Naples / Collier County travel ball, the changeup is usually the second pitch worth learning — not the first trick pitch.",
+      "Parents ask this every season: “Is it time for a changeup?” Here’s the simple rule we use with families.",
+    ],
+    sections: [
+      {
+        heading: "Fastball first",
+        blocks: [
+          {
+            kind: "p",
+            text: "Before a second pitch, your child should:",
+          },
+          {
+            kind: "ul",
+            items: [
+              "Throw to a catcher with a calm, repeatable delivery",
+              "Hit the strike zone often enough that catch play isn’t random",
+              "Finish warm-ups and cool-downs without arm pain",
+              "Know one clear cue from lessons and use it on easy days",
+            ],
+          },
+          {
+            kind: "p",
+            text: "If those pieces aren’t there yet, add a new pitch later. Command and arm care beat fancy grips.",
+          },
+        ],
+      },
+      {
+        heading: "What a changeup is (in parent words)",
+        blocks: [
+          {
+            kind: "p",
+            text: "A changeup is a slower pitch that looks like a fastball out of the hand. Same arm speed. Softer grip. Hitters swing early. It is not a curve. It does not need a big wrist snap. That is why it is usually safer to teach next than a breaking ball.",
+          },
+        ],
+      },
+      {
+        heading: "A simple age guide (not a hard rule)",
+        blocks: [
+          {
+            kind: "p",
+            text: "Every arm is different. Use this as a starting point, then check with your coach.",
+          },
+          {
+            kind: "table",
+            headers: ["Age", "What usually makes sense"],
+            rows: [
+              ["8–10", "Fastball command and easy catch. Skip secondary pitches in games."],
+              [
+                "11–12",
+                "Add a soft changeup in lessons and light flat ground if the arm feels good.",
+              ],
+              ["13–14", "Changeup becomes a real game pitch once strikes are consistent."],
+              [
+                "15–16",
+                "Refine the changeup; only then talk about breaking balls with a coach who watches the arm.",
+              ],
+            ],
+          },
+          {
+            kind: "p",
+            text: "If your child is still growing fast or just started lessons, stay on the early end of that range.",
+          },
+        ],
+      },
+      {
+        heading: "The grip we start with",
+        blocks: [
+          {
+            kind: "ol",
+            items: [
+              "Hold the ball deeper in the hand than a fastball (more fingers on the ball).",
+              "Use the same arm path and arm speed as the fastball.",
+              "Aim for the same release point — don’t “push” it or slow the arm on purpose.",
+              "Think soft and quiet, not trick or snap.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "At the next lesson, show one clean grip and one full throw so the coach can check it in person.",
+          },
+        ],
+      },
+      {
+        heading: "How to practice it without frying the arm",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "Warm up first (pre-catch routine + bands).",
+              "Throw mostly fastballs. Mix in a few changeups, not a full bucket of them.",
+              "Stop if the elbow or shoulder hurts (tired is different from pain).",
+              "Rest days still follow your throw-between-lessons plan.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Signs they’re ready",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "Fastball strikes feel normal, not lucky",
+              "Delivery stays the same when they try the softer grip",
+              "No elbow or shoulder pain after easy catch",
+              "They can explain the grip in one sentence",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Signs to wait",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "They’re still learning to throw downhill without rushing",
+              "Arm path changes every throw",
+              "They’re sore the morning after light work",
+              "A coach or parent is pushing a curve “because travel ball”",
+            ],
+          },
+          {
+            kind: "faq",
+            items: [
+              {
+                q: "When should they throw a curveball?",
+                a: "Later. For most kids under 13, we keep breaking balls out of the plan. Get the fastball and changeup right first.",
+              },
+              {
+                q: "Can they throw a changeup in a game this weekend?",
+                a: "Only if they’ve practiced it enough that the grip and arm speed stay the same under pressure. One or two in a low-stress inning is plenty early on.",
+              },
+              {
+                q: "Does a changeup count toward pitch count?",
+                a: "Yes. Every pitch counts. Treat changeups like any other pitch for rest rules.",
+              },
+              {
+                q: "What if travel ball coaches want a curve now?",
+                a: "Ask what they mean by “curve.” Many youth “curves” are really early breaking balls that stress the elbow. Share this guide and ask for a changeup-first plan instead.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Want a plan for your child’s arm and schedule?",
+        blocks: [
+          {
+            kind: "p",
+            text: "Share age, goals, and where they are with strikes on the [contact page](/contact/). We’ll map a simple second-pitch plan that fits Naples travel weeks and keeps the arm healthy. In-person lessons around Naples.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
@@ -1372,6 +1551,7 @@ const RELATED_TOPICS: Record<string, string[]> = {
   "Long toss": ["Strikes", "Lessons", "Warmup"],
   Lessons: ["Long toss", "Strikes", "Choosing a coach"],
   "Choosing a coach": ["Lessons", "Arm care", "Strikes"],
+  "Pitch selection": ["Arm care", "Strikes", "Lessons"],
 };
 
 /** Other guides to show at the bottom of a post. Same topic first. */

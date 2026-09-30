@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import JsonLd, { articleJsonLd, faqJsonLd } from "@/components/JsonLd";
 import LeadMagnetPage from "@/components/LeadMagnetPage";
 import { getLeadMagnet, guideFaqs, leadMagnets } from "@/data/leadMagnets";
-import { pageTitle, shareImage } from "@/data/siteCopy";
+import { BRAND_NAME, pageTitle, shareImage } from "@/data/siteCopy";
 
 export const dynamicParams = false;
 
@@ -25,9 +25,13 @@ export async function generateMetadata({
   const url = `/guides/${magnet.slug}/`;
   const image = magnet.ogImage || `/og/${magnet.slug}.png`;
   const imageAlt = magnet.ogImageAlt ?? magnet.title;
+  const documentTitle =
+    title.startsWith(`${BRAND_NAME} |`) || title.endsWith(`| ${BRAND_NAME}`)
+      ? { absolute: title }
+      : title;
 
   return {
-    title,
+    title: documentTitle,
     description,
     alternates: { canonical: url },
     openGraph: {
