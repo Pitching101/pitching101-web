@@ -1,10 +1,13 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-import type { FaqItem } from "@/data/siteCopy";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
 /** Tap a question — one answer at a time, first one open by default. */
-export default function FaqList({ items }: { items: FaqItem[] }) {
+export default function FaqList({
+  items,
+}: {
+  items: { q: string; a: ReactNode }[];
+}) {
   const [open, setOpen] = useState<number | null>(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const panels = useRef<Array<HTMLDivElement | null>>([]);

@@ -100,6 +100,15 @@ export default function NaplesPitchingLessonsPage() {
           </p>
         </Reveal>
 
+        <Reveal className="mt-12 space-y-4">
+          <h2 className="ui-title ui-title-sm">Lessons near you</h2>
+          <p className="text-lg leading-relaxed text-ink-soft">
+            <Link href="/pitching-lessons-north-naples/" className="footer-link">
+              Pitching lessons in North Naples, FL
+            </Link>
+          </p>
+        </Reveal>
+
         <Reveal className="mt-12 space-y-5">
           <h2 className="ui-title ui-title-sm">FAQs</h2>
           <FaqList items={faqs} />
