@@ -18,6 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       changeFrequency: "monthly" as const,
     },
+    {
+      path: "/pitching-lessons-north-naples/",
+      priority: 0.8,
+      changeFrequency: "monthly" as const,
+    },
     ...leadMagnets.map((magnet) => ({
       path: `/guides/${magnet.slug}/`,
       priority: 0.7,
