@@ -10,6 +10,20 @@ export type GuideFaq = {
   a: string;
 };
 
+export type GuideHowToStep = {
+  name: string;
+  text: string;
+  anchor: string;
+};
+
+export type GuideHowTo = {
+  name: string;
+  description: string;
+  /** Canonical path, e.g. /guides/example/. */
+  path: string;
+  steps: GuideHowToStep[];
+};
+
 export type GuideBlock =
   | { kind: "p"; text: string }
   | { kind: "ul"; items: string[] }
@@ -1524,6 +1538,247 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  {
+    slug: "how-to-teach-a-kid-to-pitch",
+    title: "How to Teach a Kid to Pitch: 5 Beginner Steps for Parents",
+    metaTitle: "How to Teach a Kid to Pitch: 5 Beginner Steps",
+    metaDescription:
+      "Brand new pitcher? Teach your kid to pitch in 5 simple steps: grip, balance, stride, arm path and finish, plus a first-week plan. A Naples, FL parent guide.",
+    ogTitle: "How to Teach a Kid to Pitch: 5 Beginner Steps for Parents",
+    ogDescription:
+      "Grip, balance, stride, arm path and finish. Five simple steps any parent can teach in the backyard, plus the mistakes to watch for.",
+    twitterTitle: "How to Teach a Kid to Pitch: 5 Beginner Steps",
+    twitterDescription:
+      "Grip, balance, stride, arm path and finish. Five simple steps any parent can teach in the backyard.",
+    // Custom art is planned at /og/how-to-teach-a-kid-to-pitch.png. That file is not in the repo yet, and missing /og/{slug}.png is not a safe fallback, so share cards use the default image.
+    ogImage: OG_IMAGE,
+    ogImageAlt: OG_IMAGE_ALT,
+    datePublished: "2026-10-05",
+    kicker: "Free guide",
+    note: "Brand new pitcher in the house? You don't need a mound or a radar gun. Here are the five steps we start every beginner with, in the order we teach them.",
+    topic: "Lessons",
+    icon: "/assets/icons/icon-strikes.png",
+    emailSubject: "How to Teach a Kid to Pitch",
+    cta: "Contact",
+    ctaHref: "/contact/",
+    lede: [
+      "**Short answer:** Teach pitching one piece at a time: **(1) the grip, (2) balance, (3) a straight stride at the target, (4) a smooth arm path, and (5) a full finish.** Keep throws easy, keep sessions short, and stop while the arm still feels fresh. Speed comes later. Good habits come first.",
+      "If your child just told you they want to pitch, that's great news. It's also normal to feel unsure where to start. This is the same order we use with first-time pitchers in Naples, written so any parent can help in the backyard.",
+    ],
+    sections: [
+      {
+        heading: "Before you start: keep it easy",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "**Warm up first.** Five minutes of moving around and light catch. Our [pre-catch warm-up](/guides/pre-catch-warmup/) is a simple way to do it.",
+              "**Start close.** Begin at about half of a normal pitching distance and move back only when throws are easy and on target.",
+              '**Easy effort.** Beginners should throw at a relaxed, "smooth" speed. Throwing hard before the motion is right builds bad habits.',
+              "**Short sessions.** 10 to 15 minutes is plenty for a beginner. End on a good throw.",
+              "**Hurt means stop.** Tired is normal. Pain in the elbow or shoulder is not. See our [arm care checklist](/guides/arm-care-checklist/).",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Step 1: The grip",
+        blocks: [
+          {
+            kind: "p",
+            text: "Start with the four-seam fastball grip. It's the easiest pitch to control and the only one a beginner needs.",
+          },
+          {
+            kind: "ul",
+            items: [
+              "Index and middle fingers on top, across the wide part of the seams, a little space between them.",
+              "Thumb underneath, roughly in the middle.",
+              "Hold it in the fingertips, not choked deep in the palm. You should see a small gap between the ball and the palm.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "**Parent check:** Ask your child to show you the grip with their eyes closed. If they can find it by feel, it's ready.",
+          },
+        ],
+      },
+      {
+        heading: "Step 2: Balance",
+        blocks: [
+          {
+            kind: "p",
+            text: "Most beginner wildness starts here. A pitcher who can't balance can't repeat a throw.",
+          },
+          {
+            kind: "ul",
+            items: [
+              "Stand sideways to the target, front shoulder pointing at the catcher.",
+              "Lift the front knee up to about belt height.",
+              "Hold it for a two-count without wobbling.",
+            ],
+          },
+          {
+            kind: "p",
+            text: '**Practice drill:** "Lift and hold." Ten lifts with a two-second hold, no ball needed. If they tip over, slow down and lift a little lower.',
+          },
+        ],
+      },
+      {
+        heading: "Step 3: Stride straight at the target",
+        blocks: [
+          {
+            kind: "p",
+            text: "Where the front foot lands decides a lot about where the ball goes.",
+          },
+          {
+            kind: "ul",
+            items: [
+              "From the balance position, step straight toward the target.",
+              "Land on the front foot with toes pointing at the target, not off to the side.",
+              "The stride should feel long and controlled, not a jump.",
+            ],
+          },
+          {
+            kind: "p",
+            text: '**Practice drill:** "Walk the line." Lay a towel, a bat, or a chalk line from the pitcher to the target. The front foot should land on or right next to it every time.',
+          },
+        ],
+      },
+      {
+        heading: "Step 4: A smooth arm path",
+        blocks: [
+          {
+            kind: "p",
+            text: "Keep the arm loose and let it swing, instead of pushing or aiming the ball.",
+          },
+          {
+            kind: "ul",
+            items: [
+              "As the front leg strides, the hands break apart.",
+              "The throwing hand swings down, back, and up in one smooth motion, with the ball facing away from the target.",
+              "The glove arm points at the target to help keep the body on line.",
+            ],
+          },
+          {
+            kind: "p",
+            text: '**Common mistake:** "Pushing" or aiming the ball like a dart. It looks careful but usually sails high and stresses the arm. If you see it, back up to a shorter distance and have them throw a little looser.',
+          },
+        ],
+      },
+      {
+        heading: "Step 5: The finish",
+        blocks: [
+          {
+            kind: "p",
+            text: "A full finish keeps the arm safe and the ball on target.",
+          },
+          {
+            kind: "ul",
+            items: [
+              "Throw through the target, not to it.",
+              "Chest finishes out over the front knee.",
+              "Throwing arm comes all the way down and across the body.",
+              "Back leg swings around so they end up facing the plate, ready to field.",
+            ],
+          },
+          {
+            kind: "p",
+            text: '**Parent check:** After each throw, ask, "Could you catch a ball hit back at you right now?" If they\'re falling off to the side, the finish needs work.',
+          },
+        ],
+      },
+      {
+        heading: "Put it together: a simple first week",
+        blocks: [
+          {
+            kind: "table",
+            headers: ["Day", "What to do"],
+            rows: [
+              ["Day 1", 'Grip and balance only. "Lift and hold" plus easy catch.'],
+              ["Day 2", "Rest from throwing."],
+              [
+                "Day 3",
+                'Add the stride. "Walk the line" drill, then easy throws at a short distance.',
+              ],
+              ["Day 4", "Rest or easy catch."],
+              [
+                "Day 5",
+                "All five steps, slow motion first, then easy throws to a target. 10–15 minutes total.",
+              ],
+              [
+                "Days 6–7",
+                "Rest, or a fun target game like the ones in our [fun games guide](/guides/fun-games/).",
+              ],
+            ],
+          },
+          {
+            kind: "p",
+            text: "Once the motion feels natural, our [strike tips](/guides/strike-tips/) help with accuracy, and our [throwing-between-lessons guide](/guides/how-often-should-young-pitchers-throw-between-lessons/) covers rest days and pitch counts by age.",
+          },
+        ],
+      },
+      {
+        heading: "Beginner mistakes and quick fixes",
+        blocks: [
+          {
+            kind: "table",
+            headers: ["What you see", "Quick fix"],
+            rows: [
+              [
+                "Ball sails high or way outside",
+                "Shorten the distance, throw looser, finish chest over front knee.",
+              ],
+              ["Front foot lands way off to the side", 'Use the "walk the line" drill.'],
+              ["Falls over before the throw", 'Go back to "lift and hold." Lift lower and slower.'],
+              [
+                "Trying to throw as hard as possible",
+                "Smooth speed first. Make it a game: five strikes in a row before trying harder.",
+              ],
+              [
+                "Complains about elbow or shoulder pain",
+                "Stop for the day and talk to a coach. Pain that lasts is a reason to see a doctor.",
+              ],
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Quick answers for parents",
+        blocks: [
+          {
+            kind: "faq",
+            items: [
+              {
+                q: "What age can a kid start pitching?",
+                a: "Many kids start learning the motion around 7 or 8, often in coach-pitch or machine-pitch leagues. The steps above work at any age. What matters most is easy effort and short sessions.",
+              },
+              {
+                q: "Should beginners learn a curveball?",
+                a: "No. Start with the fastball and learn to throw strikes with it. Our [changeup guide](/guides/when-should-young-pitchers-start-throwing-a-changeup/) covers when a second pitch makes sense.",
+              },
+              {
+                q: "How far away should we practice?",
+                a: "Start close, at about half a normal pitching distance, and move back as throws get easy and accurate.",
+              },
+              {
+                q: "How do I know if they're doing it right?",
+                a: "Look for three things: they can balance, the front foot lands toward the target, and they finish facing the plate. If those are there, the rest usually follows.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Want a coach to check the motion?",
+        blocks: [
+          {
+            kind: "p",
+            text: "A few early lessons can lock in good habits before bad ones set in. Reach out on the [contact page](/contact/) with your child's age, experience, and schedule. We'll start with a First Look evaluation and help you pick the right next step. We teach in-person lessons around Naples and Collier County.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
@@ -1641,5 +1896,45 @@ export function guideOutline(magnet: LeadMagnet) {
     routines,
     sections,
     toc: toc.length >= TOC_MIN ? toc : [],
+  };
+}
+
+/** Guide markdown (`**bold**`, `[label](/path/)`) as plain text for JSON-LD. */
+export function plainGuideCopy(text: string) {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const HOW_TO_STEP = /^Step \d+:\s+(.+)$/;
+
+function howToStepText(section: LeadMagnetSection) {
+  const chunks: string[] = [];
+  for (const block of section.blocks ?? []) {
+    if (block.kind === "p") chunks.push(plainGuideCopy(block.text));
+    if (block.kind === "ul" || block.kind === "ol") {
+      for (const item of block.items) chunks.push(plainGuideCopy(item));
+    }
+  }
+  return chunks.filter(Boolean).join(" ");
+}
+
+/** Numbered "Step N:" sections, in page order. Null when a guide has none. */
+export function guideHowTo(magnet: LeadMagnet): GuideHowTo | null {
+  const steps = guideOutline(magnet).sections.flatMap((section) => {
+    const match = HOW_TO_STEP.exec(section.heading);
+    const text = match ? howToStepText(section) : "";
+    if (!match || !text) return [];
+    return [{ name: match[1], text, anchor: section.id }];
+  });
+  if (steps.length === 0) return null;
+
+  return {
+    name: magnet.title,
+    description: magnet.metaDescription,
+    path: `/guides/${magnet.slug}/`,
+    steps,
   };
 }

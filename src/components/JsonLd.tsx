@@ -1,4 +1,4 @@
-import type { LeadMagnet } from "@/data/leadMagnets";
+import { plainGuideCopy, type GuideHowTo, type LeadMagnet } from "@/data/leadMagnets";
 import { EMAIL, GOOGLE_MAPS_URL, INSTAGRAM_URL, SITE_URL, TRUSTPILOT_URL } from "@/data/siteCopy";
 
 /** JSON-LD for search + answer engines. Values are static site copy. */
@@ -22,7 +22,7 @@ export function faqJsonLd(items: { q: string; a: string }[]) {
       name: item.q,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.a,
+        text: plainGuideCopy(item.a),
       },
     })),
   };
@@ -90,5 +90,23 @@ export function articleJsonLd(magnet: LeadMagnet) {
     about: magnet.topic,
     isAccessibleForFree: true,
     inLanguage: "en-US",
+  };
+}
+
+/** Numbered beginner steps. Same script tag as Article and FAQPage. */
+export function howToJsonLd(howTo: GuideHowTo) {
+  const pageUrl = `${SITE_URL}${howTo.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: howTo.name,
+    description: howTo.description,
+    step: howTo.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      url: `${pageUrl}#${step.anchor}`,
+    })),
   };
 }
