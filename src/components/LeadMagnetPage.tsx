@@ -87,7 +87,9 @@ function GuideTable({
           {table.rows.map((row) => (
             <tr key={row.join("|")}>
               {row.map((cell, index) => (
-                <td key={`${row[0]}-${index}`}>{cell}</td>
+                <td key={`${row[0]}-${index}`}>
+                  <GuideInline text={cell} />
+                </td>
               ))}
             </tr>
           ))}
@@ -136,7 +138,9 @@ function GuideBlocks({ blocks }: { blocks: GuideBlock[] }) {
         {block.items.map((item) => (
           <div key={item.q} className="guide-faq-item">
             <h3 className="guide-faq-q">{item.q}</h3>
-            <p className="guide-copy">{item.a}</p>
+            <p className="guide-copy">
+              <GuideInline text={item.a} />
+            </p>
           </div>
         ))}
       </div>
