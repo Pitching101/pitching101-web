@@ -5,6 +5,7 @@ import { OG_IMAGE, OG_IMAGE_ALT } from "@/data/siteCopy";
  * Beginner Pitching Series, shipped Oct 12, 2026.
  * The drafts describe custom share art that is not in the repo.
  * Share cards use the default image and its existing alt.
+ * Section anchors used by the series are set explicitly so those links stay stable.
  */
 const SERIES_ICON = "/assets/icons/icon-free-guide-v2.png";
 
