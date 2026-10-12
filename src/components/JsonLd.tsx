@@ -93,6 +93,26 @@ export function articleJsonLd(magnet: LeadMagnet) {
   };
 }
 
+export type BreadcrumbItem = {
+  name: string;
+  /** Site path, e.g. /guides/. */
+  path: string;
+};
+
+/** Home, section, then this page. Same script tag as Article and FAQPage. */
+export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.path}`,
+    })),
+  };
+}
+
 /** Numbered beginner steps. Same script tag as Article and FAQPage. */
 export function howToJsonLd(howTo: GuideHowTo) {
   const pageUrl = `${SITE_URL}${howTo.path}`;

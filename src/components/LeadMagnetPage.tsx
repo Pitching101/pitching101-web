@@ -37,9 +37,9 @@ function groupSections<T extends LeadMagnetSection>(sections: T[]) {
   return groups;
 }
 
-const GUIDE_INLINE_RE = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
+const GUIDE_INLINE_RE = /(\*\*[^*]+\*\*|\*[^*\n]+\*|\[[^\]]+\]\([^)]+\))/g;
 
-/** Bold (`**text**`) and internal links (`[label](/path/)`) in guide copy. */
+/** Bold (`**text**`), italics (`*text*`), and internal links (`[label](/path/)`) in guide copy. */
 function GuideInline({ text }: { text: string }) {
   GUIDE_INLINE_RE.lastIndex = 0;
   const parts = text.split(GUIDE_INLINE_RE);
@@ -48,6 +48,9 @@ function GuideInline({ text }: { text: string }) {
     if (!part) return null;
     if (part.startsWith("**") && part.endsWith("**")) {
       return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return <em key={index}>{part.slice(1, -1)}</em>;
     }
     const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
     if (link && link[2].startsWith("/")) {
