@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import JsonLd, { articleJsonLd, faqJsonLd, howToJsonLd } from "@/components/JsonLd";
+import JsonLd, {
+  articleJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  howToJsonLd,
+} from "@/components/JsonLd";
 import LeadMagnetPage from "@/components/LeadMagnetPage";
 import { getLeadMagnet, guideFaqs, guideHowTo, leadMagnets } from "@/data/leadMagnets";
 import { BRAND_NAME, pageTitle, shareImage } from "@/data/siteCopy";
@@ -72,6 +77,13 @@ export default async function GuideSlugPage({
       <JsonLd data={articleJsonLd(magnet)} />
       {howTo ? <JsonLd data={howToJsonLd(howTo)} /> : null}
       {faqs.length > 0 ? <JsonLd data={faqJsonLd(faqs)} /> : null}
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Guides", path: "/guides/" },
+          { name: magnet.title, path: `/guides/${magnet.slug}/` },
+        ])}
+      />
       <LeadMagnetPage magnet={magnet} />
     </>
   );

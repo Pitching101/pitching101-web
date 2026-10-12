@@ -1779,6 +1779,141 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  {
+    slug: "tired-arm-after-pitching-young-pitchers",
+    title: "Tired Arm After Pitching? What's Normal for Young Pitchers",
+    metaTitle: "Tired Arm After Pitching? What's Normal | Pitching101",
+    metaDescription:
+      "Is it normal for a young pitcher's arm to feel tired after a game? A calm parent guide to recovery, rest days, and good arm habits from a Naples, FL coach.",
+    ogTitle: "Tired Arm After Pitching? What's Normal for Young Pitchers",
+    ogDescription:
+      "A tired arm after pitching is common. Simple rest and recovery habits that help young arms bounce back.",
+    twitterTitle: "Tired Arm After Pitching? What's Normal for Young Pitchers",
+    twitterDescription:
+      "A calm parent guide to recovery and arm-friendly habits for young pitchers, from a Naples pitching coach.",
+    // No custom share image in the repo. Missing /og/{slug}.png is not a safe fallback, so share cards use the default image.
+    ogImage: OG_IMAGE,
+    ogImageAlt: OG_IMAGE_ALT,
+    datePublished: "2026-10-12",
+    kicker: "Free guide",
+    note: "A calm, simple parent guide to the normal tired feeling after pitching, and the easy rest and recovery habits that help young arms bounce back.",
+    topic: "Arm care",
+    icon: "/assets/icons/icon-arm-care-v2.png",
+    emailSubject: "Tired Arm After Pitching",
+    cta: "Contact",
+    ctaHref: "/contact/",
+    lede: [
+      '**Short answer:** After pitching, it\'s common for a young pitcher\'s arm to feel a bit tired or heavy for a day or so. That\'s usually just the arm saying "I worked," and rest, easy days, and good habits help it bounce back. If pain doesn\'t go away or something just doesn\'t feel right, talk to a doctor.',
+      'Parents in Naples and around Collier County ask me this a lot, usually the morning after a tournament: "He says his arm feels tired. Is that okay?" Here\'s the general picture I share with families.',
+      "*This guide is general information for parents, not medical advice. I'm a pitching coach, not a doctor. If you're ever worried about your child's arm, talk to a doctor.*",
+    ],
+    sections: [
+      {
+        heading: "What normal tiredness after pitching often feels like",
+        blocks: [
+          { kind: "p", text: "Kids often describe it as:" },
+          {
+            kind: "ul",
+            items: [
+              'A dull, heavy, or "worked" feeling, like legs after a long run',
+              "Tiredness in the shoulder or upper arm the day after a game or lesson",
+              "Feeling a little better each day as they rest",
+            ],
+          },
+          {
+            kind: "p",
+            text: "That's a normal part of throwing. Throwing is hard work for any body, and young arms need time to recharge, just like the rest of them.",
+          },
+        ],
+      },
+      {
+        heading: "Habits that help arms recover",
+        blocks: [
+          {
+            kind: "ol",
+            items: [
+              "**Cool down easy.** A few minutes of light movement after pitching instead of stopping cold.",
+              "**Drink water and eat a real meal.** Southwest Florida heat drains kids fast during fall and spring tournaments.",
+              "**Sleep.** Growing athletes recover best with a full night's rest.",
+              "**Take the rest days.** Our [throw-between-lessons guide](/guides/how-often-should-young-pitchers-throw-between-lessons/) has a simple weekly plan and the MLB/USA Baseball Pitch Smart rest-day guidelines by age.",
+              "**Keep the next day easy.** Light movement, bands, or easy catch, not a bullpen. Our [arm-care checklist](/guides/arm-care-checklist/) shows the band routine we use.",
+              "**Warm up every time.** Our [pre-catch warmup](/guides/pre-catch-warmup/) takes about five minutes.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Schedule habits that help",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "Avoid pitching on back-to-back days, or for more than one team in the same week.",
+              "Build in real time off from throwing during the year.",
+              "Let the fastball and changeup come first before anything fancier ([changeup guide](/guides/when-should-young-pitchers-start-throwing-a-changeup/)).",
+            ],
+          },
+          {
+            kind: "p",
+            text: "Most arm-friendly habits are about the **schedule**, not about trying harder. That's good news, because parents can help with the schedule.",
+          },
+        ],
+      },
+      {
+        heading: "Keep the conversation open",
+        blocks: [
+          {
+            kind: "p",
+            text: "Let your child know it's always okay to tell you or their coach how their arm feels, without worrying about losing innings. Kids who feel safe speaking up get the rest they need sooner.",
+          },
+        ],
+      },
+      {
+        heading: "When to talk to a doctor",
+        blocks: [
+          {
+            kind: "p",
+            text: 'If pain doesn\'t go away, keeps coming back, or something just doesn\'t feel right, skip throwing and talk to a doctor. You never need a reason beyond "I want to be sure."',
+          },
+        ],
+      },
+      {
+        heading: "FAQ",
+        blocks: [
+          {
+            kind: "faq",
+            items: [
+              {
+                q: "Is it normal for my child's arm to feel tired after pitching?",
+                a: "Yes, a tired or heavy feeling for a day or so after pitching is common. Rest, easy days, and good sleep help it recover.",
+              },
+              {
+                q: "What helps a young pitcher's arm recover?",
+                a: "Easy cooldowns, water and food, sleep, following rest days, and keeping the next day light. Our [throw-between-lessons guide](/guides/how-often-should-young-pitchers-throw-between-lessons/) has a simple weekly plan.",
+              },
+              {
+                q: "Should we ice after pitching?",
+                a: "Families do different things, and advice has changed over the years. Ask your doctor what they suggest. Rest days and easy days matter most.",
+              },
+              {
+                q: "When should we talk to a doctor?",
+                a: "Any time pain doesn't go away, keeps coming back, or you just have a feeling something isn't right. When in doubt, ask.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Want help building an arm-friendly week?",
+        blocks: [
+          {
+            kind: "p",
+            text: "Tell me your child's age and team schedule on the [contact page](/contact/). I'll help you plan rest days and easy days around Naples travel-ball weekends.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
