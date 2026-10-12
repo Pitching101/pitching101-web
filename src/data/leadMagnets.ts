@@ -1,3 +1,4 @@
+import { beginnerSeries } from "@/data/beginnerSeries";
 import { EMAIL, ENROLL_LABEL, OG_IMAGE, OG_IMAGE_ALT } from "@/data/siteCopy";
 
 export type LeadMagnetLink = {
@@ -33,6 +34,11 @@ export type GuideBlock =
 
 export type LeadMagnetSection = {
   heading: string;
+  /**
+   * Stable anchor. When omitted, the heading is slugged.
+   * Set this when a Reel or another guide links to a specific section.
+   */
+  id?: string;
   paragraphs?: string[];
   bullets?: string[];
   numbered?: string[];
@@ -40,6 +46,12 @@ export type LeadMagnetSection = {
   links?: LeadMagnetLink[];
   /** Ordered body. When set, this is the section copy. */
   blocks?: GuideBlock[];
+};
+
+/** One step in a series hub. Path may include a hash. */
+export type GuideSeriesItem = {
+  name: string;
+  path: string;
 };
 
 /**
@@ -99,6 +111,8 @@ export type LeadMagnet = {
   routines?: LeadMagnetRoutine[];
   /** Hide routine clips until they sign in (same login as the client portal). */
   videoGate?: boolean;
+  /** Ordered series for CollectionPage + ItemList JSON-LD. Hub pages only. */
+  series?: GuideSeriesItem[];
 };
 
 export const leadMagnets: LeadMagnet[] = [
@@ -1398,7 +1412,7 @@ export const leadMagnets: LeadMagnet[] = [
             items: [
               "Throw to a catcher with a calm, repeatable delivery",
               "Hit the strike zone often enough that catch play isn’t random",
-              "Finish warm-ups and cool-downs without arm pain",
+              "Finish warm-ups and cool-downs",
               "Know one clear cue from lessons and use it on easy days",
             ],
           },
@@ -1409,11 +1423,35 @@ export const leadMagnets: LeadMagnet[] = [
         ],
       },
       {
+        id: "changeup-for-beginners",
+        heading: "Changeup for beginners: fastball command first, changeup second",
+        blocks: [
+          {
+            kind: "p",
+            text: "This matches Coach Nick's Beginner Series Reel.",
+          },
+          {
+            kind: "ul",
+            items: [
+              "**It looks like a fastball.** That's the whole point. The hitter sees fastball and swings early.",
+              "**The difference is the grip, not throwing softer.** Don't slow the arm down on purpose.",
+              "**Same arm speed.** Throw it with the same arm speed as your fastball.",
+              "**Pretend it's a fastball.** Same motion, same finish. Let the grip slow it down.",
+              "**Only after fastball strikes.** Fastball command first, changeup second.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "New to the series? Start with the [four-seam fastball grip](/guides/four-seam-fastball-grip-for-kids/), and when the changeup is working, see [ready for a curveball?](/guides/ready-for-a-curveball/). All steps: [Beginner Pitching Series](/guides/beginner-pitching-series/).",
+          },
+        ],
+      },
+      {
         heading: "What a changeup is (in parent words)",
         blocks: [
           {
             kind: "p",
-            text: "A changeup is a slower pitch that looks like a fastball out of the hand. Same arm speed. Softer grip. Hitters swing early. It is not a curve. It does not need a big wrist snap. That is why it is usually safer to teach next than a breaking ball.",
+            text: "A changeup is a slower pitch that looks like a fastball out of the hand. The difference is the grip, not throwing softer. Same arm speed. Hitters swing early. It is not a curve. It does not need a big wrist snap. That is why it is usually safer to teach next than a breaking ball.",
           },
         ],
       },
@@ -1455,12 +1493,12 @@ export const leadMagnets: LeadMagnet[] = [
               "Hold the ball deeper in the hand than a fastball (more fingers on the ball).",
               "Use the same arm path and arm speed as the fastball.",
               "Aim for the same release point — don’t “push” it or slow the arm on purpose.",
-              "Think soft and quiet, not trick or snap.",
+              "Pretend it's a fastball. Let the grip do the work, not a trick or a snap.",
             ],
           },
           {
             kind: "p",
-            text: "At the next lesson, show one clean grip and one full throw so the coach can check it in person.",
+            text: "Questions about the grip? Ask through the [contact page](/contact/).",
           },
         ],
       },
@@ -1472,9 +1510,16 @@ export const leadMagnets: LeadMagnet[] = [
             items: [
               "Warm up first (pre-catch routine + bands).",
               "Throw mostly fastballs. Mix in a few changeups, not a full bucket of them.",
-              "Stop if the elbow or shoulder hurts (tired is different from pain).",
-              "Rest days still follow your throw-between-lessons plan.",
+              "Any pain or something feels wrong? Stop throwing and talk to a doctor.",
             ],
+          },
+          {
+            kind: "p",
+            text: "This guide is general information for parents, not medical advice.",
+          },
+          {
+            kind: "ul",
+            items: ["Rest days still follow your throw-between-lessons plan."],
           },
         ],
       },
@@ -1485,8 +1530,7 @@ export const leadMagnets: LeadMagnet[] = [
             kind: "ul",
             items: [
               "Fastball strikes feel normal, not lucky",
-              "Delivery stays the same when they try the softer grip",
-              "No elbow or shoulder pain after easy catch",
+              "Delivery and arm speed stay the same when they use the changeup grip",
               "They can explain the grip in one sentence",
             ],
           },
@@ -1500,7 +1544,6 @@ export const leadMagnets: LeadMagnet[] = [
             items: [
               "They’re still learning to throw downhill without rushing",
               "Arm path changes every throw",
-              "They’re sore the morning after light work",
               "A coach or parent is pushing a curve “because travel ball”",
             ],
           },
@@ -1509,7 +1552,7 @@ export const leadMagnets: LeadMagnet[] = [
             items: [
               {
                 q: "When should they throw a curveball?",
-                a: "Later. For most kids under 13, we keep breaking balls out of the plan. Get the fastball and changeup right first.",
+                a: "Later, and there's no one age for every kid. Start with the three questions in our [ready for a curveball?](/guides/ready-for-a-curveball/) guide, and talk with your coach. For health questions, talk to a doctor.",
               },
               {
                 q: "Can they throw a changeup in a game this weekend?",
@@ -1688,6 +1731,33 @@ export const leadMagnets: LeadMagnet[] = [
         ],
       },
       {
+        id: "balance-move-throw-finish",
+        heading: "Balance → Move → Throw → Finish: the whole motion in 4 words",
+        blocks: [
+          {
+            kind: "p",
+            text: "Once the five steps make sense, put them together with four simple words. This is how we teach the basic pitching motion, and it matches Coach Nick's Beginner Series Reel.",
+          },
+          {
+            kind: "ol",
+            items: [
+              "**Balance.** Lift the knee and stay tall.",
+              "**Move.** Stride straight to the catcher.",
+              "**Throw.** Let the arm work naturally. Don't force it.",
+              "**Finish.** Bring the glove to the chest.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "Think of it as **one straight line** from the rubber to the catcher. Simple = repeatable = strikes. When the motion is simple, kids can repeat it, and a repeatable motion throws more strikes.",
+          },
+          {
+            kind: "p",
+            text: "New to the mound? Start with [how to stand on the mound](/guides/how-to-stand-on-the-mound-balance/), then try [aim small, miss small](/guides/how-to-throw-strikes-aim-small-miss-small/). The full step-by-step series is in our [Beginner Pitching Series](/guides/beginner-pitching-series/).",
+          },
+        ],
+      },
+      {
         heading: "Put it together: a simple first week",
         blocks: [
           {
@@ -1763,6 +1833,10 @@ export const leadMagnets: LeadMagnet[] = [
               {
                 q: "How do I know if they're doing it right?",
                 a: "Look for three things: they can balance, the front foot lands toward the target, and they finish facing the plate. If those are there, the rest usually follows.",
+              },
+              {
+                q: "What are the basic parts of a pitching motion?",
+                a: "Balance, move, throw, finish: lift the knee and stay tall, stride straight to the catcher, let the arm work naturally, and bring the glove to the chest.",
               },
             ],
           },
@@ -1914,6 +1988,7 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  ...beginnerSeries,
 ];
 
 export function getLeadMagnet(slug: string) {
@@ -1942,6 +2017,7 @@ const RELATED_TOPICS: Record<string, string[]> = {
   Lessons: ["Long toss", "Strikes", "Choosing a coach"],
   "Choosing a coach": ["Lessons", "Arm care", "Strikes"],
   "Pitch selection": ["Arm care", "Strikes", "Lessons"],
+  "Beginner series": ["Strikes", "Lessons", "Pitch selection"],
 };
 
 /** Other guides to show at the bottom of a post. Same topic first. */
@@ -2009,10 +2085,19 @@ function uniqueHeadingIds(labels: string[]) {
 /** Section and routine headings, in the order they appear. Short posts stay out. */
 export function guideOutline(magnet: LeadMagnet) {
   const routineLabels = magnet.routines?.map((routine) => routine.heading) ?? [];
-  const sectionLabels = magnet.sections?.map((section) => section.heading) ?? [];
-  const ids = uniqueHeadingIds([...routineLabels, ...sectionLabels]);
-  const routineIds = ids.slice(0, routineLabels.length);
-  const sectionIds = ids.slice(routineLabels.length);
+  const routineIds = uniqueHeadingIds(routineLabels);
+  const used = new Set(routineIds);
+  const sectionIds = (magnet.sections ?? []).map((section) => {
+    const preferred = section.id?.trim() || headingSlug(section.heading);
+    let id = preferred;
+    let n = 2;
+    while (used.has(id)) {
+      id = `${preferred}-${n}`;
+      n += 1;
+    }
+    used.add(id);
+    return id;
+  });
 
   const routines = (magnet.routines ?? []).map((routine, index) => ({
     ...routine,

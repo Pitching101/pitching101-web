@@ -113,6 +113,29 @@ export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
   };
 }
 
+/** Series hub: the page plus the guides in teaching order. */
+export function collectionJsonLd(magnet: LeadMagnet) {
+  const items = magnet.series ?? [];
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: magnet.title,
+    description: magnet.metaDescription,
+    url: `${SITE_URL}/guides/${magnet.slug}/`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      numberOfItems: items.length,
+      itemListElement: items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        url: `${SITE_URL}${item.path}`,
+      })),
+    },
+  };
+}
+
 /** Numbered beginner steps. Same script tag as Article and FAQPage. */
 export function howToJsonLd(howTo: GuideHowTo) {
   const pageUrl = `${SITE_URL}${howTo.path}`;
