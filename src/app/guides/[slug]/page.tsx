@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import JsonLd, {
   articleJsonLd,
   breadcrumbJsonLd,
+  collectionJsonLd,
   faqJsonLd,
   howToJsonLd,
 } from "@/components/JsonLd";
@@ -75,6 +76,7 @@ export default async function GuideSlugPage({
   return (
     <>
       <JsonLd data={articleJsonLd(magnet)} />
+      {magnet.series?.length ? <JsonLd data={collectionJsonLd(magnet)} /> : null}
       {howTo ? <JsonLd data={howToJsonLd(howTo)} /> : null}
       {faqs.length > 0 ? <JsonLd data={faqJsonLd(faqs)} /> : null}
       <JsonLd
