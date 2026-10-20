@@ -138,6 +138,7 @@ export const beginnerSeries: LeadMagnet[] = [
               "[Pre-catch warmup](/guides/pre-catch-warmup/)",
               "[How often should young pitchers throw between lessons?](/guides/how-often-should-young-pitchers-throw-between-lessons/)",
               "[Fun games to play](/guides/fun-games/)",
+              "[Pitching from the stretch for beginners](/guides/pitching-from-the-stretch-for-beginners/)",
             ],
           },
         ],

@@ -68,6 +68,7 @@ export function articleJsonLd(magnet: LeadMagnet) {
     headline: magnet.title,
     description: `${magnet.note} Free from Coach Deising at Pitching101.`,
     ...(magnet.datePublished ? { datePublished: magnet.datePublished } : {}),
+    ...(magnet.dateModified ? { dateModified: magnet.dateModified } : {}),
     image: magnet.ogImage
       ? `${SITE_URL}${magnet.ogImage}`
       : `${SITE_URL}/og/${magnet.slug}.png`,
