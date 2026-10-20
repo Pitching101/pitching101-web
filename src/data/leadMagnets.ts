@@ -39,6 +39,8 @@ export type LeadMagnetSection = {
    * Set this when a Reel or another guide links to a specific section.
    */
   id?: string;
+  /** Earlier anchors that should keep working after a heading rename. */
+  aliasIds?: string[];
   paragraphs?: string[];
   bullets?: string[];
   numbered?: string[];
@@ -99,6 +101,8 @@ export type LeadMagnet = {
   ogImageAlt?: string;
   /** ISO date for Article JSON-LD. */
   datePublished?: string;
+  /** ISO date for Article JSON-LD when a published guide is revised. */
+  dateModified?: string;
   /** Opening paragraphs before the first section. */
   lede?: string[];
   /** Long-form body for parent guides. Short magnets omit this. */
@@ -119,9 +123,15 @@ export const leadMagnets: LeadMagnet[] = [
   {
     slug: "how-to-choose-pitching-lessons-naples-fl",
     title: "How to choose pitching lessons in Naples, FL",
-    metaTitle: "How to Choose Pitching Lessons in Naples, FL",
+    metaTitle: "How to Choose Pitching Lessons for Your Kid | Naples FL",
     metaDescription:
-      "A short parent checklist for picking youth pitching lessons in Naples, FL — what to ask, green flags, red flags, and when pitching-focused coaching fits.",
+      "How to choose pitching lessons for your kid in Naples, FL: 11 questions to ask any coach, green flags, red flags, and when pitching-only lessons fit best.",
+    ogTitle: "How to Choose Pitching Lessons for Your Kid in Naples, FL",
+    ogDescription:
+      "How to choose pitching lessons for your kid in Naples, FL: 11 questions to ask any coach, green flags, red flags, and when pitching-only lessons fit best.",
+    twitterTitle: "How to Choose Pitching Lessons for Your Kid in Naples, FL",
+    twitterDescription:
+      "How to choose pitching lessons for your kid in Naples, FL: 11 questions to ask any coach, green flags, red flags, and when pitching-only lessons fit best.",
     kicker: "Free guide",
     note: "A short parent checklist so you can pick a coach without guessing.",
     topic: "Choosing a coach",
@@ -132,6 +142,10 @@ export const leadMagnets: LeadMagnet[] = [
     emailSubject: "How to Choose Pitching Lessons in Naples FL",
     cta: ENROLL_LABEL,
     ctaHref: "/contact/",
+    dateModified: "2026-10-20",
+    lede: [
+      "**Quick answer:** Choose a pitching coach who works with your child's age, can tell you what happens in the first lesson, and builds arm care (warm-up and cool-down) into every session. For ages 8–16, a good coach puts strikes and mechanics before speed and tells you what to practice between lessons. If a coach pushes a big package before you've even met, keep looking.",
+    ],
     sections: [
       {
         heading: 'What "good" looks like for ages 8–16',
@@ -146,16 +160,34 @@ export const leadMagnets: LeadMagnet[] = [
         ],
       },
       {
-        heading: "Five questions to ask any coach",
-        paragraphs: [
-          "If they can answer without dancing around it, you're in the right place. If it gets foggy, keep looking.",
-        ],
-        numbered: [
-          "What ages do you coach best?",
-          "What happens in the first lesson?",
-          "How do you handle arm care?",
-          "How will I know what to practice this week?",
-          "What if we can't make it in person one week?",
+        heading: "Questions to ask any pitching coach",
+        id: "questions-to-ask-any-pitching-coach",
+        aliasIds: ["five-questions-to-ask-any-coach"],
+        blocks: [
+          {
+            kind: "p",
+            text: "If they can answer without dancing around it, you're in the right place. If it gets foggy, keep looking.",
+          },
+          {
+            kind: "ol",
+            items: [
+              "What ages do you coach best?",
+              "What happens in the first lesson?",
+              "How do you handle arm care?",
+              "How will I know what to practice this week?",
+              "What if we can't make it in person one week?",
+              "How do you keep track of pitch counts and rest days around my child's team schedule?",
+              "What should my child do, and not do, between lessons?",
+              "How will we know it's working, and what should we expect to see first?",
+              "Can we start with one evaluation before picking a package?",
+              "Will you talk with me after each lesson about what you worked on?",
+              "Do you focus on throwing strikes and mechanics, or mostly on throwing harder?",
+            ],
+          },
+          {
+            kind: "p",
+            text: "Want to see how we'd answer these? Read how we plan the [week between lessons](/guides/how-often-should-young-pitchers-throw-between-lessons/), or start with our [Beginner Pitching Series](/guides/beginner-pitching-series/).",
+          },
         ],
       },
       {
@@ -176,6 +208,7 @@ export const leadMagnets: LeadMagnet[] = [
           "No warm-up talk",
           "Only velocity talk for a young arm",
           "You leave more confused than you arrived",
+          "No clear answer when you ask about pitch counts or rest days",
         ],
       },
       {
@@ -1989,6 +2022,159 @@ export const leadMagnets: LeadMagnet[] = [
     ],
   },
   ...beginnerSeries,
+  {
+    slug: "pitching-from-the-stretch-for-beginners",
+    title: "Pitching From the Stretch: 3 Simple Steps for Young Pitchers",
+    metaTitle: "Pitching From the Stretch for Beginners | Pitching101",
+    metaDescription:
+      "New to pitching from the stretch? Three simple steps for young pitchers: stand sideways, come set and hold, then lift and go. Plus an easy drill for home.",
+    ogTitle: "Pitching From the Stretch: 3 Simple Steps for Young Pitchers",
+    ogDescription:
+      "Runners on base? Stand sideways, come set and hold, then lift and go. Plus an easy at-home drill.",
+    twitterTitle: "Pitching From the Stretch: 3 Simple Steps for Young Pitchers",
+    twitterDescription:
+      "Only the start changes. Three steps and one backyard drill for young pitchers learning the stretch.",
+    // No custom share image in the repo. Share cards use the default image.
+    ogImage: OG_IMAGE,
+    ogImageAlt: OG_IMAGE_ALT,
+    datePublished: "2026-10-20",
+    kicker: "Free guide",
+    note: "Runners on base? Here's how a young pitcher stands sideways, comes set, and still throws strikes, plus one easy drill to practice at home.",
+    topic: "Beginner series",
+    icon: "/assets/icons/icon-free-guide-v2.png",
+    emailSubject: "Pitching From the Stretch for Beginners",
+    cta: "Contact",
+    ctaHref: "/contact/",
+    lede: [
+      "**Short answer:** The stretch is a shorter way to start a pitch, used mostly when runners are on base. Stand sideways to the catcher, bring your hands together and come to a full stop, then lift, balance, and throw the same way you always do. Most beginners rush the stop, so practice it slowly first.",
+      "Once a young pitcher finishes our [Beginner Pitching Series](/guides/beginner-pitching-series/), the stretch is usually the next new thing they see in games. Parents in Naples and around Collier County often ask why their kid suddenly \"pitches differently\" with a runner on first. Here's the simple version.",
+    ],
+    sections: [
+      {
+        heading: "What is the stretch?",
+        blocks: [
+          {
+            kind: "p",
+            text: "There are two ways to start a pitch. The **windup** is the longer start most beginners learn first (see [how to stand on the mound](/guides/how-to-stand-on-the-mound-balance/)). The **stretch** is shorter. Pitchers use it with runners on base so they can keep an eye on the runner and get the ball to the catcher sooner.",
+          },
+          {
+            kind: "p",
+            text: "The good news: only the start changes. After the leg lift, it's the same balance, move, throw, finish your child already practices.",
+          },
+        ],
+      },
+      {
+        heading: "Step 1: Stand sideways",
+        blocks: [
+          {
+            kind: "p",
+            text: "Stand with your back foot along the front edge of the rubber and your front side facing the catcher, like you're standing on a line that points at the plate. Feet about shoulder-width apart, knees soft, standing tall.",
+          },
+        ],
+      },
+      {
+        heading: "Step 2: Come set and hold",
+        blocks: [
+          {
+            kind: "p",
+            text: "Bring your hands together at your belly or chest, and stop. A real stop, not a quick bounce. Hold it for a moment and pick your target on the glove. That pause is what \"coming set\" means, and it's the part beginners rush most.",
+          },
+        ],
+      },
+      {
+        heading: "Step 3: Lift, balance, go",
+        blocks: [
+          {
+            kind: "p",
+            text: "From the set, lift your front leg, find your balance, and throw to the target. From here it's the motion your child already knows: balance, move, throw, finish. See [the basic pitching motion](/guides/how-to-teach-a-kid-to-pitch/#balance-move-throw-finish).",
+          },
+        ],
+      },
+      {
+        heading: "A drill to try at home: Set, Pause, Go",
+        blocks: [
+          {
+            kind: "p",
+            text: "You can do this in the backyard or at the park. No mound needed.",
+          },
+          {
+            kind: "ol",
+            items: [
+              "Your child gets sideways, like Step 1.",
+              "You say \"Set.\" They bring their hands together and stop.",
+              "Count out loud: \"One, two.\"",
+              "You say \"Go.\" They lift, balance, and throw easy to your glove.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "Start slow and at easy effort. Once the stop looks clean every time, let them count in their head instead of out loud. Keep it short and end on a good throw.",
+          },
+        ],
+      },
+      {
+        heading: "Rushing the set? That's normal",
+        blocks: [
+          {
+            kind: "p",
+            text: "Almost every beginner hurries the stop at first, especially in a game with a runner leading off. If the hands never really stop, or the throw sails, step off, take a breath, and come set again. Slower is better while they're learning.",
+          },
+        ],
+      },
+      {
+        heading: "Why it matters for parents",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "**Same motion, new start.** Kids who practice the stretch at home don't feel thrown off the first time a runner gets on.",
+              "**Calmer with runners on.** A clear set and pause gives your child a second to breathe and aim, which helps with [aim small, miss small](/guides/how-to-throw-strikes-aim-small-miss-small/).",
+              "**Rules vary by league.** Some youth leagues don't allow leading off, and balk rules aren't the same everywhere. Ask your child's coach or league which rules apply to them.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "FAQ",
+        blocks: [
+          {
+            kind: "faq",
+            items: [
+              {
+                q: "When should a young pitcher learn the stretch?",
+                a: "Once they can throw strikes from the windup with a motion they can repeat. Many kids start using it once runners can lead off or steal in their league. Your child's coach can tell you when it fits their team.",
+              },
+              {
+                q: "Is the stretch harder than the windup?",
+                a: "It's different, not harder. There are fewer moving parts at the start, but the full stop takes practice.",
+              },
+              {
+                q: "Do they need a mound to practice the stretch?",
+                a: "No. Flat ground in the backyard or at the park works fine.",
+              },
+              {
+                q: "What's a balk?",
+                a: "A balk is a pitcher's illegal move with runners on base, like not coming to a full stop or faking a throw. Rules differ by league and age, so ask your coach what your league calls. Our [pitching terms for beginners](/guides/pitching-terms-for-beginners/) guide covers the basics.",
+              },
+              {
+                q: "Should my child pitch from the stretch all the time?",
+                a: "Some pitchers do, because it's simpler. That's a choice to make with your child's pitching coach.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Want help with the stretch?",
+        blocks: [
+          {
+            kind: "p",
+            text: "Tell us your child's age and where they're pitching on the [contact page](/contact/). Lessons are at Fleischmann Park in Naples, and we travel within Collier County.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
@@ -2087,6 +2273,12 @@ export function guideOutline(magnet: LeadMagnet) {
   const routineLabels = magnet.routines?.map((routine) => routine.heading) ?? [];
   const routineIds = uniqueHeadingIds(routineLabels);
   const used = new Set(routineIds);
+  for (const section of magnet.sections ?? []) {
+    for (const alias of section.aliasIds ?? []) {
+      const id = alias.trim();
+      if (id) used.add(id);
+    }
+  }
   const sectionIds = (magnet.sections ?? []).map((section) => {
     const preferred = section.id?.trim() || headingSlug(section.heading);
     let id = preferred;

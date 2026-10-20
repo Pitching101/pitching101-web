@@ -180,11 +180,19 @@ function GuideSection({ section }: { section: LeadMagnetSection & { id?: string 
     : section.bullets
       ? "guide-list guide-list-cards"
       : "guide-list";
+  const aliasIds = (section.aliasIds ?? []).map((id) => id.trim()).filter(Boolean);
+  const [primaryAlias, ...extraAliases] = aliasIds;
 
   return (
     <section
-      className={`guide-section${section.tone ? ` guide-flag guide-flag-${section.tone}` : ""}`}
+      id={primaryAlias}
+      className={`guide-section${section.tone ? ` guide-flag guide-flag-${section.tone}` : ""}${
+        primaryAlias ? " guide-toc-target" : ""
+      }`}
     >
+      {extraAliases.map((alias) => (
+        <span key={alias} id={alias} className="guide-toc-target" />
+      ))}
       <h2 id={section.id} className="ui-title ui-title-sm guide-toc-target">
         {section.heading}
       </h2>

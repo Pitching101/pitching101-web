@@ -31,10 +31,12 @@ export async function generateMetadata({
   const url = `/guides/${magnet.slug}/`;
   const image = magnet.ogImage || `/og/${magnet.slug}.png`;
   const imageAlt = magnet.ogImageAlt ?? magnet.title;
+  const branded =
+    title.startsWith(`${BRAND_NAME} |`) || title.endsWith(`| ${BRAND_NAME}`);
+  // A meta title that already has a pipe is finished copy (brand or place).
+  // The layout template must not prefix another "Pitching101 |".
   const documentTitle =
-    title.startsWith(`${BRAND_NAME} |`) || title.endsWith(`| ${BRAND_NAME}`)
-      ? { absolute: title }
-      : title;
+    branded || Boolean(magnet.metaTitle?.includes(" | ")) ? { absolute: title } : title;
 
   return {
     title: documentTitle,
