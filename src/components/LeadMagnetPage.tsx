@@ -284,9 +284,15 @@ export default function LeadMagnetPage({ magnet }: { magnet: LeadMagnet }) {
             <GuideClip src={magnet.introVideo} label="Welcome to the band routine" />
           ) : null}
           <ul className="bb-chip-row">
-            <li className="bb-chip">{magnet.topic}</li>
-            <li className="bb-chip">Ages 8–16</li>
-            <li className="bb-chip">{magnet.videoGate ? "Sign in for clips" : "Free"}</li>
+            {(magnet.tags ?? [
+              magnet.topic,
+              "Ages 8–16",
+              magnet.videoGate ? "Sign in for clips" : "Free",
+            ]).map((tag) => (
+              <li key={tag} className="bb-chip">
+                {tag}
+              </li>
+            ))}
           </ul>
           <div className="home-cta-row">
             <MagnetCta magnet={magnet} />
