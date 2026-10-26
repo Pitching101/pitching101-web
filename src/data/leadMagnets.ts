@@ -81,6 +81,11 @@ export type LeadMagnet = {
   kicker: string;
   note: string;
   topic: string;
+  /**
+   * Chip labels under the title. When omitted, the page shows topic, ages, and Free.
+   * Set this when a draft names its own tags.
+   */
+  tags?: string[];
   icon: string;
   /** Optional 3:4 baseball-card thumbnail. Falls back to the icon in a 3:4 well. */
   art?: string;
@@ -2170,6 +2175,143 @@ export const leadMagnets: LeadMagnet[] = [
           {
             kind: "p",
             text: "Tell us your child's age and where they're pitching on the [contact page](/contact/). Lessons are at Fleischmann Park in Naples, and we travel within Collier County.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "strikes-before-speed-young-pitchers",
+    title: "Strikes Before Speed: Why Your Young Pitcher Doesn't Need a Radar Gun Yet",
+    metaTitle: "Strikes Before Speed: Does My Young Pitcher Need a Radar Gun? | Pitching101",
+    metaDescription:
+      "Wondering if your kid throws hard enough? Why strikes and a smooth motion matter more than speed for young pitchers, plus an easy at-home game. Naples, FL.",
+    ogTitle: "Strikes Before Speed: Why Your Young Pitcher Doesn't Need a Radar Gun Yet",
+    ogDescription:
+      'What matters more than speed for young pitchers, 3 things to build at home, and an easy "Five in a Row" strike game for parents.',
+    twitterTitle: "Strikes Before Speed: Why Your Young Pitcher Doesn't Need a Radar Gun Yet",
+    twitterDescription:
+      'What matters more than speed for young pitchers, 3 things to build at home, and an easy "Five in a Row" strike game for parents.',
+    // No per-guide share image. Long-form guides use the default /og/home.png.
+    ogImage: OG_IMAGE,
+    ogImageAlt: OG_IMAGE_ALT,
+    datePublished: "2026-10-26",
+    kicker: "Free guide",
+    note: "Wondering if your kid throws hard enough? Here's what matters more right now, three simple ways to build it at home, and why the speed shows up later on its own.",
+    topic: "Strikes",
+    tags: ["Parent Series", "Strikes", "Beginner-friendly", "Free"],
+    icon: "/assets/icons/icon-strikes.png",
+    emailSubject: "Strikes Before Speed",
+    cta: "Contact us to get started",
+    ctaHref: "/contact/",
+    lede: [
+      "**Short answer:** For a young pitcher, throwing strikes with a smooth, repeatable motion matters far more than a radar gun number. Kids who chase speed before their motion is ready usually lose the strike zone. Build strikes first with easy effort, short sessions, and one small target. Speed comes later, and it comes easier on top of good habits.",
+      'Parents in Naples and around Collier County ask us this all the time, usually after a showcase, a travel tryout, or a teammate who "throws gas." It\'s a fair question. Here\'s the simple version.',
+    ],
+    sections: [
+      {
+        heading: "Why the radar gun can wait",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "**Games are won with strikes.** A pitcher who throws strikes keeps the defense in the game and keeps the coach handing them the ball. Walks are what end innings badly, not a slow reading.",
+              "**Speed without control isn't useful yet.** A hard throw that misses the zone is still a ball.",
+              "**Trying to throw hard too early builds bad habits.** When a beginner muscles up, the motion usually falls apart: they rush, lose balance, and the ball sails. (We cover this in [how to teach a kid to pitch](/guides/how-to-teach-a-kid-to-pitch/).)",
+              "**Kids grow.** Strength, size, and coordination keep changing. A clean, repeatable motion is what carries forward as they grow.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "3 things that matter more right now",
+        blocks: [
+          {
+            kind: "ol",
+            items: [
+              "**A smooth, repeatable motion.** Same balance, same move, same throw, same finish, every time. If the motion looks the same on throw one and throw fifteen, you're on the right track. See [how to stand on the mound](/guides/how-to-stand-on-the-mound-balance/) for the balance piece.",
+              '**One small target.** Pick one spot on the glove, not "the catcher." Aim small, miss small. Throw with normal, relaxed arm speed and let the eyes do the work. Slowing the arm down to aim usually makes control worse. More in [aim small, miss small](/guides/how-to-throw-strikes-aim-small-miss-small/).',
+              "**Easy effort, short sessions.** Smooth speed, not max effort. 10 to 15 minutes of good throws beats an hour of tired ones. Stop while the arm still feels fresh, and end on a good throw.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "A game to try at home: Five in a Row",
+        blocks: [
+          {
+            kind: "p",
+            text: "No mound and no radar gun needed. Backyard or park is fine.",
+          },
+          {
+            kind: "ol",
+            items: [
+              "Play easy catch to warm up (see our [pre-catch warmup](/guides/pre-catch-warmup/)).",
+              "Hold your glove still as the target. Your child throws at smooth, easy effort.",
+              'Count strikes out loud. Five "glove strikes" in a row wins the round.',
+              "Only after they win a round can they try a little more effort, and if the strikes disappear, go back to smooth.",
+            ],
+          },
+          {
+            kind: "p",
+            text: 'This makes control the goal, and turns "throw harder" into something they earn.',
+          },
+        ],
+      },
+      {
+        heading: "Feeling behind? That's normal",
+        blocks: [
+          {
+            kind: "p",
+            text: "Every young pitcher grows on a different timeline, and a number at a tryout is one moment on one day. If your child throws strikes, has fun, and keeps a smooth motion, they're building exactly what they'll need later.",
+          },
+        ],
+      },
+      {
+        heading: "Why it matters for parents",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "**Less pressure, more fun.** Kids who aren't chasing a number relax, and relaxed pitchers throw more strikes.",
+              "**Fewer bad habits to undo.** Smooth now means less fixing later.",
+              "**Arm-friendly.** Easy effort and short sessions fit the same common-sense approach in our [arm care checklist](/guides/arm-care-checklist/). If your child mentions pain, stop and talk to your doctor.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "FAQ",
+        blocks: [
+          {
+            kind: "faq",
+            items: [
+              {
+                q: "Should I buy a radar gun for my young pitcher?",
+                a: "You don't need one to get started. Focus on strikes, a smooth motion, and fun first.",
+              },
+              {
+                q: "My kid's teammate throws harder. Should we work on speed?",
+                a: "Work on strikes and a repeatable motion first. Speed tends to come with growth and good mechanics.",
+              },
+              {
+                q: "When does speed start to matter?",
+                a: "Every kid is different. A coach who watches your child throw can tell you when they're ready to add effort safely.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Want a coach to watch your child throw?",
+        blocks: [
+          {
+            kind: "p",
+            text: "Coach Deising works with young pitchers in Naples and Collier County, starting with strikes, a smooth motion, and good habits.",
+          },
+          {
+            kind: "p",
+            text: "[Contact us to get started](/contact/).",
           },
         ],
       },

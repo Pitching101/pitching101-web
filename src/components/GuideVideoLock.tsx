@@ -49,15 +49,12 @@ export default function GuideVideoLock({
   routines: LeadMagnetRoutine[];
 }) {
   const [session, setSession] = useState<Session | null>(null);
-  const [ready, setReady] = useState(false);
-  const [unlockedRoutines, setUnlockedRoutines] = useState<LeadMagnetRoutine[] | null>(null);
+  const [ready, setReady] = useState(() => getSupabase() === null);
+  const [loadedRoutines, setLoadedRoutines] = useState<LeadMagnetRoutine[] | null>(null);
   const supabase = getSupabase();
 
   useEffect(() => {
-    if (!supabase) {
-      setReady(true);
-      return;
-    }
+    if (!supabase) return;
     let cancelled = false;
     void supabase.auth.getSession().then(({ data }) => {
       if (!cancelled) {
@@ -75,19 +72,18 @@ export default function GuideVideoLock({
   }, [supabase]);
 
   useEffect(() => {
-    if (!session) {
-      setUnlockedRoutines(null);
-      return;
-    }
+    if (!session) return;
     let cancelled = false;
     void import("@/data/guideVideoMap").then(({ attachGuideVideos, videoMapFor }) => {
       if (cancelled) return;
-      setUnlockedRoutines(attachGuideVideos(routines, videoMapFor(slug)));
+      setLoadedRoutines(attachGuideVideos(routines, videoMapFor(slug)));
     });
     return () => {
       cancelled = true;
     };
   }, [session, routines, slug]);
+
+  const unlockedRoutines = session ? loadedRoutines : null;
 
   const unlocked = Boolean(session);
 
