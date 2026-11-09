@@ -1422,7 +1422,7 @@ export const leadMagnets: LeadMagnet[] = [
       "Age guide, simple grip, and when to wait — so you don’t rush the wrong pitch.",
     twitterTitle: "When Should Young Pitchers Start Throwing a Changeup?",
     twitterDescription:
-      "Fastball first, then a soft changeup. Parent-friendly age guide for Naples families.",
+      "Fastball first, then a changeup with the same arm speed. Parent-friendly age guide for Naples families.",
     ogImage: OG_IMAGE,
     ogImageAlt: OG_IMAGE_ALT,
     datePublished: "2026-09-29",
@@ -1472,7 +1472,7 @@ export const leadMagnets: LeadMagnet[] = [
             kind: "ul",
             items: [
               "**It looks like a fastball.** That's the whole point. The hitter sees fastball and swings early.",
-              "**The difference is the grip, not throwing softer.** Don't slow the arm down on purpose.",
+              "**The difference is the grip.** Throw it with the same arm speed as the fastball. Don't slow the arm down on purpose.",
               "**Same arm speed.** Throw it with the same arm speed as your fastball.",
               "**Pretend it's a fastball.** Same motion, same finish. Let the grip slow it down.",
               "**Only after fastball strikes.** Fastball command first, changeup second.",
@@ -1489,7 +1489,7 @@ export const leadMagnets: LeadMagnet[] = [
         blocks: [
           {
             kind: "p",
-            text: "A changeup is a slower pitch that looks like a fastball out of the hand. The difference is the grip, not throwing softer. Same arm speed. Hitters swing early. It is not a curve. It does not need a big wrist snap. That is why it is usually safer to teach next than a breaking ball.",
+            text: "A changeup is a slower pitch that looks like a fastball out of the hand. The difference is the grip. Throw it with the same arm speed as the fastball. Hitters swing early. It is not a curve. It does not need a big wrist snap. That is why it is usually safer to teach next than a breaking ball.",
           },
         ],
       },
@@ -1507,7 +1507,7 @@ export const leadMagnets: LeadMagnet[] = [
               ["8–10", "Fastball command and easy catch. Skip secondary pitches in games."],
               [
                 "11–12",
-                "Add a soft changeup in lessons and light flat ground if the arm feels good.",
+                "Add a changeup in lessons. Same arm speed as the fastball; the grip does the work. Light flat ground only.",
               ],
               ["13–14", "Changeup becomes a real game pitch once strikes are consistent."],
               [
