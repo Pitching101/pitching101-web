@@ -2317,6 +2317,103 @@ export const leadMagnets: LeadMagnet[] = [
       },
     ],
   },
+  {
+    slug: "young-pitcher-fielding-after-the-pitch",
+    title: "After the Pitch: How to Teach Your Young Pitcher to Field Their Position",
+    metaTitle: "Teach Your Young Pitcher to Field Their Position | Pitching101",
+    metaDescription:
+      "The pitch isn't over at release. 3 easy backyard steps to help your young pitcher finish balanced, get the glove up, and know where to throw. Naples, FL.",
+    ogTitle: "After the Pitch: Teach Your Young Pitcher to Field Their Position",
+    ogDescription:
+      "Finish balanced, glove up, know where to throw. Three simple steps you can practice in the yard.",
+    twitterTitle: "After the Pitch: Teach Your Young Pitcher to Field Their Position",
+    twitterDescription:
+      "Finish balanced, glove up, know where to throw. Three simple steps you can practice in the yard.",
+    // No per-guide share image. Long-form guides use the default /og/home.png.
+    ogImage: OG_IMAGE,
+    ogImageAlt: OG_IMAGE_ALT,
+    datePublished: "2026-11-17",
+    kicker: "Free guide",
+    note: "The pitch isn't over when the ball leaves the hand. Here's how to help your pitcher finish balanced, get the glove up, and know where to go on a ground ball, in three simple steps you can practice in the yard.",
+    topic: "Fielding",
+    tags: ["Parent Series", "Fielding", "Beginner-friendly", "Free"],
+    icon: "/assets/icons/icon-free-guide-v2.png",
+    emailSubject: "Fielding After the Pitch",
+    cta: "Contact",
+    ctaHref: "/contact/",
+    lede: [
+      "Most young pitchers think their job ends when they let go of the ball. But once the pitch is thrown, the pitcher becomes a fifth infielder. Balls come back up the middle, bunts roll in front of the mound, and someone has to cover first base. Pitchers who know what to do after the pitch save runs, and they feel more confident on the mound.",
+      "The good news: this is easy to practice at home, it doesn't take a mound, and it doesn't add extra throwing.",
+    ],
+    sections: [
+      {
+        heading: "Step 1: Finish ready, not falling off",
+        blocks: [
+          {
+            kind: "p",
+            text: "After the pitch, your pitcher should land balanced with both feet under them, facing the plate. A pitcher who falls off to the side can't react to a ball hit back at them.",
+          },
+          {
+            kind: "p",
+            text: '**Try it:** play easy catch. After each throw, your pitcher "freezes" in a ready spot for a two-count. If they\'re tipping over, they\'re working too hard. Slow it down.',
+          },
+        ],
+      },
+      {
+        heading: "Step 2: Glove up, eyes on the ball",
+        blocks: [
+          {
+            kind: "p",
+            text: "As soon as the ball is released, the glove comes up in front of the chest and the eyes stay on the hitter. That's the pitcher's protection and the first move on a ball hit back up the middle.",
+          },
+          {
+            kind: "p",
+            text: "**Try it:** after your pitcher throws to you, gently roll or toss a soft ball back toward their glove side. They stay ready and field it. Keep it slow and soft. This is about the habit, not reaction speed.",
+          },
+        ],
+      },
+      {
+        heading: "Step 3: Know where to go before the pitch",
+        blocks: [
+          {
+            kind: "p",
+            text: 'Great pitchers have a plan before every pitch: "If it\'s hit to me, where am I throwing?" and "If it\'s hit to the right side, I run to cover first."',
+          },
+          {
+            kind: "p",
+            text: '**Try it:** before each throw in the yard, call out a situation ("ground ball to you, nobody on") and have your pitcher say where the throw goes. Then toss a slow grounder and let them make the play to a target, like a bucket for first base.',
+          },
+        ],
+      },
+      {
+        heading: "What parents can say",
+        blocks: [
+          {
+            kind: "p",
+            text: 'Keep it simple and positive: "Nice ready spot," "Glove up, good," "What was your plan on that one?" One reminder at a time is plenty. Skip the long corrections.',
+          },
+        ],
+      },
+      {
+        heading: "A quick safety note",
+        blocks: [
+          {
+            kind: "p",
+            text: "Use a soft ball for the comebacker practice, keep tosses gentle, and stop if anything feels sore. If you have questions about soreness, talk to your doctor.",
+          },
+        ],
+      },
+      {
+        heading: "Want a hand?",
+        blocks: [
+          {
+            kind: "p",
+            text: "If you'd like help adding fielding to your pitcher's routine in Naples or Collier County, reach out through the [Contact page](/contact/).",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLeadMagnet(slug: string) {
@@ -2346,6 +2443,7 @@ const RELATED_TOPICS: Record<string, string[]> = {
   "Choosing a coach": ["Lessons", "Arm care", "Strikes"],
   "Pitch selection": ["Arm care", "Strikes", "Lessons"],
   "Beginner series": ["Strikes", "Lessons", "Pitch selection"],
+  Fielding: ["Beginner series", "Lessons", "Strikes"],
 };
 
 /** Other guides to show at the bottom of a post. Same topic first. */
