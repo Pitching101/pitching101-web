@@ -321,7 +321,7 @@ export const leadMagnets: LeadMagnet[] = [
       {
         heading: "Why we do this before we throw",
         paragraphs: [
-          "This band routine warms up the arm, wakes up the small muscles that help control the shoulder, and keeps the shoulder stable and mobile so the arm feels good during the throwing program.",
+          "This band routine warms up the arm, wakes up the small muscles that help control the shoulder, and keeps the shoulder stable and mobile. If soreness lingers or something feels off, talk to a doctor.",
           "A light burn is what you want. If 10 reps feel too hard, move closer to the band. If they don't feel anything, step farther away.",
         ],
       },
@@ -1326,7 +1326,7 @@ export const leadMagnets: LeadMagnet[] = [
           },
           {
             kind: "p",
-            text: "Rest days mean rest from **pitching**. Easy catch and bands are usually fine on those days, as long as the arm feels good.",
+            text: "Rest days mean rest from **pitching**. Easy catch and bands are usually fine on those days. If soreness lingers or something feels off, talk to a doctor.",
           },
         ],
       },
